@@ -1,8 +1,5 @@
+@import 'assets/scss/debug'; // TODO: remove in production mode
+@import 'assets/scss/normalize';
 @import 'assets/scss/colors';
 @import 'assets/scss/namespace';
 @import 'assets/scss/grid';
-
-*
-{
-  direction: rtl;
-}
