@@ -1,5 +1,8 @@
-<h1>
-  {{title}}
-</h1>
-
-<router-outlet></router-outlet>
+<section class="container">
+  <div class="row">
+    <ts-sidebar class="col col--3-of-12"></ts-sidebar>
+    <section class="col col--9-of-12">
+      <router-outlet></router-outlet>
+    </section>
+  </div>
+</section>
