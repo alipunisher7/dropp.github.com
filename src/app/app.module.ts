@@ -5,10 +5,18 @@ import { HttpModule } from '@angular/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
+import { DashbordCardsComponent } from './dashbord-cards/dashbord-cards.component';
+import { SideComponent } from './side/side.component';
+import { DashbordPanelComponent } from './dashbord-panel/dashbord-panel.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    SidebarComponent,
+    DashbordCardsComponent,
+    SideComponent,
+    DashbordPanelComponent
   ],
   imports: [
     BrowserModule,
