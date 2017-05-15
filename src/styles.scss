@@ -8,3 +8,8 @@
 {
   min-height: 100%;
 }
+
+.container
+{
+  @extend .fullscreen;
+}

@@ -1,12 +1,12 @@
-<div id="main">
-    <div id="body">
+<div id="body">
 
-        <div id="btn">
-          <button type="button" name="sendServices">ارسال سرویس</button>
-        </div>
-        <div id="more">
-            <a href=""></a>
-            <a href="">بیشتر</a>
-        </div>
-    </div>
+  <ts-side *ngFor="let side of sides " [sideInput]="side"></ts-side>
+
+  <div id="btn">
+    <button type="button" name="sendServices">ارسال سرویس</button>
+  </div>
+  <div id="more">
+    <a href=""></a>
+    <a href="">بیشتر</a>
+  </div>
 </div>

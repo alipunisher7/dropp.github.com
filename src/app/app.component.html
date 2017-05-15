@@ -1,9 +1,7 @@
-<h1>
-  {{title}}
-</h1>
+<section class="container">
+  <ts-sidebar></ts-sidebar>
+  <ts-dashbord-cards *ngFor="let card of cards" [cardInput]="card"></ts-dashbord-cards>
 
-<ts-sidebar></ts-sidebar>
-<ts-dashbord-cards *ngFor="let card of cards" [cardInput]="card"></ts-dashbord-cards>
+  <router-outlet></router-outlet>
 
-<ts-side *ngFor="let side of sides " [sideInput]="side"></ts-side>
-<router-outlet></router-outlet>
+</section>
