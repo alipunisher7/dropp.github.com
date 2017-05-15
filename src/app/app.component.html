@@ -1,7 +1,8 @@
 <section class="container">
-  <ts-sidebar></ts-sidebar>
-  <ts-dashbord-cards *ngFor="let card of cards" [cardInput]="card"></ts-dashbord-cards>
-
-  <router-outlet></router-outlet>
-
+  <nav class="nav">
+    <ts-sidebar></ts-sidebar>
+  </nav>
+  <main class="panel">
+    <router-outlet></router-outlet>
+  </main>
 </section>
