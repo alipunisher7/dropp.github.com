@@ -22,7 +22,7 @@ import { DashbordPanelComponent } from './dashbord-panel/dashbord-panel.componen
     BrowserModule,
     FormsModule,
     HttpModule,
-    AppRoutingModule
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
