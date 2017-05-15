@@ -1,0 +1,11 @@
+<div id="side">
+      <span>{{sideInput.icon}}</span>
+      <h2>{{sideInput.title}}</h2>
+      <div id="link" *ngIf="sideInput.isOpen">
+        <ul>
+          <div *ngFor="let link of sideInput.links">
+            <li>{{link}}</li>
+          </div>
+        </ul>
+      <div>
+</div>
