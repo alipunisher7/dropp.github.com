@@ -7,12 +7,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { DashbordCardsComponent } from './dashbord-cards/dashbord-cards.component';
+import { SideComponent } from './side/side.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SidebarComponent,
-    DashbordCardsComponent
+    DashbordCardsComponent,
+    SideComponent
   ],
   imports: [
     BrowserModule,
