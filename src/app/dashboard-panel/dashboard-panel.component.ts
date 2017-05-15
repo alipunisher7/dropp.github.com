@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import {OperatorService} from '../Services/operator.service';
+import { OperatorService } from '../services/operator.service';
 import { Card } from './card';
 
 @Component({
-  selector: 'ts-dashbord-panel',
-  templateUrl: './dashbord-panel.component.html',
-  styleUrls: ['./dashbord-panel.component.scss'],
+  selector: 'ts-dashboard-panel',
+  templateUrl: './dashboard-panel.component.html',
+  styleUrls: ['./dashboard-panel.component.scss'],
   host: {
     class: 'panel'
   }
 })
-export class DashbordPanelComponent implements OnInit {
+export class DashboardPanelComponent implements OnInit {
   tripCard: Card;
   driverCard: Card;
   passengerCard: Card;
@@ -39,42 +39,42 @@ export class DashbordPanelComponent implements OnInit {
   }
   getOnlineTrips() {
     this._operatorServices.getOnlineTrips().subscribe(data => {
-      this.tripCard.IInfo1.data = data;
+      this.tripCard.info1.data = data;
     })
   }
   getTodayTrips() {
     this._operatorServices.getTodayTrips().subscribe(data => {
-      this.tripCard.IInfo2.data = data;
+      this.tripCard.info2.data = data;
     })
   }
   getOnlineDrivers() {
     this._operatorServices.getOnlineDrivers().subscribe(data => {
-      this.driverCard.IInfo1.data = data;
+      this.driverCard.info1.data = data;
     })
   }
   getAllDrivers() {
     this._operatorServices.getAllDrivers().subscribe(data => {
-      this.driverCard.IInfo2.data = data;
+      this.driverCard.info2.data = data;
     })
   }
   getNewPassengers() {
     this._operatorServices.getNewPassengers().subscribe(data => {
-      this.passengerCard.IInfo1.data = data;
+      this.passengerCard.info1.data = data;
     })
   }
   getAllPassengers() {
     this._operatorServices.getAllPassengers().subscribe(data => {
-      this.passengerCard.IInfo2.data = data;
+      this.passengerCard.info2.data = data;
     })
   }
   getNewOrganizations() {
     this._operatorServices.getNewOrganizations().subscribe(data => {
-      this.OrganizationCard.IInfo1.data = data;
+      this.OrganizationCard.info1.data = data;
     })
   }
   getAllOrganizations() {
     this._operatorServices.getAllOrganizations().subscribe(data => {
-      this.OrganizationCard.IInfo2.data = data;
+      this.OrganizationCard.info2.data = data;
     })
   }
 

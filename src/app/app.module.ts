@@ -3,20 +3,22 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
+import { OperatorService } from './services';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
-import { DashbordCardsComponent } from './dashbord-cards/dashbord-cards.component';
+import { DashboardCardsComponent } from './dashboard-cards';
 import { SideComponent } from './side/side.component';
-import { DashbordPanelComponent } from './dashbord-panel/dashbord-panel.component';
+import { DashboardPanelComponent } from './dashboard-panel';
 
 @NgModule({
   declarations: [
     AppComponent,
     SidebarComponent,
-    DashbordCardsComponent,
+    DashboardCardsComponent,
     SideComponent,
-    DashbordPanelComponent
+    DashboardPanelComponent
   ],
   imports: [
     BrowserModule,
@@ -24,7 +26,7 @@ import { DashbordPanelComponent } from './dashbord-panel/dashbord-panel.componen
     HttpModule,
     AppRoutingModule,
   ],
-  providers: [],
+  providers: [OperatorService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
