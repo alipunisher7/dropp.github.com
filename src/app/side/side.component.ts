@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit , Input } from '@angular/core';
+import { SideItem } from './side-item';
 
 @Component({
   selector: 'ts-side',
@@ -6,10 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./side.component.scss']
 })
 export class SideComponent implements OnInit {
-
+@Input () sideInput: SideItem;
   constructor() { }
 
   ngOnInit() {
+
   }
 
 }

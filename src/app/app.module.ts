@@ -20,7 +20,7 @@ import { SideComponent } from './side/side.component';
     BrowserModule,
     FormsModule,
     HttpModule,
-    //AppRoutingModule
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

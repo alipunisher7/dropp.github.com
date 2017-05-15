@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {SidebarComponent} from './sidebar';
 import {DashbordCardsComponent} from './dashbord-cards';
+import {SideComponent} from './side';
 @Component({
   selector: 'ts-root',
   templateUrl: './app.component.html',
@@ -14,7 +15,9 @@ export class AppComponent {
     {title1: 'سازمان جدید', number1: 3 ,title2: 'سازمان ثبت شده ', number2: 4, link:"/first"}
 
   ]
-
+sides= [
+    {title:'داشبورد' , icon:'iconnnnn' , isOpen:false}
+]
 
   constructor() {
 
