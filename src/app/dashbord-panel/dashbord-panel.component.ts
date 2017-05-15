@@ -5,7 +5,10 @@ import { Card } from './card';
 @Component({
   selector: 'ts-dashbord-panel',
   templateUrl: './dashbord-panel.component.html',
-  styleUrls: ['./dashbord-panel.component.scss']
+  styleUrls: ['./dashbord-panel.component.scss'],
+  host: {
+    class: 'panel'
+  }
 })
 export class DashbordPanelComponent implements OnInit {
   tripCard: Card;
@@ -74,7 +77,6 @@ export class DashbordPanelComponent implements OnInit {
       this.OrganizationCard.IInfo2.data = data;
     })
   }
-
 
   ngOnInit() {
 
