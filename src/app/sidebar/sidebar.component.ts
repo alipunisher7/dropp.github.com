@@ -9,9 +9,9 @@ export class SidebarComponent implements OnInit {
 
   constructor() { }
   sides = [
-    { title: 'داشبورد', icon: 'iconnnnn', isOpen: false }
-
+    { title: 'داشبورد', icon: 'icon', isOpen: false }
   ]
+
   ngOnInit() {
   }
 
