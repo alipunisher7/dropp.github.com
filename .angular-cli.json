@@ -19,7 +19,7 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "ts",
       "styles": [
-        "../node_modules/toast-grid/scss/_grid.scss",
+        "../node_modules/normalize.css/normalize.css",
         "../node_modules/font-awesome/scss/font-awesome.scss",
         "styles.scss"
       ],
