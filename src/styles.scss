@@ -3,3 +3,8 @@
 @import 'assets/scss/colors';
 @import 'assets/scss/namespace';
 @import 'assets/scss/grid';
+
+.fullscreen
+{
+  min-height: 100%;
+}
