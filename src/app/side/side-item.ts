@@ -1,4 +1,4 @@
-export interface Link {
+export interface LinkItem {
   title: string;
   icon: string;
   link: string;
@@ -8,5 +8,6 @@ export interface SideItem {
   title: string;
   icon: string;
   isOpen: boolean;
-  links?: Array<Link>;
+  route: string;
+  subItems?: Array<LinkItem>;
 }

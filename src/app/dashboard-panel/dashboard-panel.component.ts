@@ -20,19 +20,23 @@ export class DashboardPanelComponent implements OnInit {
 
     this.tripCard = new Card(
       { title: 'سفردر حال انجام' },
-      { title: 'سفر های امروز' }
+      { title: 'سفر های امروز' },
+      '111'
     );
     this.driverCard = new Card(
       { title: 'راننده آنلاین' },
-      { title: 'کل راننده ها' }
+      { title: 'کل راننده ها' },
+      '222'
     );
     this.passengerCard = new Card(
       { title: 'کاربر جدید' },
-      { title: 'کل کاربرها' }
+      { title: 'کل کاربرها' },
+      '333'
     );
     this.OrganizationCard = new Card(
       { title: 'سازمان جدید' },
-      { title: 'سازمان ثبت شده' }
+      { title: 'سازمان ثبت شده' },
+      '333'
 
     );
 

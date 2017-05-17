@@ -1,4 +1,5 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import {Card} from '../dashboard-panel/card';
 
 @Component({
   selector: 'ts-dashboard-cards',
@@ -6,7 +7,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./dashboard-cards.component.scss']
 })
 export class DashboardCardsComponent implements OnInit {
-  @Input() cardInput: { title1: string, number1: number, title2: string, number2: number, link: string };
+  @Input() cardInput: Card;
   constructor() { }
 
   ngOnInit() {
