@@ -20,7 +20,7 @@ $toast-pulls: true !default;
 .#{$toast-grid-namespace}
 {
   list-style: none;
-  margin-left: -$toast-gutter-width;
+  margin-left: $toast-gutter-width;
 }
 
 %span-all
@@ -263,9 +263,9 @@ $toast-pulls: true !default;
 {
   box-sizing: border-box;
   display: inline-block;
-  margin-right: -0.25em;
+  margin-left: -0.25em;
   min-height: 1px;
-  padding-left: $toast-gutter-width;
+  padding-right: $toast-gutter-width;
   vertical-align: top;
 
   @media (max-width: $toast-breakpoint-medium)
