@@ -11,6 +11,9 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { DashboardCardsComponent } from './dashboard-cards';
 import { SideComponent } from './side/side.component';
 import { DashboardPanelComponent } from './dashboard-panel';
+import { HeaderComponent } from './header/header.component';
+import { OnlineDriverComponent } from './online-driver/online-driver.component';
+import { StatPanelComponent } from './stat-panel/stat-panel.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +21,10 @@ import { DashboardPanelComponent } from './dashboard-panel';
     SidebarComponent,
     DashboardCardsComponent,
     SideComponent,
-    DashboardPanelComponent
+    DashboardPanelComponent,
+    HeaderComponent,
+    OnlineDriverComponent,
+    StatPanelComponent
   ],
   imports: [
     BrowserModule,

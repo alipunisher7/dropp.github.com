@@ -1,0 +1,16 @@
+<input type="text" name="searchOnlineDriver" placeholder="جستجو ..." value="">
+<table>
+  <tr>
+    <th>راننده</th>
+    <th>ایمیل</th>
+    <th>شماره همراه</th>
+    <th>اطلاعات خودرو</th>
+  </tr>
+    <tr *ngFor="let driverInfoInput of driverInfoInputs">
+      <td>{{driverInfoInput.name}}</td>
+      <td>{{driverInfoInput.email}}</td>
+      <td>{{driverInfoInput.phone}}</td>
+      <td>{{driverInfoInput.carInfo}}</td>
+    </tr>
+
+</table>
