@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
-import {Http, Headers } from '@angular/http';
+import { Http, Headers } from '@angular/http';
 import 'rxjs/add/operator/map';
+
 @Injectable()
 export class OperatorService {
+
   private getOnlineTripsUrl: string;
   private getTodayTripsUrl: string;
   private getOnlineDriversUrl: string;
@@ -11,7 +13,7 @@ export class OperatorService {
   private getAllPassengersUrl: string;
   private getNewOrganizationsUrl: string;
   private getAllOrganizationsUrl: string;
-  private getOnlineDriverInfoUrl: string;
+  private getDriverInfoUrl: string;
 
   constructor(private _http: Http) {
     this.getOnlineTripsUrl = "";
@@ -22,7 +24,7 @@ export class OperatorService {
     this.getAllPassengersUrl = "";
     this.getNewOrganizationsUrl = "";
     this.getAllOrganizationsUrl = "";
-    this.getOnlineDriverInfoUrl = "";
+    this.getDriverInfoUrl = "";
   }
   getOnlineTrips() {
     return this._http.get(this.getOnlineTripsUrl).map(res => res.json);
@@ -48,7 +50,7 @@ export class OperatorService {
   getAllOrganizations() {
     return this._http.get(this.getAllOrganizationsUrl).map(res => res.json);
   }
-  getOnlineDriverInfo() {
-    return this._http.get(this.getOnlineDriverInfoUrl).map(res => res.json);
+  getDriverInfo() {
+    return this._http.get(this.getDriverInfoUrl).map(res => res.json);
   }
 }

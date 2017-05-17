@@ -1,0 +1,19 @@
+<input type="search" name="searchOnlineDriver" placeholder="جستجو ...">
+<table>
+  <thead>
+    <tr>
+      <th>راننده</th>
+      <th>ایمیل</th>
+      <th>شماره همراه</th>
+      <th>اطلاعات خودرو</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let driver of drivers">
+      <td>{{driver.name}}</td>
+      <td>{{driver.email}}</td>
+      <td>{{driver.phone}}</td>
+      <td>{{driver.carInfo}}</td>
+    </tr>
+  </tbody>
+</table>

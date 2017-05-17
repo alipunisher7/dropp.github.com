@@ -7,26 +7,30 @@ import { OperatorService } from './services';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { SidebarComponent } from './sidebar/sidebar.component';
-import { DashboardCardsComponent } from './dashboard-cards';
-import { SideComponent } from './side/side.component';
-import { DashboardPanelComponent } from './dashboard-panel';
+
 import { HeaderComponent } from './header/header.component';
-import { OnlineDriverComponent } from './online-driver/online-driver.component';
-import { StatPanelComponent } from './stat-panel/stat-panel.component';
-import { SubNavComponent } from './sub-nav/sub-nav.component';
+
+import { NavigationDrawerComponent } from './navigation-drawer/navigation-drawer.component';
+import { NavComponent } from './navigation-drawer/nav';
+import { SubNavComponent } from './navigation-drawer/nav/sub-nav';
+
+import { DashboardPanelComponent } from './panels/dashboard-panel';
+
+import { StatPanelComponent } from './panels/stat-panel';
+import { OnlineDriverComponent } from './panels/stat-panel/online-driver';
+import { DashboardCardComponent } from './panels/dashboard-panel/dashboard-card/dashboard-card.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SidebarComponent,
-    DashboardCardsComponent,
-    SideComponent,
     DashboardPanelComponent,
     HeaderComponent,
     OnlineDriverComponent,
     StatPanelComponent,
-    SubNavComponent
+    SubNavComponent,
+    NavigationDrawerComponent,
+    NavComponent,
+    DashboardCardComponent
   ],
   imports: [
     BrowserModule,
