@@ -5,10 +5,6 @@
 
     </a>
       <div id="link" *ngIf="sideInput.isOpen">
-        <ul>
-          <div *ngFor="let link of sideInput.links">
-            <li>{{link}}</li>
-          </div>
-        </ul>
-      <div>
+        <ts-sub-nav [items]=sideInput.subItems></ts-sub-nav>
+      </div>
 </div>

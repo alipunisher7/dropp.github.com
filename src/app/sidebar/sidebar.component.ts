@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SideItem } from '../side/side-item';
 
 @Component({
   selector: 'ts-sidebar',
@@ -8,10 +9,16 @@ import { Component, OnInit } from '@angular/core';
 export class SidebarComponent implements OnInit {
 
   constructor() { }
-  sides = [
+  sides: SideItem[] = [
     { title: 'داشبورد', icon: 'icon', isOpen: false, route: 'dashboard' },
-    { title: 'آمار', icon: 'icon', isOpen: false, route: 'stat-panel' },
-    { title: 'مدیریت', icon: 'icon', isOpen: false },
+    {
+      title: 'آمار', icon: 'icon', isOpen: true, route: 'stat-panel',
+      subItems: [
+        { title: 'link1', icon: 'fa fa-arrow-left', link: 'link' },
+        { title: 'link2', icon: 'fa fa-arrow-left', link: 'link' }
+      ],
+    },
+    { title: 'مدیریت', icon: 'icon', isOpen: false, route: 'route' },
   ]
 
   ngOnInit() {

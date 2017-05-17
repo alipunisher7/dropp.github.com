@@ -14,6 +14,7 @@ import { DashboardPanelComponent } from './dashboard-panel';
 import { HeaderComponent } from './header/header.component';
 import { OnlineDriverComponent } from './online-driver/online-driver.component';
 import { StatPanelComponent } from './stat-panel/stat-panel.component';
+import { SubNavComponent } from './sub-nav/sub-nav.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { StatPanelComponent } from './stat-panel/stat-panel.component';
     DashboardPanelComponent,
     HeaderComponent,
     OnlineDriverComponent,
-    StatPanelComponent
+    StatPanelComponent,
+    SubNavComponent
   ],
   imports: [
     BrowserModule,
