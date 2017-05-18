@@ -8,7 +8,8 @@ import { IDriverInfo } from '../../models';
 })
 export class StatPanelComponent implements OnInit {
   driverInfoes = [
-    { name: 'ali', email: 'alizandy@gmail.co', phone: '0911111111', carInfo: '88888888888' }
+    { name: 'ali', email: 'alizandy@gmail.co', phone: '0911111111', carInfo: '88888888888' },
+    { name: 'alireza', email: 'alireza@gmail.co', phone: '0922222222', carInfo: '777777777' }
   ]
   constructor() { }
 

@@ -36,7 +36,7 @@ export class DashboardPanelComponent implements OnInit {
     this.OrganizationCard = new Card(
       { title: 'سازمان جدید' },
       { title: 'سازمان ثبت شده' },
-      '333'
+      '444'
 
     );
 
@@ -57,9 +57,20 @@ export class DashboardPanelComponent implements OnInit {
     })
   }
   getAllDrivers() {
-    this._operatorServices.getAllDrivers().subscribe(data => {
-      this.driverCard.info2.data = data;
-    })
+    this._operatorServices.getAllDrivers().subscribe(
+      data => {
+        console.log('a');
+        // let sum = 0;
+        // for (let service of data) {
+        //   sum += service;
+        // }
+        // this.driverCard.info2.data = sum;
+
+      },
+      error => {
+        console.error(error);
+      }
+    )
   }
   getNewPassengers() {
     this._operatorServices.getNewPassengers().subscribe(data => {
@@ -83,7 +94,9 @@ export class DashboardPanelComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    this.getAllDrivers();
   }
+
+
 
 }

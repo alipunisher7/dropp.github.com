@@ -14,7 +14,7 @@ export class NavigationDrawerComponent implements OnInit {
     this.navItems = [
       { title: 'داشبورد', icon: 'icon', isOpen: false, route: 'dashboard' },
       {
-        title: 'آمار', icon: 'icon', isOpen: true, route: 'stat-panel',
+        title: 'آمار', icon: 'icon', isOpen: true, route: 'stat',
         subNavs: [
           { title: 'link1', icon: 'fa fa-arrow-left', route: 'link' },
           { title: 'link2', icon: 'fa fa-arrow-left', route: 'link' }

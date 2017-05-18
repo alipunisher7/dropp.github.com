@@ -19,7 +19,7 @@ export class OperatorService {
     this.getOnlineTripsUrl = "";
     this.getTodayTripsUrl = "";
     this.getOnlineDriversUrl = "";
-    this.getAllDriversUrl = "";
+    this.getAllDriversUrl = "http://31.184.132.215:8080/geno/TSO/api/rest/operator/viewNumberOfAllDrivers";
     this.getNewPassengersUrl = "";
     this.getAllPassengersUrl = "";
     this.getNewOrganizationsUrl = "";
@@ -36,7 +36,15 @@ export class OperatorService {
     return this._http.get(this.getOnlineDriversUrl).map(res => res.json);
   }
   getAllDrivers() {
-    return this._http.get(this.getAllDriversUrl).map(res => res.json);
+    let header: Headers = new Headers();
+    header.append('Content-Type', 'application/json; charset=utf-8');
+    header.append('Access-Control-Allow-Origin', '*');
+    header.append('Accept-Charset	', 'utf-8');
+
+    return this._http.get(this.getAllDriversUrl, header).map(res => {
+      console.log('aaa');
+      return res;
+    });
   }
   getNewPassengers() {
     return this._http.get(this.getNewPassengersUrl).map(res => res.json);
@@ -52,5 +60,22 @@ export class OperatorService {
   }
   getDriverInfo() {
     return this._http.get(this.getDriverInfoUrl).map(res => res.json);
+  }
+
+  handleRespown(res) {
+    console.log(res);
+    console.log('res');
+    let json = res.json();
+
+    if (!json) {
+      throw new Error('Bad data');
+    }
+
+    switch (json.statusCode) {
+      case 1:
+        return json.data;
+      default:
+        throw new Error('Error');
+    }
   }
 }
