@@ -1,9 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { OperatorService } from './services';
+import { AdminService } from './services';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -19,6 +20,8 @@ import { DashboardPanelComponent } from './panels/dashboard-panel';
 import { StatPanelComponent } from './panels/stat-panel';
 import { OnlineDriverComponent } from './panels/stat-panel/online-driver';
 import { DashboardCardComponent } from './panels/dashboard-panel/dashboard-card/dashboard-card.component';
+import { AddMOpComponent } from './admin/add-mop/add-mop.component';
+import { TarrifComponent } from './admin/tarrif/tarrif.component';
 
 @NgModule({
   declarations: [
@@ -30,15 +33,18 @@ import { DashboardCardComponent } from './panels/dashboard-panel/dashboard-card/
     SubNavComponent,
     NavigationDrawerComponent,
     NavComponent,
-    DashboardCardComponent
+    DashboardCardComponent,
+    AddMOpComponent,
+    TarrifComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
     AppRoutingModule,
+    ReactiveFormsModule
   ],
-  providers: [OperatorService],
+  providers: [OperatorService, AdminService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
