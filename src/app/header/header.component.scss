@@ -1,0 +1,51 @@
+@import '../../assets/scss/variables';
+
+:host
+{
+  position: relative;
+  display: flex;
+  height: $header-height;
+  box-shadow: $header-shadow;
+}
+
+.logo-bar
+{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  h1
+  {
+    font-size: $logo-size;
+  }
+}
+
+
+.menu-bar
+{
+  padding: 0 1em;
+  flex: 1;
+  display: flex;
+  flex-direction: row nowrap;
+
+  h1
+  {
+    flex: 1;
+    font-size: $header-size;
+  }
+
+  ul
+  {
+    list-style: none;
+    display: flex;
+    align-content: center;
+    align-items: center;
+    color: $text-gray;
+
+    li
+    {
+      padding-right: 10px;
+      font-size: $menuitem-size;
+    }
+  }
+}

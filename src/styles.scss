@@ -1,6 +1,5 @@
 @import 'assets/scss/debug'; // TODO: remove in production mode
-@import 'assets/scss/colors';
-@import 'assets/scss/typography';
+@import 'assets/scss/variables';
 @import 'assets/scss/normalize';
 @import 'assets/scss/namespace';
 @import 'assets/scss/grid';
@@ -8,12 +7,6 @@
 %fullscreen
 {
   min-height: 100%;
-}
-
-.container
-{
-  @extend %fullscreen;
-  display: flex;
 }
 
 %btn
@@ -39,10 +32,19 @@
 .card
 {
   background: $background;
-  box-shadow: 0 3px 6px $shadow-color1, 0 3px 6px $shadow-color2;
+  box-shadow: $card-shadow;
 }
 
 .panel
 {
+  @extend %fullscreen;
   flex: 1;
+  background: $background;
+}
+
+.logo-bar
+{
+  background: $background-accent-out;
+  width: $panel-width;
+  color: $text-light;
 }

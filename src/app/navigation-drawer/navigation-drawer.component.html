@@ -1,8 +1,11 @@
-<ts-nav *ngFor="let navItem of navItems " [navItem]="navItem"></ts-nav>
+<nav>
+  <ts-nav *ngFor="let navItem of navItems" [navItem]="navItem"></ts-nav>
 
-<button class="btn-outline btn-accent" type="button" name="sendServices">ارسال سرویس</button>
+  <div class="drawer-container">
+    <button class="btn-outline btn-accent" type="button" name="sendServices">ارسال سرویس</button>
+  </div>
+</nav>
 
-<div id="more">
-  <a href=""></a>
-  <a href="">بیشتر</a>
-</div>
+<footer class="drawer-footer">
+  <h2 class="btn-more">بیشتر</h2>
+</footer>

@@ -7,7 +7,7 @@ import { Card } from '../../models';
   templateUrl: './dashboard-panel.component.html',
   styleUrls: ['./dashboard-panel.component.scss'],
   host: {
-    class: 'panel row'
+    class: 'panel'
   }
 })
 export class DashboardPanelComponent implements OnInit {
