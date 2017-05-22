@@ -1,5 +1,5 @@
 <nav>
-  <ts-nav *ngFor="let navItem of navItems" [navItem]="navItem"></ts-nav>
+  <ts-nav *ngFor="let navItem of navItems, index as i" [navItem]="navItem" [seperator]="i"></ts-nav>
 
   <div class="drawer-container">
     <button class="btn-outline btn-accent" type="button" name="sendServices">ارسال سرویس</button>

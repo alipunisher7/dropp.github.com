@@ -4,6 +4,11 @@
 @import 'assets/scss/namespace';
 @import 'assets/scss/grid';
 
+body
+{
+  color: $text;
+}
+
 %fullscreen
 {
   min-height: 100%;

@@ -1,10 +1,12 @@
-<div role="navigation">
-  <a routerLink={{navItem.route}} routerLinkActive='active'>
-    <span class="{{navItem.icon}}"></span>
-    <h2>{{navItem.title}}</h2>
+<hr *ngIf="seperator" />
+
+<nav class="nav" role="navigation">
+  <a class="nav-btn" routerLink={{navItem.route}} routerLinkActive='active'>
+    <i class="nav-icon {{navItem.icon}}" aria-hidden="true"></i>
+    <h2 class="nav-title">{{navItem.title}}</h2>
   </a>
 
   <nav *ngIf="navItem.isOpen">
     <ts-sub-nav [subNavs]=navItem.subNavs></ts-sub-nav>
   </nav>
-</div>
+</nav>

@@ -12,15 +12,15 @@ export class NavigationDrawerComponent implements OnInit {
 
   constructor() {
     this.navItems = [
-      { title: 'داشبورد', icon: 'icon', isOpen: false, route: 'dashboard' },
+      { title: 'داشبورد', icon: 'fa fa-yelp', isOpen: false, route: 'dashboard' },
       {
-        title: 'آمار', icon: 'icon', isOpen: true, route: 'stat-panel',
+        title: 'آمار', icon: 'fa fa-id-card', isOpen: true, route: 'stat-panel',
         subNavs: [
           { title: 'link1', icon: 'fa fa-arrow-left', route: 'link' },
           { title: 'link2', icon: 'fa fa-arrow-left', route: 'link' }
         ],
       },
-      { title: 'مدیریت', icon: 'icon', isOpen: false, route: 'route' },
+      { title: 'مدیریت', icon: 'fa fa-wrench', isOpen: false, route: 'route' },
     ];
   }
   ngOnInit() {
