@@ -4,12 +4,15 @@
 {
   position: relative;
   display: flex;
-  height: $header-height;
+  min-height: $header-height;
   box-shadow: $header-shadow;
 }
 
 .logo-bar
 {
+  background: $background-accent-out;
+  color: $text-light;
+  min-width: $panel-width;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -31,6 +34,7 @@
 
 .menu-bar
 {
+  background: $background-out;
   padding: 0 2em;
   flex: 1;
   display: flex;

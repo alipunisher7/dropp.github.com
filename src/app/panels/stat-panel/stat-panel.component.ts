@@ -4,7 +4,10 @@ import { IDriverInfo } from '../../models';
 @Component({
   selector: 'ts-stat-panel',
   templateUrl: './stat-panel.component.html',
-  styleUrls: ['./stat-panel.component.scss']
+  styleUrls: ['./stat-panel.component.scss'],
+  host: {
+    class: 'panel'
+  }
 })
 export class StatPanelComponent implements OnInit {
   driverInfoes = [

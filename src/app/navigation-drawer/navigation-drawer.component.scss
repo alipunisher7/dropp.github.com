@@ -4,7 +4,7 @@
 {
   background: $background-accent;
   height: 100%;
-  width: $panel-width;
+  min-width: $panel-width;
   color: $text-light;
   display: flex;
   flex-flow: column nowrap;
@@ -21,17 +21,19 @@ nav
   margin-top: 2em;
   display: flex;
 
-  button
+  .send-service
   {
-    flex: 1;
     margin: 10%;
     height: 35px;
+    line-height: 35px;
+    text-align: center;
+    flex: 1;
   }
 }
 
 .drawer-footer
 {
-  height: $nav-height;
+  height: 60px;
   display: flex;
 
   .btn-more
@@ -39,7 +41,7 @@ nav
     font-size: $nav-size;
     margin: 0;
     flex: 1;
-    line-height: $nav-height;
+    line-height: 60px;
     height: 100%;
     text-align: center;
   }
