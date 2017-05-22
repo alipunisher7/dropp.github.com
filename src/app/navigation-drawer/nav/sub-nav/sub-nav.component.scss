@@ -1,0 +1,52 @@
+@import '../../../../assets/scss/variables';
+
+ul
+{
+  list-style: none;
+}
+
+a
+{
+  position: relative;
+  padding-right: 15px;
+  height: 25px;
+  line-height: 25px;
+  opacity: .25;
+
+  &::before
+  {
+    content: '';
+    background: $text-gray;
+    width: 2px;
+    height: 90%;
+    position: absolute;
+    right: 0;
+  }
+
+  &:hover
+  {
+    opacity: .5;
+  }
+
+  &.active
+  {
+    opacity: 1;
+
+    &::before
+    {
+      background: $accent-text;
+    }
+  }
+}
+
+.subnav-icon
+{
+  position: relative;
+  top: 2px;
+}
+
+.subnav-title
+{
+  display: inline;
+  padding-right: .3em;
+}

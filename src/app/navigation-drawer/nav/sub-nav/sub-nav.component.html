@@ -1,3 +1,8 @@
 <ul>
-    <li *ngFor="let subNav of subNavs">{{subNav.title}}</li>
+  <li *ngFor="let subNav of subNavs">
+    <a routerLink="stats/{{subNav.route}}" routerLinkActive='active'>
+      <i class="subnav-icon {{subNav.icon}}"></i>
+      <h3 class="subnav-title">{{subNav.title}}</h3>
+    </a>
+  </li>
 </ul>
