@@ -22,6 +22,9 @@ import { OnlineDriverComponent } from './panels/stat-panel/online-driver';
 import { DashboardCardComponent } from './panels/dashboard-panel/dashboard-card/dashboard-card.component';
 import { AddMOpComponent } from './admin/add-mop/add-mop.component';
 import { TarrifComponent } from './admin/tarrif/tarrif.component';
+import { ActiveServicesComponent } from './admin/active-services/active-services.component';
+import { InsertManufactureComponent } from './admin/insert-manufacture/insert-manufacture.component';
+import { InsertCarComponent } from './admin/insert-car/insert-car.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +38,10 @@ import { TarrifComponent } from './admin/tarrif/tarrif.component';
     NavComponent,
     DashboardCardComponent,
     AddMOpComponent,
-    TarrifComponent
+    TarrifComponent,
+    ActiveServicesComponent,
+    InsertManufactureComponent,
+    InsertCarComponent
   ],
   imports: [
     BrowserModule,

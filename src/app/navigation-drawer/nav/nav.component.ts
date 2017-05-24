@@ -9,6 +9,7 @@ import { INavItem } from '../../models';
 export class NavComponent implements OnInit {
 
   @Input() navItem: INavItem;
+  @Input() seperator: boolean;
 
   constructor() {
   }

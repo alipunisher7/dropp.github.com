@@ -1,0 +1,17 @@
+<h2>اضافه کردن خودرو جدید</h2>
+<form [formGroup]="myForm" (ngSubmit)="onSubmit()" >
+  <div>
+    <label>انتخاب کارخانه</label>
+    <select  name="manufacture" formControlName="manufacture">
+      <option value="">کارخانه را انتخاب کنید</option>
+      <option value=""></option>
+    </select>
+  </div>
+  <div>
+    <label>نام خودرو</label>
+    <input type="text" name="carName" value="" formControlName="carName">
+  </div>
+  <div>
+    <button type="submit" name="submitCar" [disabled]="!myForm.valid">ثبت</button>
+  </div>
+</form>

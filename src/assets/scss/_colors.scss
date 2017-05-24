@@ -1,31 +1,37 @@
 // Background colors
-$background           : #f1f1f1;
-$background-out       : darken($background, 3%);
-$background-accent    : #333;
+$background: #f1f1f1;
+$background-out: darken($background, 3%);
+$background-accent: #333;
 $background-accent-out: darken($background-accent, 3%);
+
 // Accent colors
-$accent               : #ffc700;
-$accent-text          : darken($accent, 10%);
+$accent: #ffc700;
+$accent-text: darken($accent, 10%);
+
 // Accent 2 Color
-$accent2              : #00ce9b;
-$accent2-text         : darken($accent2, 10%);
+$accent2: #00ce9b;
+$accent2-text: darken($accent2, 10%);
+
 // Emotions color
-$error                : #f97753;
-$success              : #00ce9b;
-$warning              : #eaa43f;
-$disable              : #dddcde;
+$error: #f97753;
+$success: #00ce9b;
+$warning: #eaa43f;
+$disable: #dddcde;
+
 // Text colors
-$text                 : #444;
-$text-gray            : #b0b0b0;
-$text-light           : #f1f1f1;
+$text: #444;
+$text-gray: #b0b0b0;
+$text-light: #f1f1f1;
+
 // Service colors
-$service-normal       : #503cfb;
-$service-taxi         : #e0921d;
-$service-eco          : #00ce9b;
-$service-suv          : #3c87fb;
-$service-lux          : #353439;
-$service-deliv        : #fbb03c;
-$service-motor        : #f97753;
+$service-normal: #503cfb;
+$service-taxi: #e0921d;
+$service-eco: #00ce9b;
+$service-suv: #3c87fb;
+$service-lux: #353439;
+$service-deliv: #fbb03c;
+$service-motor: #f97753;
+
 // Shadows
-$shadow-color1        : rgba(0, 0, 0, .16);
-$shadow-color2        : rgba(0, 0, 0, .23);
+$shadow-color1: rgba(0, 0, 0, .16);
+$shadow-color2: rgba(0, 0, 0, .23);

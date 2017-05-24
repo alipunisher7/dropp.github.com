@@ -1,8 +1,21 @@
 @import '../assets/scss/colors';
 
+:host
+{
+  display: flex;
+  flex-flow: column nowrap;
+  height: 100%;
+}
+
 .nav
 {
   background-color: $background-accent;
   color: $text-light;
   width: 250px;
+}
+
+.container
+{
+  flex: 1;
+  display: flex;
 }

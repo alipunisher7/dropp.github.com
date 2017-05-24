@@ -1,0 +1,40 @@
+@import '../../../assets/scss/variables';
+
+.nav-btn
+{
+  height: $nav-height;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  opacity: .25;
+
+  &:hover
+  {
+    opacity: .5;
+  }
+
+  &.active
+  {
+    opacity: 1;
+  }
+}
+
+.nav-icon
+{
+  font-size: 24px;
+}
+
+.nav-title
+{
+  margin-top: 10px;
+  text-align: center;
+  font-size: $nav-size;
+}
+
+hr
+{
+  opacity: .25;
+  margin: 0 10%;
+}

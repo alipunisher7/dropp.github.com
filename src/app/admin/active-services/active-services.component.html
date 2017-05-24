@@ -1,0 +1,23 @@
+<form [formGroup]='myForm' (ngSubmit)="onSubmit()" >
+  <div>
+    <select  formControlName="city">
+      <option value="">شهر را انتخاب کنید</option>
+      <option value="tehran">تهران</option>
+      <option value="mashhad">مشهد</option>
+      <option value="esfehan">اصفهان</option>
+      <option value="gorgan">گرگان</option>
+    </select>
+  </div>
+    <div>
+      <label>سرویس نرمال<input type="checkbox" name="activeServices" formControlName="normal" value="normal"></label>
+      <label>سرویس اکو<input type="checkbox" name="activeServices" formControlName="eco" value="eco"></label>
+      <label>سرویس تاکسی<input type="checkbox" name="activeServices" formControlName="taxi" value="taxi"></label>
+      <label>سرویس موتور<input type="checkbox" name="activeServices" formControlName="motor_delivery" value="motor_delivery"></label>
+      <label>سرویس SUV<input type="checkbox" name="activeServices" formControlName="suv"  value="suv"></label>
+      <label>سرویس لوکس<input type="checkbox" name="activeServices" formControlName="lux" value="lux"></label>
+      <label>سرویس پیک<input type="checkbox" name="activeServices" formControlName="motor_transport" value="motor_transport"></label>
+    </div>
+    <div>
+      <button type="submit" name="submitTarrif">ثبت</button>
+    </div>
+</form>

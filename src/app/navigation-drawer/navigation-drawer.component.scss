@@ -1,6 +1,46 @@
-@import '../../assets/scss/colors';
+@import '../../assets/scss/variables';
 
 :host
 {
   background: $background-accent;
+  height: 100%;
+  width: $panel-width;
+  color: $text-light;
+  display: flex;
+  flex-flow: column nowrap;
+  overflow-y: auto;
+}
+
+nav
+{
+  flex: 1;
+}
+
+.drawer-container
+{
+  margin-top: 2em;
+  display: flex;
+
+  button
+  {
+    flex: 1;
+    margin: 10%;
+    height: 35px;
+  }
+}
+
+.drawer-footer
+{
+  height: $nav-height;
+  display: flex;
+
+  .btn-more
+  {
+    font-size: $nav-size;
+    margin: 0;
+    flex: 1;
+    line-height: $nav-height;
+    height: 100%;
+    text-align: center;
+  }
 }

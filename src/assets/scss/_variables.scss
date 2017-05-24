@@ -1,0 +1,11 @@
+@import './colors';
+@import './typography';
+
+// width and heights
+$panel-width: 250px;
+$header-height: 70px;
+$nav-height: 90px;
+
+// shadows
+$header-shadow: 0 1px 1px $shadow-color2;
+$card-shadow: 0 3px 6px $shadow-color1, 0 3px 6px $shadow-color2;

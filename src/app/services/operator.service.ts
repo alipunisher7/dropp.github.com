@@ -40,6 +40,7 @@ export class OperatorService {
     header.append('Content-Type', 'application/json; charset=utf-8');
     header.append('Access-Control-Allow-Origin', '*');
     header.append('Accept-Charset	', 'utf-8');
+    this.createAuthorizationHeader(header);
 
     return this._http.get(this.getAllDriversUrl, header).map(res => {
       console.log('aaa');
@@ -77,5 +78,9 @@ export class OperatorService {
       default:
         throw new Error('Error');
     }
+  }
+  createAuthorizationHeader(headers: Headers) {
+    headers.append('Authorization', 'Basic ' +
+      btoa('username:password'));
   }
 }

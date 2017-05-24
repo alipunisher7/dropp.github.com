@@ -1,0 +1,6 @@
+<h2>اصافه کردن کارخانه جدید</h2>
+<form [formGroup]= "myForm" (ngSubmit)="onSubmit()" >
+  <label>نام کارخانه</label>
+  <input type="text" name="manufacture" value="" formControlName="manufacture">
+  <button type="submit" name="submitManufacture" [disabled]="!myForm.valid">ثبت</button>
+</form>
