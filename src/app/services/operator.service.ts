@@ -37,14 +37,13 @@ export class OperatorService {
   getOnlineDrivers(): Observable<any> {
     let header = new Headers();
     header.append('Authorization', 'Basic c2tpbGw6YTFsMmkzIUAj');
-
+    console.log(header);
     return this._http.get(this.getOnlineDriversUrl, header).map(res => res.json);
   }
 
   getAllDrivers() {
     let header: Headers = new Headers();
     header.append('Content-Type', 'application/json; charset=utf-8');
-    header.append('Access-Control-Allow-Origin', '*');
     header.append('Accept-Charset	', 'utf-8');
     header.append('Authorization', 'Basic c2tpbGw6YTFsMmkzIUAj');
 
