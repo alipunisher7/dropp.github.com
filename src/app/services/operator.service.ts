@@ -19,7 +19,7 @@ export class OperatorService {
     this.getOnlineTripsUrl = "";
     this.getTodayTripsUrl = "";
     this.getOnlineDriversUrl = "";
-    this.getAllDriversUrl = "http://31.184.132.215:8080/geno/TSO/api/rest/operator/viewNumberOfAllDrivers";
+    this.getAllDriversUrl = "http://192.168.1.3:8585/TSTest/api/rest/operator/viewAllDrivers";
     this.getNewPassengersUrl = "";
     this.getAllPassengersUrl = "";
     this.getNewOrganizationsUrl = "";
@@ -40,7 +40,7 @@ export class OperatorService {
     header.append('Content-Type', 'application/json; charset=utf-8');
     header.append('Access-Control-Allow-Origin', '*');
     header.append('Accept-Charset	', 'utf-8');
-    this.createAuthorizationHeader(header);
+
 
     return this._http.get(this.getAllDriversUrl, header).map(res => {
       console.log('aaa');
@@ -79,8 +79,5 @@ export class OperatorService {
         throw new Error('Error');
     }
   }
-  createAuthorizationHeader(headers: Headers) {
-    headers.append('Authorization', 'Basic ' +
-      btoa('username:password'));
-  }
+
 }

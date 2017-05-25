@@ -25,6 +25,7 @@ import { TarrifComponent } from './admin/tarrif/tarrif.component';
 import { ActiveServicesComponent } from './admin/active-services/active-services.component';
 import { InsertManufactureComponent } from './admin/insert-manufacture/insert-manufacture.component';
 import { InsertCarComponent } from './admin/insert-car/insert-car.component';
+import { SearchRadiusComponent } from './admin/search-radius/search-radius.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { InsertCarComponent } from './admin/insert-car/insert-car.component';
     TarrifComponent,
     ActiveServicesComponent,
     InsertManufactureComponent,
-    InsertCarComponent
+    InsertCarComponent,
+    SearchRadiusComponent
   ],
   imports: [
     BrowserModule,
