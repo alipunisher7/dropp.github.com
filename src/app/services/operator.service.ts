@@ -33,7 +33,9 @@ export class OperatorService {
     return this._http.get(this.getTodayTripsUrl).map(res => res.json);
   }
   getOnlineDrivers(): Observable<any> {
-    return this._http.get(this.getOnlineDriversUrl).map(res => res.json);
+    let header = new Headers();
+    header.append('Authorization', 'Basic c2tpbGw6YTFsMmkzIUAj');
+    return this._http.get(this.getOnlineDriversUrl, header).map(res => res.json);
   }
   getAllDrivers(): Observable<any> {
     return this._http.get(this.getAllDriversUrl).map(res => res.json);
