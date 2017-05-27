@@ -45,5 +45,10 @@
     "ts-node": "~2.0.0",
     "tslint": "~4.5.0",
     "typescript": "~2.2.0"
+  },
+  "optionalDependencies": {
+  "body-parser": "^1.17.2",
+  "express": "^4.15.3",
+  "morgan": "^1.8.2"
   }
 }
