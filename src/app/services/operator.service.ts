@@ -15,6 +15,9 @@ export class OperatorService {
   private getNewOrganizationsUrl: string;
   private getAllOrganizationsUrl: string;
   private getDriverInfoUrl: string;
+  private viewLowRateDriverUrl: string;
+  private searchDriversUrl: string;
+  private searchPassengersUrl: string;
 
   constructor(private _http: Http) {
     this.getOnlineTripsUrl = "";
@@ -26,6 +29,7 @@ export class OperatorService {
     this.getNewOrganizationsUrl = "";
     this.getAllOrganizationsUrl = "";
     this.getDriverInfoUrl = "";
+    this.viewLowRateDriverUrl = "";
   }
   getOnlineTrips(): Observable<any> {
     return this._http.get(this.getOnlineTripsUrl).map(res => res.json);
@@ -52,6 +56,8 @@ export class OperatorService {
       return res;
     });
   }
+
+
   getNewPassengers(): Observable<any> {
     return this._http.get(this.getNewPassengersUrl).map(res => res.json);
   }
@@ -66,6 +72,17 @@ export class OperatorService {
   }
   getDriverInfo(): Observable<any> {
     return this._http.get(this.getDriverInfoUrl).map(res => res.json);
+  }
+  viewLowRateDriver(): Observable<any> {
+    return this._http.get(this.viewLowRateDriverUrl).map(res => res.json);
+  }
+  searchDrivers(str: string) {
+    this.searchDriversUrl = '' + str;
+    return this._http.get(this.searchDriversUrl).map(res => res.json());
+  }
+  searchPassengers(str: string) {
+    this.searchPassengersUrl = '' + str;
+    return this._http.get(this.searchPassengersUrl).map(res => res.json());
   }
 
   handleRespown(res) {
@@ -84,4 +101,5 @@ export class OperatorService {
         throw new Error('Error');
     }
   }
+
 }

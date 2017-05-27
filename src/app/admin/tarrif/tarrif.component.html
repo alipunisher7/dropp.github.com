@@ -1,0 +1,42 @@
+<h2>تعرفه ها</h2>
+<form [formGroup]='myForm' (ngSubmit)="onSubmit()" >
+  <div>
+    <label>شهر</label>
+    <select  name="city" formControlName="city">
+      <option value="">شهر را انتخاب کنید</option>
+      <option value="tehran">تهران</option>
+      <option value="mashhad">مشهد</option>
+      <option value="esfehan">اصفهان</option>
+      <option value="gorgan">گرگان</option>
+    </select>
+  </div>
+  <div>
+    <label>سرویس</label>
+    <select  name="serviceType" formControlName="serviceType">
+      <option value="">نوع سرویس را انتخاب کنید</option>
+    </select>
+  </div>
+  <div>
+    <label>هزینه هر متر قبل از 2 کیلومتر</label>
+    <input type="text" name="costPerMeterBefore2KM" formControlName="costPerMeterBefore2KM" >
+  </div>
+  <div>
+    <label >هزینه هر متر بعد از 2 کیلومتر</label>
+    <input type="text" name="costPerMeterAfter2KM" formControlName="costPerMeterAfter2KM" >
+  </div>
+  <div>
+    <label> هزینه هر دقیقه سفر</label>
+    <input type="text" name="costPerMinute" formControlName="costPerMinute" >
+  </div>
+  <div>
+    <label >هزینه هر دقیقه انتظار</label>
+    <input type="text" name="costPerWaitingMinute" formControlName="costPerWaitingMinute" >
+  </div>
+  <div>
+    <label >هزینه ورودی</label>
+    <input type="text" name="Entrance" formControlName="Entrance" >
+  </div>
+  <div>
+    <button type="submit" name="submitAddTarrif" [disabled]="!myForm.valid">ثبت</button>
+  </div>
+</form>

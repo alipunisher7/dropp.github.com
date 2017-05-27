@@ -1,0 +1,82 @@
+<h2>اضافه کردن اپراتور ارشد</h2>
+<form [formGroup]="myForm" (ngSubmit)="onSubmit()" >
+  <div>
+    <label for="fname">نام</label>
+    <input type="text" name="fname" placeholder="نام" formControlName="fname"  >
+    <div *ngIf="myForm.controls['fname'].dirty && !myForm.controls['fname'].valid">
+      <span>نام حداقل باید 3 کاراکتر باشد</span>
+    </div>
+  </div>
+  <div>
+    <label for="lname">نام خانوادگی</label>
+    <input type="text" name="lname" placeholder="نام خانوادگی" formControlName="lname"  >
+    <div *ngIf="myForm.controls['lname'].dirty && !myForm.controls['lname'].valid">
+      <span>نام خانوادگی حداقل باید 3 کاراکتر باشد</span>
+    </div>
+  </div>
+  <div>
+    <label for="birthDate">تاریخ تولد</label>
+    <input type="date" name="birthDate" placeholder="تاریخ تولد" formControlName="birthDate"  >
+  </div>
+  <div>
+    <label for="city">شهر</label>
+    <select  name="city" formControlName="city"  >
+          <option value="">انتخاب شهر</option>
+          <option value="tehran">تهران</option>
+          <option value="mashhad">مشهد</option>
+          <option value="esfahan">اصفهان</option>
+          <option value="gorgan">گرگان</option>
+    </select>
+  </div>
+  <div>
+    <label for="workPhone">تلفن محل کار</label>
+    <input type="text" name="workPhoneCode" placeholder="کد" formControlName="workPhoneCode">
+    <input type="text" name="workPhone" placeholder="تلفن"  formControlName="workPhone" >
+    <div *ngIf="myForm.controls['workPhoneCode'].dirty && !myForm.controls['workPhoneCode'].valid" >
+      <span>کد حداقل باید 3 کاراکتر باشد</span>
+    </div>
+    <div *ngIf="myForm.controls['workPhone'].dirty && !myForm.controls['workPhone'].valid" >
+      <span>شماره حداقل باید 7 کاراکتر باشد</span>
+    </div>
+  </div>
+  <div>
+    <label for="cellPhone">تلفن همراه</label>
+    <input type="text" name="cellPhone" placeholder="تلفن همراه" formControlName="cellPhone"  >
+  </div>
+  <div>
+    <label for="email">ایمیل</label>
+    <input type="email" name="email" placeholder="ایمیل" formControlName="email"
+    >
+    <div *ngIf="myForm.controls['email'].dirty && !myForm.controls['email'].valid" >
+      <span>ایمیل نامعتبر است</span>
+    </div>
+  </div>
+  <div>
+    <label for="username">نام کاربری</label>
+    <input type="text" name="username" placeholder="نام کاربری" formControlName="username"  >
+  </div>
+  <div formGroupName="userpassword">
+    <div>
+      <label for="password">رمز عبور</label>
+      <input type="password" name="password" placeholder="رمز عبور" formControlName="password" >
+      <div *ngIf="myForm.controls['userpassword'].controls['password'].dirty && !myForm.controls['userpassword'].controls['password'].valid" >
+        <span>رمز عبور باید حداقل 6 کاراکتر باشد</span>
+      </div>
+    </div>
+    <div>
+      <label for="re-password">تکرار رمز عبور</label>
+      <input type="password" name="re-password" placeholder="تکرار رمز عبور" formControlName="re-password"  >
+    </div>
+    <div *ngIf="myForm.controls['userpassword'].controls['re-password'].dirty && !myForm.controls['userpassword'].valid" >
+      <span>رمز عبور و تکرار آن یکسان نیست</span>
+    </div>
+  </div>
+  <div>
+    <label for="gender">جنسیت</label>
+    <input type="radio" name="gender" value="male" checked formControlName="gender" > آقا<br>
+    <input type="radio" name="gender" value="female" formControlName="gender"  > خانم
+  </div>
+  <div>
+      <button type="submit" name="submitMop" [disabled]="!myForm.valid" >ثبت</button>
+  </div>
+</form>

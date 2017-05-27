@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { OperatorService, AdminService } from './services';
@@ -19,6 +19,15 @@ import { DashboardPanelComponent } from './panels/dashboard-panel';
 import { StatPanelComponent } from './panels/stat-panel';
 import { OnlineDriverComponent } from './panels/stat-panel/online-driver';
 import { DashboardCardComponent } from './panels/dashboard-panel/dashboard-card/dashboard-card.component';
+import { AddMOpComponent } from './admin/add-mop/add-mop.component';
+import { TarrifComponent } from './admin/tarrif/tarrif.component';
+import { ActiveServicesComponent } from './admin/active-services/active-services.component';
+import { InsertManufactureComponent } from './admin/insert-manufacture/insert-manufacture.component';
+import { InsertCarComponent } from './admin/insert-car/insert-car.component';
+import { SearchRadiusComponent } from './admin/search-radius/search-radius.component';
+import { LowRateDriversComponent } from './panels/stat-panel/low-rate-drivers/low-rate-drivers.component';
+import { SearchDriversComponent } from './panels/stat-panel/search-drivers/search-drivers.component';
+import { SearchPassengersComponent } from './panels/stat-panel/search-passengers/search-passengers.component';
 
 @NgModule({
   declarations: [
@@ -30,13 +39,23 @@ import { DashboardCardComponent } from './panels/dashboard-panel/dashboard-card/
     SubNavComponent,
     NavigationDrawerComponent,
     NavComponent,
-    DashboardCardComponent
+    DashboardCardComponent,
+    AddMOpComponent,
+    TarrifComponent,
+    ActiveServicesComponent,
+    InsertManufactureComponent,
+    InsertCarComponent,
+    SearchRadiusComponent,
+    LowRateDriversComponent,
+    SearchDriversComponent,
+    SearchPassengersComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
     AppRoutingModule,
+    ReactiveFormsModule
   ],
   providers: [OperatorService, AdminService],
   bootstrap: [AppComponent]
