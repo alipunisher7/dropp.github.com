@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
-import { Observable } from 'rxjs/Rx';
+import { Observable } from 'rxjs/Observable';
+
 import 'rxjs/add/operator/map';
 
 @Injectable()
@@ -37,6 +38,7 @@ export class OperatorService {
   getTodayTrips(): Observable<any> {
     return this._http.get(this.getTodayTripsUrl).map(res => res.json);
   }
+
   getOnlineDrivers(): Observable<any> {
     let header = new Headers();
     header.append('Authorization', 'Basic c2tpbGw6YTFsMmkzIUAj');
