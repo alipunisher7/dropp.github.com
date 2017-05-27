@@ -1,12 +1,15 @@
-<div class="col col--6-of-12">
-  <ts-dashboard-card class="card" [card]="tripCard"></ts-dashboard-card>
-</div>
-<div class="col col--6-of-12">
-  <ts-dashboard-card class="card" [card]="passengerCard"></ts-dashboard-card>
-</div>
-<div class="col col--6-of-12">
-  <ts-dashboard-card class=" card" [card]="driverCard"></ts-dashboard-card>
-</div>
-<div class="col col--6-of-12">
-  <ts-dashboard-card class="card" [card]="OrganizationCard"></ts-dashboard-card>
+
+<div class="row">
+  <div class="col col--6-of-12">
+    <ts-dashboard-card class="card pull-left" [card]="tripCard"></ts-dashboard-card>
+  </div>
+  <div class="col col--6-of-12">
+    <ts-dashboard-card class="card" [card]="driverCard"></ts-dashboard-card>
+  </div>
+  <div class="col col--6-of-12">
+    <ts-dashboard-card class=" card pull-left" [card]="passengerCard"></ts-dashboard-card>
+  </div>
+  <div class="col col--6-of-12">
+    <ts-dashboard-card class="card" [card]="OrganizationCard"></ts-dashboard-card>
+  </div>
 </div>

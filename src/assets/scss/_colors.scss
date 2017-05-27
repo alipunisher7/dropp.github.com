@@ -1,6 +1,6 @@
 // Background colors
 $background: #f1f1f1;
-$background-out: darken($background, 3%);
+$background-out: lighten($background, 3%);
 $background-accent: #333;
 $background-accent-out: darken($background-accent, 3%);
 

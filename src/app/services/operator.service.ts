@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
-import 'rxjs/add/operator/map';
+import { Observable } from 'rxjs/Rx';
 
 @Injectable()
 export class OperatorService {
@@ -26,15 +26,16 @@ export class OperatorService {
     this.getAllOrganizationsUrl = "";
     this.getDriverInfoUrl = "";
   }
-  getOnlineTrips() {
+  getOnlineTrips(): Observable<any> {
     return this._http.get(this.getOnlineTripsUrl).map(res => res.json);
   }
-  getTodayTrips() {
+  getTodayTrips(): Observable<any> {
     return this._http.get(this.getTodayTripsUrl).map(res => res.json);
   }
-  getOnlineDrivers() {
+  getOnlineDrivers(): Observable<any> {
     return this._http.get(this.getOnlineDriversUrl).map(res => res.json);
   }
+
   getAllDrivers() {
     let header: Headers = new Headers();
     header.append('Content-Type', 'application/json; charset=utf-8');
@@ -47,19 +48,19 @@ export class OperatorService {
       return res;
     });
   }
-  getNewPassengers() {
+  getNewPassengers(): Observable<any> {
     return this._http.get(this.getNewPassengersUrl).map(res => res.json);
   }
-  getAllPassengers() {
+  getAllPassengers(): Observable<any> {
     return this._http.get(this.getAllPassengersUrl).map(res => res.json);
   }
-  getNewOrganizations() {
+  getNewOrganizations(): Observable<any> {
     return this._http.get(this.getNewOrganizationsUrl).map(res => res.json);
   }
-  getAllOrganizations() {
+  getAllOrganizations(): Observable<any> {
     return this._http.get(this.getAllOrganizationsUrl).map(res => res.json);
   }
-  getDriverInfo() {
+  getDriverInfo(): Observable<any> {
     return this._http.get(this.getDriverInfoUrl).map(res => res.json);
   }
 
