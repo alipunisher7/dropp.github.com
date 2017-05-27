@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
-import { OperatorService } from './services';
+import { OperatorService, AdminService } from './services';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -38,7 +38,7 @@ import { DashboardCardComponent } from './panels/dashboard-panel/dashboard-card/
     HttpModule,
     AppRoutingModule,
   ],
-  providers: [OperatorService],
+  providers: [OperatorService, AdminService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
