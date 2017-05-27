@@ -14,7 +14,12 @@ export class SearchRadiusComponent implements OnInit {
       'radius': new FormControl('', Validators.required)
     })
   }
-
+  viewRadius() {
+    this._adminService.viewRadius().subscribe();
+  }
+  onSubmit() {
+    this._adminService.submitRadius(this.myForm.value).subscribe();
+  }
   ngOnInit() {
   }
 

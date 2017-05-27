@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
+import 'rxjs/add/operator/map';
 
 @Injectable()
 export class OperatorService {
@@ -14,17 +15,21 @@ export class OperatorService {
   private getNewOrganizationsUrl: string;
   private getAllOrganizationsUrl: string;
   private getDriverInfoUrl: string;
+  private viewLowRateDriverUrl: string;
+  private searchDriversUrl: string;
+  private searchPassengersUrl: string;
 
   constructor(private _http: Http) {
     this.getOnlineTripsUrl = "";
     this.getTodayTripsUrl = "";
     this.getOnlineDriversUrl = "";
-    this.getAllDriversUrl = "http://192.168.1.3:8585/TSTest/api/rest/operator/viewAllDrivers";
+    this.getAllDriversUrl = "http://31.184.132.215:8080/geno/TSO/api/rest/operator/viewNumberOfAllDrivers";
     this.getNewPassengersUrl = "";
     this.getAllPassengersUrl = "";
     this.getNewOrganizationsUrl = "";
     this.getAllOrganizationsUrl = "";
     this.getDriverInfoUrl = "";
+    this.viewLowRateDriverUrl = "";
   }
   getOnlineTrips(): Observable<any> {
     return this._http.get(this.getOnlineTripsUrl).map(res => res.json);
@@ -33,21 +38,25 @@ export class OperatorService {
     return this._http.get(this.getTodayTripsUrl).map(res => res.json);
   }
   getOnlineDrivers(): Observable<any> {
-    return this._http.get(this.getOnlineDriversUrl).map(res => res.json);
+    let header = new Headers();
+    header.append('Authorization', 'Basic c2tpbGw6YTFsMmkzIUAj');
+    console.log(header);
+    return this._http.get(this.getOnlineDriversUrl, header).map(res => res.json);
   }
 
   getAllDrivers() {
     let header: Headers = new Headers();
     header.append('Content-Type', 'application/json; charset=utf-8');
-    header.append('Access-Control-Allow-Origin', '*');
     header.append('Accept-Charset	', 'utf-8');
-
+    header.append('Authorization', 'Basic c2tpbGw6YTFsMmkzIUAj');
 
     return this._http.get(this.getAllDriversUrl, header).map(res => {
       console.log('aaa');
       return res;
     });
   }
+
+
   getNewPassengers(): Observable<any> {
     return this._http.get(this.getNewPassengersUrl).map(res => res.json);
   }
@@ -62,6 +71,17 @@ export class OperatorService {
   }
   getDriverInfo(): Observable<any> {
     return this._http.get(this.getDriverInfoUrl).map(res => res.json);
+  }
+  viewLowRateDriver(): Observable<any> {
+    return this._http.get(this.viewLowRateDriverUrl).map(res => res.json);
+  }
+  searchDrivers(str: string) {
+    this.searchDriversUrl = '' + str;
+    return this._http.get(this.searchDriversUrl).map(res => res.json());
+  }
+  searchPassengers(str: string) {
+    this.searchPassengersUrl = '' + str;
+    return this._http.get(this.searchPassengersUrl).map(res => res.json());
   }
 
   handleRespown(res) {

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
+import {AdminService} from '../../services';
 @Component({
   selector: 'ts-tarrif',
   templateUrl: './tarrif.component.html',
@@ -7,7 +8,7 @@ import { FormGroup, FormControl, ReactiveFormsModule, Validators } from '@angula
 })
 export class TarrifComponent implements OnInit {
   myForm: FormGroup;
-  constructor() {
+  constructor(private _adminService: AdminService) {
     this.myForm = new FormGroup({
       'city': new FormControl('', Validators.required),
       'serviceType': new FormControl('', Validators.required),
@@ -18,8 +19,11 @@ export class TarrifComponent implements OnInit {
       'Entrance': new FormControl('', Validators.required)
     });
   }
+  viewTarrif() {
+    this._adminService.viewTarrif().subscribe();
+  }
   onSubmit() {
-    console.log(this.myForm);
+    this._adminService.submitTarrif(this.myForm.value).subscribe();
   }
   ngOnInit() {
   }

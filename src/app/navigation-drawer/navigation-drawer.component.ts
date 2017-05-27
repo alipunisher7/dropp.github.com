@@ -18,6 +18,7 @@ export class NavigationDrawerComponent implements OnInit {
         subNavs: [
           { title: 'سرویس ها', icon: 'fa fa-taxi', route: 'services' },
           { title: 'مسافر ها', icon: 'fa fa-street-view', route: 'passengers' },
+          { title: 'راننده ها', icon: 'fa fa-circle-o', route: 'drivers' },
           { title: 'سازمان ها', icon: 'fa fa-building', route: 'organs' },
           { title: 'سفر ها', icon: 'fa fa-plane', route: 'trips' }
         ],

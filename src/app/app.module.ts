@@ -26,6 +26,9 @@ import { ActiveServicesComponent } from './admin/active-services/active-services
 import { InsertManufactureComponent } from './admin/insert-manufacture/insert-manufacture.component';
 import { InsertCarComponent } from './admin/insert-car/insert-car.component';
 import { SearchRadiusComponent } from './admin/search-radius/search-radius.component';
+import { LowRateDriversComponent } from './panels/stat-panel/low-rate-drivers/low-rate-drivers.component';
+import { SearchDriversComponent } from './panels/stat-panel/search-drivers/search-drivers.component';
+import { SearchPassengersComponent } from './panels/stat-panel/search-passengers/search-passengers.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +46,10 @@ import { SearchRadiusComponent } from './admin/search-radius/search-radius.compo
     ActiveServicesComponent,
     InsertManufactureComponent,
     InsertCarComponent,
-    SearchRadiusComponent
+    SearchRadiusComponent,
+    LowRateDriversComponent,
+    SearchDriversComponent,
+    SearchPassengersComponent
   ],
   imports: [
     BrowserModule,

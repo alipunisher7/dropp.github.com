@@ -21,11 +21,11 @@ export class ActiveServicesComponent implements OnInit {
       'motor_delivery': new FormControl()
     })
   }
-  viewTarrif() {
-    this._adminService.viewTarrif().subscribe();
+  viewActiveServices() {
+    this._adminService.viewActiveServices().subscribe();
   }
   onSubmit() {
-    this._adminService.changeTarrif(this.myForm.value).subscribe();
+    this._adminService.submitActiveServices(this.myForm.value).subscribe();
   }
   ngOnInit() {
   }
