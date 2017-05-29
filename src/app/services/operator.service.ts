@@ -18,6 +18,8 @@ export class OperatorService {
   private viewLowRateDriverUrl: string;
   private searchDriversUrl: string;
   private searchPassengersUrl: string;
+  private searchTripsUrl: string;
+  private searchDriversCreditUrl: string;
 
   constructor(private _http: Http) {
     this.getOnlineTripsUrl = "";
@@ -83,6 +85,14 @@ export class OperatorService {
   searchPassengers(str: string) {
     this.searchPassengersUrl = '' + str;
     return this._http.get(this.searchPassengersUrl).map(res => res.json());
+  }
+  searchTrips(str: string) {
+    this.searchTripsUrl = '' + str;
+    return this._http.get(this.searchTripsUrl).map(res => res.json());
+  }
+  searchDriversCredit(str: string) {
+    this.searchDriversCreditUrl = '' + str;
+    return this._http.get(this.searchDriversCreditUrl).map(res => res.json());
   }
 
   handleRespown(res) {

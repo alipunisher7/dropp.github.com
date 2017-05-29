@@ -28,6 +28,8 @@ import { SearchRadiusComponent } from './admin/search-radius/search-radius.compo
 import { LowRateDriversComponent } from './panels/stat-panel/low-rate-drivers/low-rate-drivers.component';
 import { SearchDriversComponent } from './panels/stat-panel/search-drivers/search-drivers.component';
 import { SearchPassengersComponent } from './panels/stat-panel/search-passengers/search-passengers.component';
+import { TripsComponent } from './panels/stat-panel/trips/trips.component';
+import { DriversCreditComponent } from './panels/stat-panel/drivers-credit/drivers-credit.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +50,9 @@ import { SearchPassengersComponent } from './panels/stat-panel/search-passengers
     SearchRadiusComponent,
     LowRateDriversComponent,
     SearchDriversComponent,
-    SearchPassengersComponent
+    SearchPassengersComponent,
+    TripsComponent,
+    DriversCreditComponent
   ],
   imports: [
     BrowserModule,

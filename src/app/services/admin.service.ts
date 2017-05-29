@@ -83,7 +83,6 @@ export class AdminService {
   }
 
   getManufactures() {
-    console.log('Getting manufactures');
     let header = new Headers();
     header.append('Content-Type', 'application/json');
     header.append('Authorization', 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJrYXNyYSIsInJvbGUiOiJEIiwiaXNzIjoiR0VOTyBDbyIsImlhdCI6MTQ5NTg3MjgyOCwiZXhwIjoxNDk2NzM2ODI4fQ.8-4KzOtaBhFVqpCfDWO1GpwdPiZgvEh3zP6EYNFM80SvA6VpHhR8iQcjjT7tFZLo7PRhGjtmVVGCMAQq_dzgig');

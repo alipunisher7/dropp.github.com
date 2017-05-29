@@ -97,6 +97,4 @@ export class DashboardPanelComponent implements OnInit {
     this.getAllDrivers();
   }
 
-
-
 }

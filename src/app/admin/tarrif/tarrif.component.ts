@@ -16,7 +16,9 @@ export class TarrifComponent implements OnInit {
       'costPerMeterAfter2KM': new FormControl('', Validators.required),
       'costPerMinute': new FormControl('', Validators.required),
       'costPerWaitingMinute': new FormControl('', Validators.required),
-      'Entrance': new FormControl('', Validators.required)
+      'Entrance': new FormControl('', Validators.required),
+      'twoWayCostPercentage': new FormControl('', Validators.required)
+
     });
   }
   viewTarrif() {
