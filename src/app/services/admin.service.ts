@@ -6,7 +6,6 @@ import 'rxjs/operator/map';
 @Injectable()
 export class AdminService {
 
-  private getManufacturesUrl: string;
   private AddMOpUrl: string;
   private viewTarrifUrl: string;
   private submitTarrifUrl: string;
@@ -16,6 +15,7 @@ export class AdminService {
   private submitActiveServicesUrl: string;
   private viewRadiusUrl: string;
   private submitRadiusUrl: string;
+  private voucherRegisterUrl: string;
 
   constructor(private _http: Http) {
     this.AddMOpUrl = "";
@@ -27,9 +27,7 @@ export class AdminService {
     this.submitActiveServicesUrl = "";
     this.viewRadiusUrl = "";
     this.submitRadiusUrl = "";
-
-    // TODO: test
-    this.getManufacturesUrl = "http://127.0.0.1:8080/TSTest/api/rest/driver/manufactures";
+    this.voucherRegisterUrl = "http://192.168.1.2:8585/TSTest/api/rest/admin/voucherRegister";
   }
 
   addMOp(operatorData): Observable<any> {
@@ -46,6 +44,7 @@ export class AdminService {
   submitTarrif(data) {
     let body = JSON.stringify(data);
     return this._http.post('', body, { headers: this.getHeaders() }).map(res => res);
+
   }
 
   insertManufacture(data) {
@@ -82,16 +81,13 @@ export class AdminService {
     return headers;
   }
 
-  getManufactures() {
-    console.log('Getting manufactures');
+  getVoucher() {
     let header = new Headers();
-    header.append('Content-Type', 'application/json');
-    header.append('Authorization', 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJrYXNyYSIsInJvbGUiOiJEIiwiaXNzIjoiR0VOTyBDbyIsImlhdCI6MTQ5NTg3MjgyOCwiZXhwIjoxNDk2NzM2ODI4fQ.8-4KzOtaBhFVqpCfDWO1GpwdPiZgvEh3zP6EYNFM80SvA6VpHhR8iQcjjT7tFZLo7PRhGjtmVVGCMAQq_dzgig');
+    header.append('Content-Type', 'application/json')
+    header.append('Authorization', 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJoYW1pZG9mIiwicm9sZSI6IkEiLCJpc3MiOiJHRU5PIENvIiwiaWF0IjoxNDk1OTU4ODE2LCJleHAiOjE0OTYwNDUyMTZ9.huUhr3j_e2kr3HbB8yinWC7uDwglc2Z_K0DTF73jehr_IDS9Vl18gDzIzdpeZpkduu6FjLMXMxWyGFcah4yGgg')
+
     let options = new RequestOptions({ headers: header });
 
-    return this._http.get(this.getManufacturesUrl, options).map(data => {
-      console.log("-");
-      return data.json();
-    });
+    return this._http.get(this.voucherRegisterUrl, options).map(data => data.json());
   }
 }
