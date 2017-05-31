@@ -19,11 +19,20 @@ export class NavigationDrawerComponent implements OnInit {
           { title: 'سرویس ها', icon: 'fa fa-taxi', route: 'services' },
           { title: 'مسافر ها', icon: 'fa fa-street-view', route: 'passengers' },
           { title: 'راننده ها', icon: 'fa fa-circle-o', route: 'drivers' },
-          { title: 'سازمان ها', icon: 'fa fa-building', route: 'organs' },
+          { title: 'سازمان ها', icon: 'fa fa-building', route: 'organizations' },
           { title: 'سفر ها', icon: 'fa fa-plane', route: 'trips' }
         ],
       },
-      { title: 'مدیریت', icon: 'fa fa-wrench', isOpen: false, route: 'route' },
+      {
+        title: 'مدیریت', icon: 'fa fa-wrench', isOpen: true, route: 'manage-panel',
+        subNavs: [
+          { title: 'مدیریت سرویس ها', icon: 'fa fa-tachometer', route: 'manage-services' },
+          { title: 'مدیریت راننده ها', icon: 'fa fa-users', route: 'manage-drivers' },
+          { title: 'مدیریت کدتخفیف', icon: 'fa fa-money', route: 'manage-vouchers' },
+          { title: 'مدیریت کاربران منع شده', icon: 'fa fa-ban', route: 'manage-banned-users' },
+        ],
+
+      },
     ];
   }
   ngOnInit() {

@@ -41,17 +41,17 @@ export class OperatorService {
   }
 
   getOnlineDrivers(): Observable<any> {
-    let header = new Headers();
-    header.append('Authorization', 'Basic c2tpbGw6YTFsMmkzIUAj');
-    console.log(header);
-    return this._http.get(this.getOnlineDriversUrl, header).map(res => res.json);
+    // let header = new Headers();
+    // header.append('Authorization', 'Basic c2tpbGw6YTFsMmkzIUAj');
+    // console.log(header);
+    return this._http.get(this.getOnlineDriversUrl).map(res => res.json);
   }
 
   getAllDrivers() {
     let header: Headers = new Headers();
     header.append('Content-Type', 'application/json; charset=utf-8');
     header.append('Accept-Charset	', 'utf-8');
-    header.append('Authorization', 'Basic c2tpbGw6YTFsMmkzIUAj');
+    header.append('Authorization', 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJoYW1pZGZhcm1hbmkiLCJyb2xlIjoiQSIsImlzcyI6IkdFTk8gQ28iLCJpYXQiOjE0OTYwNTI3NjAsImV4cCI6MTQ5NjEzOTE2MH0.qs4827MxNcm2vBBiueWkrCVw89-BsLk1-NmR-2_TC1el7H14PXeKIO8IRIWEOm6ZZWKDzp_xsyM59Z9IJYcmQw');
 
     return this._http.get(this.getAllDriversUrl, header).map(res => {
       console.log('aaa');

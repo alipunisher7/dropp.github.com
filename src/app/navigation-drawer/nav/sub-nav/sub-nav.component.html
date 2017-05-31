@@ -1,6 +1,6 @@
 <ul>
   <li *ngFor="let subNav of subNavs">
-    <a routerLink="stats/{{subNav.route}}" routerLinkActive='active'>
+    <a routerLink="{{thisRoute}}/{{subNav.route}}" routerLinkActive='active'>
       <i class="subnav-icon {{subNav.icon}}"></i>
       <h3 class="subnav-title">{{subNav.title}}</h3>
     </a>

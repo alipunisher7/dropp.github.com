@@ -7,6 +7,7 @@ import { ISubNavItem } from '../../../models';
   styleUrls: ['./sub-nav.component.scss']
 })
 export class SubNavComponent implements OnInit {
+  @Input() thisRoute: string;
   @Input() subNavs: ISubNavItem[] = [];
 
   constructor() { }

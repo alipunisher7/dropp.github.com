@@ -2,7 +2,7 @@
   <ts-nav *ngFor="let navItem of navItems, index as i" [navItem]="navItem" [seperator]="i"></ts-nav>
 
   <div class="drawer-container">
-    <a class="btn-outline btn-accent send-service">ارسال سرویس</a>
+    <a class="btn-outline btn-accent send-service" routerLink="send-taxi" routerLinkActive='active'>ارسال سرویس</a>
   </div>
 </nav>
 

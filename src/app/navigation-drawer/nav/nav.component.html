@@ -7,6 +7,6 @@
   </a>
 
   <nav *ngIf="navItem.isOpen">
-    <ts-sub-nav [subNavs]=navItem.subNavs></ts-sub-nav>
+    <ts-sub-nav [subNavs]=navItem.subNavs [thisRoute]=navItem.route></ts-sub-nav>
   </nav>
 </nav>
