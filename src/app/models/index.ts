@@ -5,3 +5,4 @@ export * from './searchDriver.model';
 export * from './searchPassengers.model';
 export * from './tripsinfo.model';
 export * from './driversCredit.model';
+export * from './service-type.model';

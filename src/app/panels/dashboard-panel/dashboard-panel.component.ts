@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { OperatorService } from '../../services';
-import { Card } from '../../models';
+import { Card, ServiceType  } from '../../models';
 
 @Component({
   selector: 'ts-dashboard-panel',
@@ -25,7 +25,7 @@ export class DashboardPanelComponent implements OnInit {
     );
     this.driverCard = new Card(
       { title: 'راننده آنلاین' },
-      { title: 'کل راننده ها' },
+      { title: 'کل راننده ها', },
       '222'
     );
     this.passengerCard = new Card(
@@ -58,13 +58,14 @@ export class DashboardPanelComponent implements OnInit {
   }
   getAllDrivers() {
     this._operatorServices.getAllDrivers().subscribe(
-      data => {
-        console.log('a');
-        // let sum = 0;
-        // for (let service of data) {
-        //   sum += service;
-        // }
-        // this.driverCard.info2.data = sum;
+      (services: ServiceType) => {
+        let sum = 0;
+
+        for (let serviceName in services) {
+          if (!services.hasOwnProperty(serviceName)) continue;
+          sum += services[serviceName];
+        }
+        this.driverCard.info2.data = sum;
 
       },
       error => {

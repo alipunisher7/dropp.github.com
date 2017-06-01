@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
-import {AdminService} from '../../services';
+import {AdminService} from '../../../../services';
 
 @Component({
   selector: 'ts-add-mop',

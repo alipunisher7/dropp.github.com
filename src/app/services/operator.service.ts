@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers } from '@angular/http';
+import { Http, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
+import { ServiceType } from './../models'
 import 'rxjs/add/operator/map';
 
 @Injectable()
@@ -36,8 +37,9 @@ export class OperatorService {
   getOnlineTrips(): Observable<any> {
     return this._http.get(this.getOnlineTripsUrl).map(res => res.json);
   }
-  getTodayTrips(): Observable<any> {
-    return this._http.get(this.getTodayTripsUrl).map(res => res.json);
+
+  getTodayTrips(): Observable<ServiceType> {
+    return this._http.get(this.getTodayTripsUrl).map(res => new ServiceType(res.json));
   }
 
   getOnlineDrivers(): Observable<any> {
@@ -47,16 +49,13 @@ export class OperatorService {
     return this._http.get(this.getOnlineDriversUrl).map(res => res.json);
   }
 
-  getAllDrivers() {
+  getAllDrivers(): Observable<object> {
     let header: Headers = new Headers();
-    header.append('Content-Type', 'application/json; charset=utf-8');
-    header.append('Accept-Charset	', 'utf-8');
-    header.append('Authorization', 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJoYW1pZGZhcm1hbmkiLCJyb2xlIjoiQSIsImlzcyI6IkdFTk8gQ28iLCJpYXQiOjE0OTYwNTI3NjAsImV4cCI6MTQ5NjEzOTE2MH0.qs4827MxNcm2vBBiueWkrCVw89-BsLk1-NmR-2_TC1el7H14PXeKIO8IRIWEOm6ZZWKDzp_xsyM59Z9IJYcmQw');
+    header.append('Content-Type', 'application/json');
+    header.append('Authorization', 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbGkiLCJyb2xlIjoiQSIsImlzcyI6IkdFTk8gQ28iLCJpYXQiOjE0OTYzMTg1MTR9.mMoOmcrAbEmBZZLU9ucCg67WXYaJmgxxkQjpyDkhH_wQXo8oEJBpKQ0gHSymCgYDMO1mlW5H5YT5B681ZL_J7A');
 
-    return this._http.get(this.getAllDriversUrl, header).map(res => {
-      console.log('aaa');
-      return res;
-    });
+    let options = new RequestOptions({ headers: header });
+    return this._http.get(this.getAllDriversUrl, options).map(res => res.json().data);
   }
 
 

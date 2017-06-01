@@ -1,6 +1,7 @@
 <h2>اضافه کردن خودروسازی جدید</h2>
 <form [formGroup]= "myForm" (ngSubmit)="onSubmit()" >
   <label>خودروسازی جدید</label>
-  <input type="text" name="manufacture" value="" formControlName="manufacture">
+  <input type="text" name="name" value="" formControlName="name">
   <button type="submit" name="submitManufacture" [disabled]="!myForm.valid">ثبت</button>
+  <span></span>
 </form>

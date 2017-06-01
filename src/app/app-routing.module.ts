@@ -15,6 +15,8 @@ import { ManageServicesComponent } from './panels/manage-panel/manage-services';
 import { ManageDriversComponent } from './panels/manage-panel/manage-drivers';
 import { ManageVouchersComponent } from './panels/manage-panel/manage-vouchers';
 import { ManageBannedUsersComponent } from './panels/manage-panel/manage-banned-users';
+import { ManageOperatorsComponent } from './panels/manage-panel/manage-operators';
+import { ServicesComponent } from './panels/stat-panel/services';
 
 const routes: Routes = [
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
@@ -26,12 +28,14 @@ const routes: Routes = [
       { path: 'drivers', component: DriversComponent },
       { path: 'organizations', component: OrganizationsComponent },
       { path: 'trips', component: TripsComponent },
+      { path: 'services', component: ServicesComponent },
     ]
   },
   {
     path: 'manage-panel', component: ManagePanelComponent, children: [
       { path: 'manage-services', component: ManageServicesComponent },
       { path: 'manage-drivers', component: ManageDriversComponent },
+      { path: 'manage-operators', component: ManageOperatorsComponent },
       { path: 'manage-vouchers', component: ManageVouchersComponent },
       { path: 'manage-banned-users', component: ManageBannedUsersComponent }
     ]

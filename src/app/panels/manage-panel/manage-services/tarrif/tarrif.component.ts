@@ -12,10 +12,10 @@ export class TarrifComponent implements OnInit {
     this.myForm = new FormGroup({
       'city': new FormControl('', Validators.required),
       'serviceType': new FormControl('', Validators.required),
-      'costPerMeterBefore2KM': new FormControl('', Validators.required),
-      'costPerMeterAfter2KM': new FormControl('', Validators.required),
-      'costPerMinute': new FormControl('', Validators.required),
-      'costPerWaitingMinute': new FormControl('', Validators.required),
+      'before2KM': new FormControl('', Validators.required),
+      'after2KM': new FormControl('', Validators.required),
+      'perMin': new FormControl('', Validators.required),
+      'waitingMin': new FormControl('', Validators.required),
       'Entrance': new FormControl('', Validators.required),
       'twoWayCostPercentage': new FormControl('', Validators.required)
 
@@ -25,7 +25,10 @@ export class TarrifComponent implements OnInit {
     this._adminService.viewTarrif().subscribe();
   }
   onSubmit() {
-    this._adminService.submitTarrif(this.myForm.value).subscribe();
+    this._adminService.submitTarrif(this.myForm.value).subscribe(
+      data => { },
+      error => { alert(error); }
+    );
   }
   ngOnInit() {
   }

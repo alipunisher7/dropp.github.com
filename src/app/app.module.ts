@@ -19,11 +19,11 @@ import { DashboardPanelComponent } from './panels/dashboard-panel';
 import { StatPanelComponent } from './panels/stat-panel';
 import { OnlineDriverComponent } from './panels/stat-panel/drivers/online-driver';
 import { DashboardCardComponent } from './panels/dashboard-panel/dashboard-card/dashboard-card.component';
-import { AddMOpComponent } from './admin/add-mop/add-mop.component';
+import { AddMOpComponent } from './panels/manage-panel/manage-operators/add-mop/add-mop.component';
 import { TarrifComponent } from './panels/manage-panel/manage-services/tarrif/tarrif.component';
 import { ActiveServicesComponent } from './panels/manage-panel/manage-services/active-services/active-services.component';
-import { InsertManufactureComponent } from './admin/insert-manufacture/insert-manufacture.component';
-import { InsertCarComponent } from './admin/insert-car/insert-car.component';
+import { InsertManufactureComponent } from './panels/manage-panel/manage-services/insert-manufacture/insert-manufacture.component';
+import { InsertCarComponent } from './panels/manage-panel/manage-services/insert-car/insert-car.component';
 import { SearchRadiusComponent } from './panels/manage-panel/manage-services/search-radius/search-radius.component';
 import { LowRateDriversComponent } from './panels/stat-panel/drivers/low-rate-drivers/low-rate-drivers.component';
 import { SearchDriversComponent } from './panels/stat-panel/drivers/search-drivers/search-drivers.component';
@@ -40,6 +40,8 @@ import { ManageVouchersComponent } from './panels/manage-panel/manage-vouchers/m
 import { ManageBannedUsersComponent } from './panels/manage-panel/manage-banned-users/manage-banned-users.component';
 import { SendTaxiComponent } from './panels/send-taxi/send-taxi.component';
 import { SupportPanelComponent } from './panels/support-panel/support-panel.component';
+import { ManageOperatorsComponent } from './panels/manage-panel/manage-operators/manage-operators.component';
+import { ServicesComponent } from './panels/stat-panel/services/services.component';
 
 @NgModule({
   declarations: [
@@ -72,7 +74,9 @@ import { SupportPanelComponent } from './panels/support-panel/support-panel.comp
     ManageVouchersComponent,
     ManageBannedUsersComponent,
     SendTaxiComponent,
-    SupportPanelComponent
+    SupportPanelComponent,
+    ManageOperatorsComponent,
+    ServicesComponent
   ],
   imports: [
     BrowserModule,

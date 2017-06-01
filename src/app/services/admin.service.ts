@@ -1,7 +1,8 @@
-import { Injectable } from '@angular/core';
+import { Injectable  } from '@angular/core';
 import { Http, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/operator/map';
+import 'rxjs/add/operator/catch';
 
 @Injectable()
 export class AdminService {
@@ -20,8 +21,8 @@ export class AdminService {
   constructor(private _http: Http) {
     this.AddMOpUrl = "";
     this.viewTarrifUrl = "";
-    this.submitTarrifUrl = "";
-    this.insertManufactureUrl = "";
+    this.submitTarrifUrl = "http://31.184.132.215:8080/geno/TSO/api/rest/tariff/tariffRegister";
+    this.insertManufactureUrl = "http://31.184.132.215:8080/geno/TSO/api/rest/cop/manufactureRegister";
     this.insertCarUrl = "";
     this.viewActiveServicesUrl = "";
     this.submitActiveServicesUrl = "";
@@ -45,17 +46,36 @@ export class AdminService {
 
   submitTarrif(data) {
     let body = JSON.stringify(data);
-    return this._http.post('', body, { headers: this.getHeaders() }).map(res => res);
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    headers.append('Authorization', 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbGkiLCJyb2xlIjoiQSIsImlzcyI6IkdFTk8gQ28iLCJpYXQiOjE0OTYzMTg1MTR9.mMoOmcrAbEmBZZLU9ucCg67WXYaJmgxxkQjpyDkhH_wQXo8oEJBpKQ0gHSymCgYDMO1mlW5H5YT5B681ZL_J7A');
+    let options = new RequestOptions({ headers: headers });
+    return this._http.post(this.submitTarrifUrl, body, options).map(res => res).catch((error: any) => Observable.throw(error.json().error || 'Server error'));
   }
 
   insertManufacture(data) {
     let body = JSON.stringify(data);
-    return this._http.post('', body, { headers: this.getHeaders() }).map(res => res);
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    headers.append('Authorization', 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbGkiLCJyb2xlIjoiQSIsImlzcyI6IkdFTk8gQ28iLCJpYXQiOjE0OTYzMTg1MTR9.mMoOmcrAbEmBZZLU9ucCg67WXYaJmgxxkQjpyDkhH_wQXo8oEJBpKQ0gHSymCgYDMO1mlW5H5YT5B681ZL_J7A');
+    let options = new RequestOptions({ headers: headers });
+    return this._http.post(this.insertManufactureUrl, body, options).map(res => res).catch((error: any) => Observable.throw(error.json().error || 'Server error'));
+  }
+  getManufacture() {
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    headers.append('Authorization', 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbGkiLCJyb2xlIjoiQSIsImlzcyI6IkdFTk8gQ28iLCJpYXQiOjE0OTYzMTg1MTR9.mMoOmcrAbEmBZZLU9ucCg67WXYaJmgxxkQjpyDkhH_wQXo8oEJBpKQ0gHSymCgYDMO1mlW5H5YT5B681ZL_J7A');
+    let options = new RequestOptions({ headers: headers });
+    return this._http.get(this.insertManufactureUrl, options).map(res => res).catch((error: any) => Observable.throw(error.json().error || 'Server error'));
   }
 
   insertCar(data) {
     let body = JSON.stringify(data);
-    return this._http.post('', body, { headers: this.getHeaders() }).map(res => res);
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    headers.append('Authorization', 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbGkiLCJyb2xlIjoiQSIsImlzcyI6IkdFTk8gQ28iLCJpYXQiOjE0OTYzMTg1MTR9.mMoOmcrAbEmBZZLU9ucCg67WXYaJmgxxkQjpyDkhH_wQXo8oEJBpKQ0gHSymCgYDMO1mlW5H5YT5B681ZL_J7A');
+    let options = new RequestOptions({ headers: headers });
+    return this._http.post(this.insertCarUrl, body, options).map(res => res).catch((error: any) => Observable.throw(error.json().error || 'Server error'));
   }
 
   viewActiveServices() {
@@ -78,7 +98,9 @@ export class AdminService {
 
   private getHeaders() {
     let headers = new Headers();
-    headers.append('Accept', 'application / json');
+    headers.append('Content-Type', 'application/json');
+    headers.append('Authorization', 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbGkiLCJyb2xlIjoiQSIsImlzcyI6IkdFTk8gQ28iLCJpYXQiOjE0OTYzMTg1MTR9.mMoOmcrAbEmBZZLU9ucCg67WXYaJmgxxkQjpyDkhH_wQXo8oEJBpKQ0gHSymCgYDMO1mlW5H5YT5B681ZL_J7A');
+    let options = new RequestOptions({ headers: headers });
     return headers;
   }
 

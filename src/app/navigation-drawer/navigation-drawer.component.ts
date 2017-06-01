@@ -26,10 +26,11 @@ export class NavigationDrawerComponent implements OnInit {
       {
         title: 'مدیریت', icon: 'fa fa-wrench', isOpen: true, route: 'manage-panel',
         subNavs: [
-          { title: 'مدیریت سرویس ها', icon: 'fa fa-tachometer', route: 'manage-services' },
-          { title: 'مدیریت راننده ها', icon: 'fa fa-users', route: 'manage-drivers' },
-          { title: 'مدیریت کدتخفیف', icon: 'fa fa-money', route: 'manage-vouchers' },
-          { title: 'مدیریت کاربران منع شده', icon: 'fa fa-ban', route: 'manage-banned-users' },
+          { title: 'سرویس ها', icon: 'fa fa-tachometer', route: 'manage-services' },
+          { title: 'راننده ها', icon: 'fa fa-users', route: 'manage-drivers' },
+          { title: ' اپراتورها', icon: 'fa fa-user-o', route: 'manage-operators' },
+          { title: 'کد تخفیف', icon: 'fa fa-money', route: 'manage-vouchers' },
+          { title: ' کاربران منع شده', icon: 'fa fa-ban', route: 'manage-banned-users' },
         ],
 
       },
