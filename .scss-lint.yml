@@ -34,7 +34,7 @@ linters:
     enabled: true
 
   Comment:
-    enabled: true
+    enabled: false
     style: silent
 
   DebugStatement:
@@ -109,7 +109,7 @@ linters:
     convention: hyphenated_lowercase # or 'camel_case', or 'snake_case', or a regex pattern
 
   NestingDepth:
-    enabled: true
+    enabled: false
     max_depth: 3
     ignore_parent_selectors: false
 
@@ -206,7 +206,7 @@ linters:
 
   SpaceBeforeBrace:
     enabled: true
-    style: new_line
+    style: one_space
     allow_single_line_padding: false
 
   SpaceBetweenParens:

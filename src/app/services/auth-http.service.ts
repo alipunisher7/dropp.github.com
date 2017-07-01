@@ -10,7 +10,7 @@ export class AuthHttpService {
   createRequestOptions(): RequestOptions {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json')
-    headers.append('Authorization', 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbGkiLCJyb2xlIjoiQSIsImlzcyI6IkdFTk8gQ28iLCJpYXQiOjE0OTg5MDA2MTh9.27iOjHEU4zK4WGwm8IzZbyx8qhuslLT0I-gSe3fxeo6tJFqWEEKoRKD4W5oc6M-fkpBpSPT1I3n7Z4VQ6OP0gg')
+    headers.append('Authorization', 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbGkiLCJyb2xlIjoiQSIsImlzcyI6IkdFTk8gQ28iLCJpYXQiOjE0OTg5MDY0NTl9.ORTXPW4XPXdEtUdFAcsfV-7u6xqPntQGYBgkiobMJdODZso2atIglauvS_1jghLmnuFGJupZG68BFeIPl1O2bQ')
     let options = new RequestOptions({ headers: headers });
     return options;
   }
