@@ -52,7 +52,7 @@ export class OperatorService {
   getAllDrivers(): Observable<object> {
     let header: Headers = new Headers();
     header.append('Content-Type', 'application/json');
-    header.append('Authorization', 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbGkiLCJyb2xlIjoiQSIsImlzcyI6IkdFTk8gQ28iLCJpYXQiOjE0OTYzMTg1MTR9.mMoOmcrAbEmBZZLU9ucCg67WXYaJmgxxkQjpyDkhH_wQXo8oEJBpKQ0gHSymCgYDMO1mlW5H5YT5B681ZL_J7A');
+    header.append('Authorization', 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbGkiLCJyb2xlIjoiQSIsImlzcyI6IkdFTk8gQ28iLCJpYXQiOjE0OTg4OTAzMjZ9.bLmHxTrzY4PruhVhb_btH2xT3tnvbVBp8X_YzfsARqVDaeMvn22V4hJZLqKfNrJFTn4WdN3qX8krkKbLEsmIRA');
 
     let options = new RequestOptions({ headers: header });
     return this._http.get(this.getAllDriversUrl, options).map(res => res.json().data);

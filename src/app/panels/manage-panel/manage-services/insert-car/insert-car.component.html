@@ -2,14 +2,14 @@
 <form [formGroup]="myForm" (ngSubmit)="onSubmit()" >
   <div>
     <label>انتخاب خودروسازی</label>
-    <select  name="manufacture" formControlName="manufacture">
+    <select  name="manufactureID" formControlName="manufactureID" >
       <option value="">خودروسازی را انتخاب کنید</option>
-      <option value=""></option>
+      <option *ngFor="let man of manufactures " value={{man.name}}>{{man.name}}</option>
     </select>
   </div>
   <div>
     <label>نام خودرو</label>
-    <input type="text" name="carName" value="" formControlName="carName">
+    <input type="text" name="name" value="" formControlName="name">
   </div>
   <div>
     <button type="submit" name="submitCar" [disabled]="!myForm.valid">ثبت</button>

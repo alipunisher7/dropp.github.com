@@ -30,7 +30,7 @@ export class AdminService {
     this.submitRadiusUrl = "";
 
     // TODO: test
-    this.getManufacturesUrl = "http://127.0.0.1:8080/TSTest/api/rest/driver/manufactures";
+    this.getManufacturesUrl = "http://31.184.132.215:8080/geno/TSO/api/rest/cop/allManufactures";
   }
 
   addMOp(operatorData): Observable<any> {
@@ -64,9 +64,9 @@ export class AdminService {
   getManufacture() {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    headers.append('Authorization', 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbGkiLCJyb2xlIjoiQSIsImlzcyI6IkdFTk8gQ28iLCJpYXQiOjE0OTYzMTg1MTR9.mMoOmcrAbEmBZZLU9ucCg67WXYaJmgxxkQjpyDkhH_wQXo8oEJBpKQ0gHSymCgYDMO1mlW5H5YT5B681ZL_J7A');
+    headers.append('Authorization', 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbGkiLCJyb2xlIjoiQSIsImlzcyI6IkdFTk8gQ28iLCJpYXQiOjE0OTg4OTAzMjZ9.bLmHxTrzY4PruhVhb_btH2xT3tnvbVBp8X_YzfsARqVDaeMvn22V4hJZLqKfNrJFTn4WdN3qX8krkKbLEsmIRA');
     let options = new RequestOptions({ headers: headers });
-    return this._http.get(this.insertManufactureUrl, options).map(res => res).catch((error: any) => Observable.throw(error.json().error || 'Server error'));
+    return this._http.get(this.insertManufactureUrl, options).map(res => res.json).catch((error: any) => Observable.throw(error.json().error || 'Server error'));
   }
 
   insertCar(data) {
