@@ -31,11 +31,8 @@ export class AdminService {
     this.voucherRegisterUrl = "http://192.168.1.2:8585/TSTest/api/rest/admin/voucherRegister";
   }
 
-  addMOp(operatorData): Observable<any> {
-    let body = JSON.stringify(operatorData);
-    let header = new Headers();
-
-    return this._http.post('', body).map(res => res);
+  addMOp(data): Observable<any> {
+    return this._http.post('', data).map(res => res);
   }
 
   viewTarrif(): Observable<any> {
@@ -44,7 +41,6 @@ export class AdminService {
 
   submitTarrif(data) {
     return this._http.post('', data).map(res => res);
-
   }
 
   insertManufacture(data) {
