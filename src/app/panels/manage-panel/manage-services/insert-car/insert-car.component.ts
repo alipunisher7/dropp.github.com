@@ -18,6 +18,8 @@ export class InsertCarComponent implements OnInit {
   }
   getManufactures() {
     this._adminService.getManufacture().subscribe(res => {
+      console.log('res');
+      console.log(res);
       this.manufactures = res;
     });
   }
@@ -26,7 +28,7 @@ export class InsertCarComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    this.getManufactures()
   }
 
 }

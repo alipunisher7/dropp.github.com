@@ -57,23 +57,23 @@ export class AdminService {
     let body = JSON.stringify(data);
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    headers.append('Authorization', 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbGkiLCJyb2xlIjoiQSIsImlzcyI6IkdFTk8gQ28iLCJpYXQiOjE0OTYzMTg1MTR9.mMoOmcrAbEmBZZLU9ucCg67WXYaJmgxxkQjpyDkhH_wQXo8oEJBpKQ0gHSymCgYDMO1mlW5H5YT5B681ZL_J7A');
+    headers.append('Authorization', 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbGkiLCJyb2xlIjoiQSIsImlzcyI6IkdFTk8gQ28iLCJpYXQiOjE0OTg4OTQ1Mjd9.p3NCwrJmxnmFg1obmdv-87n6Y9lyKg_1i3A5enXx4G_iKVrW8ku7P6APk-6q7hI9osS9NfkW1PTxH4GrSkATjw');
     let options = new RequestOptions({ headers: headers });
     return this._http.post(this.insertManufactureUrl, body, options).map(res => res).catch((error: any) => Observable.throw(error.json().error || 'Server error'));
   }
   getManufacture() {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    headers.append('Authorization', 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbGkiLCJyb2xlIjoiQSIsImlzcyI6IkdFTk8gQ28iLCJpYXQiOjE0OTg4OTAzMjZ9.bLmHxTrzY4PruhVhb_btH2xT3tnvbVBp8X_YzfsARqVDaeMvn22V4hJZLqKfNrJFTn4WdN3qX8krkKbLEsmIRA');
+    headers.append('Authorization', 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbGkiLCJyb2xlIjoiQSIsImlzcyI6IkdFTk8gQ28iLCJpYXQiOjE0OTg4OTQ1Mjd9.p3NCwrJmxnmFg1obmdv-87n6Y9lyKg_1i3A5enXx4G_iKVrW8ku7P6APk-6q7hI9osS9NfkW1PTxH4GrSkATjw');
     let options = new RequestOptions({ headers: headers });
-    return this._http.get(this.insertManufactureUrl, options).map(res => res.json).catch((error: any) => Observable.throw(error.json().error || 'Server error'));
+    return this._http.get(this.getManufacturesUrl, options).map(res => res.json).catch((error: any) => Observable.throw(error.json().error || 'Server error'));
   }
 
   insertCar(data) {
     let body = JSON.stringify(data);
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    headers.append('Authorization', 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbGkiLCJyb2xlIjoiQSIsImlzcyI6IkdFTk8gQ28iLCJpYXQiOjE0OTYzMTg1MTR9.mMoOmcrAbEmBZZLU9ucCg67WXYaJmgxxkQjpyDkhH_wQXo8oEJBpKQ0gHSymCgYDMO1mlW5H5YT5B681ZL_J7A');
+    headers.append('Authorization', 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbGkiLCJyb2xlIjoiQSIsImlzcyI6IkdFTk8gQ28iLCJpYXQiOjE0OTg4OTQ1Mjd9.p3NCwrJmxnmFg1obmdv-87n6Y9lyKg_1i3A5enXx4G_iKVrW8ku7P6APk-6q7hI9osS9NfkW1PTxH4GrSkATjw');
     let options = new RequestOptions({ headers: headers });
     return this._http.post(this.insertCarUrl, body, options).map(res => res).catch((error: any) => Observable.throw(error.json().error || 'Server error'));
   }
