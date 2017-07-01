@@ -1,5 +1,5 @@
 import { Injectable  } from '@angular/core';
-import { Http, Headers, RequestOptions } from '@angular/http';
+import { AuthHttpService } from './auth-http.service';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/operator/map';
 import 'rxjs/add/operator/catch';
@@ -7,7 +7,6 @@ import 'rxjs/add/operator/catch';
 @Injectable()
 export class AdminService {
 
-  private getManufacturesUrl: string;
   private AddMOpUrl: string;
   private viewTarrifUrl: string;
   private submitTarrifUrl: string;
@@ -17,8 +16,10 @@ export class AdminService {
   private submitActiveServicesUrl: string;
   private viewRadiusUrl: string;
   private submitRadiusUrl: string;
+  private voucherRegisterUrl: string;
+  private getManufacturesUrl: string;
 
-  constructor(private _http: Http) {
+  constructor(private _http: AuthHttpService) {
     this.AddMOpUrl = "";
     this.viewTarrifUrl = "";
     this.submitTarrifUrl = "http://31.184.132.215:8080/geno/TSO/api/rest/tariff/tariffRegister";
@@ -31,88 +32,56 @@ export class AdminService {
 
     // TODO: test
     this.getManufacturesUrl = "http://31.184.132.215:8080/geno/TSO/api/rest/cop/allManufactures";
+    this.voucherRegisterUrl = "http://192.168.1.2:8585/TSTest/api/rest/admin/voucherRegister";
   }
 
-  addMOp(operatorData): Observable<any> {
-    let body = JSON.stringify(operatorData);
-    let header = new Headers();
-
-    return this._http.post('', body, header).map(res => res);
+  addMOp(data): Observable<any> {
+    return this._http.post('', data).map(res => res);
   }
 
   viewTarrif(): Observable<any> {
-    return this._http.get('viewTarrifUrl', { headers: this.getHeaders() }).map(res => res.json);
+    return this._http.get('viewTarrifUrl').map(res => res.json);
   }
 
   submitTarrif(data) {
-    let body = JSON.stringify(data);
-    let headers = new Headers();
-    headers.append('Content-Type', 'application/json');
-    headers.append('Authorization', 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbGkiLCJyb2xlIjoiQSIsImlzcyI6IkdFTk8gQ28iLCJpYXQiOjE0OTYzMTg1MTR9.mMoOmcrAbEmBZZLU9ucCg67WXYaJmgxxkQjpyDkhH_wQXo8oEJBpKQ0gHSymCgYDMO1mlW5H5YT5B681ZL_J7A');
-    let options = new RequestOptions({ headers: headers });
-    return this._http.post(this.submitTarrifUrl, body, options).map(res => res).catch((error: any) => Observable.throw(error.json().error || 'Server error'));
+    return this._http.post(this.submitTarrifUrl, data).map(res => res).catch((error: any) => Observable.throw(error.json().error || 'Server error'));
   }
 
   insertManufacture(data) {
-    let body = JSON.stringify(data);
-    let headers = new Headers();
-    headers.append('Content-Type', 'application/json');
-    headers.append('Authorization', 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbGkiLCJyb2xlIjoiQSIsImlzcyI6IkdFTk8gQ28iLCJpYXQiOjE0OTg4OTQ1Mjd9.p3NCwrJmxnmFg1obmdv-87n6Y9lyKg_1i3A5enXx4G_iKVrW8ku7P6APk-6q7hI9osS9NfkW1PTxH4GrSkATjw');
-    let options = new RequestOptions({ headers: headers });
-    return this._http.post(this.insertManufactureUrl, body, options).map(res => res).catch((error: any) => Observable.throw(error.json().error || 'Server error'));
+    return this._http.post(this.insertManufactureUrl, data).map(res => res).catch((error: any) => Observable.throw(error.json().error || 'Server error'));
   }
   getManufacture() {
-    let headers = new Headers();
-    headers.append('Content-Type', 'application/json');
-    headers.append('Authorization', 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbGkiLCJyb2xlIjoiQSIsImlzcyI6IkdFTk8gQ28iLCJpYXQiOjE0OTg4OTQ1Mjd9.p3NCwrJmxnmFg1obmdv-87n6Y9lyKg_1i3A5enXx4G_iKVrW8ku7P6APk-6q7hI9osS9NfkW1PTxH4GrSkATjw');
-    let options = new RequestOptions({ headers: headers });
-    return this._http.get(this.getManufacturesUrl, options).map(res => res.json).catch((error: any) => Observable.throw(error.json().error || 'Server error'));
+    return this._http.get(this.getManufacturesUrl).map(res => res.json).catch((error: any) => Observable.throw(error.json().error || 'Server error'));
   }
 
   insertCar(data) {
-    let body = JSON.stringify(data);
-    let headers = new Headers();
-    headers.append('Content-Type', 'application/json');
-    headers.append('Authorization', 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbGkiLCJyb2xlIjoiQSIsImlzcyI6IkdFTk8gQ28iLCJpYXQiOjE0OTg4OTQ1Mjd9.p3NCwrJmxnmFg1obmdv-87n6Y9lyKg_1i3A5enXx4G_iKVrW8ku7P6APk-6q7hI9osS9NfkW1PTxH4GrSkATjw');
-    let options = new RequestOptions({ headers: headers });
-    return this._http.post(this.insertCarUrl, body, options).map(res => res).catch((error: any) => Observable.throw(error.json().error || 'Server error'));
+    return this._http.post(this.insertCarUrl, data).map(res => res).catch((error: any) => Observable.throw(error.json().error || 'Server error'));
   }
 
   viewActiveServices() {
-    return this._http.get('viewActiveServicesUrl', { headers: this.getHeaders() }).map(res => res.json);
+    return this._http.get('viewActiveServicesUrl').map(res => res.json);
   }
 
   submitActiveServices(data) {
-    let body = JSON.stringify(data);
-    return this._http.post('', body, { headers: this.getHeaders() }).map(res => res);
+    return this._http.post('', data).map(res => res);
   }
 
   viewRadius() {
-    return this._http.get('viewActiveServicesUrl', { headers: this.getHeaders() }).map(res => res.json);
+    return this._http.get('viewActiveServicesUrl').map(res => res.json);
   }
 
   submitRadius(data) {
-    let body = JSON.stringify(data);
-    return this._http.post('', body, { headers: this.getHeaders() }).map(res => res);
-  }
-
-  private getHeaders() {
-    let headers = new Headers();
-    headers.append('Content-Type', 'application/json');
-    headers.append('Authorization', 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbGkiLCJyb2xlIjoiQSIsImlzcyI6IkdFTk8gQ28iLCJpYXQiOjE0OTYzMTg1MTR9.mMoOmcrAbEmBZZLU9ucCg67WXYaJmgxxkQjpyDkhH_wQXo8oEJBpKQ0gHSymCgYDMO1mlW5H5YT5B681ZL_J7A');
-    let options = new RequestOptions({ headers: headers });
-    return headers;
+    return this._http.post('', data).map(res => res);
   }
 
   getManufactures() {
-    let header = new Headers();
-    header.append('Content-Type', 'application/json');
-    header.append('Authorization', 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJrYXNyYSIsInJvbGUiOiJEIiwiaXNzIjoiR0VOTyBDbyIsImlhdCI6MTQ5NTg3MjgyOCwiZXhwIjoxNDk2NzM2ODI4fQ.8-4KzOtaBhFVqpCfDWO1GpwdPiZgvEh3zP6EYNFM80SvA6VpHhR8iQcjjT7tFZLo7PRhGjtmVVGCMAQq_dzgig');
-    let options = new RequestOptions({ headers: header });
-
-    return this._http.get(this.getManufacturesUrl, options).map(data => {
+    return this._http.get(this.getManufacturesUrl).map(data => {
       console.log("-");
       return data.json();
     });
+  }
+
+  getVoucher() {
+    return this._http.get(this.voucherRegisterUrl).map(data => data.json());
   }
 }

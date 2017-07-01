@@ -1,0 +1,52 @@
+ts-app:
+  authentication:
+    - login
+    - forgot password (P5)
+
+  header:
+    setting-panel:
+      - manager user (P5)
+    notification-panel:
+      - notification (P5)
+    - logout
+
+  notification-popup:
+    - notification popup (P5)
+
+  dashboard-panel:
+    dashboard-card:
+      - system overview (P1)
+
+  stat-panel:
+    driver:
+      - serach drivers (P2)
+      - send message (P3)
+      - get vehicle distance (P2)
+      - driver detail (P3)
+      - low rate drivers
+    passenger:
+      - search passengers (P3)
+      - send message (P3)
+    trips:
+      - view online trips (P1)
+      - search trips
+    organs:
+      - manage organs (view/edit) (P5)
+
+  manage-panel:
+    driver-manager:
+      - low rate drivers view (P2)
+      - disallow driver (P4)
+    services:
+      - search radiuce (P1)
+      - active services (P1)
+    baned user:
+      - manage baned user (P4)
+    vouchers:
+      - manage vouche (P4)
+
+  send-taxi:
+    - send taxi (P1)
+
+  support:
+    - support
