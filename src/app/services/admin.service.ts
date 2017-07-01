@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { AuthHttpService } from './auth-http.service';
 import { Http, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/operator/map';
@@ -17,7 +18,7 @@ export class AdminService {
   private submitRadiusUrl: string;
   private voucherRegisterUrl: string;
 
-  constructor(private _http: Http) {
+  constructor(private _http: AuthHttpService) {
     this.AddMOpUrl = "";
     this.viewTarrifUrl = "";
     this.submitTarrifUrl = "";
@@ -34,60 +35,43 @@ export class AdminService {
     let body = JSON.stringify(operatorData);
     let header = new Headers();
 
-    return this._http.post('', body, header).map(res => res);
+    return this._http.post('', body).map(res => res);
   }
 
   viewTarrif(): Observable<any> {
-    return this._http.get('viewTarrifUrl', { headers: this.getHeaders() }).map(res => res.json);
+    return this._http.get('viewTarrifUrl').map(res => res.json);
   }
 
   submitTarrif(data) {
-    let body = JSON.stringify(data);
-    return this._http.post('', body, { headers: this.getHeaders() }).map(res => res);
+    return this._http.post('', data).map(res => res);
 
   }
 
   insertManufacture(data) {
-    let body = JSON.stringify(data);
-    return this._http.post('', body, { headers: this.getHeaders() }).map(res => res);
+    return this._http.post('', data).map(res => res);
   }
 
   insertCar(data) {
-    let body = JSON.stringify(data);
-    return this._http.post('', body, { headers: this.getHeaders() }).map(res => res);
+    return this._http.post('', data).map(res => res);
   }
 
   viewActiveServices() {
-    return this._http.get('viewActiveServicesUrl', { headers: this.getHeaders() }).map(res => res.json);
+    return this._http.get('viewActiveServicesUrl').map(res => res.json);
   }
 
   submitActiveServices(data) {
-    let body = JSON.stringify(data);
-    return this._http.post('', body, { headers: this.getHeaders() }).map(res => res);
+    return this._http.post('', data).map(res => res);
   }
 
   viewRadius() {
-    return this._http.get('viewActiveServicesUrl', { headers: this.getHeaders() }).map(res => res.json);
+    return this._http.get('viewActiveServicesUrl').map(res => res.json);
   }
 
   submitRadius(data) {
-    let body = JSON.stringify(data);
-    return this._http.post('', body, { headers: this.getHeaders() }).map(res => res);
-  }
-
-  private getHeaders() {
-    let headers = new Headers();
-    headers.append('Accept', 'application / json');
-    return headers;
+    return this._http.post('', data).map(res => res);
   }
 
   getVoucher() {
-    let header = new Headers();
-    header.append('Content-Type', 'application/json')
-    header.append('Authorization', 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJoYW1pZG9mIiwicm9sZSI6IkEiLCJpc3MiOiJHRU5PIENvIiwiaWF0IjoxNDk1OTU4ODE2LCJleHAiOjE0OTYwNDUyMTZ9.huUhr3j_e2kr3HbB8yinWC7uDwglc2Z_K0DTF73jehr_IDS9Vl18gDzIzdpeZpkduu6FjLMXMxWyGFcah4yGgg')
-
-    let options = new RequestOptions({ headers: header });
-
-    return this._http.get(this.voucherRegisterUrl, options).map(data => data.json());
+    return this._http.get(this.voucherRegisterUrl).map(data => data.json());
   }
 }
