@@ -16,8 +16,8 @@ export class TarrifComponent implements OnInit {
       'after2KM': new FormControl('', Validators.required),
       'perMin': new FormControl('', Validators.required),
       'waitingMin': new FormControl('', Validators.required),
-      'Entrance': new FormControl('', Validators.required),
-      'twoWayCostPercentage': new FormControl('', Validators.required)
+      'entrance': new FormControl('', Validators.required),
+      // 'twoWayCostPercentage': new FormControl('', Validators.required)
 
     });
   }
@@ -25,6 +25,7 @@ export class TarrifComponent implements OnInit {
     this._adminService.viewTarrif().subscribe();
   }
   onSubmit() {
+    console.log(this.myForm.value)
     this._adminService.submitTarrif(this.myForm.value).subscribe(
       data => { },
       error => { alert(error); }
