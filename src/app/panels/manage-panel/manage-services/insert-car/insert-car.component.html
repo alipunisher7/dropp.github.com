@@ -4,7 +4,7 @@
     <label>انتخاب خودروسازی</label>
     <select  name="manufactureID" formControlName="manufactureID" >
       <option value="">خودروسازی را انتخاب کنید</option>
-      <option *ngFor="let man of manufactures " value={{man.name}}>{{man.name}}</option>
+      <option *ngFor="let man of manufactures " value={{man.id}}>{{man.name}}</option>
     </select>
   </div>
   <div>

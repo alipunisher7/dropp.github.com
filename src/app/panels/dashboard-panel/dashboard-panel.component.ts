@@ -63,7 +63,9 @@ export class DashboardPanelComponent implements OnInit {
 
   getAllDrivers() {
     this._operatorServices.getAllDrivers().subscribe(
+
       (services: ServiceType) => {
+        console.log(services);
         let sum = 0;
 
         for (let serviceName in services) {

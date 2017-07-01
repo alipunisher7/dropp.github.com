@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
-import { OperatorService, AdminService } from './services';
+import { OperatorService, AdminService, AuthHttpService } from './services';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -85,7 +85,7 @@ import { ServicesComponent } from './panels/stat-panel/services/services.compone
     AppRoutingModule,
     ReactiveFormsModule
   ],
-  providers: [OperatorService, AdminService],
+  providers: [OperatorService, AdminService, AuthHttpService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -17,14 +17,21 @@ export class InsertCarComponent implements OnInit {
     });
   }
   getManufactures() {
-    this._adminService.getManufacture().subscribe(res => {
-      console.log('res');
-      console.log(res);
-      this.manufactures = res;
+    this._adminService.getManufacture().subscribe(manufactures => {
+      console.log('res on cmp');
+      console.log(manufactures);
+      this.manufactures = manufactures;
     });
   }
   onSubmit() {
-    this._adminService.insertManufacture(this.myForm.value).subscribe();
+    this._adminService.insertCar(this.myForm.value).subscribe(
+      res => {
+        //TODO: Notification
+      },
+      err => {
+        alert(err);
+      }
+    );
   }
 
   ngOnInit() {

@@ -24,7 +24,7 @@ export class AdminService {
     this.viewTarrifUrl = "";
     this.submitTarrifUrl = "http://31.184.132.215:8080/geno/TSO/api/rest/tariff/tariffRegister";
     this.insertManufactureUrl = "http://31.184.132.215:8080/geno/TSO/api/rest/cop/manufactureRegister";
-    this.insertCarUrl = "";
+    this.insertCarUrl = "http://31.184.132.215:8080/geno/TSO/api/rest/cop/carRegister";
     this.viewActiveServicesUrl = "";
     this.submitActiveServicesUrl = "";
     this.viewRadiusUrl = "";
@@ -44,18 +44,45 @@ export class AdminService {
   }
 
   submitTarrif(data) {
-    return this._http.post(this.submitTarrifUrl, data).map(res => res).catch((error: any) => Observable.throw(error.json().error || 'Server error'));
+    return this._http.post(this.submitTarrifUrl, data)
+      .map(res => {
+        console.log(res);
+      })
+      .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
   }
 
   insertManufacture(data) {
-    return this._http.post(this.insertManufactureUrl, data).map(res => res).catch((error: any) => Observable.throw(error.json().error || 'Server error'));
+    return this._http.post(this.insertManufactureUrl, data)
+      .map(res => {
+        console.log(res);
+      })
+      .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
   }
   getManufacture() {
-    return this._http.get(this.getManufacturesUrl).map(res => res.json).catch((error: any) => Observable.throw(error.json().error || 'Server error'));
+    return this._http
+      .get(this.getManufacturesUrl)
+      .map(res => {
+        let json = res.json();
+        if(json.statusCode !== 1) {
+          throw new Error(json.statusCode)
+        }
+
+        let data = json.data['All Manufacture'];
+        return data;
+      })
+      .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
   }
 
   insertCar(data) {
-    return this._http.post(this.insertCarUrl, data).map(res => res).catch((error: any) => Observable.throw(error.json().error || 'Server error'));
+    return this._http.post(this.insertCarUrl, data)
+      .map(res => {
+        let json = res.json();
+        if(json.statusCode == 1) {
+          throw new Error(json.statusCode);
+        }
+        return true;
+      })
+      .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
   }
 
   viewActiveServices() {

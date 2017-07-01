@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers, RequestOptions } from '@angular/http';
+import { AuthHttpService } from './auth-http.service';
 import { Observable } from 'rxjs/Observable';
 import { ServiceType } from './../models'
 import 'rxjs/add/operator/map';
@@ -22,7 +22,7 @@ export class OperatorService {
   private searchTripsUrl: string;
   private searchDriversCreditUrl: string;
 
-  constructor(private _http: Http) {
+  constructor(private _http: AuthHttpService) {
     this.getOnlineTripsUrl = "";
     this.getTodayTripsUrl = "";
     this.getOnlineDriversUrl = "";
@@ -43,19 +43,11 @@ export class OperatorService {
   }
 
   getOnlineDrivers(): Observable<any> {
-    // let header = new Headers();
-    // header.append('Authorization', 'Basic c2tpbGw6YTFsMmkzIUAj');
-    // console.log(header);
     return this._http.get(this.getOnlineDriversUrl).map(res => res.json);
   }
 
   getAllDrivers(): Observable<object> {
-    let header: Headers = new Headers();
-    header.append('Content-Type', 'application/json');
-    header.append('Authorization', 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbGkiLCJyb2xlIjoiQSIsImlzcyI6IkdFTk8gQ28iLCJpYXQiOjE0OTg4OTAzMjZ9.bLmHxTrzY4PruhVhb_btH2xT3tnvbVBp8X_YzfsARqVDaeMvn22V4hJZLqKfNrJFTn4WdN3qX8krkKbLEsmIRA');
-
-    let options = new RequestOptions({ headers: header });
-    return this._http.get(this.getAllDriversUrl, options).map(res => res.json().data);
+    return this._http.get(this.getAllDriversUrl).map(res => res.json().data);
   }
 
 
