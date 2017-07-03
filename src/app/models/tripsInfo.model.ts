@@ -1,12 +1,12 @@
 export interface ITripsInfo {
-  uuid: string;
-  passengerUsername: string;
-  driverUsername: string;
-  tripDate: string;
-  startTime: string;
-  endTime: string;
-  source: string;
-  destination: string;
-  cost: string;
-  payment: string;
+  uuid: String;
+  passengerUsername: String;
+  driverUsername: String;
+  tripDate: String;
+  startTime: String;
+  endTime: String;
+  source: String;
+  destination: String;
+  cost: String;
+  payment: String;
 }

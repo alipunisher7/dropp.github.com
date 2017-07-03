@@ -1,6 +1,6 @@
-export interface IbanUsers {
-  firstName: string;
-  lastName: string;
-  username: string;
-  phoneNumber: string;
+export interface IBanUsers {
+  firstName: String;
+  lastName: String;
+  username: String;
+  phoneNumber: String;
 }

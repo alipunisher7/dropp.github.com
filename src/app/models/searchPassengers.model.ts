@@ -1,8 +1,8 @@
 export interface ISearchPassengersInfo {
-  name: string;
-  username: string;
-  phone: string;
-  credit: string;
-  tripCount: string;
-  status: string;
+  name: String;
+  username: String;
+  phone: String;
+  credit: String;
+  tripCount: String;
+  status: String;
 }
