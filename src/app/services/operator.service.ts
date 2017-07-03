@@ -36,6 +36,7 @@ export class OperatorService {
     this.viewLowRateDriverUrl = "http://31.184.132.215:8080/geno/TSO/api/rest/operator/LowRateDrivers";
     this.searchDriversCreditUrl = "http://31.184.132.215:8080/geno/TSO/api/rest/operator/viewDriverCredit";
     this.allDriversCreditUrl = "http://31.184.132.215:8080/geno/TSO/api/rest/operator/viewAllDriverCredit";
+    this.searchDriversUrl = "http://31.184.132.215:8080/geno/TSO/api/rest/operator/searchDriver";
   }
   getOnlineTrips(): Observable<any> {
     return this._http.get(this.getOnlineTripsUrl).map(res => res.json);
@@ -78,8 +79,7 @@ export class OperatorService {
           throw new Error(JSON.stringify(json));
         }
 
-        let data = json.data.user['Drivers'];
-        console.log(data);
+        let data = json.data.users.Drivers;
         return data;
 
       })
@@ -94,7 +94,8 @@ export class OperatorService {
         if (json.statusCode !== 1) {
           throw new Error(JSON.stringify(json));
         }
-        return true;
+        let data = json.data.Driver;
+        return data;
       })
       .catch(this.handleError);
   }

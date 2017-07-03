@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {OperatorService} from '../../../../services';
+import {IlowRateDrivers} from '../../../../models';
 
 @Component({
   selector: 'ts-low-rate-drivers',
@@ -8,10 +9,9 @@ import {OperatorService} from '../../../../services';
 })
 export class LowRateDriversComponent implements OnInit {
   constructor(private _operatorServices: OperatorService) { }
+  lowRateDrivers: IlowRateDrivers[];
   viewLowRateDriver() {
-    this._operatorServices.viewLowRateDriver().subscribe(data => {
-
-    });
+    this._operatorServices.viewLowRateDriver().subscribe(data => this.lowRateDrivers = data);
   }
   ngOnInit() {
     this.viewLowRateDriver();

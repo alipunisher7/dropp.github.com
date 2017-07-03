@@ -1,17 +1,25 @@
 <h2>راننده ها</h2>
-<input type="search" name="searchDrivers" placeholder="جستجو ..." (keyup)="searchDrivers()" [(ngModel)]="searchStr">
+<input type="search" name="searchDrivers" placeholder="جستجو ..." (keyup)="OnSearch()" [(ngModel)]="searchStr">
 <table>
   <thead>
     <tr>
-      <th>راننده</th>
+      <th>نام راننده</th>
+      <th>نام خانوادگی</th>
       <th>نام کاربری</th>
-      <th>شماره‌همراه</th>
-      <th>امتیاز</th>
+      <th>نوع سرویس</th>
+      <th>اعتبار حساب</th>
+      <th>اطلاعات بیشتر</th>
     </tr>
   </thead>
   <tbody>
-    <tr >
-
+    <tr *ngIf="DriversInfo">
+      <td>{{DriversInfo.firstName}}</td>
+      <td>{{DriversInfo.lastName}}</td>
+      <td>{{DriversInfo.username}}</td>
+      <td>{{DriversInfo.serviceType}}</td>
+      <td>{{DriversInfo.credit}}</td>
+      <td><button (click)="onMoreClick(DriversInfo)"></button></td>
     </tr>
   </tbody>
 </table>
+<ts-driver-all-info *ngIf="selectedDriver" [DriverInfo]="selectedDriver"></ts-driver-all-info>

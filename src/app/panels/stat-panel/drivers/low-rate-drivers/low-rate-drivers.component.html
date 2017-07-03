@@ -1,4 +1,4 @@
-<input type="search" name="searchLowRateDriver" placeholder="جستجو ...">
+<h2>نمایش راننده ها با امتیاز پایین</h2>
 <table>
   <thead>
     <tr>
@@ -7,9 +7,9 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td></td>
-      <td></td>
+    <tr *ngFor="let lowRateDriver of lowRateDrivers">
+      <td>{{lowRateDriver.username}}</td>
+      <td>{{lowRateDriver.avg}}</td>
     </tr>
   </tbody>
 </table>
