@@ -1,6 +1,5 @@
 export * from './nav.model';
 export * from './card.model';
-export * from './driver.model';
 export * from './searchDriver.model';
 export * from './searchPassengers.model';
 export * from './tripsinfo.model';
@@ -9,3 +8,4 @@ export * from './service-type.model';
 export * from './manufactures.model';
 export * from './notification.model';
 export * from './banUsers.model';
+export * from './lowRateDrivers.model';

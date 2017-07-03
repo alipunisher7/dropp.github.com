@@ -44,6 +44,7 @@ import { ManageOperatorsComponent } from './panels/manage-panel/manage-operators
 import { ServicesComponent } from './panels/stat-panel/services/services.component';
 import { NotificationComponent } from './notification/notification.component';
 import { AllDriversCreditComponent } from './panels/stat-panel/drivers/all-drivers-credit/all-drivers-credit.component';
+import { DriverAllInfoComponent } from './panels/stat-panel/drivers/driver-all-info/driver-all-info.component';
 
 @NgModule({
   declarations: [
@@ -80,7 +81,8 @@ import { AllDriversCreditComponent } from './panels/stat-panel/drivers/all-drive
     ManageOperatorsComponent,
     ServicesComponent,
     NotificationComponent,
-    AllDriversCreditComponent
+    AllDriversCreditComponent,
+    DriverAllInfoComponent
   ],
   imports: [
     BrowserModule,
