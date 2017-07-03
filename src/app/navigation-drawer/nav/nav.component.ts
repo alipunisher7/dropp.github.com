@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { INavItem } from '../../models';
 
 @Component({
@@ -9,12 +9,17 @@ import { INavItem } from '../../models';
 export class NavComponent implements OnInit {
 
   @Input() navItem: INavItem;
-  @Input() seperator: boolean;
+  @Input() seperator: Boolean;
+  @Output() onClick = new EventEmitter<INavItem>()
 
   constructor() {
   }
 
   ngOnInit() {
+  }
+
+  onNavClick() {
+    this.onClick.emit(this.navItem);
   }
 
 }

@@ -12,9 +12,9 @@ export class NavigationDrawerComponent implements OnInit {
 
   constructor() {
     this.navItems = [
-      { title: 'داشبورد', icon: 'fa fa-yelp', isOpen: false, route: 'dashboard' },
+      { title: 'داشبورد', icon: 'fa fa-yelp', isOpen: true, route: 'dashboard' },
       {
-        title: 'آمار', icon: 'fa fa-id-card', isOpen: true, route: 'stats',
+        title: 'آمار', icon: 'fa fa-id-card', isOpen: false, route: 'stats',
         subNavs: [
           { title: 'سرویس ها', icon: 'fa fa-taxi', route: 'services' },
           { title: 'مسافر ها', icon: 'fa fa-street-view', route: 'passengers' },
@@ -24,7 +24,7 @@ export class NavigationDrawerComponent implements OnInit {
         ],
       },
       {
-        title: 'مدیریت', icon: 'fa fa-wrench', isOpen: true, route: 'manage-panel',
+        title: 'مدیریت', icon: 'fa fa-wrench', isOpen: false, route: 'manage-panel',
         subNavs: [
           { title: 'سرویس ها', icon: 'fa fa-tachometer', route: 'manage-services' },
           { title: 'راننده ها', icon: 'fa fa-users', route: 'manage-drivers' },
@@ -36,7 +36,13 @@ export class NavigationDrawerComponent implements OnInit {
       },
     ];
   }
+
   ngOnInit() {
+  }
+
+  onNavClick(navItem: INavItem) {
+    this.navItems.forEach(_ => _.isOpen = false);
+    navItem.isOpen = true;2
   }
 
 }
