@@ -1,19 +1,22 @@
+* {
+  box-sizing: border-box;
+  direction: rtl;
+}
+
 html ,
-body
-{
+body {
   font-family: mavfon;
   height: 100%;
   margin: 0;
   padding: 0;
 }
 
-ul
-{
+ul {
   margin: 0;
+  padding: 0;
 }
 
-a
-{
+a {
   color: inherit;
   text-decoration: none;
 }
@@ -23,14 +26,12 @@ h2 ,
 h3 ,
 h4 ,
 h5 ,
-h6
-{
+h6 {
   margin: 0;
   font-size: inherit;
   font-weight: normal;
 }
 
-*
-{
-  direction: rtl;
+p {
+  margin: 0;
 }

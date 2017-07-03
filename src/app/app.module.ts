@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
-import { OperatorService, AdminService, AuthHttpService } from './services';
+import { OperatorService, AdminService, AuthHttpService, NotificationService } from './services';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -43,6 +43,7 @@ import { SupportPanelComponent } from './panels/support-panel/support-panel.comp
 import { ManageOperatorsComponent } from './panels/manage-panel/manage-operators/manage-operators.component';
 import { ServicesComponent } from './panels/stat-panel/services/services.component';
 import { AllDriversCreditComponent } from './panels/stat-panel/drivers/all-drivers-credit/all-drivers-credit.component';
+import { NotificationComponent } from './notification/notification.component';
 
 @NgModule({
   declarations: [
@@ -78,7 +79,8 @@ import { AllDriversCreditComponent } from './panels/stat-panel/drivers/all-drive
     SupportPanelComponent,
     ManageOperatorsComponent,
     ServicesComponent,
-    AllDriversCreditComponent
+    AllDriversCreditComponent,
+    NotificationComponent
   ],
   imports: [
     BrowserModule,
@@ -87,7 +89,7 @@ import { AllDriversCreditComponent } from './panels/stat-panel/drivers/all-drive
     AppRoutingModule,
     ReactiveFormsModule
   ],
-  providers: [OperatorService, AdminService, AuthHttpService],
+  providers: [OperatorService, AdminService, AuthHttpService, NotificationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormGroup, FormControl, Validators, ReactiveFormsModule} from '@angular/forms';
-import {AdminService } from '../../../../services';
-import {manufacture} from '../../../../models'
+import { AdminService, NotificationService } from '../../../../services';
+import {manufacture, Notification, NotificationTypes} from '../../../../models';
 @Component({
   selector: 'ts-insert-car',
   templateUrl: './insert-car.component.html',
@@ -10,7 +10,7 @@ import {manufacture} from '../../../../models'
 export class InsertCarComponent implements OnInit {
   myForm: FormGroup;
   manufactures: manufacture[];
-  constructor(private _adminService: AdminService) {
+  constructor(private _adminService: AdminService, private _notification: NotificationService) {
     this.myForm = new FormGroup({
       'manufactureID': new FormControl('', Validators.required),
       'name': new FormControl('', [Validators.required, Validators.minLength(3)])
@@ -24,7 +24,8 @@ export class InsertCarComponent implements OnInit {
   onSubmit() {
     this._adminService.insertCar(this.myForm.value).subscribe(
       res => {
-        //TODO: Notification
+        let notification = new Notification({ title: 'ثبت شد', info: `خودرو ثبت شد`, type: NotificationTypes.success });
+        this._notification.notify(notification);
       },
       err => {
         alert(err);
