@@ -6,17 +6,17 @@ export enum NotificationTypes {
 
 export interface INotification {
   type: NotificationTypes;
-  title: String;
-  info: String;
-  time?: Number;
-  undo?: Boolean;
+  title: string;
+  info: string;
+  time?: number;
+  undo?: boolean;
 }
 
 export class Notification {
   private static numer = 0;
   private _type: NotificationTypes;
 
-  public get typeName(): String {
+  public get typeName(): string {
     return NotificationTypes[this._type];
   };
 
@@ -24,11 +24,11 @@ export class Notification {
     this._type = value;
   }
 
-  public title: String;
-  public info: String;
-  public time?: Number;
-  public undo?: Boolean;
-  public in: Boolean;
+  public title: string;
+  public info: string;
+  public time?: number;
+  public undo?: boolean;
+  public in: boolean;
 
   constructor(notification: INotification) {
     this.type = notification.type;

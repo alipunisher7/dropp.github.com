@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {OperatorService} from '../../../services';
-import {ITripsInfo} from '../../../models';
+import { OperatorService } from '../../../services';
+import { ITripInfo } from '../../../models';
 
 @Component({
   selector: 'ts-trips',
@@ -9,12 +9,15 @@ import {ITripsInfo} from '../../../models';
 })
 export class TripsComponent implements OnInit {
 
-  constructor(private _operatorServices: OperatorService) { }
   searchStr: string;
-  searchRes: ITripsInfo[];
+  searchRes: ITripInfo[];
+
+  constructor(private _operatorServices: OperatorService) { }
+
   searchTrips() {
     this._operatorServices.searchTrips(this.searchStr).subscribe(res => { })
   }
+
   ngOnInit() {
   }
 

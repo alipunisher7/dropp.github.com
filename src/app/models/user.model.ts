@@ -1,11 +1,11 @@
 interface IUser {
-  username: String;
-  password?: String;
+  username: string;
+  password?: string;
 }
 
 export class User {
-  username: String;
-  password?: String;
+  username: string;
+  password?: string;
 
   constructor(user: IUser) {
     this.username = user.username;

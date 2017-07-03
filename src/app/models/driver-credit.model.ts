@@ -1,4 +1,4 @@
-export interface IDriversCreditInfo {
+export interface IDriverCreditInfo {
   username: string;
   credit: string;
   cardNumber: string;

@@ -1,4 +1,4 @@
-export interface IlowRateDrivers {
+export interface ILowRateDriver {
   username: String;
   avg: String;
 }

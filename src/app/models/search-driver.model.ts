@@ -1,6 +1,7 @@
 import { Address } from './address.model';
-import {Vehicle} from './Vehicle.model';
-import {device} from './device.model';
+import { Vehicle } from './Vehicle.model';
+import { Device } from './device.model';
+
 export interface IDriverInfo {
   serviceType?: string;
   lastName?: string;
@@ -13,8 +14,7 @@ export interface IDriverInfo {
   registrationDate?: string;
   stateCode?: string;
   credit?: string;
-  device?: device;
+  device?: Device;
   email: string;
   username: string;
-
 }

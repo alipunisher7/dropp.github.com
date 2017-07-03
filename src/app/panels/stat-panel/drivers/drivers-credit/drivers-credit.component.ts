@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {OperatorService} from '../../../../services';
-import {IDriversCreditInfo} from '../../../../models';
+import { OperatorService } from '../../../../services';
+import { IDriverCreditInfo } from '../../../../models';
 
 @Component({
   selector: 'ts-drivers-credit',
@@ -9,8 +9,10 @@ import {IDriversCreditInfo} from '../../../../models';
 })
 export class DriversCreditComponent implements OnInit {
   searchStr: string;
-  searchRes: IDriversCreditInfo;
+  searchRes: IDriverCreditInfo;
+
   constructor(private _operatorService: OperatorService) { }
+
   searchDriversCredit() {
     this._operatorService.searchDriversCredit(this.searchStr).subscribe(res => this.searchRes = res);
   }

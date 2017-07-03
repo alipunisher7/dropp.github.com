@@ -1,21 +1,21 @@
 export interface IServiceType {
-  ECO: Number
-  LUX: Number
-  MOTOR_DELIVERY: Number
-  MOTOR_TRANSPORT: Number
-  NORMAL: Number
-  SUV: Number
-  TAXI: Number
+  ECO: number
+  LUX: number
+  MOTOR_DELIVERY: number
+  MOTOR_TRANSPORT: number
+  NORMAL: number
+  SUV: number
+  TAXI: number
 }
 
 export class ServiceType {
-  public ECO: Number
-  public LUX: Number
-  public MOTOR_DELIVERY: Number
-  public MOTOR_TRANSPORT: Number
-  public NORMAL: Number
-  public SUV: Number
-  public TAXI: Number;
+  public ECO: number
+  public LUX: number
+  public MOTOR_DELIVERY: number
+  public MOTOR_TRANSPORT: number
+  public NORMAL: number
+  public SUV: number
+  public TAXI: number;
 
   constructor(serviceType: IServiceType | any) {
     this.ECO = serviceType.ECO || 0;

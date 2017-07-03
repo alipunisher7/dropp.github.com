@@ -1,13 +1,13 @@
 export interface INavItem {
-  title: String;
-  icon: String;
-  isOpen: Boolean;
+  title: string;
+  icon: string;
+  isOpen: boolean;
   subNavs?: Array<ISubNavItem>;
-  route: String;
+  route: string;
 }
 
 export interface ISubNavItem {
-  title: String;
-  icon: String;
-  route: String;
+  title: string;
+  icon: string;
+  route: string;
 }
