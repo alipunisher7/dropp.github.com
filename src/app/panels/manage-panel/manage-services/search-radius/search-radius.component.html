@@ -2,20 +2,20 @@
 <form [formGroup]="myForm" (ngSubmit)="onSubmit()" >
     <div>
       <label>انتخاب سرویس</label>
-      <select  name="serviceType" formControlName="serviceType">
+      <select (change)=onChange($event.target.value)  name="serviceType" formControlName="serviceType">
           <option value="">سرویس مورد نظر را انتخاب کنید</option>
-          <option value="normal">نرمال</option>
-          <option value="eco">اکو</option>
-          <option value="norma">معمولی</option>
-          <option value="motor_transport">موتور</option>
-          <option value="motor_delivery">پیک</option>
-          <option value="suv">SUV</option>
-          <option value="lux">لوکس</option>
+          <option value="N">نرمال</option>
+          <option value="E">اکو</option>
+          <option value="T">تاکسی</option>
+          <option value="R">موتور</option>
+          <option value="D">پیک</option>
+          <option value="S">SUV</option>
+          <option value="L">لوکس</option>
       </select>
     </div>
     <div>
       <label>شعاع</label>
-      <input type="text" name="radius" value="" formControlName="radius">
+      <input type="text" name="radius" value="res.data.searchRadius.radius" formControlName="radius">
     </div>
     <div>
       <button type="submit" name="submitRadius" [disabled]="!myForm.valid">ثبت</button>

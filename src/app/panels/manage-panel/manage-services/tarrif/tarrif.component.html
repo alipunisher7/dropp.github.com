@@ -4,16 +4,23 @@
     <label>شهر</label>
     <select  name="city" formControlName="city">
       <option value="">شهر را انتخاب کنید</option>
-      <option value="tehran">تهران</option>
-      <option value="mashhad">مشهد</option>
-      <option value="esfehan">اصفهان</option>
-      <option value="gorgan">گرگان</option>
+      <option value="TE">تهران</option>
+      <option value="MA">مشهد</option>
+      <option value="ES">اصفهان</option>
+      <option value="GO">گرگان</option>
     </select>
   </div>
   <div>
     <label>سرویس</label>
     <select  name="serviceType" formControlName="serviceType">
       <option value="">نوع سرویس را انتخاب کنید</option>
+      <option value="N">نرمال</option>
+      <option value="E">اکو</option>
+      <option value="T">تاکسی</option>
+      <option value="S">SUV</option>
+      <option value="L">لوکس</option>
+      <option value="MT">موتور</option>
+      <option value="MD">پیک</option>
     </select>
   </div>
   <div>
@@ -34,12 +41,12 @@
   </div>
   <div>
     <label >هزینه ورودی</label>
-    <input type="text" name="Entrance" formControlName="Entrance" >
+    <input type="text" name="entrance" formControlName="entrance" >
   </div>
-  <div>
+  <!-- <div>
     <label >درصد سفر بازگشت</label>
     <input type="text" name="twoWayCostPercentage" formControlName="twoWayCostPercentage" >
-  </div>
+  </div> -->
   <div>
     <button type="submit" name="submitAddTarrif" [disabled]="!myForm.valid">ثبت</button>
   </div>

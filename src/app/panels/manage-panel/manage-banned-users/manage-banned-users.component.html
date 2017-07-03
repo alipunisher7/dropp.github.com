@@ -1,3 +1,28 @@
-<p>
-  manage-banned-users works!
-</p>
+<h2>کاربران منع شده</h2>
+<table>
+  <thead>
+    <tr>
+    <th>نام</th>
+    <th>نام خانوادگی</th>
+    <th>نام کاربری</th>
+    <th>شماره همراه</th>
+    <th>نوع کاربر</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let driver of drivers">
+      <td>{{driver.firstName}}</td>
+      <td>{{driver.lastName}}</td>
+      <td>{{driver.username}}</td>
+      <td>{{driver.phoneNumber}}</td>
+      <td>راننده</td>
+    </tr>
+    <tr *ngFor="let passenger of passengers">
+      <td>{{passenger.firstName}}</td>
+      <td>{{passenger.lastName}}</td>
+      <td>{{passenger.username}}</td>
+      <td>{{passenger.phoneNumber}}</td>
+      <td>مسافر</td>
+    </tr>
+  </tbody>
+</table>

@@ -1,5 +1,4 @@
-<h2>موجودی حساب راننده ها</h2>
-<input type="search" name="searchDriversCredit" placeholder="جستجو ..." (keyup)="onSearch()" [(ngModel)]="searchStr">
+<h2>موجودی حساب کل راننده ها</h2>
 <table>
   <thead>
     <tr>
@@ -10,9 +9,9 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngIf="searchRes" >
-      <td></td>
-      <td>{{searchRes.credit}}</td>
+    <tr *ngFor="let res of Result">
+      <td>{{res.user}}</td>
+      <td>{{res.credit}}</td>
       <td></td>
       <td></td>
     </tr>
