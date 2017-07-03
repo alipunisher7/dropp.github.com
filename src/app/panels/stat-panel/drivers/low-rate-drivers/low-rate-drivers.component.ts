@@ -14,6 +14,7 @@ export class LowRateDriversComponent implements OnInit {
     });
   }
   ngOnInit() {
+    this.viewLowRateDriver();
   }
 
 }

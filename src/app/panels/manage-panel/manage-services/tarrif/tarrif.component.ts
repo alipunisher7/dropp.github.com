@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
-import {AdminService} from '../../../../services';
+import {AdminService, NotificationService} from '../../../../services';
+import {NotificationTypes, Notification} from '../../../../models'
 @Component({
   selector: 'ts-tarrif',
   templateUrl: './tarrif.component.html',
@@ -8,7 +9,7 @@ import {AdminService} from '../../../../services';
 })
 export class TarrifComponent implements OnInit {
   myForm: FormGroup;
-  constructor(private _adminService: AdminService) {
+  constructor(private _adminService: AdminService, private _notification: NotificationService) {
     this.myForm = new FormGroup({
       'city': new FormControl('', Validators.required),
       'serviceType': new FormControl('', Validators.required),
@@ -27,7 +28,10 @@ export class TarrifComponent implements OnInit {
   onSubmit() {
     console.log(this.myForm.value)
     this._adminService.submitTarrif(this.myForm.value).subscribe(
-      data => { },
+      res => {
+        let notification = new Notification({ title: 'ثبت شد', info: `تعرفه جدید ثبت شد`, type: NotificationTypes.success });
+        this._notification.notify(notification);
+      },
       error => { alert(error); }
     );
   }
