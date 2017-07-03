@@ -11,7 +11,7 @@ export class AuthHttpService {
   }
 
   login() {
-    let user = new User({username: 'ali', password: '123456'})
+    let user = new User({username: 'hamidfarmani', password: '123456'})
     this._auth.login(user);
   }
 

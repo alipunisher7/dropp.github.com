@@ -37,16 +37,15 @@ export class AuthService {
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
 
-    let obs = this._http.post('http://31.184.132.215:8080/geno/TSO/api/rest/admin/login', body, options)
+      let obs = this._http.post('http://192.168.1.13:8080/TSTest/api/rest/admin/login', body, options)
       .map((res: Response) => {
-        console.log(res.headers);
-        console.log(res.headers.get('Authorization'));
-        console.log('Json');
-        console.log(res.json());
-        if (res.json().success === true) {
-          let token = res.json().token;
-          this.setToken(token);
+        let token = res.headers.get('Authorization');
+        this.setToken(token);
+        if (res.ok && res.status !== 200) {
+          let error = { request: 'login', ...res.json() };
+          throw error;
         }
+
         return res.json();
       })
       .subscribe(console.log);
