@@ -3,7 +3,13 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
-import { OperatorService, AdminService, AuthHttpService, NotificationService } from './services';
+import {
+  OperatorService,
+  AdminService,
+  AuthHttpService,
+  NotificationService,
+  AuthService
+ } from './services';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -89,7 +95,13 @@ import { AllDriversCreditComponent } from './panels/stat-panel/drivers/all-drive
     AppRoutingModule,
     ReactiveFormsModule
   ],
-  providers: [OperatorService, AdminService, AuthHttpService, NotificationService],
+  providers: [
+    OperatorService,
+    AdminService,
+    AuthHttpService,
+    AuthService,
+    NotificationService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

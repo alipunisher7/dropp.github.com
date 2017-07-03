@@ -53,9 +53,10 @@ export class AdminService {
       .map(res => {
         let json = res.json();
         if (json.statusCode !== 1) {
-          throw new Error(JSON.stringify(json));
+          let error = {url: this.submitTarrifUrl, ...json};
+          throw error;
         }
-        return true;
+        return json;
       })
       .catch(this.handleError);
   }
@@ -71,7 +72,8 @@ export class AdminService {
       .map(res => {
         let json = res.json();
         if (json.statusCode !== 1) {
-          throw new Error(JSON.stringify(json));
+          let error = {url: this.insertManufactureUrl, ...json};
+          throw error;
         }
 
         let data = json.data['All Manufacture'];
@@ -85,9 +87,10 @@ export class AdminService {
       .map(res => {
         let json = res.json();
         if (json.statusCode !== 1) {
-          throw new Error(JSON.stringify(json));
+          let error = {url: this.insertCarUrl, ...json};
+          throw error;
         }
-        return true;
+        return json;
       })
       .catch(this.handleError);
   }
@@ -101,26 +104,29 @@ export class AdminService {
   }
 
   viewRadius(data) {
-    data = { "serviceType": data };
     return this._http.post(this.viewRadiusUrl, data)
       .map(res => {
         let json = res.json();
         if (json.statusCode !== 1) {
-          throw new Error(JSON.stringify(json));
+          let error = {url: this.viewRadiusUrl, ...json};
+          throw error;
         }
-        return true;
+        let data = json.data.searchRadius[0].radius;
+        return data;
       })
       .catch(this.handleError);
   }
 
   submitRadius(data) {
+    console.log(data);
     return this._http.post(this.submitRadiusUrl, data)
       .map(res => {
         let json = res.json();
         if (json.statusCode !== 1) {
-          throw new Error(JSON.stringify(json));
+          let error = {url: this.submitRadiusUrl, ...json};
+          throw error;
         }
-        return true;
+        return json;
       })
       .catch(this.handleError);
   }
@@ -140,7 +146,8 @@ export class AdminService {
       .map(res => {
         let json = res.json();
         if (json.statusCode !== 1) {
-          throw new Error(JSON.stringify(json));
+          let error = {url: this.viewBanDriversUrl, ...json};
+          throw error;
         }
 
         let data = json.data['banDrivers'];
@@ -154,7 +161,8 @@ export class AdminService {
       .map(res => {
         let json = res.json();
         if (json.statusCode !== 1) {
-          throw new Error(JSON.stringify(json));
+          let error = {url: this.viewBanDriversUrl, ...json};
+          throw error;
         }
 
         let data = json.data['banDrivers'];
@@ -164,7 +172,6 @@ export class AdminService {
   }
 
   handleError(err: any) {
-    console.log('sever error:', err);  // debug
     if (err instanceof Response) {
       return Observable.throw(err.json().then(err => err) || 'backend server error');
       // if you're using lite-server, use the following line

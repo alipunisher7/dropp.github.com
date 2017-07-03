@@ -1,16 +1,25 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions } from '@angular/http';
+import { AuthService } from './auth.service';
+import { User } from '../models';
 
 @Injectable()
 export class AuthHttpService {
 
-  constructor(private http: Http) {
+  constructor(private http: Http, private _auth: AuthService) {
+    this.login();
+  }
+
+  login() {
+    let user = new User({username: 'ali', password: '123456'})
+    this._auth.login(user);
   }
 
   createRequestOptions(): RequestOptions {
     let headers = new Headers();
-    headers.append('Content-Type', 'application/json')
-    headers.append('Authorization', 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbGkiLCJyb2xlIjoiQSIsImlzcyI6IkdFTk8gQ28iLCJpYXQiOjE0OTg5MDY0NTl9.ORTXPW4XPXdEtUdFAcsfV-7u6xqPntQGYBgkiobMJdODZso2atIglauvS_1jghLmnuFGJupZG68BFeIPl1O2bQ')
+    headers.append('Content-Type', 'application/json');
+    console.log('Token: ', this._auth.token);
+    headers.append('Authorization', this._auth.token)
     let options = new RequestOptions({ headers: headers });
     return options;
   }
