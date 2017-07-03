@@ -1,3 +1,8 @@
-<p>
-  notification works!
-</p>
+<ul *ngIf="notifications.length" class="notifications">
+  <li *ngFor="let notification of notifications" class="notification {{notification.typeName}}">
+    <div class="content">
+      <h2 class="title">{{notification.title}}</h2>
+      <p class="info">{{notification.info}}</p>
+    </div>
+  </li>
+</ul>

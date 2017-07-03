@@ -4,45 +4,39 @@
 @import 'assets/scss/namespace';
 @import 'assets/scss/grid';
 
-body
-{
+body {
   color: $text;
 }
 
-%fullscreen
-{
+%fullscreen {
   min-height: 100%;
 }
 
-%btn
-{
+%btn {
   border-radius: 3px;
   font-family: inherit;
   height: 30px;
 }
 
-.btn-outline
-{
+.btn-outline {
   @extend %btn;
   background: transparent;
   border: 1px solid;
 
-  &.btn-accent
-  {
+  &.btn-accent {
     border-color: $accent;
     color: $accent;
   }
 }
 
-.card
-{
+.card {
   background: $background-out;
   box-shadow: $card-shadow;
 }
 
-.panel
-{
+.panel {
   @extend %fullscreen;
   flex: 1;
   background: $background;
+  overflow-y: auto;
 }

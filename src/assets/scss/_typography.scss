@@ -4,6 +4,25 @@
   src: url('/assets/fonts/mavfon.ttf');
 }
 
+@font-face {
+  font-family: Yekan;
+  src: url('/assets/fonts/yekan/BYekan.eot'),
+  url('/assets/fonts/yekan/BYekan.woff') format('woff'),
+  url('/assets/fonts/yekan/BYekan.ttf') format('truetype');
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: Yas;
+  src: url('/assets/fonts/irsansans.ttf');
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: Mitra;
+  src: url('/assets/fonts/mitra/BMitra.ttf');
+  font-weight: 400;
+}
 
 $logo-size: 24px;
 $header-size: 24px;

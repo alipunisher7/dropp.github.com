@@ -1,10 +1,55 @@
-:host {
-  position: absolute;
-  bottom: 0;
-  left: 0;
+@import 'colors';
+@import 'variables';
+
+.notifications {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  width: 280px;
+  height: auto;
+  list-style-type: none;
+  z-index: 10000000;
 }
 
 .notification {
-  background: #333;
-  color: #eee;
+  overflow: hidden;
+  border-radius: 3px;
+  margin-bottom: 1px;
+  width: 100%;
+  cursor: pointer;
+  height: 130px;
+  position: relative;
+  box-shadow: $card-shadow;
+  bottom: 0;
+  border-top: 3px solid $disable;
+  background-color: $background-out;
+  margin-top: 5px;
+
+  .content {
+    padding: 10px 20px;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+  }
+
+
+  &.success {
+    border-color: $success;
+  }
+
+  &.warning {
+    border-color: $warning;
+  }
+
+  &.error {
+    border-color: $error;
+  }
+
+  .title {
+    font-size: 1.3em;
+  }
+
+  .info {
+    margin-top: 5px;
+  }
 }
