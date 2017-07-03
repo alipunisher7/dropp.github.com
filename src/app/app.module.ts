@@ -42,11 +42,8 @@ import { SendTaxiComponent } from './panels/send-taxi/send-taxi.component';
 import { SupportPanelComponent } from './panels/support-panel/support-panel.component';
 import { ManageOperatorsComponent } from './panels/manage-panel/manage-operators/manage-operators.component';
 import { ServicesComponent } from './panels/stat-panel/services/services.component';
-<<<<<<< HEAD
 import { NotificationComponent } from './notification/notification.component';
-=======
 import { AllDriversCreditComponent } from './panels/stat-panel/drivers/all-drivers-credit/all-drivers-credit.component';
->>>>>>> 7a3f267f61aa12360b26dc12ba805d37ae630f35
 
 @NgModule({
   declarations: [
@@ -82,10 +79,7 @@ import { AllDriversCreditComponent } from './panels/stat-panel/drivers/all-drive
     SupportPanelComponent,
     ManageOperatorsComponent,
     ServicesComponent,
-<<<<<<< HEAD
     NotificationComponent,
-=======
->>>>>>> 7a3f267f61aa12360b26dc12ba805d37ae630f35
     AllDriversCreditComponent
   ],
   imports: [
