@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ElementRef } from '@angular/core';
 import { INavItem } from '../models';
 
 @Component({
@@ -6,11 +6,11 @@ import { INavItem } from '../models';
   templateUrl: './navigation-drawer.component.html',
   styleUrls: ['./navigation-drawer.component.scss']
 })
-export class NavigationDrawerComponent implements OnInit {
+export class NavigationDrawerComponent implements OnInit, AfterViewInit {
 
   navItems: INavItem[];
 
-  constructor() {
+  constructor(private elRef: ElementRef) {
     this.navItems = [
       { title: 'داشبورد', icon: 'fa fa-yelp', isOpen: true, route: 'dashboard' },
       {
@@ -37,12 +37,24 @@ export class NavigationDrawerComponent implements OnInit {
     ];
   }
 
+
+  ngAfterViewInit() {
+    setTimeout(() => {
+      this.openCurrentNav();
+    }, 0);
+  }
+
   ngOnInit() {
   }
 
   onNavClick(navItem: INavItem) {
     this.navItems.forEach(_ => _.isOpen = false);
-    navItem.isOpen = true;2
+    this.openCurrentNav();
+  }
+
+  openCurrentNav() {
+    let currentRoute = this.elRef.nativeElement.querySelector('.active').getAttribute('href').slice(1);
+    this.navItems.find(_ => _.route == currentRoute).isOpen = true;
   }
 
 }
