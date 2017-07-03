@@ -42,6 +42,7 @@ import { SendTaxiComponent } from './panels/send-taxi/send-taxi.component';
 import { SupportPanelComponent } from './panels/support-panel/support-panel.component';
 import { ManageOperatorsComponent } from './panels/manage-panel/manage-operators/manage-operators.component';
 import { ServicesComponent } from './panels/stat-panel/services/services.component';
+import { AllDriversCreditComponent } from './panels/stat-panel/drivers/all-drivers-credit/all-drivers-credit.component';
 
 @NgModule({
   declarations: [
@@ -76,7 +77,8 @@ import { ServicesComponent } from './panels/stat-panel/services/services.compone
     SendTaxiComponent,
     SupportPanelComponent,
     ManageOperatorsComponent,
-    ServicesComponent
+    ServicesComponent,
+    AllDriversCreditComponent
   ],
   imports: [
     BrowserModule,

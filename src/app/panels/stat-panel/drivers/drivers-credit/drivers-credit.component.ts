@@ -9,12 +9,16 @@ import {IDriversCreditInfo} from '../../../../models';
 })
 export class DriversCreditComponent implements OnInit {
   searchStr: string;
-  searchRes: IDriversCreditInfo[];
+  searchRes: IDriversCreditInfo;
   constructor(private _operatorService: OperatorService) { }
   searchDriversCredit() {
-    this._operatorService.searchDriversCredit(this.searchStr).subscribe(res => { })
+    this._operatorService.searchDriversCredit(this.searchStr).subscribe(res => this.searchRes = res);
   }
+
   ngOnInit() {
   }
 
+  onSearch() {
+    this.searchDriversCredit();
+  }
 }

@@ -19,6 +19,8 @@ export class AdminService {
   private submitRadiusUrl: string;
   private voucherRegisterUrl: string;
   private getManufacturesUrl: string;
+  private viewBanDriversUrl: string;
+  private viewBanPassengersUrl: string;
 
   constructor(private _http: AuthHttpService) {
     this.AddMOpUrl = "";
@@ -29,11 +31,13 @@ export class AdminService {
     this.viewActiveServicesUrl = "";
     this.submitActiveServicesUrl = "";
     this.viewRadiusUrl = "http://31.184.132.215:8080/geno/TSO/api/rest/admin/viewSearchRadiusByServiceType";
-    this.submitRadiusUrl = "";
+    this.submitRadiusUrl = "http://31.184.132.215:8080/geno/TSO/api/rest/admin/searchRadiusRegister";
 
     // TODO: test
     this.getManufacturesUrl = "http://31.184.132.215:8080/geno/TSO/api/rest/cop/allManufactures";
-    this.voucherRegisterUrl = "http://192.168.1.2:8585/TSTest/api/rest/admin/voucherRegister";
+    this.voucherRegisterUrl = "";
+    this.viewBanDriversUrl = "http://31.184.132.215:8080/geno/TSO/api/rest/operator/viewBanDrivers";
+    this.viewBanPassengersUrl = "http://31.184.132.215:8080/geno/TSO/api/rest/operator/viewBanPassenger";
   }
 
   addMOp(data): Observable<any> {
@@ -96,12 +100,29 @@ export class AdminService {
     return this._http.post('', data).map(res => res);
   }
 
-  viewRadius() {
-    return this._http.post(this.viewRadiusUrl, data).map(data => { return data.json() });
+  viewRadius(data) {
+    data = { "serviceType": data };
+    return this._http.post(this.viewRadiusUrl, data)
+      .map(res => {
+        let json = res.json();
+        if (json.statusCode !== 1) {
+          throw new Error(JSON.stringify(json));
+        }
+        return true;
+      })
+      .catch(this.handleError);
   }
 
   submitRadius(data) {
-    return this._http.post('', data).map(res => res);
+    return this._http.post(this.submitRadiusUrl, data)
+      .map(res => {
+        let json = res.json();
+        if (json.statusCode !== 1) {
+          throw new Error(JSON.stringify(json));
+        }
+        return true;
+      })
+      .catch(this.handleError);
   }
 
   getManufactures() {
@@ -112,6 +133,34 @@ export class AdminService {
 
   getVoucher() {
     return this._http.get(this.voucherRegisterUrl).map(data => data.json());
+  }
+  viewBanDrivers() {
+    return this._http
+      .get(this.viewBanDriversUrl)
+      .map(res => {
+        let json = res.json();
+        if (json.statusCode !== 1) {
+          throw new Error(JSON.stringify(json));
+        }
+
+        let data = json.data['banDrivers'];
+        return data;
+      })
+      .catch(this.handleError);
+  }
+  viewBanPassengers() {
+    return this._http
+      .get(this.viewBanDriversUrl)
+      .map(res => {
+        let json = res.json();
+        if (json.statusCode !== 1) {
+          throw new Error(JSON.stringify(json));
+        }
+
+        let data = json.data['banDrivers'];
+        return data;
+      })
+      .catch(this.handleError);
   }
 
   handleError(err: any) {

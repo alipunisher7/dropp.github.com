@@ -7,3 +7,4 @@ export * from './tripsinfo.model';
 export * from './driversCredit.model';
 export * from './service-type.model';
 export * from './manufactures.model';
+export * from './banUsers.model';
