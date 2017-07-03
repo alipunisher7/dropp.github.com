@@ -1,12 +1,12 @@
 <hr *ngIf="seperator" />
 
-<nav class="nav" role="navigation">
+<nav class="nav" role="navigation" (click)="onNavClick()">
   <a class="nav-btn" routerLink="{{navItem.route}}" routerLinkActive='active'>
     <i class="nav-icon {{navItem.icon}}" aria-hidden="true"></i>
     <h2 class="nav-title">{{navItem.title}}</h2>
   </a>
 
-  <nav *ngIf="navItem.isOpen">
+  <nav *ngIf="navItem.isOpen && !!navItem.subNavs">
     <ts-sub-nav [subNavs]=navItem.subNavs [thisRoute]=navItem.route></ts-sub-nav>
   </nav>
 </nav>
