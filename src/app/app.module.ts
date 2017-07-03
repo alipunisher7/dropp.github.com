@@ -78,7 +78,8 @@ import { NotificationComponent } from './notification/notification.component';
     SupportPanelComponent,
     ManageOperatorsComponent,
     ServicesComponent,
-    NotificationComponent
+    NotificationComponent,
+    AllDriversCreditComponent
   ],
   imports: [
     BrowserModule,
