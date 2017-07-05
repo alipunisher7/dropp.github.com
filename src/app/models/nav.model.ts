@@ -1,7 +1,7 @@
 export interface INavItem {
   title: string;
   icon: string;
-  isOpen: boolean;
+  isOpen?: boolean;
   subNavs?: Array<ISubNavItem>;
   route: string;
 }

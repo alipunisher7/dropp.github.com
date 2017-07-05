@@ -36,7 +36,7 @@ export class AuthService {
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
 
-    let obs = this._http.post('http://192.168.1.13:8080/TSTest/api/rest/admin/login', body, options)
+    let obs = this._http.post('http://192.168.1.7:8080/TSTest/api/rest/admin/login', body, options)
       .map(this.handleAuthResonse)
       .subscribe(console.log);
   }

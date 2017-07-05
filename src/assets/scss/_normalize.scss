@@ -36,6 +36,9 @@ p {
   margin: 0;
 }
 
-select:focus {
-  outline: none;
+input,
+select {
+  &:focus {
+    outline: none;
+  }
 }

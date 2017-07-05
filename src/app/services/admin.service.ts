@@ -1,6 +1,7 @@
 import { Injectable  } from '@angular/core';
 import { AuthHttpService } from './auth-http.service';
 import { Observable } from 'rxjs/Observable';
+import { ADMIN_API, API } from '../configs';
 import 'rxjs/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
@@ -25,19 +26,17 @@ export class AdminService {
   constructor(private _http: AuthHttpService) {
     this.AddMOpUrl = "";
     this.viewTarrifUrl = "";
-    this.submitTarrifUrl = "http://31.184.132.215:8080/geno/TSO/api/rest/tariff/tariffRegister";
-    this.insertManufactureUrl = "http://31.184.132.215:8080/geno/TSO/api/rest/cop/manufactureRegister";
-    this.insertCarUrl = "http://31.184.132.215:8080/geno/TSO/api/rest/cop/carRegister";
+    this.submitTarrifUrl = `${ADMIN_API}/tariff/tariffRegister`;
     this.viewActiveServicesUrl = "";
     this.submitActiveServicesUrl = "";
-    this.viewRadiusUrl = "http://31.184.132.215:8080/geno/TSO/api/rest/admin/viewSearchRadiusByServiceType";
-    this.submitRadiusUrl = "http://31.184.132.215:8080/geno/TSO/api/rest/admin/searchRadiusRegister";
+    this.viewRadiusUrl = `${ADMIN_API}/viewSearchRadiusByServiceType`;
+    this.submitRadiusUrl = `${ADMIN_API}/searchRadiusRegister`;
 
     // TODO: test
-    this.getManufacturesUrl = "http://31.184.132.215:8080/geno/TSO/api/rest/cop/allManufactures";
+    this.insertManufactureUrl = `${API}/cop/manufactureRegister`;
+    this.insertCarUrl = `${API}/cop/carRegister`;
+    this.getManufacturesUrl = `${API}/cop/allManufactures`;
     this.voucherRegisterUrl = "";
-    this.viewBanDriversUrl = "http://31.184.132.215:8080/geno/TSO/api/rest/operator/viewBanDrivers";
-    this.viewBanPassengersUrl = "http://31.184.132.215:8080/geno/TSO/api/rest/operator/viewBanPassenger";
   }
 
   addMOp(data): Observable<any> {

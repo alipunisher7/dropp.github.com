@@ -3,6 +3,7 @@ $background: #f1f1f1;
 $background-out: lighten($background, 3%);
 $background-accent: #333;
 $background-accent-out: darken($background-accent, 3%);
+$background-accent-in: darken($background-accent, 5%);
 
 // Accent colors
 $accent: #ffc700;

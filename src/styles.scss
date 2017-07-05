@@ -1,3 +1,4 @@
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 @import 'assets/scss/debug'; // TODO: remove in production mode
 @import 'assets/scss/variables';
 @import 'assets/scss/normalize';
@@ -18,6 +19,46 @@ body {
   height: 30px;
 }
 
+%card {
+  box-shadow: $card-shadow;
+}
+
+%search-input {
+  @extend %card;
+  background: $background-out;
+  border-radius: 20px;
+  height: 40px;
+  padding: 0 1em;
+  border: 0;
+}
+
+.content-container {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: stretch;
+  justify-content: center;
+  padding: 1em 5%;
+}
+
+.form-ctrl {
+  margin: 1em 0;
+}
+
+.search {
+  @extend %search-input;
+  flex: 1;
+}
+
+.table {
+  @extend %card;
+  flex: 1;
+  width: 100%;
+
+  th {
+    padding: 10px 0;
+  }
+}
+
 .btn-outline {
   @extend %btn;
   background: transparent;
@@ -30,8 +71,8 @@ body {
 }
 
 .card {
+  @extend %card;
   background: $background-out;
-  box-shadow: $card-shadow;
 }
 
 .panel {
@@ -57,4 +98,46 @@ body {
   border-radius: 10px;
   // box-shadow: inset 0 0 6px rgba(0,0,0,.3);
   background-color: $accent;
+}
+
+::-webkit-input-placeholder {
+  /* Chrome */
+  color: $text-gray;
+  transition: opacity 250ms ease-in-out;
+}
+
+:focus::-webkit-input-placeholder {
+  opacity: .5;
+}
+
+:-ms-input-placeholder {
+  /* IE 10+ */
+  color: $text-gray;
+  transition: opacity 250ms ease-in-out;
+}
+
+:focus:-ms-input-placeholder {
+  opacity: .5;
+}
+
+::-moz-placeholder {
+  /* Firefox 19+ */
+  color: $text-gray;
+  opacity: 1;
+  transition: opacity 250ms ease-in-out;
+}
+
+:focus::-moz-placeholder {
+  opacity: .5;
+}
+
+:-moz-placeholder {
+  /* Firefox 4 - 18 */
+  color: $text-gray;
+  opacity: 1;
+  transition: opacity 250ms ease-in-out;
+}
+
+:focus:-moz-placeholder {
+  opacity: .5;
 }

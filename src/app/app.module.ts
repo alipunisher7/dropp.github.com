@@ -2,6 +2,15 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {
+  MdButtonModule,
+  MdCheckboxModule,
+  MdCard,
+  MdCardTitle,
+  MdCardSubtitle,
+  MdCardContent
+} from '@angular/material';
 
 import {
   OperatorService,
@@ -9,7 +18,7 @@ import {
   AuthHttpService,
   NotificationService,
   AuthService
- } from './services';
+} from './services';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -88,13 +97,18 @@ import { DriverAllInfoComponent } from './panels/stat-panel/drivers/driver-all-i
     ServicesComponent,
     NotificationComponent,
     AllDriversCreditComponent,
-    DriverAllInfoComponent
+    DriverAllInfoComponent,
+    MdCard,
+    MdCardContent,
+    MdCardTitle,
+    MdCardSubtitle
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
     AppRoutingModule,
+    BrowserAnimationsModule,
     ReactiveFormsModule
   ],
   providers: [

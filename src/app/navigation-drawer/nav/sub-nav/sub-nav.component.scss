@@ -1,21 +1,18 @@
-@import '../../../../assets/scss/variables';
+@import 'variables';
 
-ul
-{
+ul {
   list-style: none;
   padding: 1em 22% 2em 0;
 }
 
-a
-{
+a {
   position: relative;
   padding-right: 15px;
   height: 25px;
   line-height: 25px;
   opacity: .25;
 
-  &::before
-  {
+  &::before {
     content: '';
     background: $text-gray;
     width: 2px;
@@ -24,30 +21,25 @@ a
     right: 0;
   }
 
-  &:hover
-  {
+  &:hover {
     opacity: .5;
   }
 
-  &.active
-  {
+  &.active {
     opacity: 1;
 
-    &::before
-    {
+    &::before {
       background: $accent-text;
     }
   }
 }
 
-.subnav-icon
-{
+.subnav-icon {
   position: relative;
   top: 2px;
 }
 
-.subnav-title
-{
+.subnav-title {
   display: inline;
   padding-right: .3em;
 }

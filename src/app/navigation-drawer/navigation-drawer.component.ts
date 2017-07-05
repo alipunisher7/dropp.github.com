@@ -14,25 +14,23 @@ export class NavigationDrawerComponent implements OnInit, AfterViewInit {
     this.navItems = [
       { title: 'داشبورد', icon: 'fa fa-yelp', isOpen: true, route: 'dashboard' },
       {
-        title: 'آمار', icon: 'fa fa-id-card', isOpen: false, route: 'stats',
+        title: 'راننده ها', icon: 'fa fa-drivers-license', route: 'drivers',
         subNavs: [
-          { title: 'سرویس ها', icon: 'fa fa-taxi', route: 'services' },
-          { title: 'مسافر ها', icon: 'fa fa-street-view', route: 'passengers' },
-          { title: 'راننده ها', icon: 'fa fa-circle-o', route: 'drivers' },
-          { title: 'سازمان ها', icon: 'fa fa-building', route: 'organizations' },
-          { title: 'سفر ها', icon: 'fa fa-plane', route: 'trips' }
+          { title: 'جستوجوی راننده', icon: 'fa fa-taxi', route: 'search' },
+
         ],
       },
+      { title: 'سرویس ها', icon: 'fa fa-taxi', route: 'services' },
+      { title: 'مسافر ها', icon: 'fa fa-street-view', route: 'passengers' },
+      { title: 'سازمان ها', icon: 'fa fa-building', route: 'organizations' },
+      { title: 'سفر ها', icon: 'fa fa-plane', route: 'trips' },
+      { title: 'اپراتورها', icon: 'fa fa-user-o', route: 'manage-operators' },
       {
-        title: 'مدیریت', icon: 'fa fa-wrench', isOpen: false, route: 'manage-panel',
+        title: 'مدیریت', icon: 'fa fa-wrench', route: 'admin',
         subNavs: [
-          { title: 'سرویس ها', icon: 'fa fa-tachometer', route: 'manage-services' },
-          { title: 'راننده ها', icon: 'fa fa-users', route: 'manage-drivers' },
-          { title: ' اپراتورها', icon: 'fa fa-user-o', route: 'manage-operators' },
           { title: 'کد تخفیف', icon: 'fa fa-money', route: 'manage-vouchers' },
           { title: ' کاربران منع شده', icon: 'fa fa-ban', route: 'manage-banned-users' },
         ],
-
       },
     ];
   }

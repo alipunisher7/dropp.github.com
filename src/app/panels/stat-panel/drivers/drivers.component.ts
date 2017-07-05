@@ -3,7 +3,10 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'ts-drivers',
   templateUrl: './drivers.component.html',
-  styleUrls: ['./drivers.component.scss']
+  styleUrls: ['./drivers.component.scss'],
+  host: {
+    class: 'panel'
+  }
 })
 export class DriversComponent implements OnInit {
 

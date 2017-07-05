@@ -21,18 +21,14 @@ import { ServicesComponent } from './panels/stat-panel/services';
 const routes: Routes = [
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
   { path: 'dashboard', component: DashboardPanelComponent },
+  { path: 'services', component: ServicesComponent },
+  { path: 'drivers', component: DriversComponent },
+  { path: 'passengers', component: PassengersComponent },
+  { path: 'trips', component: TripsComponent },
+  { path: 'organizations', component: OrganizationsComponent },
+  // { path: 'admin', component: OrganizationsComponent },
   {
-    path: 'stats', component: StatPanelComponent, children: [
-      // { path: 'services', component: DriversComponent },
-      { path: 'passengers', component: PassengersComponent },
-      { path: 'drivers', component: DriversComponent },
-      { path: 'organizations', component: OrganizationsComponent },
-      { path: 'trips', component: TripsComponent },
-      { path: 'services', component: ServicesComponent },
-    ]
-  },
-  {
-    path: 'manage-panel', component: ManagePanelComponent, children: [
+    path: 'admin', component: ManagePanelComponent, children: [
       { path: 'manage-services', component: ManageServicesComponent },
       { path: 'manage-drivers', component: ManageDriversComponent },
       { path: 'manage-operators', component: ManageOperatorsComponent },

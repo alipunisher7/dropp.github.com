@@ -1,7 +1,6 @@
-@import '../../../assets/scss/variables';
+@import 'variables';
 
-.nav-btn
-{
+.nav-btn {
   height: $nav-height;
   display: flex;
   flex-flow: column nowrap;
@@ -10,31 +9,33 @@
   text-align: center;
   opacity: .25;
 
-  &:hover
-  {
+  &:hover {
     opacity: .5;
   }
 
-  &.active
-  {
+  &.active {
     opacity: 1;
+    background-color: $background-accent-in;
+
+    ~nav {
+      display: block;
+      background-color: $background-accent-in;
+    }
   }
+
 }
 
-.nav-icon
-{
-  font-size: 24px;
+.nav-icon {
+  font-size: 20px;
 }
 
-.nav-title
-{
+.nav-title {
   margin-top: 10px;
   text-align: center;
   font-size: $nav-size;
 }
 
-hr
-{
+hr {
   opacity: .25;
-  margin: 0 10%;
+  margin: 0;
 }

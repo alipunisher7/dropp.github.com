@@ -1,7 +1,6 @@
-@import '../../assets/scss/variables';
+@import 'variables';
 
-:host
-{
+:host {
   background: $background-accent;
   height: 100%;
   min-width: $panel-width;
@@ -11,18 +10,15 @@
   overflow-y: auto;
 }
 
-nav
-{
+nav {
   flex: 1;
 }
 
-.drawer-container
-{
+.drawer-container {
   margin-top: 2em;
   display: flex;
 
-  .send-service
-  {
+  .send-service {
     margin: 10%;
     height: 35px;
     line-height: 35px;
@@ -31,13 +27,11 @@ nav
   }
 }
 
-.drawer-footer
-{
+.drawer-footer {
   height: 60px;
   display: flex;
 
-  .btn-more
-  {
+  .btn-more {
     font-size: $nav-size;
     margin: 0;
     flex: 1;

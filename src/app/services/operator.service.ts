@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AuthHttpService } from './auth-http.service';
 import { Observable } from 'rxjs/Observable';
 import { ServiceType } from './../models'
+import { OPERATOR_API } from '../configs';
 import 'rxjs/add/operator/map';
 
 @Injectable()
@@ -22,22 +23,27 @@ export class OperatorService {
   private searchTripsUrl: string;
   private searchDriversCreditUrl: string;
   private allDriversCreditUrl: string;
+  private viewBanDriversUrl: string;
+  private viewBanPassengersUrl: string;
 
   constructor(private _http: AuthHttpService) {
-    this.getOnlineTripsUrl = "";
-    this.getTodayTripsUrl = "";
-    this.getOnlineDriversUrl = "";
-    this.getAllDriversUrl = "http://31.184.132.215:8080/geno/TSO/api/rest/operator/viewNumberOfAllDrivers";
-    this.getNewPassengersUrl = "";
-    this.getAllPassengersUrl = "";
-    this.getNewOrganizationsUrl = "";
-    this.getAllOrganizationsUrl = "";
-    this.getDriverInfoUrl = "";
-    this.viewLowRateDriverUrl = "http://31.184.132.215:8080/geno/TSO/api/rest/operator/LowRateDrivers";
-    this.searchDriversCreditUrl = "http://31.184.132.215:8080/geno/TSO/api/rest/operator/viewDriverCredit";
-    this.allDriversCreditUrl = "http://31.184.132.215:8080/geno/TSO/api/rest/operator/viewAllDriverCredit";
-    this.searchDriversUrl = "http://31.184.132.215:8080/geno/TSO/api/rest/operator/searchDriver";
+    this.getOnlineTripsUrl = ``;
+    this.getTodayTripsUrl = ``;
+    this.getOnlineDriversUrl = ``;
+    this.getAllDriversUrl = `${OPERATOR_API}/viewNumberOfAllDrivers`;
+    this.getNewPassengersUrl = ``;
+    this.getAllPassengersUrl = ``;
+    this.getNewOrganizationsUrl = ``;
+    this.getAllOrganizationsUrl = ``;
+    this.getDriverInfoUrl = ``;
+    this.viewLowRateDriverUrl = `${OPERATOR_API}/LowRateDrivers`;
+    this.searchDriversCreditUrl = `${OPERATOR_API}/viewDriverCredit`;
+    this.allDriversCreditUrl = `${OPERATOR_API}/viewAllDriverCredit`;
+    this.searchDriversUrl = `${OPERATOR_API}/searchDriver`;
+    this.viewBanDriversUrl = `${OPERATOR_API}/operator/viewBanDrivers`;
+    this.viewBanPassengersUrl = `${OPERATOR_API}/operator/viewBanPassenger`;
   }
+
   getOnlineTrips(): Observable<any> {
     return this._http.get(this.getOnlineTripsUrl).map(res => res.json);
   }
@@ -58,18 +64,23 @@ export class OperatorService {
   getNewPassengers(): Observable<any> {
     return this._http.get(this.getNewPassengersUrl).map(res => res.json);
   }
+
   getAllPassengers(): Observable<any> {
     return this._http.get(this.getAllPassengersUrl).map(res => res.json);
   }
+
   getNewOrganizations(): Observable<any> {
     return this._http.get(this.getNewOrganizationsUrl).map(res => res.json);
   }
+
   getAllOrganizations(): Observable<any> {
     return this._http.get(this.getAllOrganizationsUrl).map(res => res.json);
   }
+
   getDriverInfo(): Observable<any> {
     return this._http.get(this.getDriverInfoUrl).map(res => res.json);
   }
+
   viewLowRateDriver(): Observable<any> {
     return this._http
       .get(this.viewLowRateDriverUrl)
@@ -81,7 +92,6 @@ export class OperatorService {
 
         let data = json.data.users.Drivers;
         return data;
-
       })
       .catch(this.handleError);
   }
