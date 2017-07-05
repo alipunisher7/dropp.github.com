@@ -1,16 +1,29 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions } from '@angular/http';
+import { AuthService } from './auth.service';
+import { User } from '../models';
 
 @Injectable()
 export class AuthHttpService {
 
-  constructor(private http: Http) {
+  constructor(private http: Http, private _auth: AuthService) {
+    this.login();
+  }
+
+  login() {
+    let user = new User({ username: 'ali', password: '123456' })
+    this._auth.login(user);
   }
 
   createRequestOptions(): RequestOptions {
     let headers = new Headers();
-    headers.append('Content-Type', 'application/json')
-    headers.append('Authorization', 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbGkiLCJyb2xlIjoiQSIsImlzcyI6IkdFTk8gQ28iLCJpYXQiOjE0OTkwODg0ODZ9.0FSaiRngZ13KQDwvAG9ry7EAuckxy512UcZS780QHiw1GKEr1j4y_nSbcMgd6tW0QPFdXML5xGTMbzZzDa68-A')
+    // headers.append('Content-Type', 'application/json')
+    // headers.append('Authorization', 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbGkiLCJyb2xlIjoiQSIsImlzcyI6IkdFTk8gQ28iLCJpYXQiOjE0OTkyMzU0NzV9.TgJ0iRbFuNmQb38qQKgPD1l11D-xwRl0GSnGEEOViXxzKQ-ncdc_hXDzJwsdwv5Vg2CCvayYLii3q03YlMKtDg')
+
+    headers.append('Content-Type', 'application/json');
+    console.log('Token: ', this._auth.token);
+    headers.append('Authorization', this._auth.token)
+
     let options = new RequestOptions({ headers: headers });
     return options;
   }

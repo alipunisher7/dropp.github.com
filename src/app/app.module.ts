@@ -3,7 +3,13 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
-import { OperatorService, AdminService, AuthHttpService, NotificationService } from './services';
+import {
+  OperatorService,
+  AdminService,
+  AuthHttpService,
+  NotificationService,
+  AuthService
+} from './services';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -45,6 +51,11 @@ import { ServicesComponent } from './panels/stat-panel/services/services.compone
 import { NotificationComponent } from './notification/notification.component';
 import { AllDriversCreditComponent } from './panels/stat-panel/drivers/all-drivers-credit/all-drivers-credit.component';
 import { DriverAllInfoComponent } from './panels/stat-panel/drivers/driver-all-info/driver-all-info.component';
+import { PassengerAllInfoComponent } from './panels/stat-panel/passengers/passenger-all-info/passenger-all-info.component';
+import { ConfirmOrganizationsComponent } from './panels/stat-panel/organizations/confirm-organizations/confirm-organizations.component';
+import { ViewOrganizationsComponent } from './panels/stat-panel/organizations/view-organizations/view-organizations.component';
+import { ManageTicketSubjectsComponent } from './panels/manage-panel/manage-ticket-subjects/manage-ticket-subjects.component';
+import { InsertTicketSubjectComponent } from './panels/manage-panel/manage-ticket-subjects/insert-ticket-subject/insert-ticket-subject.component';
 
 @NgModule({
   declarations: [
@@ -82,7 +93,13 @@ import { DriverAllInfoComponent } from './panels/stat-panel/drivers/driver-all-i
     ServicesComponent,
     NotificationComponent,
     AllDriversCreditComponent,
-    DriverAllInfoComponent
+    DriverAllInfoComponent,
+    PassengerAllInfoComponent,
+    ConfirmOrganizationsComponent,
+    ViewOrganizationsComponent,
+    ManageTicketSubjectsComponent,
+    InsertTicketSubjectComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -91,7 +108,13 @@ import { DriverAllInfoComponent } from './panels/stat-panel/drivers/driver-all-i
     AppRoutingModule,
     ReactiveFormsModule
   ],
-  providers: [OperatorService, AdminService, AuthHttpService, NotificationService],
+  providers: [
+    OperatorService,
+    AdminService,
+    AuthHttpService,
+    AuthService,
+    NotificationService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

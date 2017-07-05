@@ -22,6 +22,7 @@ export class OperatorService {
   private searchTripsUrl: string;
   private searchDriversCreditUrl: string;
   private allDriversCreditUrl: string;
+  private viewAllOrganizationsUrl: string;
 
   constructor(private _http: AuthHttpService) {
     this.getOnlineTripsUrl = "";
@@ -37,6 +38,8 @@ export class OperatorService {
     this.searchDriversCreditUrl = "http://31.184.132.215:8080/geno/TSO/api/rest/operator/viewDriverCredit";
     this.allDriversCreditUrl = "http://31.184.132.215:8080/geno/TSO/api/rest/operator/viewAllDriverCredit";
     this.searchDriversUrl = "http://31.184.132.215:8080/geno/TSO/api/rest/operator/searchDriver";
+    this.viewAllOrganizationsUrl = "http://31.184.132.215:8080/geno/TSO/api/rest/operator/searchDriver";
+    this.searchPassengersUrl = "http://31.184.132.215:8080/geno/TSO/api/rest/operator/searchPassenger";
   }
   getOnlineTrips(): Observable<any> {
     return this._http.get(this.getOnlineTripsUrl).map(res => res.json);
@@ -66,6 +69,21 @@ export class OperatorService {
   }
   getAllOrganizations(): Observable<any> {
     return this._http.get(this.getAllOrganizationsUrl).map(res => res.json);
+  }
+
+  viewAllOrganizations(data): Observable<any> {
+    data = { "username": data };
+    console.log(data);
+    return this._http.post(this.viewAllOrganizationsUrl, data)
+      .map(res => {
+        let json = res.json();
+        if (json.statusCode !== 1) {
+          throw new Error(JSON.stringify(json));
+        }
+        // let data = json.data.Driver;
+        return data;
+      })
+      .catch(this.handleError);
   }
   getDriverInfo(): Observable<any> {
     return this._http.get(this.getDriverInfoUrl).map(res => res.json);
@@ -99,9 +117,19 @@ export class OperatorService {
       })
       .catch(this.handleError);
   }
-  searchPassengers(str: string) {
-    this.searchPassengersUrl = '' + str;
-    return this._http.get(this.searchPassengersUrl).map(res => res.json());
+  searchPassengers(data) {
+    data = { "username": data };
+    console.log(data);
+    return this._http.post(this.searchPassengersUrl, data)
+      .map(res => {
+        let json = res.json();
+        if (json.statusCode !== 1) {
+          throw new Error(JSON.stringify(json));
+        }
+        let data = json.data.Passenger;
+        return data;
+      })
+      .catch(this.handleError);
   }
   searchTrips(str: string) {
     this.searchTripsUrl = '' + str;

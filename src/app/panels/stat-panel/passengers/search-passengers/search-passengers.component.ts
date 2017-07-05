@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {OperatorService} from '../../../../services';
-import {ISearchPassengersInfo} from '../../../../models';
+import {IPassengersInfo} from '../../../../models';
 @Component({
   selector: 'ts-search-passengers',
   templateUrl: './search-passengers.component.html',
@@ -10,11 +10,14 @@ export class SearchPassengersComponent implements OnInit {
 
   constructor(private _operatorServices: OperatorService) { }
   searchStr: string;
-  searchRes: ISearchPassengersInfo[];
+  PassengersInfo: IPassengersInfo[];
+  selectedPassenger: IPassengersInfo;
   searchPassengers() {
-    this._operatorServices.searchPassengers(this.searchStr).subscribe(res => { });
+    this._operatorServices.searchPassengers(this.searchStr).subscribe(res => this.PassengersInfo = res);
   }
   ngOnInit() {
   }
-
+  OnSearch() {
+    this.searchPassengers();
+  }
 }

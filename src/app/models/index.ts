@@ -9,3 +9,5 @@ export * from './manufactures.model';
 export * from './notification.model';
 export * from './banUsers.model';
 export * from './lowRateDrivers.model';
+export * from './user.model';
+export * from './organization.model';

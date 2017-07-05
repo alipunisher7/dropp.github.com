@@ -35,3 +35,7 @@ h6 {
 p {
   margin: 0;
 }
+
+select:focus {
+  outline: none;
+}
