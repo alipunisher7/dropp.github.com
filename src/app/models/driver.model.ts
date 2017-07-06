@@ -2,7 +2,7 @@ import { Address } from './address.model';
 import { Vehicle } from './Vehicle.model';
 import { Device } from './device.model';
 
-export interface IDriverInfo {
+export interface IDriver {
   serviceType?: string;
   lastName?: string;
   address?: Address;
@@ -17,4 +17,16 @@ export interface IDriverInfo {
   device?: Device;
   email: string;
   username: string;
+}
+
+export interface IDriverCredit {
+  username: string;
+  credit: string;
+  cardNumber: string;
+  accountNumber: string;
+}
+
+export interface ILowRateDriver {
+  username: String;
+  avg: String;
 }

@@ -11,15 +11,19 @@ export class AuthHttpService {
   }
 
   login() {
-    let user = new User({username: 'ali', password: '123456'})
+    let user = new User({ username: 'ali', password: '123456' })
     this._auth.login(user);
   }
 
   createRequestOptions(): RequestOptions {
     let headers = new Headers();
+    // headers.append('Content-Type', 'application/json')
+    // headers.append('Authorization', 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbGkiLCJyb2xlIjoiQSIsImlzcyI6IkdFTk8gQ28iLCJpYXQiOjE0OTkyMzU0NzV9.TgJ0iRbFuNmQb38qQKgPD1l11D-xwRl0GSnGEEOViXxzKQ-ncdc_hXDzJwsdwv5Vg2CCvayYLii3q03YlMKtDg')
+
     headers.append('Content-Type', 'application/json');
     console.log('Token: ', this._auth.token);
     headers.append('Authorization', this._auth.token)
+
     let options = new RequestOptions({ headers: headers });
     return options;
   }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { OperatorService } from '../../../../services';
-import {IDriverInfo} from '../../../../models';
+import { IDriver } from '../../../../models';
 
 @Component({
   selector: 'ts-search-drivers',
@@ -9,8 +9,8 @@ import {IDriverInfo} from '../../../../models';
 })
 export class SearchDriversComponent implements OnInit {
   searchStr: string;
-  driversInfo: IDriverInfo[];
-  selectedDriver: IDriverInfo;
+  driversInfo: IDriver[];
+  selectedDriver: IDriver;
 
   constructor(private _operatorServices: OperatorService) { }
 

@@ -1,4 +1,4 @@
-export interface ITripInfo {
+export interface ITrip {
   uuid: string;
   passengerUsername: string;
   driverUsername: string;

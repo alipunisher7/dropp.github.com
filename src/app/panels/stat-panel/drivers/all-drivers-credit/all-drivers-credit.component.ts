@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { OperatorService } from '../../../../services';
-import { IDriverCreditInfo } from '../../../../models';
+import { IDriverCredit } from '../../../../models';
 
 @Component({
   selector: 'ts-all-drivers-credit',
@@ -8,7 +8,7 @@ import { IDriverCreditInfo } from '../../../../models';
   styleUrls: ['./all-drivers-credit.component.scss']
 })
 export class AllDriversCreditComponent implements OnInit {
-  result: IDriverCreditInfo[] = [];
+  result: IDriverCredit[] = [];
 
   constructor(private _operatorService: OperatorService) {
   }

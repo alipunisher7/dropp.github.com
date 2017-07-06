@@ -18,8 +18,8 @@ export class AuthService {
     console.warn('Cached token not found');
     let token;
     if (!this.currentUser || !localStorage.getItem('token')) {
-
-      this.login({username: 'ali', password: '123456'});
+      // TODO : Login
+      this.login({ username: 'ali', password: '123456' });
       return;
       // console.error('[AuthService]: User not existed');
       // throw 'Current user not found, NAVIGATION TO LOGIN';
@@ -75,11 +75,19 @@ export class AuthService {
   //   let headers = new Headers({ 'Content-Type': 'application/json' });
   //   let options = new RequestOptions({ headers: headers });
   //
-  //   return this._http.post('/api/register', bodyString, options).map((res: Response) => {
+  // return this._http.post('http://31.184.132.215:8080/geno/TSO/api/rest/admin/login', body, options)
+  // .map((res: Response) => {
+  //     console.log(res.headers);
+  //     console.log(res.headers.get('Authorization'));
+  //     console.log('Json');
   //     console.log(res.json());
+  //     if (res.json().success === true) {
+  //       let token = res.json().token;
+  //       this.setToken(token);
+  //     }
   //     return res.json();
-  //   });
-  // }
+  //   })
+  // .subscribe(console.log);
 
   setToken(token) {
     this._cachedToken = token;

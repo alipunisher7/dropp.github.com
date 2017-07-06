@@ -1,0 +1,5 @@
+<h2>اضافه کردن موضوع تیکت جدید</h2>
+<form [formGroup]="myForm" (ngSubmit)="OnSubmit()">
+  <input type="text" name="subject" formControlName="subject">
+  <button type="submit" name="submitTicketSubject" [disabled]="!myForm.valid">ثبت</button>
+</form>

@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { OperatorService } from '../../../../services';
-import { IDriverInfo } from '../../../../models';
+import { IDriver } from '../../../../models';
 
 @Component({
   selector: 'ts-online-driver',
@@ -9,7 +9,7 @@ import { IDriverInfo } from '../../../../models';
 })
 export class OnlineDriverComponent implements OnInit {
 
-  @Input() drivers: IDriverInfo;
+  @Input() drivers: IDriver;
 
   constructor(private _operatorServices: OperatorService) { }
 

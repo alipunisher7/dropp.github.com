@@ -25,6 +25,7 @@ export class OperatorService {
   private allDriversCreditUrl: string;
   private viewBanDriversUrl: string;
   private viewBanPassengersUrl: string;
+  private viewAllOrganizationsUrl: string;
 
   constructor(private _http: AuthHttpService) {
     this.getOnlineTripsUrl = ``;
@@ -42,6 +43,7 @@ export class OperatorService {
     this.searchDriversUrl = `${OPERATOR_API}/searchDriver`;
     this.viewBanDriversUrl = `${OPERATOR_API}/operator/viewBanDrivers`;
     this.viewBanPassengersUrl = `${OPERATOR_API}/operator/viewBanPassenger`;
+    this.viewAllOrganizationsUrl = ``;
   }
 
   getOnlineTrips(): Observable<any> {
@@ -77,6 +79,20 @@ export class OperatorService {
     return this._http.get(this.getAllOrganizationsUrl).map(res => res.json);
   }
 
+  viewAllOrganizations(data): Observable<any> {
+    data = { "username": data };
+    console.log(data);
+    return this._http.post(this.viewAllOrganizationsUrl, data)
+      .map(res => {
+        let json = res.json();
+        if (json.statusCode !== 1) {
+          throw new Error(JSON.stringify(json));
+        }
+        // let data = json.data.Driver;
+        return data;
+      })
+      .catch(this.handleError);
+  }
   getDriverInfo(): Observable<any> {
     return this._http.get(this.getDriverInfoUrl).map(res => res.json);
   }
@@ -109,14 +125,26 @@ export class OperatorService {
       })
       .catch(this.handleError);
   }
-  searchPassengers(str: string) {
-    this.searchPassengersUrl = '' + str;
-    return this._http.get(this.searchPassengersUrl).map(res => res.json());
+  searchPassengers(data) {
+    data = { "username": data };
+    console.log(data);
+    return this._http.post(this.searchPassengersUrl, data)
+      .map(res => {
+        let json = res.json();
+        if (json.statusCode !== 1) {
+          throw new Error(JSON.stringify(json));
+        }
+        let data = json.data.Passenger;
+        return data;
+      })
+      .catch(this.handleError);
   }
+
   searchTrips(str: string) {
     this.searchTripsUrl = '' + str;
     return this._http.get(this.searchTripsUrl).map(res => res.json());
   }
+
   searchDriversCredit(data) {
     data = { "username": data };
     console.log(data);
