@@ -17,16 +17,15 @@
     opacity: 1;
     background-color: $background-accent-in;
 
-    ~nav {
+     ~ nav {
       display: block;
       background-color: $background-accent-in;
     }
   }
-
 }
 
 .nav-icon {
-  font-size: 20px;
+  font-size: $nav-icon-size;
 }
 
 .nav-title {
@@ -36,6 +35,8 @@
 }
 
 hr {
-  opacity: .25;
+  opacity: .1;
   margin: 0;
+  border: 0;
+  border-bottom: 1px dashed;
 }

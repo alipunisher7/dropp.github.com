@@ -26,8 +26,8 @@ body {
 %search-input {
   @extend %card;
   background: $background-out;
-  border-radius: 20px;
-  height: 40px;
+  border-radius: 18px;
+  height: 36px;
   padding: 0 1em;
   border: 0;
 }
@@ -53,9 +53,28 @@ body {
   @extend %card;
   flex: 1;
   width: 100%;
+  border-collapse: collapse;
+  background: $background-out;
 
   th {
     padding: 10px 0;
+
+    tr {
+      background: $background;
+    }
+  }
+
+  tbody {
+    tr {
+    }
+  }
+
+  .no-data {
+    td {
+      text-align: center;
+      padding: 1em 0;
+      color: $disable;
+    }
   }
 }
 
@@ -82,6 +101,25 @@ body {
   overflow-y: auto;
 }
 
+
+.breadcrumb {
+  padding: 8px 0;
+  list-style: none;
+  border-radius: 4px;
+
+  li {
+    display: inline-block;
+
+    &:not(:first-child)::before {
+      padding: 0 5px;
+      color: $disable;
+      content: '/\00a0';
+    }
+  }
+}
+
+
+
 ::-webkit-scrollbar-track {
   // box-shadow: inset 0 0 6px rgba(0,0,0,.3);
   border-radius: 10px;
@@ -89,15 +127,15 @@ body {
 }
 
 ::-webkit-scrollbar {
-  width: 3px;
-  height: 3px;
+  width: 0;
+  height: 0;
   background-color: $background-accent-out;
 }
 
 ::-webkit-scrollbar-thumb {
   border-radius: 10px;
   // box-shadow: inset 0 0 6px rgba(0,0,0,.3);
-  background-color: $accent;
+  background-color: $disable;
 }
 
 ::-webkit-input-placeholder {

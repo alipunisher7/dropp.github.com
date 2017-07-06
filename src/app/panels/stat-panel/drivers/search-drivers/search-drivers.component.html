@@ -12,16 +12,18 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngIf="DriversInfo">
-      <td>{{DriversInfo.firstName}}</td>
-      <td>{{DriversInfo.lastName}}</td>
-      <td>{{DriversInfo.username}}</td>
-      <td>{{DriversInfo.serviceType}}</td>
-      <td>{{DriversInfo.credit}}</td>
-      <td><button (click)="onMoreClick(DriversInfo)"></button></td>
+    <tr *ngIf="driversInfo">
+      <td>{{driversInfo.firstName}}</td>
+      <td>{{driversInfo.lastName}}</td>
+      <td>{{driversInfo.username}}</td>
+      <td>{{driversInfo.serviceType}}</td>
+      <td>{{driversInfo.credit}}</td>
+      <td><button (click)="onMoreClick(driversInfo)">اطلاعات بیشتر</button></td>
     </tr>
-    <tr *ngIf="!DriversInfo">
-      راننده ای وجود ندارد
+    <tr *ngIf="!driversInfo" class="no-data">
+      <td colspan=75%>
+        راننده ای وجود ندارد
+      </td>
     </tr>
   </tbody>
 </table>

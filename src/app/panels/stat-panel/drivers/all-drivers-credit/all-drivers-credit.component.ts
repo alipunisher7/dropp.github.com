@@ -8,13 +8,14 @@ import { IDriverCreditInfo } from '../../../../models';
   styleUrls: ['./all-drivers-credit.component.scss']
 })
 export class AllDriversCreditComponent implements OnInit {
-  Result: IDriverCreditInfo[];
+  result: IDriverCreditInfo[] = [];
 
-  constructor(private _operatorService: OperatorService) { }
+  constructor(private _operatorService: OperatorService) {
+  }
 
   allDriversCredit() {
-    this._operatorService.allDriversCredit().subscribe(DriversCredit => {
-      this.Result = DriversCredit;
+    this._operatorService.allDriversCredit().subscribe(driversCredit => {
+      this.result = driversCredit;
     });
   }
 

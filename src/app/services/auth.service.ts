@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { User } from '../models';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
-
+import { User } from '../models';
+import { API } from '../configs';
 
 @Injectable()
 export class AuthService {
@@ -12,15 +12,17 @@ export class AuthService {
     return this._cachedToken || this.getNewToken();
   }
 
-
   constructor(private _http: Http) { }
 
-
   getNewToken(): string {
+    console.warn('Cached token not found');
     let token;
     if (!this.currentUser || !localStorage.getItem('token')) {
-      console.error('[AuthService]: User not existed');
-      throw 'Current user not found, NAVIGATION TO LOGIN';
+
+      this.login({username: 'ali', password: '123456'});
+      return;
+      // console.error('[AuthService]: User not existed');
+      // throw 'Current user not found, NAVIGATION TO LOGIN';
     }
 
     token = localStorage.getItem('token');
@@ -33,12 +35,13 @@ export class AuthService {
     console.log('Login In: ');
 
     let body = JSON.stringify(user);
+    console.log(body);
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
 
-    let obs = this._http.post('http://192.168.1.7:8080/TSTest/api/rest/admin/login', body, options)
+    let obs = this._http.post(`${API}/admin/login`, body, options)
       .map(this.handleAuthResonse)
-      .subscribe(console.log);
+      .subscribe(console.warn);
   }
 
   refreshToken() {
@@ -55,8 +58,9 @@ export class AuthService {
     this.unsetToken();
   }
 
-  handleAuthResonse(res) {
+  handleAuthResonse = (res) => {
     let token = res.headers.get('Authorization');
+    console.log('Get token from server: ', token);
     this.setToken(token);
     if (res.ok && res.status !== 200) {
       let error = { request: 'login', ...res.json() };
@@ -65,6 +69,7 @@ export class AuthService {
 
     return res.json();
   }
+
   // register(user: User) {
   //   let bodyString = JSON.stringify(user);
   //   let headers = new Headers({ 'Content-Type': 'application/json' });

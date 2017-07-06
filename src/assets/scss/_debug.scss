@@ -1,33 +1,31 @@
 $tint-color: #43dce6;
 $show-color: #ddd;
 
-.db-wall
-{
+.db-wall {
   background: $show-color;
 }
 
-.db-tint
-{
+.db-tint {
   background: $tint-color;
 }
 
-.db-tall
-{
+.db-tall {
   height: 50px;
 }
 
-.db-box
-{
+.db-box {
   border: 1px dashed $tint-color;
 }
 
-.db-fw
-{
+.db-fw {
   width: 100%;
 }
 
-.db-fh
-{
+.db-fh {
   height: 100%;
   min-height: 100%;
+}
+
+hr {
+  opacity: .2;
 }
