@@ -1,5 +1,5 @@
 import { Address } from './address.model';
-import { Vehicle } from './Vehicle.model';
+import { Vehicle } from './vehicle.model';
 import { Device } from './device.model';
 
 export interface IDriver {
