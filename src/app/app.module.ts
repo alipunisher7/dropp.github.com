@@ -22,8 +22,8 @@ import {
 } from 'services';
 
 import { AppRoutingModule } from 'app-routing.module';
-import { AppComponent } from 'app.component';
 
+import { AppComponent } from 'components';
 import { HeaderComponent } from 'components/header';
 import { NotificationComponent } from 'components/notification';
 import { SendTaxiComponent } from 'components/send-taxi';
