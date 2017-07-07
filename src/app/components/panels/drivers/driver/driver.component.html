@@ -1,0 +1,46 @@
+<h2>اطلاعات کامل راننده</h2>
+<table class="table">
+  <thead>
+    <tr>
+      <th>نام راننده</th>
+      <th>نام خانوادگی</th>
+      <th>نام کاربری</th>
+      <th>نوع سرویس</th>
+      <th>اعتبار حساب</th>
+      <th>جنسیت</th>
+      <th>تاریخ تولد</th>
+      <th>نام خودرو</th>
+      <th>رنگ خودرو</th>
+      <th>پلاک خودرو</th>
+      <th>سال ساخت خودرو</th>
+      <th>کدملی</th>
+      <th>تاریخ ثبت نام</th>
+      <th>وضعیت</th>
+      <th>سیستم عامل</th>
+      <th>نسخه سیستم عامل</th>
+      <th>ایمیل</th>
+      <th>تعداد سفر</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngIf="driver">
+      <td>{{driver.firstName}}</td>
+      <td>{{driver.lastName}}</td>
+      <td>{{driver.username}}</td>
+      <td>{{driver.serviceType}}</td>
+      <td>{{driver.credit}}</td>
+      <td>{{driver.gender}}</td>
+      <td>{{driver.birthDate}}</td>
+      <td>{{driver.vehicle.car}}</td>
+      <td>{{driver.vehicle.color}}</td>
+      <td>{{driver.vehicle.licencePlate}}</td>
+      <td>{{driver.vehicle.buildDate}}</td>
+      <td>{{driver.nationalNumber}}</td>
+      <td>{{driver.registrationDate}}</td>
+      <td>{{driver.stateCode}}</td>
+      <td>{{driver.device.OS}}</td>
+      <td>{{driver.device.OSVersion}}</td>
+      <td>{{driver.email}}</td>
+    </tr>
+  </tbody>
+</table>

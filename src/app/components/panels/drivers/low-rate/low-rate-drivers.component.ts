@@ -12,12 +12,12 @@ export class LowRateDriversComponent implements OnInit {
 
   constructor(private _operatorServices: OperatorService) { }
 
-  viewLowRateDriver() {
-    this._operatorServices.viewLowRateDriver().subscribe(data => this.lowRateDrivers = data);
+  getLowRateDriver() {
+    this._operatorServices.getLowRateDriver().subscribe(data => this.lowRateDrivers = data);
   }
 
   ngOnInit() {
-    this.viewLowRateDriver();
+    this.getLowRateDriver();
   }
 
 }

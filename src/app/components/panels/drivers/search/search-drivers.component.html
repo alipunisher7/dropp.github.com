@@ -12,19 +12,19 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngIf="driversInfo">
-      <td>{{driversInfo.firstName}}</td>
-      <td>{{driversInfo.lastName}}</td>
-      <td>{{driversInfo.username}}</td>
-      <td>{{driversInfo.serviceType}}</td>
-      <td>{{driversInfo.credit}}</td>
-      <td><button (click)="onMoreClick(driversInfo)">اطلاعات بیشتر</button></td>
+    <tr *ngIf="drivers">
+      <td>{{drivers.firstName}}</td>
+      <td>{{drivers.lastName}}</td>
+      <td>{{drivers.username}}</td>
+      <td>{{drivers.serviceType}}</td>
+      <td>{{drivers.credit}}</td>
+      <td><button (click)="onMoreClick(drivers)">اطلاعات بیشتر</button></td>
     </tr>
-    <tr *ngIf="!driversInfo" class="no-data">
+    <tr *ngIf="!drivers" class="no-data">
       <td colspan=75%>
         راننده ای وجود ندارد
       </td>
     </tr>
   </tbody>
 </table>
-<ts-driver-all-info *ngIf="selectedDriver" [DriverInfo]="selectedDriver"></ts-driver-all-info>
+<ts-driver *ngIf="selectedDriver" [driver]="selectedDriver"></ts-driver>

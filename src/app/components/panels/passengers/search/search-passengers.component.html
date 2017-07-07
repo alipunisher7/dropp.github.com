@@ -1,6 +1,6 @@
 <h2>مسافر ها</h2>
 <input type="search" name="searchPassengers" placeholder="جستجو ..." (keyup)="OnSearch()" [(ngModel)]="searchStr">
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>نام مسافر</th>
@@ -11,13 +11,14 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngIf="PassengersInfo">
-    <td>{{PassengersInfo.passengerInfo.firstName}}</td>
-    <td>{{PassengersInfo.passengerInfo.lastName}}</td>
+    <tr *ngIf="passengers">
+    <td>{{passengers.passengerInfo.firstName}}</td>
+    <td>{{passengers.passengerInfo.lastName}}</td>
     <td></td>
-    <td>{{PassengersInfo.credit}}</td>
-    <td>{{PassengersInfo.stateCode}}</td>
+    <td>{{passengers.credit}}</td>
+    <td>{{passengers.stateCode}}</td>
     </tr>
   </tbody>
 </table>
-<ts-passenger-all-info *ngIf="selectedPassenger" [PassengerInfo]="selectedPassenger"></ts-passenger-all-info>
+
+<ts-passenger *ngIf="selectedPassenger" [passenger]="selectedPassenger"></ts-passenger>

@@ -1,3 +1,3 @@
 export * from './organizations.panel';
-export * from './view';
+export * from './organization';
 export * from './confirm';

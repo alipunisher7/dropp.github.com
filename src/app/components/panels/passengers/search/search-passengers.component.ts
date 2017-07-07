@@ -10,14 +10,13 @@ import { IPassenger } from 'models';
 export class SearchPassengersComponent implements OnInit {
 
   searchStr: string;
-  searchRes: IPassenger[];
-  PassengersInfo: IPassenger[];
+  passengers: IPassenger[];
   selectedPassenger: IPassenger;
 
   constructor(private _operatorServices: OperatorService) { }
 
   searchPassengers() {
-    this._operatorServices.searchPassengers(this.searchStr).subscribe(res => this.PassengersInfo = res);
+    this._operatorServices.searchPassengers(this.searchStr).subscribe(res => this.passengers = res);
   }
 
   ngOnInit() {

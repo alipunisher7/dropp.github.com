@@ -40,20 +40,20 @@ import {
 } from 'components/panels/dashboard';
 
 import {
-  AdminPanel,
-  InsertCarComponent,
-  InsertManufactureComponent,
+  ManagePanel,
+  ManageSearchRadiusComponent,
+  ManageCarsComponent,
+  ManageManufacturesComponent,
   ManageBannedUsersComponent,
-  ManageTicketSubjectsComponent,
-  InsertTicketSubjectComponent,
+  ManageTicketsComponent,
   ManageVouchersComponent,
   TarrifComponent
-} from 'components/panels/admin';
+} from 'components/panels/manage';
 
 import {
   DriversPanel,
-  AllDriversCreditComponent,
-  DriverAllInfoComponent,
+  DriverComponent,
+  DriverCreditComponent,
   DriversCreditComponent,
   LowRateDriversComponent,
   ManageDriversComponent,
@@ -63,13 +63,13 @@ import {
 
 import {
   PassengersPanel,
-  PassengerAllInfoComponent,
+  PassengerComponent,
   SearchPassengersComponent
 } from './components/panels/passengers';
 
 import {
   OrganizationsPanel,
-  ViewOrganizationsComponent,
+  OrganizationsComponent,
   ConfirmOrganizationsComponent
 } from 'components/panels/organizations';
 
@@ -81,7 +81,6 @@ import {
 import {
   ServicePanel,
   ActiveServicesComponent,
-  SearchRadiusComponent,
   ServicesComponent
 } from './components/panels/services';
 
@@ -97,45 +96,55 @@ import { SupportPanel } from 'components/panels/support';
 @NgModule({
   declarations: [
     AppComponent,
-    DashboardPanel,
-    DriversPanel,
-    AdminPanel,
-    ServicePanel,
-    PassengersPanel,
-    OrganizationsPanel,
-    TripsPanel,
     HeaderComponent,
-    OnlineDriverComponent,
-    SubNavComponent,
+
     NavigationDrawerComponent,
     NavComponent,
+    SubNavComponent,
+
+    DashboardPanel,
     DashboardCardComponent,
-    AddOperatorComponent,
-    TarrifComponent,
-    ActiveServicesComponent,
-    InsertManufactureComponent,
-    InsertCarComponent,
-    SearchRadiusComponent,
+
+    DriversPanel,
+    OnlineDriverComponent,
     LowRateDriversComponent,
-    SearchDriversComponent,
-    SearchPassengersComponent,
-    TripsComponent,
+    DriverCreditComponent,
     DriversCreditComponent,
+    SearchDriversComponent,
+
+    ManagePanel,
+    ManageManufacturesComponent,
+    ManageCarsComponent,
+    ManageSearchRadiusComponent,
     ManageDriversComponent,
     ManageVouchersComponent,
     ManageBannedUsersComponent,
+    ManageOperatorsComponent,
+    ManageTicketsComponent,
+    TarrifComponent,
+
+    ServicePanel,
+    ActiveServicesComponent,
+
+    PassengersPanel,
+    PassengerComponent,
+
+    OrganizationsPanel,
+    OrganizationsComponent,
+    ConfirmOrganizationsComponent,
+
+    AddOperatorComponent,
+
+    TripsPanel,
+
+    SearchPassengersComponent,
+    TripsComponent,
     SendTaxiComponent,
     SupportPanel,
-    ManageOperatorsComponent,
     ServicesComponent,
     NotificationComponent,
-    AllDriversCreditComponent,
-    DriverAllInfoComponent,
-    PassengerAllInfoComponent,
-    ConfirmOrganizationsComponent,
-    ViewOrganizationsComponent,
-    ManageTicketSubjectsComponent,
-    InsertTicketSubjectComponent,
+    DriverComponent,
+
     MdCard,
     MdCardContent,
     MdCardTitle,

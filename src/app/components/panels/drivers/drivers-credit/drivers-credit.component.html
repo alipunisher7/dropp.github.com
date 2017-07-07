@@ -1,22 +1,21 @@
-<h2>موجودی حساب راننده ها</h2>
-<input class="search form-ctrl" type="search" name="searchDriversCredit" placeholder="جستجو ..." (keyup)="onSearch()" [(ngModel)]="searchStr">
+<h2>موجودی حساب کل راننده ها</h2>
 <table class="table">
   <thead>
     <tr>
-      <th>نام کاربری راننده</th>
-      <th>موجودی حساب</th>
-      <th>شماره کارت</th>
-      <th>شماره حساب</th>
+    <th>نام کاربری راننده</th>
+    <th>موجودی حساب</th>
+    <th>شماره کارت</th>
+    <th>شماره حساب</th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngIf="searchRes">
-      <td></td>
-      <td>{{searchRes.credit}}</td>
+    <tr *ngFor="let driverCredit of driverCredit">
+      <td>{{driverCredit.user}}</td>
+      <td>{{driverCredit.credit}}</td>
       <td></td>
       <td></td>
     </tr>
-    <tr *ngIf="!searchRes" class="no-data">
+    <tr *ngIf="!driverCredit.length" class="no-data">
       <td colspan=75%>
         راننده ای وجود ندارد
       </td>

@@ -1,3 +1,3 @@
 export * from './passengers.panel';
-export * from './passenger-all-info';
+export * from './passenger';
 export * from './search';

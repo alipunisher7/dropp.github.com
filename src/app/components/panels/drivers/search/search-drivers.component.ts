@@ -9,13 +9,13 @@ import { IDriver } from '../../../../models';
 })
 export class SearchDriversComponent implements OnInit {
   searchStr: string;
-  driversInfo: IDriver[];
+  drivers: IDriver[];
   selectedDriver: IDriver;
 
   constructor(private _operatorServices: OperatorService) { }
 
   searchDrivers() {
-    this._operatorServices.searchDrivers(this.searchStr).subscribe(res => this.driversInfo = res);
+    this._operatorServices.searchDrivers(this.searchStr).subscribe(res => this.drivers = res);
   }
 
   ngOnInit() {

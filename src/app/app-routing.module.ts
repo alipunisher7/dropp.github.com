@@ -15,15 +15,14 @@ import { TripsPanel } from 'components/panels/trips';
 import { OrganizationsPanel } from 'components/panels/organizations';
 
 import {
-  AdminPanel,
-  InsertCarComponent,
-  InsertManufactureComponent,
-  InsertTicketSubjectComponent,
+  ManagePanel,
+  ManageCarsComponent,
+  ManageManufacturesComponent,
+  ManageTicketsComponent,
   ManageBannedUsersComponent,
-  ManageTicketSubjectsComponent,
   ManageVouchersComponent,
   TarrifComponent
-} from 'components/panels/admin';
+} from 'components/panels/manage';
 
 import { OperatorsPanel } from 'components/panels/operators';
 
@@ -42,7 +41,7 @@ const routes: Routes = [
   { path: 'operators', component: OperatorsPanel },
   // { path: 'admin', component: OrganizationsComponent },
   {
-    path: 'admin', component: AdminPanel, children: [
+    path: 'admin', component: ManagePanel, children: [
       { path: 'manage-vouchers', component: ManageVouchersComponent },
       { path: 'manage-banned-users', component: ManageBannedUsersComponent }
     ]

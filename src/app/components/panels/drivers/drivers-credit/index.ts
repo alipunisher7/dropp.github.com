@@ -1,1 +1,1 @@
-export { DriversCreditComponent } from './drivers-credit.component';
+export * from './drivers-credit.component';
