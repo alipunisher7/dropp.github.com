@@ -5,3 +5,4 @@ export const API = `http://${HOST}`;
 // export const API = `http://${KASRAJ}`;
 export const OPERATOR_API = `${API}/operator`;
 export const ADMIN_API = `${API}/admin`;
+export const COP_API = `${API}/cop`;

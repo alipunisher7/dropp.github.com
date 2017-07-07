@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { AppComponent } from './app.component';
+import { AppComponent } from 'components';
 import { SendTaxiComponent } from 'components/send-taxi';
 
 import { DashboardPanel } from 'components/panels/dashboard';

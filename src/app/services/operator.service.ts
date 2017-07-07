@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { AuthHttpService } from './auth-http.service';
 import { Observable } from 'rxjs/Observable';
-import { ServiceType } from './../models'
-import { OPERATOR_API } from '../configs';
+import { ServiceType } from 'models'
+import { OPERATOR_API } from 'configs';
 import 'rxjs/add/operator/map';
 
 @Injectable()
@@ -111,6 +111,7 @@ export class OperatorService {
       })
       .catch(this.handleError);
   }
+
   searchDrivers(data) {
     data = { "username": data };
     console.log(data);
@@ -159,6 +160,7 @@ export class OperatorService {
       })
       .catch(this.handleError);
   }
+
   allDriversCredit() {
     return this._http
       .get(this.allDriversCreditUrl)
@@ -191,6 +193,7 @@ export class OperatorService {
         throw new Error('Error');
     }
   }
+
   handleError(err: any) {
     console.log('sever error:', err);  // debug
     if (err instanceof Response) {
@@ -202,4 +205,37 @@ export class OperatorService {
     console.error(err);  // debug
     return Observable.throw(err || 'backend server error');
   }
+
+  viewBanDrivers() {
+    return this._http
+      .get(this.viewBanDriversUrl)
+      .map(res => {
+        let json = res.json();
+        if (json.statusCode !== 1) {
+          let error = { url: this.viewBanDriversUrl, ...json};
+          throw error;
+        }
+
+        let data = json.data['banDrivers'];
+        return data;
+      })
+      .catch(this.handleError);
+    }
+
+  viewBanPassengers() {
+    return this._http
+      .get(this.viewBanDriversUrl)
+      .map(res => {
+        let json = res.json();
+        if (json.statusCode !== 1) {
+          let error = { url: this.viewBanDriversUrl, ...json };
+          throw error;
+        }
+
+        let data = json.data['banDrivers'];
+        return data;
+      })
+      .catch(this.handleError);
+  }
+
 }

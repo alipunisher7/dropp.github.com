@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AdminService } from 'services';
+import { OperatorService } from 'services';
 import { User } from 'models';
 
 @Component({
@@ -11,14 +11,14 @@ export class ManageBannedUsersComponent implements OnInit {
   drivers: User[];
   passengers: User[];
 
-  constructor(private _adminService: AdminService) { }
+  constructor(private _operatorService: OperatorService) { }
 
   viewBanDrivers() {
-    this._adminService.viewBanDrivers().subscribe(res => this.drivers = res);
+    this._operatorService.viewBanDrivers().subscribe(res => this.drivers = res);
   }
 
   viewBanPassengers() {
-    this._adminService.viewBanPassengers().subscribe(res => this.passengers = res);
+    this._operatorService.viewBanPassengers().subscribe(res => this.passengers = res);
   }
 
   ngOnInit() {
