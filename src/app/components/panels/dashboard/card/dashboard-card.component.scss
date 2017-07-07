@@ -1,0 +1,50 @@
+@import 'variables';
+
+:host {
+  display: flex;
+  height: 200px;
+  max-width: 400px;
+  min-width: 400px;
+  flex-flow: column nowrap;
+}
+
+.card-container {
+  flex: 1;
+  display: flex;
+}
+
+.info {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column nowrap;
+  position: relative;
+}
+
+.info1::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  width: 1px;
+  height: 80%;
+  // margin: 10% 0;
+  background: $text-gray;
+  opacity: .5;
+}
+
+.card-data {
+  font-size: $card-data-size;
+}
+
+footer {
+  background: $background;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+
+  i {
+    position: relative;
+    top: 3px;
+  }
+}

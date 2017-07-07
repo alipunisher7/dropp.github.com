@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 import {
   MdButtonModule,
   MdCheckboxModule,
@@ -18,66 +19,98 @@ import {
   AuthHttpService,
   NotificationService,
   AuthService
-} from './services';
+} from 'services';
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
+import { AppRoutingModule } from 'app-routing.module';
+import { AppComponent } from 'app.component';
 
-import { HeaderComponent } from './header/header.component';
+import { HeaderComponent } from 'components/header';
+import { NotificationComponent } from 'components/notification';
+import { SendTaxiComponent } from 'components/send-taxi';
 
-import { NavigationDrawerComponent } from './navigation-drawer/navigation-drawer.component';
-import { NavComponent } from './navigation-drawer/nav';
-import { SubNavComponent } from './navigation-drawer/nav/sub-nav';
+import {
+  NavigationDrawerComponent,
+  NavComponent,
+  SubNavComponent
+} from 'components/navigation-drawer';
 
-import { DashboardPanelComponent } from './panels/dashboard-panel';
+import {
+  DashboardPanel,
+  DashboardCardComponent
+} from 'components/panels/dashboard';
 
-import { StatPanelComponent } from './panels/stat-panel';
-import { OnlineDriverComponent } from './panels/stat-panel/drivers/online-driver';
-import { DashboardCardComponent } from './panels/dashboard-panel/dashboard-card/dashboard-card.component';
-import { AddMOpComponent } from './panels/manage-panel/manage-operators/add-mop/add-mop.component';
-import { TarrifComponent } from './panels/manage-panel/manage-services/tarrif/tarrif.component';
-import { ActiveServicesComponent } from './panels/manage-panel/manage-services/active-services/active-services.component';
-import { InsertManufactureComponent } from './panels/manage-panel/manage-services/insert-manufacture/insert-manufacture.component';
-import { InsertCarComponent } from './panels/manage-panel/manage-services/insert-car/insert-car.component';
-import { SearchRadiusComponent } from './panels/manage-panel/manage-services/search-radius/search-radius.component';
-import { LowRateDriversComponent } from './panels/stat-panel/drivers/low-rate-drivers/low-rate-drivers.component';
-import { SearchDriversComponent } from './panels/stat-panel/drivers/search-drivers/search-drivers.component';
-import { SearchPassengersComponent } from './panels/stat-panel/passengers/search-passengers/search-passengers.component';
-import { TripsComponent } from './panels/stat-panel/trips/trips.component';
-import { DriversCreditComponent } from './panels/stat-panel/drivers/drivers-credit/drivers-credit.component';
-import { DriversComponent } from './panels/stat-panel/drivers/drivers.component';
-import { PassengersComponent } from './panels/stat-panel/passengers/passengers.component';
-import { OrganizationsComponent } from './panels/stat-panel/organizations/organizations.component';
-import { ManagePanelComponent } from './panels/manage-panel/manage-panel.component';
-import { ManageDriversComponent } from './panels/manage-panel/manage-drivers/manage-drivers.component';
-import { ManageServicesComponent } from './panels/manage-panel/manage-services/manage-services.component';
-import { ManageVouchersComponent } from './panels/manage-panel/manage-vouchers/manage-vouchers.component';
-import { ManageBannedUsersComponent } from './panels/manage-panel/manage-banned-users/manage-banned-users.component';
-import { SendTaxiComponent } from './panels/send-taxi/send-taxi.component';
-import { SupportPanelComponent } from './panels/support-panel/support-panel.component';
-import { ManageOperatorsComponent } from './panels/manage-panel/manage-operators/manage-operators.component';
-import { ServicesComponent } from './panels/stat-panel/services/services.component';
-import { NotificationComponent } from './notification/notification.component';
-import { AllDriversCreditComponent } from './panels/stat-panel/drivers/all-drivers-credit/all-drivers-credit.component';
-import { DriverAllInfoComponent } from './panels/stat-panel/drivers/driver-all-info/driver-all-info.component';
-import { PassengerAllInfoComponent } from './panels/stat-panel/passengers/passenger-all-info/passenger-all-info.component';
-import { ConfirmOrganizationsComponent } from './panels/stat-panel/organizations/confirm-organizations/confirm-organizations.component';
-import { ViewOrganizationsComponent } from './panels/stat-panel/organizations/view-organizations/view-organizations.component';
-import { ManageTicketSubjectsComponent } from './panels/manage-panel/manage-ticket-subjects/manage-ticket-subjects.component';
-import { InsertTicketSubjectComponent } from './panels/manage-panel/manage-ticket-subjects/insert-ticket-subject/insert-ticket-subject.component';
+import {
+  AdminPanel,
+  InsertCarComponent,
+  InsertManufactureComponent,
+  ManageBannedUsersComponent,
+  ManageTicketSubjectsComponent,
+  InsertTicketSubjectComponent,
+  ManageVouchersComponent,
+  TarrifComponent
+} from 'components/panels/admin';
+
+import {
+  DriversPanel,
+  AllDriversCreditComponent,
+  DriverAllInfoComponent,
+  DriversCreditComponent,
+  LowRateDriversComponent,
+  ManageDriversComponent,
+  OnlineDriverComponent,
+  SearchDriversComponent
+} from './components/panels/drivers';
+
+import {
+  PassengersPanel,
+  PassengerAllInfoComponent,
+  SearchPassengersComponent
+} from './components/panels/passengers';
+
+import {
+  OrganizationsPanel,
+  ViewOrganizationsComponent,
+  ConfirmOrganizationsComponent
+} from 'components/panels/organizations';
+
+import {
+  TripsPanel,
+  TripsComponent
+} from 'components/panels/trips';
+
+import {
+  ServicePanel,
+  ActiveServicesComponent,
+  SearchRadiusComponent,
+  ServicesComponent
+} from './components/panels/services';
+
+import {
+  OperatorsPanel,
+  AddOperatorComponent,
+  ManageOperatorsComponent
+} from './components/panels/operators';
+
+import { SupportPanel } from 'components/panels/support';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    DashboardPanelComponent,
+    DashboardPanel,
+    DriversPanel,
+    AdminPanel,
+    ServicePanel,
+    PassengersPanel,
+    OrganizationsPanel,
+    TripsPanel,
     HeaderComponent,
     OnlineDriverComponent,
-    StatPanelComponent,
     SubNavComponent,
     NavigationDrawerComponent,
     NavComponent,
     DashboardCardComponent,
-    AddMOpComponent,
+    AddOperatorComponent,
     TarrifComponent,
     ActiveServicesComponent,
     InsertManufactureComponent,
@@ -88,16 +121,11 @@ import { InsertTicketSubjectComponent } from './panels/manage-panel/manage-ticke
     SearchPassengersComponent,
     TripsComponent,
     DriversCreditComponent,
-    DriversComponent,
-    PassengersComponent,
-    OrganizationsComponent,
-    ManagePanelComponent,
     ManageDriversComponent,
-    ManageServicesComponent,
     ManageVouchersComponent,
     ManageBannedUsersComponent,
     SendTaxiComponent,
-    SupportPanelComponent,
+    SupportPanel,
     ManageOperatorsComponent,
     ServicesComponent,
     NotificationComponent,
@@ -111,7 +139,8 @@ import { InsertTicketSubjectComponent } from './panels/manage-panel/manage-ticke
     MdCard,
     MdCardContent,
     MdCardTitle,
-    MdCardSubtitle
+    MdCardSubtitle,
+    OperatorsPanel
   ],
   imports: [
     BrowserModule,

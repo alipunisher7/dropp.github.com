@@ -17,18 +17,19 @@ ts-app:
     dashboard-card:
       - system overview (P1)
 
+    driver-panel:
+      - serach drivers (P2)
+      - send message (P3)
+      - get vehicle distance (P2)
+      - driver detail (P3)
+      - low rate drivers
+      - low rate drivers view (P2)
+      - disallow driver (P4)
+
   services-panel:
     - search radiuce (P1)
     - active services (P1)
 
-  driver-panel:
-    - serach drivers (P2)
-    - send message (P3)
-    - get vehicle distance (P2)
-    - driver detail (P3)
-    - low rate drivers
-    - low rate drivers view (P2)
-    - disallow driver (P4)
   passenger-panel:
     - search passengers (P3)
     - send message (P3)
@@ -41,10 +42,13 @@ ts-app:
     - manage organs (view/edit) (P5)
 
   admin-panel:
-    user-manager:
       - manage baned user (P4)
-    vouchers:
       - manage vouche (P4)
+      - insert car
+      - insert manufacture
+      - manage operator
+      - manage tickets
+      - manage tariff
 
   send-taxi:
     - send taxi (P1)
