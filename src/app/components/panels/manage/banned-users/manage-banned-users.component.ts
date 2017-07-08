@@ -23,6 +23,7 @@ export class ManageBannedUsersComponent implements OnInit {
 
   ngOnInit() {
     this.getBannedDrivers();
+    this.getBannedPassengers();
   }
 
 }

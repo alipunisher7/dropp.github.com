@@ -1,2 +1,2 @@
-export { DashboardPanel } from './dashboard.panel';
-export { DashboardCardComponent } from './card';
+export * from './dashboard.panel';
+export * from './card';

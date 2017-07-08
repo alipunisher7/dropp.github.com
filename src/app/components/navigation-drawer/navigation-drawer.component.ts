@@ -16,18 +16,29 @@ export class NavigationDrawerComponent implements OnInit, AfterViewInit {
       {
         title: 'راننده ها', icon: 'fa fa-drivers-license', route: 'drivers',
         subNavs: [
-          { title: 'جستوجوی راننده', icon: 'fa fa-taxi', route: 'search' },
+          { title: 'جستجوی راننده', icon: 'fa fa-taxi', route: 'search' },
+          { title: 'موجودی حساب کل راننده ها', icon: 'fa fa-taxi', route: 'drivers-credit' },
+          { title: 'راننده ها با امتیاز پایین', icon: 'fa fa-taxi', route: 'low-rate' },
 
         ],
       },
       { title: 'سرویس ها', icon: 'fa fa-taxi', route: 'services' },
-      { title: 'مسافر ها', icon: 'fa fa-street-view', route: 'passengers' },
+      {
+        title: 'مسافر ها', icon: 'fa fa-street-view', route: 'passengers',
+        subNavs: [
+          { title: 'جستجوی مسافر', icon: 'fa fa-user-o', route: 'search' }
+        ]
+      },
       { title: 'سازمان ها', icon: 'fa fa-building', route: 'organizations' },
       { title: 'سفر ها', icon: 'fa fa-plane', route: 'trips' },
       { title: 'اپراتورها', icon: 'fa fa-user-o', route: 'operators' },
       {
         title: 'مدیریت', icon: 'fa fa-wrench', route: 'admin',
         subNavs: [
+          { title: 'خودروسازی', icon: 'fa fa-money', route: 'manufactures' },
+          { title: 'خودرو', icon: 'fa fa-money', route: 'cars' },
+          { title: 'تعرفه', icon: 'fa fa-money', route: 'tarrif' },
+          { title: 'تیکت', icon: 'fa fa-money', route: 'tickets' },
           { title: 'کد تخفیف', icon: 'fa fa-money', route: 'manage-vouchers' },
           { title: ' کاربران منع شده', icon: 'fa fa-ban', route: 'manage-banned-users' },
         ],

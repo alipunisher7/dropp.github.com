@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { OperatorService } from '../../../../services';
-import { ILowRateDriver } from '../../../../models';
+import { OperatorService } from 'services';
+import { ILowRateDriver } from 'models';
 
 @Component({
   selector: 'ts-low-rate-drivers',

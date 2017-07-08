@@ -6,9 +6,9 @@ import { SendTaxiComponent } from 'components/send-taxi';
 
 import { DashboardPanel } from 'components/panels/dashboard';
 
-import { DriversPanel } from 'components/panels/drivers';
+import { DriversPanel, DriverCreditComponent, SearchDriversComponent, LowRateDriversComponent } from 'components/panels/drivers';
 
-import { PassengersPanel } from 'components/panels/passengers';
+import { PassengersPanel, SearchPassengersComponent } from 'components/panels/passengers';
 
 import { TripsPanel } from 'components/panels/trips';
 
@@ -21,7 +21,7 @@ import {
   ManageTicketsComponent,
   ManageBannedUsersComponent,
   ManageVouchersComponent,
-  TarrifComponent
+  TarrifComponent,
 } from 'components/panels/manage';
 
 import { OperatorsPanel } from 'components/panels/operators';
@@ -34,14 +34,28 @@ const routes: Routes = [
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
   { path: 'dashboard', component: DashboardPanel },
   { path: 'services', component: ServicePanel },
-  { path: 'drivers', component: DriversPanel },
-  { path: 'passengers', component: PassengersPanel },
+  {
+    path: 'drivers', component: DriversPanel, children: [
+      { path: 'drivers-credit', component: DriverCreditComponent },
+      { path: 'search', component: SearchDriversComponent },
+      { path: 'low-rate', component: LowRateDriversComponent }
+    ]
+  },
+  {
+    path: 'passengers', component: PassengersPanel, children: [
+      { path: 'search', component: SearchPassengersComponent }
+    ]
+  },
   { path: 'trips', component: TripsPanel },
   { path: 'organizations', component: OrganizationsPanel },
   { path: 'operators', component: OperatorsPanel },
   // { path: 'admin', component: OrganizationsComponent },
   {
     path: 'admin', component: ManagePanel, children: [
+      { path: 'manufactures', component: ManageManufacturesComponent },
+      { path: 'cars', component: ManageCarsComponent },
+      { path: 'tickets', component: ManageTicketsComponent },
+      { path: 'tarrif', component: TarrifComponent },
       { path: 'manage-vouchers', component: ManageVouchersComponent },
       { path: 'manage-banned-users', component: ManageBannedUsersComponent }
     ]

@@ -15,7 +15,7 @@ export class DashboardPanel implements OnInit {
   tripCard: Card;
   driverCard: Card;
   passengerCard: Card;
-  OrganizationCard: Card;
+  organizationCard: Card;
 
   constructor(private _operatorServices: OperatorService) {
 
@@ -34,7 +34,7 @@ export class DashboardPanel implements OnInit {
       { title: 'کل کاربرها' },
       '333'
     );
-    this.OrganizationCard = new Card(
+    this.organizationCard = new Card(
       { title: 'سازمان جدید' },
       { title: 'سازمان ثبت شده' },
       '444'
@@ -94,13 +94,13 @@ export class DashboardPanel implements OnInit {
 
   getNewOrganizations() {
     this._operatorServices.getNewOrganizations().subscribe(data => {
-      this.OrganizationCard.info1.data = data;
+      this.organizationCard.info1.data = data;
     })
   }
 
   getAllOrganizations() {
     this._operatorServices.getAllOrganizations().subscribe(data => {
-      this.OrganizationCard.info2.data = data;
+      this.organizationCard.info2.data = data;
     })
   }
 

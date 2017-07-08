@@ -1,5 +1,5 @@
 <h2>مسافر ها</h2>
-<input type="search" name="searchPassengers" placeholder="جستجو ..." (keyup)="OnSearch()" [(ngModel)]="searchStr">
+<input type="search" name="searchPassengers" class="form-ctrl search" placeholder="جستجو ..." (keyup)="OnSearch()" [(ngModel)]="searchStr">
 <table class="table">
   <thead>
     <tr>
@@ -8,6 +8,7 @@
       <th>شماره‌همراه</th>
       <th>موجودی حساب</th>
       <th>وضعیت</th>
+      <th>اطلاعات بیشتر</th>
     </tr>
   </thead>
   <tbody>

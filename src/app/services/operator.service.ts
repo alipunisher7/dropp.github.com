@@ -19,8 +19,8 @@ export class OperatorService {
   private getDriverInfoUrl: string;
   private getDriversCreditUrl: string;
   private getLowRateDriverUrl: string;
-  private getBanedDriversUrl: string;
-  private getBanedPassengersUrl: string;
+  private getBannedDriversUrl: string;
+  private getBannedPassengersUrl: string;
   private getOrganizationsUrl: string;
   private searchDriversUrl: string;
   private searchPassengersUrl: string;
@@ -39,8 +39,8 @@ export class OperatorService {
     this.getDriverInfoUrl = ``;
     this.getLowRateDriverUrl = `${OPERATOR_API}/LowRateDrivers`;
     this.getDriversCreditUrl = `${OPERATOR_API}/viewAllDriverCredit`;
-    this.getBanedDriversUrl = `${OPERATOR_API}/operator/viewBanedDrivers`;
-    this.getBanedPassengersUrl = `${OPERATOR_API}/operator/viewBanedPassenger`;
+    this.getBannedDriversUrl = `${OPERATOR_API}/viewBanDrivers`;
+    this.getBannedPassengersUrl = `${OPERATOR_API}/viewBanPassengers`;
     this.getOrganizationsUrl = ``;
     this.searchDriversCreditUrl = `${OPERATOR_API}/viewDriverCredit`;
     this.searchDriversUrl = `${OPERATOR_API}/searchDriver`;
@@ -55,7 +55,8 @@ export class OperatorService {
   }
 
   getOnlineDrivers(): Observable<any> {
-    return this._http.get(this.getOnlineDriversUrl).map(res => res.json);
+
+    return this._http.get(this.getOnlineDriversUrl).map(res => res.json().data);
   }
 
   getAllDrivers(): Observable<object> {
@@ -154,7 +155,8 @@ export class OperatorService {
       .map(res => {
         let json = res.json();
         if (json.statusCode !== 1) {
-          throw new Error(JSON.stringify(json));
+          let error = { url: this.searchDriversCreditUrl, status: json.status, statusCode: json.statusCode };
+          throw error;
         }
         let data = json.data['driver'];
         return data;
@@ -168,7 +170,8 @@ export class OperatorService {
       .map(res => {
         let json = res.json();
         if (json.statusCode !== 1) {
-          throw new Error(JSON.stringify(json));
+          let error = { url: this.getDriversCreditUrl, status: json.status, statusCode: json.statusCode };
+          throw error;
         }
 
         let data = json.data['driversCredit'];
@@ -180,11 +183,11 @@ export class OperatorService {
 
   getBannedDrivers() {
     return this._http
-      .get(this.getBanedDriversUrl)
+      .get(this.getBannedDriversUrl)
       .map(res => {
         let json = res.json();
         if (json.statusCode !== 1) {
-          let error = { url: this.getBanedDriversUrl, ...json};
+          let error = { url: this.getBannedDriversUrl, status: json.status, statusCode: json.statusCode };
           throw error;
         }
 
@@ -192,19 +195,19 @@ export class OperatorService {
         return data;
       })
       .catch(this.handleError);
-    }
+  }
 
   getBannedPassengers() {
     return this._http
-      .get(this.getBanedPassengersUrl)
+      .get(this.getBannedPassengersUrl)
       .map(res => {
         let json = res.json();
         if (json.statusCode !== 1) {
-          let error = { url: this.getBanedPassengersUrl, ...json };
+          let error = { url: this.getBannedPassengersUrl, status: json.status, statusCode: json.statusCode };
           throw error;
         }
 
-        let data = json.data['banDrivers'];
+        let data = json.data['banPassengers'];
         return data;
       })
       .catch(this.handleError);
