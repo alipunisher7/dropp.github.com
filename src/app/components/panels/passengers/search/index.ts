@@ -1,1 +1,1 @@
-export { SearchPassengersComponent } from './search-passengers.component';
+export * from './search-passengers.component';

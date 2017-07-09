@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { OperatorService } from '../../../../services';
-import { IDriver } from '../../../../models';
+import { OperatorService, NotificationService} from '../../../../services';
+import { IDriver, Notification, NotificationTypes } from '../../../../models';
 
 @Component({
   selector: 'ts-search-drivers',
@@ -12,7 +12,7 @@ export class SearchDriversComponent implements OnInit {
   drivers: IDriver[];
   selectedDriver: IDriver;
 
-  constructor(private _operatorServices: OperatorService) { }
+  constructor(private _operatorServices: OperatorService, private _notification: NotificationService) { }
 
   searchDrivers() {
     this._operatorServices.searchDrivers(this.searchStr).subscribe(res => this.drivers = res);
@@ -27,6 +27,17 @@ export class SearchDriversComponent implements OnInit {
 
   onMoreClick(data) {
     this.selectedDriver = data;
+  }
+  banDriver(data) {
+    this._operatorServices.banDriver(data).subscribe(
+      res => {
+        let notification = new Notification({ title: 'ثبت شد', info: `راننده مورد نظر بن شد`, type: NotificationTypes.success });
+        this._notification.notify(notification);
+      },
+      err => {
+        alert(err);
+      }
+    );
   }
 
 }

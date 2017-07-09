@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { OperatorService } from 'services';
-import { IPassenger } from 'models';
+import { OperatorService, NotificationService } from 'services';
+import { IPassenger, Notification, NotificationTypes } from 'models';
 
 @Component({
   selector: 'ts-search-passengers',
@@ -13,7 +13,7 @@ export class SearchPassengersComponent implements OnInit {
   passengers: IPassenger[];
   selectedPassenger: IPassenger;
 
-  constructor(private _operatorServices: OperatorService) { }
+  constructor(private _operatorServices: OperatorService, private _notification: NotificationService) { }
 
   searchPassengers() {
     this._operatorServices.searchPassengers(this.searchStr).subscribe(res => this.passengers = res);
@@ -24,5 +24,19 @@ export class SearchPassengersComponent implements OnInit {
 
   OnSearch() {
     this.searchPassengers();
+  }
+  onMoreClick(data) {
+    this.selectedPassenger = data;
+  }
+  banPassenger(data) {
+    this._operatorServices.banPassenger(data).subscribe(
+      res => {
+        let notification = new Notification({ title: 'ثبت شد', info: `مسافر مورد نظر بن شد`, type: NotificationTypes.success });
+        this._notification.notify(notification);
+      },
+      err => {
+        alert(err);
+      }
+    );
   }
 }

@@ -3,21 +3,24 @@
 <table class="table">
   <thead>
     <tr>
-      <th>نام مسافر</th>
       <th>نام کاربری</th>
       <th>شماره‌همراه</th>
       <th>موجودی حساب</th>
       <th>وضعیت</th>
+      <th *ngIf="passengers.stateCode!== -1">بن کردن</th>
       <th>اطلاعات بیشتر</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngIf="passengers">
-    <td>{{passengers.passengerInfo.firstName}}</td>
-    <td>{{passengers.passengerInfo.lastName}}</td>
+    <td>{{passengers.username}}</td>
     <td></td>
     <td>{{passengers.credit}}</td>
-    <td>{{passengers.stateCode}}</td>
+    <td *ngIf="passengers.stateCode===1">فعال</td>
+    <td *ngIf="passengers.stateCode===0">غیر فعال</td>
+    <td *ngIf="passengers.stateCode===-1">بن شده</td>
+    <td *ngIf="passengers.stateCode!== -1"><button (click)="banPassenger(passengers.username)">بن</button></td>
+    <td><button (click)="onMoreClick(passengers)">کلیک</button></td>
     </tr>
   </tbody>
 </table>

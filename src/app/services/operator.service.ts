@@ -26,6 +26,9 @@ export class OperatorService {
   private searchPassengersUrl: string;
   private searchTripsUrl: string;
   private searchDriversCreditUrl: string;
+  private banDriverUrl: string;
+  private banPassengerUrl: string;
+  private subscribeRegisterUrl: string;
 
   constructor(private _http: AuthHttpService) {
     this.getOnlineTripsUrl = ``;
@@ -44,6 +47,10 @@ export class OperatorService {
     this.getOrganizationsUrl = ``;
     this.searchDriversCreditUrl = `${OPERATOR_API}/viewDriverCredit`;
     this.searchDriversUrl = `${OPERATOR_API}/searchDriver`;
+    this.searchPassengersUrl = `${OPERATOR_API}/searchPassenger`;
+    this.banDriverUrl = `${OPERATOR_API}/banDriver`;
+    this.banPassengerUrl = `${OPERATOR_API}/banPassenger`;
+    this.subscribeRegisterUrl = `${OPERATOR_API}/subscribeRegister`;
   }
 
   getOnlineTrips(): Observable<any> {
@@ -86,7 +93,8 @@ export class OperatorService {
       .map(res => {
         let json = res.json();
         if (json.statusCode !== 1) {
-          throw new Error(JSON.stringify(json));
+          let error = { url: this.getOrganizationsUrl, status: json.status, statusCode: json.statusCode };
+          throw error;
         }
         // let data = json.data.Driver;
         return data;
@@ -104,7 +112,8 @@ export class OperatorService {
       .map(res => {
         let json = res.json();
         if (json.statusCode !== 1) {
-          throw new Error(JSON.stringify(json));
+          let error = { url: this.getLowRateDriverUrl, status: json.status, statusCode: json.statusCode };
+          throw error;
         }
 
         let data = json.data.users.Drivers;
@@ -120,7 +129,8 @@ export class OperatorService {
       .map(res => {
         let json = res.json();
         if (json.statusCode !== 1) {
-          throw new Error(JSON.stringify(json));
+          let error = { url: this.searchDriversUrl, status: json.status, statusCode: json.statusCode };
+          throw error;
         }
         let data = json.data.Driver;
         return data;
@@ -135,7 +145,8 @@ export class OperatorService {
       .map(res => {
         let json = res.json();
         if (json.statusCode !== 1) {
-          throw new Error(JSON.stringify(json));
+          let error = { url: this.searchPassengersUrl, status: json.status, statusCode: json.statusCode };
+          throw error;
         }
         let data = json.data.Passenger;
         return data;
@@ -150,7 +161,6 @@ export class OperatorService {
 
   searchDriversCredit(data) {
     data = { "username": data };
-    console.log(data);
     return this._http.post(this.searchDriversCreditUrl, data)
       .map(res => {
         let json = res.json();
@@ -209,6 +219,44 @@ export class OperatorService {
 
         let data = json.data['banPassengers'];
         return data;
+      })
+      .catch(this.handleError);
+  }
+  banDriver(data) {
+    data = { "username": data };
+    return this._http.post(this.banDriverUrl, data)
+      .map(res => {
+        let json = res.json();
+        if (json.statusCode !== 1) {
+          let error = { url: this.banDriverUrl, status: json.status, statusCode: json.statusCode };
+          throw error;
+        }
+        return true;
+      })
+      .catch(this.handleError);
+  }
+  banPassenger(data) {
+    data = { "username": data };
+    return this._http.post(this.banPassengerUrl, data)
+      .map(res => {
+        let json = res.json();
+        if (json.statusCode !== 1) {
+          let error = { url: this.banPassengerUrl, status: json.status, statusCode: json.statusCode };
+          throw error;
+        }
+        return true;
+      })
+      .catch(this.handleError);
+  }
+  subscribeRegister(data) {
+    return this._http.post(this.subscribeRegisterUrl, data)
+      .map(res => {
+        let json = res.json();
+        if (json.statusCode !== 1) {
+          let error = { url: this.subscribeRegisterUrl, status: json.status, statusCode: json.statusCode };
+          throw error;
+        }
+        return true;
       })
       .catch(this.handleError);
   }

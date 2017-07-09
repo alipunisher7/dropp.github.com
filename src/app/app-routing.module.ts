@@ -8,9 +8,9 @@ import { DashboardPanel } from 'components/panels/dashboard';
 
 import { DriversPanel, DriverCreditComponent, SearchDriversComponent, LowRateDriversComponent } from 'components/panels/drivers';
 
-import { PassengersPanel, SearchPassengersComponent } from 'components/panels/passengers';
+import { PassengersPanel, SearchPassengersComponent, SubscribeRegisterComponent } from 'components/panels/passengers';
 
-import { TripsPanel } from 'components/panels/trips';
+import { TripsPanel, SearchTripsComponent } from 'components/panels/trips';
 
 import { OrganizationsPanel } from 'components/panels/organizations';
 
@@ -22,18 +22,23 @@ import {
   ManageBannedUsersComponent,
   ManageVouchersComponent,
   TarrifComponent,
+  ManageSearchRadiusComponent
 } from 'components/panels/manage';
 
 import { OperatorsPanel } from 'components/panels/operators';
 
 import { SupportPanel } from 'components/panels/support';
 
-import { ServicePanel } from 'components/panels/services';
+import { ServicePanel, ActiveServicesComponent } from 'components/panels/services';
 
 const routes: Routes = [
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
   { path: 'dashboard', component: DashboardPanel },
-  { path: 'services', component: ServicePanel },
+  {
+    path: 'services', component: ServicePanel, children: [
+      { path: 'actived-services', component: ActiveServicesComponent }
+    ]
+  },
   {
     path: 'drivers', component: DriversPanel, children: [
       { path: 'drivers-credit', component: DriverCreditComponent },
@@ -43,10 +48,15 @@ const routes: Routes = [
   },
   {
     path: 'passengers', component: PassengersPanel, children: [
-      { path: 'search', component: SearchPassengersComponent }
+      { path: 'search', component: SearchPassengersComponent },
+      { path: 'subscribe-register', component: SubscribeRegisterComponent }
     ]
   },
-  { path: 'trips', component: TripsPanel },
+  {
+    path: 'trips', component: TripsPanel, children: [
+      { path: 'search', component: SearchTripsComponent }
+    ]
+  },
   { path: 'organizations', component: OrganizationsPanel },
   { path: 'operators', component: OperatorsPanel },
   // { path: 'admin', component: OrganizationsComponent },
@@ -56,6 +66,7 @@ const routes: Routes = [
       { path: 'cars', component: ManageCarsComponent },
       { path: 'tickets', component: ManageTicketsComponent },
       { path: 'tarrif', component: TarrifComponent },
+      { path: 'search-radius', component: ManageSearchRadiusComponent },
       { path: 'manage-vouchers', component: ManageVouchersComponent },
       { path: 'manage-banned-users', component: ManageBannedUsersComponent }
     ]

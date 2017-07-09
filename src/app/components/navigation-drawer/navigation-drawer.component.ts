@@ -22,15 +22,26 @@ export class NavigationDrawerComponent implements OnInit, AfterViewInit {
 
         ],
       },
-      { title: 'سرویس ها', icon: 'fa fa-taxi', route: 'services' },
+      {
+        title: 'سرویس ها', icon: 'fa fa-taxi', route: 'services',
+        subNavs: [
+          { title: 'سرویس های فعال', icon: 'fa fa-taxi', route: 'actived-services' }
+        ]
+      },
       {
         title: 'مسافر ها', icon: 'fa fa-street-view', route: 'passengers',
         subNavs: [
-          { title: 'جستجوی مسافر', icon: 'fa fa-user-o', route: 'search' }
+          { title: 'جستجوی مسافر', icon: 'fa fa-user-o', route: 'search' },
+          { title: 'ثبت اشتراک', icon: 'fa fa-user-o', route: 'subscribe-register' }
         ]
       },
       { title: 'سازمان ها', icon: 'fa fa-building', route: 'organizations' },
-      { title: 'سفر ها', icon: 'fa fa-plane', route: 'trips' },
+      {
+        title: 'سفر ها', icon: 'fa fa-plane', route: 'trips',
+        subNavs: [
+          { title: 'جستجوی سفر', icon: 'fa fa-user-o', route: 'search' }
+        ]
+      },
       { title: 'اپراتورها', icon: 'fa fa-user-o', route: 'operators' },
       {
         title: 'مدیریت', icon: 'fa fa-wrench', route: 'admin',
@@ -38,6 +49,7 @@ export class NavigationDrawerComponent implements OnInit, AfterViewInit {
           { title: 'خودروسازی', icon: 'fa fa-money', route: 'manufactures' },
           { title: 'خودرو', icon: 'fa fa-money', route: 'cars' },
           { title: 'تعرفه', icon: 'fa fa-money', route: 'tarrif' },
+          { title: 'شعاع جستجو', icon: 'fa fa-money', route: 'search-radius' },
           { title: 'تیکت', icon: 'fa fa-money', route: 'tickets' },
           { title: 'کد تخفیف', icon: 'fa fa-money', route: 'manage-vouchers' },
           { title: ' کاربران منع شده', icon: 'fa fa-ban', route: 'manage-banned-users' },

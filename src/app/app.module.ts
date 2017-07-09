@@ -91,6 +91,8 @@ import {
 } from './components/panels/operators';
 
 import { SupportPanel } from 'components/panels/support';
+import { SearchTripsComponent } from './components/panels/trips/search/search-trips.component';
+import { SubscribeRegisterComponent } from './components/panels/passengers/subscribe-register/subscribe-register.component';
 
 
 @NgModule({
@@ -149,7 +151,9 @@ import { SupportPanel } from 'components/panels/support';
     MdCardContent,
     MdCardTitle,
     MdCardSubtitle,
-    OperatorsPanel
+    OperatorsPanel,
+    SearchTripsComponent,
+    SubscribeRegisterComponent
   ],
   imports: [
     BrowserModule,

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { OperatorService } from 'services';
 import { ITrip } from 'models';
 
@@ -9,14 +9,10 @@ import { ITrip } from 'models';
 })
 export class TripsComponent implements OnInit {
 
-  searchStr: string;
-  searchRes: ITrip[];
+  @Input() trip: ITrip;
 
   constructor(private _operatorServices: OperatorService) { }
 
-  searchTrips() {
-    this._operatorServices.searchTrips(this.searchStr).subscribe(res => { })
-  }
 
   ngOnInit() {
   }

@@ -8,6 +8,8 @@
       <th>نام کاربری</th>
       <th>نوع سرویس</th>
       <th>اعتبار حساب</th>
+      <th>وضعیت</th>
+      <th *ngIf="drivers.stateCode!== -1">بن کردن</th>
       <th>اطلاعات بیشتر</th>
     </tr>
   </thead>
@@ -18,6 +20,12 @@
       <td>{{drivers.username}}</td>
       <td>{{drivers.serviceType}}</td>
       <td>{{drivers.credit}}</td>
+      <td *ngIf="drivers.stateCode=== -1">بن شده</td>
+      <td *ngIf="drivers.stateCode=== 0">غیر فعال</td>
+      <td *ngIf="drivers.stateCode=== 1">در حال ثبت نام</td>
+      <td *ngIf="drivers.stateCode=== 2">نیازمند تایید</td>
+      <td *ngIf="drivers.stateCode=== 3">تایید شده</td>
+      <td *ngIf="drivers.stateCode!== -1"><button (click)="banDriver(drivers.username)">بن</button></td>
       <td><button (click)="onMoreClick(drivers)">اطلاعات بیشتر</button></td>
     </tr>
     <tr *ngIf="!drivers" class="no-data">
