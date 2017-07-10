@@ -5,15 +5,6 @@ import { HttpModule } from '@angular/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import {
-  MdButtonModule,
-  MdCheckboxModule,
-  MdCard,
-  MdCardTitle,
-  MdCardSubtitle,
-  MdCardContent
-} from '@angular/material';
-
-import {
   OperatorService,
   AdminService,
   AuthHttpService,
@@ -138,6 +129,7 @@ import { SubscribeRegisterComponent } from './components/panels/passengers/subsc
     AddOperatorComponent,
 
     TripsPanel,
+    OperatorsPanel,
 
     SearchPassengersComponent,
     TripsComponent,
@@ -147,13 +139,8 @@ import { SubscribeRegisterComponent } from './components/panels/passengers/subsc
     NotificationComponent,
     DriverComponent,
 
-    MdCard,
-    MdCardContent,
-    MdCardTitle,
-    MdCardSubtitle,
-    OperatorsPanel,
     SearchTripsComponent,
-    SubscribeRegisterComponent
+    SubscribeRegisterComponent,
   ],
   imports: [
     BrowserModule,

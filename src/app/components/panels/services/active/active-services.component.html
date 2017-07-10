@@ -1,6 +1,6 @@
 <h2>سرویس های فعال</h2>
 <div>
-  <select  (change)=onChange($event.target.value) >
+  <select (change)=onChange($event.target.value)>
     <option value="">شهر را انتخاب کنید</option>
     <option value="TE">تهران</option>
     <option value="MA">مشهد</option>
@@ -13,7 +13,7 @@
     <tr>
       <th>سرویس</th>
       <th>وضعیت</th>
-      <th >غیر فعال کردن</th>
+      <th>غیر فعال کردن</th>
     </tr>
   </thead>
   <tbody>
@@ -25,15 +25,15 @@
   </tbody>
 </table><br>
 <h2>فعال کردن سرویس جدید</h2>
- <form [formGroup]='myForm' (ngSubmit)="onSubmit()" >
-   <select formControlName="city"  >
+<form [formGroup]='myForm' (ngSubmit)="onSubmit()">
+  <select formControlName="city">
      <option value="">شهر را انتخاب کنید</option>
      <option value="TE">تهران</option>
      <option value="MA">مشهد</option>
      <option value="IS">اصفهان</option>
      <option value="GO">گرگان</option>
    </select>
-   <select formControlName="serviceType" >
+  <select formControlName="serviceType">
      <option value="">نوع سرویس را انتخاب کنید</option>
      <option value="N">نرمال</option>
      <option value="E">اکو</option>
@@ -43,5 +43,6 @@
      <option value="S">SUV</option>
      <option value="L">لوکس</option>
    </select>
-<button type="submit" name="submitActiveService" >ثبت</button>
+
+  <button type="submit" name="submitActiveService">ثبت</button>
 </form>
