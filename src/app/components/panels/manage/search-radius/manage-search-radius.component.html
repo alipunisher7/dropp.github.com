@@ -15,10 +15,11 @@
     </tr>
   </tbody>
 </table>
-<!-- <form [formGroup]="myForm" (ngSubmit)="onSubmit()" >
+<h2>اضافه کردن شعاع جستجو جدید</h2>
+<form [formGroup]="myForm" (ngSubmit)="onSubmit()" >
     <div>
       <label>انتخاب سرویس</label>
-      <select (change)=onChange($event.target.value)  name="serviceType" formControlName="serviceType">
+      <select  name="serviceType" formControlName="serviceType">
           <option value="">سرویس مورد نظر را انتخاب کنید</option>
           <option value="N">نرمال</option>
           <option value="E">اکو</option>
@@ -31,9 +32,9 @@
     </div>
     <div>
       <label>شعاع</label>
-      <input type="number" name="radius" value="res.data.searchRadius.radius" formControlName="radius">
+      <input type="number" name="radius"  formControlName="radius">
     </div>
     <div>
       <button type="submit" name="submitRadius" [disabled]="!myForm.valid">ثبت</button>
     </div>
-</form> -->
+</form>

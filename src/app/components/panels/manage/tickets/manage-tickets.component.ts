@@ -14,7 +14,8 @@ export class ManageTicketsComponent implements OnInit {
 
   constructor(private _adminService: AdminService, private _notification: NotificationService) {
     this.myForm = new FormGroup({
-      'subject': new FormControl('', [Validators.required, Validators.minLength(3)])
+      'subject': new FormControl('', [Validators.required, Validators.minLength(3)]),
+      'subjectGroup': new FormControl()
     })
   }
 

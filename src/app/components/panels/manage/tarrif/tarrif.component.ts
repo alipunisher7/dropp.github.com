@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AdminService, NotificationService } from 'services';
-import { NotificationTypes, Notification } from 'models'
+import { NotificationTypes, Notification, ITarrif } from 'models'
 
 @Component({
   selector: 'ts-tarrif',
@@ -11,7 +11,7 @@ import { NotificationTypes, Notification } from 'models'
 export class TarrifComponent implements OnInit {
 
   myForm: FormGroup;
-
+  Tarrifs: ITarrif[];
   constructor(private _adminService: AdminService, private _notification: NotificationService) {
     this.myForm = new FormGroup({
       'city': new FormControl('', Validators.required),
@@ -22,12 +22,13 @@ export class TarrifComponent implements OnInit {
       'waitingMin': new FormControl('', Validators.required),
       'entrance': new FormControl('', Validators.required),
       // 'twoWayCostPercentage': new FormControl('', Validators.required)
+      // 'co_share': new FormControl('', Validators.required)
 
     });
   }
 
   viewTarrif() {
-    this._adminService.viewTarrif().subscribe();
+    this._adminService.viewTarrif().subscribe(res => this.Tarrifs = res);
   }
 
   onSubmit() {

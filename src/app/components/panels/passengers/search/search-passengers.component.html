@@ -1,17 +1,17 @@
 <h2>مسافر ها</h2>
 <input type="search" name="searchPassengers" class="form-ctrl search" placeholder="جستجو ..." (keyup)="OnSearch()" [(ngModel)]="searchStr">
-<table class="table" *ngIf="passengers">
+<table class="table" >
   <thead>
     <tr>
       <th>نام کاربری</th>
       <th>شماره‌همراه</th>
       <th>موجودی حساب</th>
       <th>وضعیت</th>
-      <th *ngIf="passengers.stateCode!== -1">بن کردن</th>
+      <th>بن کردن</th>
       <th>اطلاعات بیشتر</th>
     </tr>
   </thead>
-  <tbody>
+  <tbody *ngIf="passengers">
     <tr >
     <td>{{passengers.username}}</td>
     <td></td>
@@ -20,7 +20,7 @@
     <td *ngIf="passengers.stateCode===0">غیر فعال</td>
     <td *ngIf="passengers.stateCode===-1">بن شده</td>
     <td *ngIf="passengers.stateCode!== -1"><button (click)="banPassenger(passengers.username)">بن</button></td>
-    <td><button (click)="onMoreClick(passengers)">کلیک</button></td>
+    <td><button (click)="onMoreClick(passengers)" [disabled]="passengers.stateCode===-1">کلیک</button></td>
     </tr>
   </tbody>
 </table>

@@ -19,28 +19,34 @@ export class ManageSearchRadiusComponent implements OnInit {
     });
   }
 
-  onChange(data) {
-    data = { serviceType: data };
-    console.log(data);
-    this.myForm.controls['radius'].setValue('');
-
-    this._adminService.viewRadius(data).subscribe(
-      res => {
-        this.myForm.controls['radius'].setValue(res);
-      },
-      err => {
-        let notification = new Notification({
-          title: 'عدم وجود مقدار',
-          info: 'برای این سرویس محدوده تعیین نشده است',
-          type: NotificationTypes.warning
-        });
-
-        this._notification.notify(notification);
-      });
-  }
+  // onChange(data) {
+  //   data = { serviceType: data };
+  //   console.log(data);
+  //   this.myForm.controls['radius'].setValue('');
+  //
+  //   this._adminService.viewRadius(data).subscribe(
+  //     res => {
+  //       this.myForm.controls['radius'].setValue(res);
+  //     },
+  //     err => {
+  //       let notification = new Notification({
+  //         title: 'عدم وجود مقدار',
+  //         info: 'برای این سرویس محدوده تعیین نشده است',
+  //         type: NotificationTypes.warning
+  //       });
+  //
+  //       this._notification.notify(notification);
+  //     });
+  // }
 
   onSubmit() {
-    this._adminService.submitRadius(this.myForm.value).subscribe(console.log);
+    this._adminService.submitRadius(this.myForm.value).subscribe(
+      res => {
+        let notification = new Notification({ title: 'ثبت شد', info: `شعاع جستجو جدید ثبت شد`, type: NotificationTypes.success });
+        this._notification.notify(notification);
+      },
+      error => { alert(error); }
+    );
   }
 
   ngOnInit() {

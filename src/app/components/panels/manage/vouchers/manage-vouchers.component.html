@@ -1,3 +1,37 @@
-<p>
-  manage-vouchers works!
-</p>
+<h2>ایجاد کد تخفیف</h2>
+<form [formGroup]='myForm' (ngSubmit)="onSubmit()" >
+  <div>
+      <label>توضیحات<input type="text" name="description" value="" formControlName="description"></label>
+  </div>
+  <div>
+    <label>نوع کد تخفیف
+      <select  name="voucher_code_type" formControlName="voucher_code_type">
+        <option value="percent">درصد</option>
+        <option value="price">مبلغ</option>
+      </select>
+    </label>
+  </div>
+  <div>
+    <label>میزان تخفیف<input type="number" name="discount_value" value="" formControlName="discount_value"></label>
+  </div>
+  <div>
+    <label>کد<input type="text" name="code" value="" formControlName="code"></label>
+    <span>*کد تخفیف میتواند به صورت خودکار نیز ایجاد شود. برای این کار فیلد کد را خالی بگذارید*</span>
+  </div>
+  <div>
+    <label>تاریخ شروع<input type="date" name="start_date" value="" formControlName="start_date"></label>
+  </div>
+  <div>
+    <label>تاریخ انقضا<input type="date" name="expire_date" value="" formControlName="expire_date"></label>
+  </div>
+  <div>
+    <label>حداکثر تعداد قابل استفاده<input type="number" name="max_use" value="" formControlName="max_use"></label>
+  </div>
+  <div>
+    <label>تعداد کد<input type="number" name="count" value="" formControlName="count"></label>
+  </div>
+
+  <div>
+    <button type="submit" [disabled]="!myForm.valid">ثبت</button>
+  </div>
+</form>
