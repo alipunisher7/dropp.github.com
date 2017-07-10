@@ -20,7 +20,7 @@
         "objects": "only-multiline",
         "imports": "never",
         "exports": "never",
-        "functions": "never",
+        "functions": "never"
     }],
     "no-cond-assign": [1,"except-parens"],
     "no-console": 0,
@@ -155,7 +155,6 @@
     "no-underscore-dangle": 1,
     "no-unneeded-ternary": 1,
     "object-curly-spacing": [1,"never",{"arraysInObjects":true,"objectsInObjects":true}],
-    # "one-var": [1,"Error parsing input"],
     "operator-assignment": [1,"always"],
     "operator-linebreak": [1,"after"],
     "padded-blocks": [1,"never"],

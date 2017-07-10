@@ -6,6 +6,7 @@
 @import 'assets/scss/grid';
 
 body {
+  font-size: $body-size;
   color: $text;
 }
 
@@ -57,7 +58,8 @@ body {
   background: $background-out;
 
   th {
-    padding: 10px 0;
+    padding: $table-padding;
+    text-align: right;
 
     tr {
       background: $background;
@@ -65,11 +67,24 @@ body {
   }
 
   tbody {
-    tr {
+    tr:not(.no-data) {
+      &:nth-child(odd) {
+        background: $background;
+      }
+
+      &:hover {
+        background: $background-in;
+      }
+    }
+
+    td {
+      padding: $table-padding;
     }
   }
 
   .no-data {
+    background: $background;
+
     td {
       text-align: center;
       padding: 1em 0;

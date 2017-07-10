@@ -1,1 +1,1 @@
-export { SupportPanel } from './support.panel';
+export * from './support.panel';
