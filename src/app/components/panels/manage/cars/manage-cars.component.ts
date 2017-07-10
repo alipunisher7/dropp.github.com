@@ -16,7 +16,7 @@ export class ManageCarsComponent implements OnInit {
   constructor(private _adminService: AdminService, private _notification: NotificationService) {
     this.myForm = new FormGroup({
       'manufactureID': new FormControl('', Validators.required),
-      'name': new FormControl('', [Validators.required, Validators.minLength(3)])
+      'name': new FormControl('', [Validators.required, Validators.minLength(2)])
     });
   }
 

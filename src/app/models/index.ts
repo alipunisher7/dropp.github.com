@@ -9,3 +9,4 @@ export * from './notification.model';
 export * from './user.model';
 export * from './organization.model';
 export * from './services.model';
+export * from './tarrif.model';

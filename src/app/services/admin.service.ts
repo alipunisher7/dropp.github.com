@@ -152,7 +152,7 @@ export class AdminService {
           let error = { url: this.submitRadiusUrl, status: json.status, statusCode: json.statusCode };
           throw error;
         }
-        return json;
+        return true;
       })
       .catch(this.handleError);
   }
@@ -165,10 +165,18 @@ export class AdminService {
       });
   }
 
-  getVoucher() {
+  getVoucher(data) {
     return this._http
-      .get(this.voucherRegisterUrl)
-      .map(data => data.json());
+      .post(this.voucherRegisterUrl, data)
+      .map(res => {
+        let json = res.json();
+        if (json.statusCode !== 1) {
+          let error = { url: this.voucherRegisterUrl, status: json.status, statusCode: json.statusCode };
+          throw error;
+        }
+        return json.data;
+      })
+      .catch(this.handleError);
   }
 
   insertTicketSubject(data) {

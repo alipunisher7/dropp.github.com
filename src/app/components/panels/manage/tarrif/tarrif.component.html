@@ -1,4 +1,27 @@
 <h2>تعرفه ها</h2>
+<h3>نمایش تعرفه ها</h3>
+<table class="table">
+  <thead>
+    <tr>
+      <th>شهر</th>
+      <th>سرویس</th>
+      <th>هزینه هر متر قبل از 2 کیلومتر</th>
+      <th>هزینه هر متر بعد از دو کیلومتر</th>
+      <th>هزینه هر دقیقه سفر</th>
+      <th>هزینه هر دقیقه انتظار</th>
+      <th>هزینه ورودی</th>
+      <th>درصد سفر بازگشت</th>
+      <th>درصد سهم شرکت</th>
+      <th>ویرایش</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+<h3>اضافه کردن تعرفه</h3>
 <form [formGroup]='myForm' (ngSubmit)="onSubmit()" >
   <div>
     <label>شهر</label>
@@ -46,6 +69,10 @@
   <!-- <div>
     <label >درصد سفر بازگشت</label>
     <input type="text" name="twoWayCostPercentage" formControlName="twoWayCostPercentage" >
+  </div> -->
+  <!-- <div>
+    <label >درصد سهم شرکت</label>
+    <input type="text" name="co_share" formControlName="co_share" >
   </div> -->
   <div>
     <button type="submit" name="submitAddTarrif" [disabled]="!myForm.valid">ثبت</button>
