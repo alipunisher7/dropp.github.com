@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { AdminService } from 'services';
+import { AdminService, NotificationService } from 'services';
 import { FormGroup, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
+import {IServices, Notification, NotificationTypes} from 'models';
 
 @Component({
   selector: 'ts-active-services',
@@ -10,26 +11,31 @@ import { FormGroup, FormControl, ReactiveFormsModule, Validators } from '@angula
 export class ActiveServicesComponent implements OnInit {
 
   myForm: FormGroup;
+  activeServices: IServices[];
 
-  constructor(private _adminService: AdminService) {
+  constructor(private _adminService: AdminService, private _notification: NotificationService) {
     this.myForm = new FormGroup({
       'city': new FormControl('', Validators.required),
-      'normal': new FormControl(),
-      'eco': new FormControl(),
-      'taxi': new FormControl(),
-      'suv': new FormControl(),
-      'lux': new FormControl(),
-      'motor_transport': new FormControl(),
-      'motor_delivery': new FormControl()
+      'serviceType': new FormControl('', Validators.required)
     })
   }
 
-  viewActiveServices() {
-    this._adminService.viewActiveServices().subscribe();
+  // viewActiveServices() {
+  //   this._adminService.viewActiveServices().subscribe();
+  // }
+  onChange(data) {
+    data = { city: data };
+    this._adminService.getActiveServices(data).subscribe(res => this.activeServices = res)
   }
 
   onSubmit() {
-    this._adminService.submitActiveServices(this.myForm.value).subscribe();
+    this._adminService.submitActiveServices(this.myForm.value).subscribe(res => {
+      let notification = new Notification({ title: 'ثبت شد', info: `سرویس جدید ثبت شد`, type: NotificationTypes.success });
+      this._notification.notify(notification);
+    },
+      err => {
+        alert(err);
+      });
   }
 
   ngOnInit() {

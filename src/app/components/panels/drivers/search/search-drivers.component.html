@@ -1,6 +1,6 @@
 <h2>راننده ها</h2>
 <input class="search form-ctrl" type="search" name="searchDrivers" placeholder="جستجو ..." (keyup)="OnSearch()" [(ngModel)]="searchStr">
-<table class="table">
+<table class="table" *ngIf="drivers">
   <thead>
     <tr>
       <th>نام راننده</th>
@@ -14,7 +14,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngIf="drivers">
+    <tr >
       <td>{{drivers.firstName}}</td>
       <td>{{drivers.lastName}}</td>
       <td>{{drivers.username}}</td>

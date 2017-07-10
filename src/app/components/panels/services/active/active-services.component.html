@@ -1,40 +1,47 @@
-<!-- <form [formGroup]='myForm' (ngSubmit)="onSubmit()" >
-  <div>
-    <select  formControlName="city">
-      <option value="">شهر را انتخاب کنید</option>
-      <option value="tehran">تهران</option>
-      <option value="mashhad">مشهد</option>
-      <option value="esfehan">اصفهان</option>
-      <option value="gorgan">گرگان</option>
-    </select>
-  </div>
-    <div>
-      <label>سرویس نرمال<input type="checkbox" name="activeServices" formControlName="N" value="N"></label>
-      <label>سرویس اکو<input type="checkbox" name="activeServices" formControlName="E" value="E"></label>
-      <label>سرویس تاکسی<input type="checkbox" name="activeServices" formControlName="T" value="T"></label>
-      <label>سرویس موتور<input type="checkbox" name="activeServices" formControlName="D" value="D"></label>
-      <label>سرویس SUV<input type="checkbox" name="activeServices" formControlName="S"  value="S"></label>
-      <label>سرویس لوکس<input type="checkbox" name="activeServices" formControlName="L" value="L"></label>
-      <label>سرویس پیک<input type="checkbox" name="activeServices" formControlName="R" value="R"></label>
-    </div>
-    <div>
-      <button type="submit" name="submitTarrif">ثبت</button>
-    </div>
-</form> -->
 <h2>سرویس های فعال</h2>
-<table>
+<div>
+  <select  (change)=onChange($event.target.value) >
+    <option value="">شهر را انتخاب کنید</option>
+    <option value="TE">تهران</option>
+    <option value="MA">مشهد</option>
+    <option value="IS">اصفهان</option>
+    <option value="GO">گرگان</option>
+  </select>
+</div>
+<table class="table">
   <thead>
     <tr>
-      <th>شهر</th>
       <th>سرویس</th>
       <th>وضعیت</th>
-      <th>غیر فعال کردن</th>
+      <th >غیر فعال کردن</th>
     </tr>
   </thead>
   <tbody>
-    <tr>
-
+    <tr *ngFor="let activeService of activeServices">
+      <td>{{activeService.type}}</td>
+      <td *ngIf="activeService.status===true">فعال</td>
+      <td><button>کلیک</button></td>
     </tr>
   </tbody>
 </table><br>
-<button >فعال کردن سرویس جدید</button>
+<h2>فعال کردن سرویس جدید</h2>
+ <form [formGroup]='myForm' (ngSubmit)="onSubmit()" >
+   <select formControlName="city"  >
+     <option value="">شهر را انتخاب کنید</option>
+     <option value="TE">تهران</option>
+     <option value="MA">مشهد</option>
+     <option value="IS">اصفهان</option>
+     <option value="GO">گرگان</option>
+   </select>
+   <select formControlName="serviceType" >
+     <option value="">نوع سرویس را انتخاب کنید</option>
+     <option value="N">نرمال</option>
+     <option value="E">اکو</option>
+     <option value="T">تاکسی</option>
+     <option value="R">موتور</option>
+     <option value="D">پیک</option>
+     <option value="S">SUV</option>
+     <option value="L">لوکس</option>
+   </select>
+<button type="submit" name="submitActiveService" >ثبت</button>
+</form>

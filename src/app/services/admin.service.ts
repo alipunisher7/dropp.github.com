@@ -14,7 +14,7 @@ export class AdminService {
   private submitTarrifUrl: string;
   private insertManufactureUrl: string;
   private insertCarUrl: string;
-  private viewActiveServicesUrl: string;
+  private getActiveServicesUrl: string;
   private submitActiveServicesUrl: string;
   private viewRadiusUrl: string;
   private submitRadiusUrl: string;
@@ -26,8 +26,8 @@ export class AdminService {
     this.AddMOpUrl = "";
     this.viewTarrifUrl = "";
     this.submitTarrifUrl = `${ADMIN_API}/tariff/tariffRegister`;
-    this.viewActiveServicesUrl = "";
-    this.submitActiveServicesUrl = "";
+    this.getActiveServicesUrl = `${ADMIN_API}/viewActiveServices`;
+    this.submitActiveServicesUrl = `${ADMIN_API}/activeServiceRegister`;
     this.viewRadiusUrl = `${ADMIN_API}/viewSearchRadiusByServiceType`;
     this.submitRadiusUrl = `${ADMIN_API}/searchRadiusRegister`;
 
@@ -100,16 +100,32 @@ export class AdminService {
       .catch(this.handleError);
   }
 
-  viewActiveServices() {
+  getActiveServices(data) {
     return this._http
-      .get(this.viewActiveServicesUrl)
-      .map(res => res.json);
+      .post(this.getActiveServicesUrl, data)
+      .map(res => {
+        let json = res.json();
+        if (json.statusCode !== 1) {
+          let error = { url: this.getActiveServicesUrl, status: json.status, statusCode: json.statusCode };
+          throw error;
+        }
+        return json.data.activeServices;
+      })
+      .catch(this.handleError);
   }
 
   submitActiveServices(data) {
     return this._http
-      .post('', data)
-      .map(res => res);
+      .post(this.submitActiveServicesUrl, data)
+      .map(res => {
+        let json = res.json();
+        if (json.statusCode !== 1) {
+          let error = { url: this.submitActiveServicesUrl, status: json.status, statusCode: json.statusCode };
+          throw error;
+        }
+        return true;
+      })
+      .catch(this.handleError);
   }
 
   viewRadius(data) {

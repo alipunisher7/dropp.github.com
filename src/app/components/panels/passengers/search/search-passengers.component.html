@@ -1,6 +1,6 @@
 <h2>مسافر ها</h2>
 <input type="search" name="searchPassengers" class="form-ctrl search" placeholder="جستجو ..." (keyup)="OnSearch()" [(ngModel)]="searchStr">
-<table class="table">
+<table class="table" *ngIf="passengers">
   <thead>
     <tr>
       <th>نام کاربری</th>
@@ -12,7 +12,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngIf="passengers">
+    <tr >
     <td>{{passengers.username}}</td>
     <td></td>
     <td>{{passengers.credit}}</td>

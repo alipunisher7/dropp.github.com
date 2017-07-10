@@ -8,3 +8,4 @@ export * from './manufactures.model';
 export * from './notification.model';
 export * from './user.model';
 export * from './organization.model';
+export * from './services.model';
