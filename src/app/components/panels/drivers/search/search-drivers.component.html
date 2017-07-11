@@ -1,6 +1,6 @@
 <h2>راننده ها</h2>
 <input class="search form-ctrl" type="search" name="searchDrivers" placeholder="جستجو ..." (keyup)="OnSearch()" [(ngModel)]="searchStr">
-<table class="table" *ngIf="drivers">
+<table class="table" >
   <thead>
     <tr>
       <th>نام راننده</th>
@@ -9,12 +9,12 @@
       <th>نوع سرویس</th>
       <th>اعتبار حساب</th>
       <th>وضعیت</th>
-      <th *ngIf="drivers.stateCode!== -1">بن کردن</th>
+      <th>بن کردن</th>
       <th>اطلاعات بیشتر</th>
     </tr>
   </thead>
   <tbody>
-    <tr >
+    <tr *ngIf="drivers">
       <td>{{drivers.firstName}}</td>
       <td>{{drivers.lastName}}</td>
       <td>{{drivers.username}}</td>
@@ -25,7 +25,7 @@
       <td *ngIf="drivers.stateCode=== 1">در حال ثبت نام</td>
       <td *ngIf="drivers.stateCode=== 2">نیازمند تایید</td>
       <td *ngIf="drivers.stateCode=== 3">تایید شده</td>
-      <td *ngIf="drivers.stateCode!== -1"><button (click)="banDriver(drivers.username)">بن</button></td>
+      <td><button (click)="banDriver(drivers.username)" [disabled]="drivers.stateCode!== -1">بن</button></td>
       <td><button (click)="onMoreClick(drivers)">اطلاعات بیشتر</button></td>
     </tr>
     <tr *ngIf="!drivers" class="no-data">
