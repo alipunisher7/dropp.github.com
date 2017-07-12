@@ -4,6 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import { ServiceType } from 'models'
 import { OPERATOR_API } from 'configs';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/debounce';
 
 @Injectable()
 export class OperatorService {
@@ -123,8 +124,7 @@ export class OperatorService {
   }
 
   searchDrivers(data) {
-    data = { "username": data };
-    console.log(data);
+    data = { "q": data };
     return this._http.post(this.searchDriversUrl, data)
       .map(res => {
         let json = res.json();
@@ -132,7 +132,8 @@ export class OperatorService {
           let error = { url: this.searchDriversUrl, status: json.status, statusCode: json.statusCode };
           throw error;
         }
-        let data = json.data.Driver;
+        console.log(json);
+        let data = json.data.Drivers;
         return data;
       })
       .catch(this.handleError);

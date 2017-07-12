@@ -21,7 +21,6 @@ export class AuthHttpService {
     // headers.append('Authorization', 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbGkiLCJyb2xlIjoiQSIsImlzcyI6IkdFTk8gQ28iLCJpYXQiOjE0OTkyMzU0NzV9.TgJ0iRbFuNmQb38qQKgPD1l11D-xwRl0GSnGEEOViXxzKQ-ncdc_hXDzJwsdwv5Vg2CCvayYLii3q03YlMKtDg')
 
     headers.append('Content-Type', 'application/json');
-    console.log('Token: ', this._auth.token);
     headers.append('Authorization', this._auth.token)
 
     let options = new RequestOptions({ headers: headers });

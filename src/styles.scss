@@ -114,8 +114,8 @@ body {
   flex: 1;
   background: $background;
   overflow-y: auto;
+  padding: $container-padding;
 }
-
 
 .breadcrumb {
   padding: 8px 0;

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef } from '@angular/core';
 import { OperatorService, NotificationService} from '../../../../services';
 import { IDriver, Notification, NotificationTypes } from '../../../../models';
 
@@ -8,17 +8,19 @@ import { IDriver, Notification, NotificationTypes } from '../../../../models';
   styleUrls: ['./search-drivers.component.scss']
 })
 export class SearchDriversComponent implements OnInit {
-  searchStr: string;
+  query: string;
   drivers: IDriver[];
   selectedDriver: IDriver;
 
-  constructor(private _operatorServices: OperatorService, private _notification: NotificationService) { }
+  constructor(private _operatorServices: OperatorService, private _notification: NotificationService, private _el: ElementRef) {
+  }
 
   searchDrivers() {
-    this._operatorServices.searchDrivers(this.searchStr).subscribe(res => this.drivers = res);
+    this._operatorServices.searchDrivers(this.query).subscribe(res => this.drivers = res);
   }
 
   ngOnInit() {
+    const el = this._el.nativeElement.k
   }
 
   OnSearch() {
@@ -28,6 +30,7 @@ export class SearchDriversComponent implements OnInit {
   onMoreClick(data) {
     this.selectedDriver = data;
   }
+
   banDriver(data) {
     this._operatorServices.banDriver(data).subscribe(
       res => {

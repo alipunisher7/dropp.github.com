@@ -41,7 +41,7 @@ export class AuthService {
 
     let obs = this._http.post(`${API}/admin/login`, body, options)
       .map(this.handleAuthResonse)
-      .subscribe(console.warn);
+      .subscribe(_ => { console.log(`Loged in as ${this.currentUser.username}`); });
   }
 
   refreshToken() {
@@ -60,7 +60,7 @@ export class AuthService {
 
   handleAuthResonse = (res) => {
     let token = res.headers.get('Authorization');
-    console.log('Get token from server: ', token);
+    // console.log('Get token from server: ', token);
     this.setToken(token);
     if (res.ok && res.status !== 200) {
       let error = { request: 'login', ...res.json() };
