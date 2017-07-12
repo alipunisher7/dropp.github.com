@@ -29,7 +29,7 @@
       <option value="">شهر را انتخاب کنید</option>
       <option value="TE">تهران</option>
       <option value="MA">مشهد</option>
-      <option value="ES">اصفهان</option>
+      <option value="IS">اصفهان</option>
       <option value="GO">گرگان</option>
     </select>
   </div>
@@ -42,8 +42,8 @@
       <option value="T">تاکسی</option>
       <option value="S">SUV</option>
       <option value="L">لوکس</option>
-      <option value="MT">موتور</option>
-      <option value="MD">پیک</option>
+      <option value="R">موتور</option>
+      <option value="D">پیک</option>
     </select>
   </div>
   <div>
@@ -66,14 +66,14 @@
     <label >هزینه ورودی</label>
     <input type="text" name="entrance" formControlName="entrance" >
   </div>
-  <!-- <div>
+   <div>
     <label >درصد سفر بازگشت</label>
-    <input type="text" name="twoWayCostPercentage" formControlName="twoWayCostPercentage" >
-  </div> -->
-  <!-- <div>
+    <input type="text" name="twoWayCost" formControlName="twoWayCost" >
+  </div>
+   <div>
     <label >درصد سهم شرکت</label>
-    <input type="text" name="co_share" formControlName="co_share" >
-  </div> -->
+    <input type="text" name="coShare" formControlName="coShare" >
+  </div>
   <div>
     <button type="submit" name="submitAddTarrif" [disabled]="!myForm.valid">ثبت</button>
   </div>

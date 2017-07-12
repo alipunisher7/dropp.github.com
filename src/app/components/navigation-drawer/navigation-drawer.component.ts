@@ -42,7 +42,13 @@ export class NavigationDrawerComponent implements OnInit, AfterViewInit {
           { title: 'جستجوی سفر', icon: 'fa fa-user-o', route: 'search' }
         ]
       },
-      { title: 'اپراتورها', icon: 'fa fa-user-o', route: 'operators' },
+      {
+        title: 'اپراتورها', icon: 'fa fa-user-o', route: 'operators',
+        subNavs: [
+          { title: 'اضافه کردن اپراتور', icon: 'fa fa-user-o', route: 'add' },
+          { title: ' اضافه کردن اپراتور ارشد', icon: 'fa fa-user-o', route: 'add-master' }
+        ]
+      },
       {
         title: 'مدیریت', icon: 'fa fa-wrench', route: 'admin',
         subNavs: [

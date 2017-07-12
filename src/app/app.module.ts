@@ -93,6 +93,7 @@ import {
 import { SupportPanel } from 'components/panels/support';
 import { SearchTripsComponent } from './components/panels/trips/search/search-trips.component';
 import { SubscribeRegisterComponent } from './components/panels/passengers/subscribe-register/subscribe-register.component';
+import { AddMasterComponent } from './components/panels/operators/add-master/add-master.component';
 
 
 @NgModule({
@@ -153,7 +154,8 @@ import { SubscribeRegisterComponent } from './components/panels/passengers/subsc
     MdCardSubtitle,
     OperatorsPanel,
     SearchTripsComponent,
-    SubscribeRegisterComponent
+    SubscribeRegisterComponent,
+    AddMasterComponent
   ],
   imports: [
     BrowserModule,

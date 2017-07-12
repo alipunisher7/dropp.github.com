@@ -46,7 +46,7 @@ export class OperatorService {
     this.getBannedPassengersUrl = `${OPERATOR_API}/viewBanPassengers`;
     this.getOrganizationsUrl = ``;
     this.searchDriversCreditUrl = `${OPERATOR_API}/viewDriverCredit`;
-    this.searchDriversUrl = `${OPERATOR_API}/searchDriver`;
+    // this.searchDriversUrl = `${OPERATOR_API}/searchDriver`;
     this.searchPassengersUrl = `${OPERATOR_API}/searchPassenger`;
     this.banDriverUrl = `${OPERATOR_API}/banDriver`;
     this.banPassengerUrl = `${OPERATOR_API}/banPassenger`;
@@ -123,16 +123,15 @@ export class OperatorService {
   }
 
   searchDrivers(data) {
-    data = { "username": data };
-    console.log(data);
-    return this._http.post(this.searchDriversUrl, data)
+    this.searchDriversUrl = 'http://31.184.132.215:8080/geno/TSO/api/rest/operator/searchDriver?q=' + data;
+    return this._http.get(this.searchDriversUrl)
       .map(res => {
         let json = res.json();
         if (json.statusCode !== 1) {
           let error = { url: this.searchDriversUrl, status: json.status, statusCode: json.statusCode };
           throw error;
         }
-        let data = json.data.Driver;
+        let data = json.data.Drivers;
         return data;
       })
       .catch(this.handleError);
@@ -256,7 +255,9 @@ export class OperatorService {
           let error = { url: this.subscribeRegisterUrl, status: json.status, statusCode: json.statusCode };
           throw error;
         }
-        return true;
+        let data = json.data;
+        console.log(data);
+        return data;
       })
       .catch(this.handleError);
   }

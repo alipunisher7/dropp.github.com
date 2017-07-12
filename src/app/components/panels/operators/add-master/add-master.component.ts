@@ -4,11 +4,11 @@ import { AdminService, NotificationService } from 'services';
 import { Operator, Notification, NotificationTypes } from 'models';
 
 @Component({
-  selector: 'ts-add-operator',
-  templateUrl: './add-operator.component.html',
-  styleUrls: ['./add-operator.component.scss']
+  selector: 'ts-add-master',
+  templateUrl: './add-master.component.html',
+  styleUrls: ['./add-master.component.scss']
 })
-export class AddOperatorComponent implements OnInit {
+export class AddMasterComponent implements OnInit {
   myForm: FormGroup;
 
   constructor(private _adminService: AdminService, private _notification: NotificationService) {

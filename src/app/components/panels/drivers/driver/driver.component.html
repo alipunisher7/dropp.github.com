@@ -29,7 +29,8 @@
       <td>{{driver.username}}</td>
       <td>{{driver.serviceType}}</td>
       <td>{{driver.credit}}</td>
-      <td>{{driver.gender}}</td>
+      <td *ngIf="driver.gender=== 'MALE'">آقا</td>
+      <td *ngIf="driver.gender==='FEMALE'">خانم</td>
       <td>{{driver.birthDate}}</td>
       <td>{{driver.vehicle.car}}</td>
       <td>{{driver.vehicle.color}}</td>
@@ -37,7 +38,11 @@
       <td>{{driver.vehicle.buildDate}}</td>
       <td>{{driver.nationalNumber}}</td>
       <td>{{driver.registrationDate}}</td>
-      <td>{{driver.stateCode}}</td>
+      <td *ngIf="driver.stateCode=== -1">بن شده</td>
+      <td *ngIf="driver.stateCode=== 0">غیر فعال</td>
+      <td *ngIf="driver.stateCode=== 1">در حال ثبت نام</td>
+      <td *ngIf="driver.stateCode=== 2">نیازمند تایید</td>
+      <td *ngIf="driver.stateCode=== 3">تایید شده</td>
       <td>{{driver.device.OS}}</td>
       <td>{{driver.device.OSVersion}}</td>
       <td>{{driver.email}}</td>
