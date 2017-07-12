@@ -10,7 +10,35 @@
     <label>شماره تماس<input type="text" name="phoneNumber" formControlName="phoneNumber"></label>
   </div>
   <div>
-    <label>آدرس<input type="text" name="address" formControlName="address"></label>
+    <label>آدرس خط اول<input type="text" name="line1"  formControlName="line1"></label>
+  </div>
+  <div>
+    <label>آدرس خط دوم<input type="text" name="line2"  formControlName="line2"></label>
+  </div>
+  <div>
+    <label>کد پستی<input type="text" name="postalCode"  formControlName="postalCode"></label>
+  </div>
+  <div>
+    <div>
+      <label>استان</label>
+      <select  name="state" formControlName="state">
+        <option value="">استان را انتخاب کنید</option>
+        <option value="TE">تهران</option>
+        <option value="KH">خراسان</option>
+        <option value="IS">اصفهان</option>
+        <option value="GO">گلستان</option>
+      </select>
+    </div>
+  </div>
+  <div>
+    <label>شهر</label>
+    <select  name="city" formControlName="city">
+      <option value="">شهر را انتخاب کنید</option>
+      <option value="TE">تهران</option>
+      <option value="MA">مشهد</option>
+      <option value="IS">اصفهان</option>
+      <option value="GO">گرگان</option>
+    </select>
   </div>
   <div>
     <button type="submit" name="subscribeRegister" [disabled]="!myForm.valid">ثبت</button>

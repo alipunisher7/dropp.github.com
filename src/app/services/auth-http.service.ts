@@ -27,6 +27,12 @@ export class AuthHttpService {
     return options;
   }
 
+  search(url, params) {
+    let options = this.createRequestOptions();
+    options.search = params;
+    return this.http.get(url, options);
+  }
+
   get(url) {
     let options = this.createRequestOptions();
     return this.http.get(url, options);

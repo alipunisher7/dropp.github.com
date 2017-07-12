@@ -21,8 +21,8 @@ export class TarrifComponent implements OnInit {
       'perMin': new FormControl('', Validators.required),
       'waitingMin': new FormControl('', Validators.required),
       'entrance': new FormControl('', Validators.required),
-      // 'twoWayCostPercentage': new FormControl('', Validators.required)
-      // 'co_share': new FormControl('', Validators.required)
+      'twoWayCost': new FormControl('', Validators.required),
+      'coShare': new FormControl('', Validators.required)
 
     });
   }

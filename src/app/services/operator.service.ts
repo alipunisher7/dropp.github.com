@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { URLSearchParams } from '@angular/http';
 import { AuthHttpService } from './auth-http.service';
 import { Observable } from 'rxjs/Observable';
 import { ServiceType } from 'models'
@@ -124,15 +125,16 @@ export class OperatorService {
   }
 
   searchDrivers(data) {
-    data = { "q": data };
-    return this._http.post(this.searchDriversUrl, data)
+    let params: URLSearchParams = new URLSearchParams();
+    params.set('q', data);
+
+    return this._http.search(this.searchDriversUrl, params)
       .map(res => {
         let json = res.json();
         if (json.statusCode !== 1) {
           let error = { url: this.searchDriversUrl, status: json.status, statusCode: json.statusCode };
           throw error;
         }
-        console.log(json);
         let data = json.data.Drivers;
         return data;
       })
@@ -257,7 +259,9 @@ export class OperatorService {
           let error = { url: this.subscribeRegisterUrl, status: json.status, statusCode: json.statusCode };
           throw error;
         }
-        return true;
+        let data = json.data;
+        console.log(data);
+        return data;
       })
       .catch(this.handleError);
   }

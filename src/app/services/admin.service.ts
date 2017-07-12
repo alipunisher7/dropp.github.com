@@ -1,7 +1,7 @@
 import { Injectable  } from '@angular/core';
 import { AuthHttpService } from './auth-http.service';
 import { Observable } from 'rxjs/Observable';
-import { ADMIN_API, COP_API } from 'configs';
+import { ADMIN_API, COP_API, API } from 'configs';
 import 'rxjs/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
@@ -10,6 +10,7 @@ import 'rxjs/add/observable/throw';
 export class AdminService {
 
   private AddMOpUrl: string;
+  private AddOpUrl: string;
   private viewTarrifUrl: string;
   private submitTarrifUrl: string;
   private insertManufactureUrl: string;
@@ -23,10 +24,11 @@ export class AdminService {
   private submitTicketSubjectUrl: string;
 
   constructor(private _http: AuthHttpService) {
-    this.AddMOpUrl = "";
+    this.AddMOpUrl = `${API}/master/masterRegister`;
+    this.AddOpUrl = `${API}/master/operatorRegister`;
     this.viewTarrifUrl = "";
-    this.submitTarrifUrl = `${ADMIN_API}/tariff/tariffRegister`;
-    this.getActiveServicesUrl = `${ADMIN_API}/viewActiveServices`;
+    this.submitTarrifUrl = `${API}/tariff/tariffRegister`;
+    this.getActiveServicesUrl = `${ADMIN_API} /viewActiveServices`;
     this.submitActiveServicesUrl = `${ADMIN_API}/activeServiceRegister`;
     this.viewRadiusUrl = `${ADMIN_API}/viewSearchRadiusByServiceType`;
     this.submitRadiusUrl = `${ADMIN_API}/searchRadiusRegister`;
@@ -36,12 +38,34 @@ export class AdminService {
     this.insertCarUrl = `${COP_API}/carRegister`;
     this.getManufacturesUrl = `${COP_API}/allManufactures`;
     this.voucherRegisterUrl = "";
-    this.submitTicketSubjectUrl = "http://31.184.132.215:8080/geno/TSO/api/rest/master/ticketSubjectRegister";
+    this.submitTicketSubjectUrl = `${API}/master/ticketSubjectRegister`;
   }
 
   addMOp(data): Observable<any> {
-    return this._http.post('', data)
-      .map(res => res);
+    return this._http
+      .post(this.AddMOpUrl, data)
+      .map(res => {
+        let json = res.json();
+        if (json.statusCode !== 1) {
+          let error = { url: this.AddMOpUrl, status: json.status, statusCode: json.statusCode };
+          throw error;
+        }
+        return true;
+      })
+      .catch(this.handleError);
+  }
+  addOp(data): Observable<any> {
+    return this._http
+      .post(this.AddOpUrl, data)
+      .map(res => {
+        let json = res.json();
+        if (json.statusCode !== 1) {
+          let error = { url: this.AddOpUrl, status: json.status, statusCode: json.statusCode };
+          throw error;
+        }
+        return true;
+      })
+      .catch(this.handleError);
   }
 
   viewTarrif(): Observable<any> {
@@ -58,7 +82,7 @@ export class AdminService {
           let error = { url: this.submitTarrifUrl, status: json.status, statusCode: json.statusCode };
           throw error;
         }
-        return json;
+        return true;
       })
       .catch(this.handleError);
   }
