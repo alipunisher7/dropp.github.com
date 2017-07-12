@@ -1,11 +1,6 @@
 <h2>راننده ها</h2>
-<<<<<<< HEAD
-<input class="search form-ctrl" type="search" name="searchDrivers" placeholder="جستجو ..." (keyup)="OnSearch()" [(ngModel)]="query">
-<table class="table" *ngIf="drivers">
-=======
 <input class="search form-ctrl" type="search" name="searchDrivers" placeholder="جستجو ..." (keyup)="OnSearch()" [(ngModel)]="searchStr">
 <table class="table" >
->>>>>>> 0419e37405d47a021238c297668708d2ddf77448
   <thead>
     <tr>
       <th>نام راننده</th>
@@ -19,11 +14,7 @@
     </tr>
   </thead>
   <tbody>
-<<<<<<< HEAD
-    <tr>
-=======
     <tr *ngIf="drivers">
->>>>>>> 0419e37405d47a021238c297668708d2ddf77448
       <td>{{drivers.firstName}}</td>
       <td>{{drivers.lastName}}</td>
       <td>{{drivers.username}}</td>
