@@ -24,13 +24,13 @@ export class AdminService {
   private submitTicketSubjectUrl: string;
 
   constructor(private _http: AuthHttpService) {
-    this.AddMOpUrl = `${API}/master/masterRegister`;
+    this.AddMOpUrl = `${ADMIN_API}/masterRegister`;
     this.AddOpUrl = `${API}/master/operatorRegister`;
     this.viewTarrifUrl = "";
     this.submitTarrifUrl = `${API}/tariff/tariffRegister`;
     this.getActiveServicesUrl = `${ADMIN_API} /viewActiveServices`;
     this.submitActiveServicesUrl = `${ADMIN_API}/activeServiceRegister`;
-    this.viewRadiusUrl = `${ADMIN_API}/viewSearchRadiusByServiceType`;
+    this.viewRadiusUrl = `${ADMIN_API}/viewSearchRadius`;
     this.submitRadiusUrl = `${ADMIN_API}/searchRadiusRegister`;
 
     // TODO: test
@@ -152,16 +152,16 @@ export class AdminService {
       .catch(this.handleError);
   }
 
-  viewRadius(data) {
+  viewRadius() {
     return this._http
-      .post(this.viewRadiusUrl, data)
+      .get(this.viewRadiusUrl)
       .map(res => {
         let json = res.json();
         if (json.statusCode !== 1) {
           let error = { url: this.viewRadiusUrl, status: json.status, statusCode: json.statusCode };
           throw error;
         }
-        let data = json.data.searchRadius[0].radius;
+        let data = json.data.searchRadius;
         return data;
       })
       .catch(this.handleError);

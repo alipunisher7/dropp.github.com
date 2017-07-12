@@ -8,9 +8,15 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td></td>
-      <td></td>
+    <tr *ngFor="let radius of radiuses">
+      <td *ngIf="radius.serviceType === 'T'">تاکسی</td>
+      <td *ngIf="radius.serviceType === 'L'">لوکس</td>
+      <td *ngIf="radius.serviceType === 'N'">نرمال</td>
+      <td *ngIf="radius.serviceType === 'E'">اکو</td>
+      <td *ngIf="radius.serviceType === 'D'">پیک</td>
+      <td *ngIf="radius.serviceType === 'R'">موتور</td>
+      <td *ngIf="radius.serviceType === 'S'">SUV</td>
+      <td>{{radius.radius}}</td>
       <td><button>کلیک </button></td>
     </tr>
   </tbody>

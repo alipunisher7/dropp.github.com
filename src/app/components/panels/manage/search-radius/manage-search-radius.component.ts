@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AdminService, NotificationService } from 'services';
-import { Notification, NotificationTypes } from 'models';
+import { Notification, NotificationTypes, Radius } from 'models';
 
 @Component({
   selector: 'ts-manage-search-radius',
@@ -9,7 +9,7 @@ import { Notification, NotificationTypes } from 'models';
   styleUrls: ['./manage-search-radius.component.scss']
 })
 export class ManageSearchRadiusComponent implements OnInit {
-
+  radiuses: Radius[];
   myForm: FormGroup;
 
   constructor(private _adminService: AdminService, private _notification: NotificationService) {
@@ -19,25 +19,9 @@ export class ManageSearchRadiusComponent implements OnInit {
     });
   }
 
-  // onChange(data) {
-  //   data = { serviceType: data };
-  //   console.log(data);
-  //   this.myForm.controls['radius'].setValue('');
-  //
-  //   this._adminService.viewRadius(data).subscribe(
-  //     res => {
-  //       this.myForm.controls['radius'].setValue(res);
-  //     },
-  //     err => {
-  //       let notification = new Notification({
-  //         title: 'عدم وجود مقدار',
-  //         info: 'برای این سرویس محدوده تعیین نشده است',
-  //         type: NotificationTypes.warning
-  //       });
-  //
-  //       this._notification.notify(notification);
-  //     });
-  // }
+  viewRadius() {
+    this._adminService.viewRadius().subscribe(res => this.radiuses = res);
+  }
 
   onSubmit() {
     this._adminService.submitRadius(this.myForm.value).subscribe(
@@ -50,6 +34,7 @@ export class ManageSearchRadiusComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.viewRadius();
   }
 
 }

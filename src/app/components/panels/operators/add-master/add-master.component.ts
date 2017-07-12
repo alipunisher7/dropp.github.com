@@ -20,7 +20,7 @@ export class AddMasterComponent implements OnInit {
       'workPhoneCode': new FormControl('', Validators.minLength(3)),
       'workNumber': new FormControl('', Validators.minLength(7)),
       'phoneNumber': new FormControl('', Validators.required),
-      'email': new FormControl('a@.com', [Validators.required, Validators.pattern("[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?")]),
+      'email': new FormControl('', [Validators.required, Validators.pattern("[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?")]),
       'username': new FormControl('', [Validators.required, Validators.minLength(3)]),
       'userpassword': new FormGroup({
         'password': new FormControl('', [Validators.required, Validators.minLength(6)]),
@@ -37,8 +37,8 @@ export class AddMasterComponent implements OnInit {
   onSubmit() {
     let operator = this.convertOperatorData(this.myForm.value);
     console.log(operator);
-    this._adminService.addOp(operator).subscribe(res => {
-      let notification = new Notification({ title: 'ثبت شد', info: `اپراتور جدید ثبت شد`, type: NotificationTypes.success });
+    this._adminService.addMOp(operator).subscribe(res => {
+      let notification = new Notification({ title: 'ثبت شد', info: `اپراتور ارشد جدید ثبت شد`, type: NotificationTypes.success });
       this._notification.notify(notification);
     },
       err => {
