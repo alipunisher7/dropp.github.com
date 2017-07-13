@@ -9,18 +9,24 @@
   </thead>
   <tbody>
     <tr *ngFor="let radius of radiuses">
-      <td *ngIf="radius.serviceType === 'T'">تاکسی</td>
-      <td *ngIf="radius.serviceType === 'L'">لوکس</td>
-      <td *ngIf="radius.serviceType === 'N'">نرمال</td>
-      <td *ngIf="radius.serviceType === 'E'">اکو</td>
-      <td *ngIf="radius.serviceType === 'D'">پیک</td>
-      <td *ngIf="radius.serviceType === 'R'">موتور</td>
-      <td *ngIf="radius.serviceType === 'S'">SUV</td>
+      <td>{{radius.type}}</td>
       <td>{{radius.radius}}</td>
-      <td><button>کلیک </button></td>
+      <td><button (click)="changeRadius(radius)" >کلیک </button></td>
     </tr>
   </tbody>
 </table>
+<form [formGroup]="updateForm" (ngSubmit)="onUpdate()" *ngIf="selectedRadius">
+<h2>تغیر شعاع جستجو</h2>
+<div>
+  <label><input type="text" name="serviceTypeUpdate" disabled  formControlName="serviceTypeUpdate"></label>
+</div>
+<div>
+  <label><input type="number" name="radiusUpdate" formControlName="radiusUpdate"></label>
+</div>
+<div>
+  <button type="submit" name="updateRadius" [disabled]="!updateForm.valid">ثبت</button>
+</div>
+</form>
 <h2>اضافه کردن شعاع جستجو جدید</h2>
 <form [formGroup]="myForm" (ngSubmit)="onSubmit()" >
     <div>

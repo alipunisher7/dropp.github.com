@@ -1,4 +1,9 @@
-export class Radius {
+export interface IRadius {
+  serviceType: string;
+  radius: string;
+}
+
+export class Radius implements IRadius {
   serviceType: string;
   radius: string;
   serviceTypeNames = {
@@ -10,7 +15,12 @@ export class Radius {
     "R": "موتور",
     "D": "پیک"
   }
-  get status() {
+  get type() {
     return this.serviceTypeNames[this.serviceType];
+  }
+
+  constructor(radius: IRadius) {
+    this.serviceType = radius.serviceType;
+    this.radius = radius.radius;
   }
 }
