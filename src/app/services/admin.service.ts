@@ -1,8 +1,9 @@
 import { Injectable  } from '@angular/core';
+import { Response } from '@angular/http';
 import { AuthHttpService } from './auth-http.service';
 import { Observable } from 'rxjs/Observable';
-import { ADMIN_API, COP_API, API } from 'configs';
-import { Radius } from 'models';
+import { AdminApi } from 'configs';
+import { Radius, ApiError } from 'models';
 
 import 'rxjs/operator/map';
 import 'rxjs/add/operator/catch';
@@ -11,159 +12,62 @@ import 'rxjs/add/observable/throw';
 @Injectable()
 export class AdminService {
 
-  private AddMOpUrl: string;
-  private AddOpUrl: string;
-  private viewTarrifUrl: string;
-  private submitTarrifUrl: string;
-  private insertManufactureUrl: string;
-  private insertCarUrl: string;
-  private getActiveServicesUrl: string;
-  private submitActiveServicesUrl: string;
-  private getRadiusUrl: string;
-  private submitRadiusUrl: string;
-  private voucherRegisterUrl: string;
-  private getManufacturesUrl: string;
-  private submitTicketSubjectUrl: string;
-  private updateRadiusUrl: string;
+  constructor(private _http: AuthHttpService, private _adminApi: AdminApi) { }
 
-  constructor(private _http: AuthHttpService) {
-    this.AddMOpUrl = `${ADMIN_API}/masterRegister`;
-    this.AddOpUrl = `${API}/master/operatorRegister`;
-    this.viewTarrifUrl = "";
-    this.submitTarrifUrl = `${API}/tariff/tariffRegister`;
-    this.getActiveServicesUrl = `${ADMIN_API} /viewActiveServices`;
-    this.submitActiveServicesUrl = `${ADMIN_API}/activeServiceRegister`;
-    this.getRadiusUrl = `${ADMIN_API}/viewSearchRadius`;
-    this.submitRadiusUrl = `${ADMIN_API}/searchRadiusRegister`;
+  removeOperator(operatorId: string): Observable<any> {
+    let url = this._adminApi.deleteOperatorUrl(operatorId);
 
-    // TODO: test
-    this.insertManufactureUrl = `${COP_API}/manufactureRegister`;
-    this.insertCarUrl = `${COP_API}/carRegister`;
-    this.getManufacturesUrl = `${COP_API}/allManufactures`;
-    this.voucherRegisterUrl = "";
-    this.submitTicketSubjectUrl = `${API}/master/ticketSubjectRegister`;
-    this.updateRadiusUrl = `${ADMIN_API}/searchRadiusUpdate`;
-  }
-
-  addMOp(data): Observable<any> {
     return this._http
-      .post(this.AddMOpUrl, data)
-      .map(res => {
+      .delete(url)
+      .map((res: Response) => {
         let json = res.json();
         if (json.statusCode !== 1) {
-          let error = { url: this.AddMOpUrl, status: json.status, statusCode: json.statusCode };
-          throw error;
-        }
-        return true;
-      })
-      .catch(this.handleError);
-  }
-  addOp(data): Observable<any> {
-    return this._http
-      .post(this.AddOpUrl, data)
-      .map(res => {
-        let json = res.json();
-        if (json.statusCode !== 1) {
-          let error = { url: this.AddOpUrl, status: json.status, statusCode: json.statusCode };
-          throw error;
-        }
-        return true;
-      })
-      .catch(this.handleError);
-  }
-
-  viewTarrif(): Observable<any> {
-    return this._http.get('viewTarrifUrl')
-      .map(res => res.json);
-  }
-
-  submitTarrif(data) {
-    return this._http
-      .post(this.submitTarrifUrl, data)
-      .map(res => {
-        let json = res.json();
-        if (json.statusCode !== 1) {
-          let error = { url: this.submitTarrifUrl, status: json.status, statusCode: json.statusCode };
-          throw error;
-        }
-        return true;
-      })
-      .catch(this.handleError);
-  }
-
-  insertManufacture(data) {
-    return this._http
-      .post(this.insertManufactureUrl, data)
-      .map(res => res)
-      .catch(this.handleError);
-  }
-
-  getManufacture() {
-    return this._http
-      .get(this.getManufacturesUrl)
-      .map(res => {
-        let json = res.json();
-        if (json.statusCode !== 1) {
-          let error = { url: this.insertManufactureUrl, status: json.status, statusCode: json.statusCode };
-          throw error;
-        }
-
-        let data = json.data['All Manufacture'];
-        return data;
-      })
-      .catch(this.handleError);
-  }
-
-  insertCar(data) {
-    return this._http
-      .post(this.insertCarUrl, data)
-      .map(res => {
-        let json = res.json();
-        if (json.statusCode !== 1) {
-          let error = { url: this.insertCarUrl, status: json.status, statusCode: json.statusCode };
-          throw error;
+          throw new ApiError(url, json)
         }
         return json;
       })
       .catch(this.handleError);
   }
 
-  getActiveServices(data) {
+  insertMaster(master): Observable<any> {
+    let url = this._adminApi.insertMasterUrl;
+
     return this._http
-      .post(this.getActiveServicesUrl, data)
-      .map(res => {
+      .post(url, master)
+      .map((res: Response) => {
         let json = res.json();
         if (json.statusCode !== 1) {
-          let error = { url: this.getActiveServicesUrl, status: json.status, statusCode: json.statusCode };
-          throw error;
+          throw new ApiError(url, json)
         }
-        return json.data.activeServices;
+        return json;
       })
       .catch(this.handleError);
   }
 
-  submitActiveServices(data) {
+  insertService(service): Observable<any> {
+    let url = this._adminApi.insertServiceUrl;
+
     return this._http
-      .post(this.submitActiveServicesUrl, data)
-      .map(res => {
+      .post(url, service)
+      .map((res: Response) => {
         let json = res.json();
         if (json.statusCode !== 1) {
-          let error = { url: this.submitActiveServicesUrl, status: json.status, statusCode: json.statusCode };
-          throw error;
+          throw new ApiError(url, json)
         }
-        return true;
+        return json;
       })
       .catch(this.handleError);
   }
 
-  getRadius() {
+  getServicesOfCity(cityName: string): Observable<any> {
+    let url = this._adminApi.getServicesOfCityUrl(cityName);
+
     return this._http
-      .get(this.getRadiusUrl)
-      .map(res => {
+      .post(url, cityName)
+      .map((res: Response) => {
         let json = res.json();
         if (json.statusCode !== 1) {
-          let error = { url: this.getRadiusUrl, status: json.status, statusCode: json.statusCode };
-          throw error;
+          throw new ApiError(url, json)
         }
 
         let radiuses = json.data.searchRadius.map(_ => new Radius(_));
@@ -172,70 +76,82 @@ export class AdminService {
       .catch(this.handleError);
   }
 
-  submitRadius(data) {
-    return this._http
-      .post(this.submitRadiusUrl, data)
-      .map(res => {
-        let json = res.json();
-        if (json.statusCode !== 1) {
-          let error = { url: this.submitRadiusUrl, status: json.status, statusCode: json.statusCode };
-          throw error;
-        }
-        return true;
-      })
-      .catch(this.handleError);
-  }
-  updateRadius(data) {
-    console.log(data)
-    return this._http
-      .post(this.updateRadiusUrl, data)
-      .map(res => {
-        let json = res.json();
-        if (json.statusCode !== 1) {
-          let error = { url: this.updateRadiusUrl, status: json.status, statusCode: json.statusCode };
-          throw error;
-        }
-        return true;
-      })
-      .catch(this.handleError);
-  }
+  insertRadius(radius): Observable<any> {
+    let url = this._adminApi.insertRadius;
 
-  getManufactures() {
     return this._http
-      .get(this.getManufacturesUrl)
-      .map(data => {
-        return data.json();
-      });
-  }
-
-  getVoucher(data) {
-    return this._http
-      .post(this.voucherRegisterUrl, data)
-      .map(res => {
+      .post(url, radius)
+      .map((res: Response) => {
         let json = res.json();
         if (json.statusCode !== 1) {
-          let error = { url: this.voucherRegisterUrl, status: json.status, statusCode: json.statusCode };
-          throw error;
-        }
-        return json.data;
-      })
-      .catch(this.handleError);
-  }
-
-  insertTicketSubject(data) {
-    return this._http
-      .post(this.submitTicketSubjectUrl, data)
-      .map(res => {
-        let json = res.json();
-        if (json.statusCode !== 1) {
-          let error = { url: this.submitTicketSubjectUrl, status: json.status, statusCode: json.statusCode };
-          throw error;
+          throw new ApiError(url, json)
         }
         return json;
       })
       .catch(this.handleError);
   }
 
+  updateRadiusByServiceType(radius): Observable<any> {
+    let url = this._adminApi.updateRadiusOfServiceUrl(radius.serviceType);
+
+    let newRadius = { radius: radius.radius };
+
+    return this._http
+      .patch(url, newRadius)
+      .map((res: Response) => {
+        let json = res.json();
+        if (json.statusCode !== 1) {
+          throw new ApiError(url, json)
+        }
+
+        return json;
+      })
+      .catch(this.handleError);
+  }
+
+  getRadiusByServiceType(serviceType: string): Observable<any> {
+    let url = this._adminApi.getRadiusOfServiceUrl(serviceType);
+
+    return this._http
+      .get(url)
+      .map((res: Response) => {
+        let json = res.json();
+        if (json.statusCode !== 1) {
+          throw new ApiError(url, json)
+        }
+
+        return json;
+      })
+      .catch(this.handleError);
+  }
+
+  insertTarrif(data) {
+    let url = this._adminApi.insertTarrifUrl;
+
+    return this._http
+      .post(url, data)
+      .map((res: Response) => {
+        let json = res.json();
+        if (json.statusCode !== 1) {
+          throw new ApiError(url, json)
+        }
+        return json;
+      })
+      .catch(this.handleError);
+  }
+
+  // getVoucher(data) {
+  //   return this._http
+  //     .post(this.voucherRegisterUrl, data)
+  //     .map((res: Response) => {
+  //       let json = res.json();
+  //       if (json.statusCode !== 1) {
+  //         throw new ApiError(url, json)
+  //       }
+  //       return json.data;
+  //     })
+  //     .catch(this.handleError);
+  // }
 
   handleError(err: any) {
     if (err instanceof Response) {
