@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AdminService, NotificationService } from 'services';
-import { Notification, NotificationTypes } from 'models';
+import { Notification, NotificationTypes, Radius } from 'models';
 
 @Component({
   selector: 'ts-manage-search-radius',
@@ -9,35 +9,27 @@ import { Notification, NotificationTypes } from 'models';
   styleUrls: ['./manage-search-radius.component.scss']
 })
 export class ManageSearchRadiusComponent implements OnInit {
-
+  radiuses: Radius[];
   myForm: FormGroup;
-
+  updateForm: FormGroup;
+  selectedRadius: Radius;
   constructor(private _adminService: AdminService, private _notification: NotificationService) {
     this.myForm = new FormGroup({
       'serviceType': new FormControl('', Validators.required),
       'radius': new FormControl('', Validators.required)
     });
+
+    this.updateForm = new FormGroup({
+      'serviceTypeUpdate': new FormControl('', Validators.required),
+      'radiusUpdate': new FormControl('', Validators.required)
+    });
   }
 
-  // onChange(data) {
-  //   data = { serviceType: data };
-  //   console.log(data);
-  //   this.myForm.controls['radius'].setValue('');
-  //
-  //   this._adminService.viewRadius(data).subscribe(
-  //     res => {
-  //       this.myForm.controls['radius'].setValue(res);
-  //     },
-  //     err => {
-  //       let notification = new Notification({
-  //         title: 'عدم وجود مقدار',
-  //         info: 'برای این سرویس محدوده تعیین نشده است',
-  //         type: NotificationTypes.warning
-  //       });
-  //
-  //       this._notification.notify(notification);
-  //     });
-  // }
+  getRadius() {
+    this._adminService.getRadius().subscribe((radiuses: Radius[]) => {
+      this.radiuses = radiuses;
+    });
+  }
 
   onSubmit() {
     this._adminService.submitRadius(this.myForm.value).subscribe(
@@ -49,7 +41,28 @@ export class ManageSearchRadiusComponent implements OnInit {
     );
   }
 
+  changeRadius(data: Radius) {
+    this.selectedRadius = data;
+    this.updateForm.controls['radiusUpdate'].setValue(data.radius);
+    this.updateForm.controls['serviceTypeUpdate'].setValue(data.serviceType);
+  }
+
+  onUpdate() {
+    let updateRadius = {
+      radius: this.updateForm.value['radiusUpdate'],
+      serviceType: this.updateForm.value['serviceTypeUpdate']
+    }
+    this._adminService.updateRadius(updateRadius).subscribe(
+      res => {
+        let notification = new Notification({ title: 'ثبت شد', info: `شعاع جستجو آپدیت شد`, type: NotificationTypes.success });
+        this._notification.notify(notification);
+      },
+      error => { alert(error); }
+    );
+  }
+
   ngOnInit() {
+    this.getRadius();
   }
 
 }

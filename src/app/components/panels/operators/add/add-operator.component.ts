@@ -20,7 +20,7 @@ export class AddOperatorComponent implements OnInit {
       'workPhoneCode': new FormControl('', Validators.minLength(3)),
       'workNumber': new FormControl('', Validators.minLength(7)),
       'phoneNumber': new FormControl('', Validators.required),
-      'email': new FormControl('a@.com', [Validators.required, Validators.pattern("[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?")]),
+      'email': new FormControl('', [Validators.required, Validators.pattern("[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?")]),
       'username': new FormControl('', [Validators.required, Validators.minLength(3)]),
       'userpassword': new FormGroup({
         'password': new FormControl('', [Validators.required, Validators.minLength(6)]),

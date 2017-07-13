@@ -2,6 +2,8 @@ import { Injectable  } from '@angular/core';
 import { AuthHttpService } from './auth-http.service';
 import { Observable } from 'rxjs/Observable';
 import { ADMIN_API, COP_API, API } from 'configs';
+import { Radius } from 'models';
+
 import 'rxjs/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
@@ -17,20 +19,21 @@ export class AdminService {
   private insertCarUrl: string;
   private getActiveServicesUrl: string;
   private submitActiveServicesUrl: string;
-  private viewRadiusUrl: string;
+  private getRadiusUrl: string;
   private submitRadiusUrl: string;
   private voucherRegisterUrl: string;
   private getManufacturesUrl: string;
   private submitTicketSubjectUrl: string;
+  private updateRadiusUrl: string;
 
   constructor(private _http: AuthHttpService) {
-    this.AddMOpUrl = `${API}/master/masterRegister`;
+    this.AddMOpUrl = `${ADMIN_API}/masterRegister`;
     this.AddOpUrl = `${API}/master/operatorRegister`;
     this.viewTarrifUrl = "";
     this.submitTarrifUrl = `${API}/tariff/tariffRegister`;
     this.getActiveServicesUrl = `${ADMIN_API} /viewActiveServices`;
     this.submitActiveServicesUrl = `${ADMIN_API}/activeServiceRegister`;
-    this.viewRadiusUrl = `${ADMIN_API}/viewSearchRadiusByServiceType`;
+    this.getRadiusUrl = `${ADMIN_API}/viewSearchRadius`;
     this.submitRadiusUrl = `${ADMIN_API}/searchRadiusRegister`;
 
     // TODO: test
@@ -39,6 +42,7 @@ export class AdminService {
     this.getManufacturesUrl = `${COP_API}/allManufactures`;
     this.voucherRegisterUrl = "";
     this.submitTicketSubjectUrl = `${API}/master/ticketSubjectRegister`;
+    this.updateRadiusUrl = `${ADMIN_API}/searchRadiusUpdate`;
   }
 
   addMOp(data): Observable<any> {
@@ -152,17 +156,18 @@ export class AdminService {
       .catch(this.handleError);
   }
 
-  viewRadius(data) {
+  getRadius() {
     return this._http
-      .post(this.viewRadiusUrl, data)
+      .get(this.getRadiusUrl)
       .map(res => {
         let json = res.json();
         if (json.statusCode !== 1) {
-          let error = { url: this.viewRadiusUrl, status: json.status, statusCode: json.statusCode };
+          let error = { url: this.getRadiusUrl, status: json.status, statusCode: json.statusCode };
           throw error;
         }
-        let data = json.data.searchRadius[0].radius;
-        return data;
+
+        let radiuses = json.data.searchRadius.map(_ => new Radius(_));
+        return radiuses;
       })
       .catch(this.handleError);
   }
@@ -174,6 +179,20 @@ export class AdminService {
         let json = res.json();
         if (json.statusCode !== 1) {
           let error = { url: this.submitRadiusUrl, status: json.status, statusCode: json.statusCode };
+          throw error;
+        }
+        return true;
+      })
+      .catch(this.handleError);
+  }
+  updateRadius(data) {
+    console.log(data)
+    return this._http
+      .post(this.updateRadiusUrl, data)
+      .map(res => {
+        let json = res.json();
+        if (json.statusCode !== 1) {
+          let error = { url: this.updateRadiusUrl, status: json.status, statusCode: json.statusCode };
           throw error;
         }
         return true;

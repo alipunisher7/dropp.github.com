@@ -8,13 +8,25 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td></td>
-      <td></td>
-      <td><button>کلیک </button></td>
+    <tr *ngFor="let radius of radiuses">
+      <td>{{radius.type}}</td>
+      <td>{{radius.radius}}</td>
+      <td><button (click)="changeRadius(radius)" >کلیک </button></td>
     </tr>
   </tbody>
 </table>
+<form [formGroup]="updateForm" (ngSubmit)="onUpdate()" *ngIf="selectedRadius">
+<h2>تغیر شعاع جستجو</h2>
+<div>
+  <label><input type="text" name="serviceTypeUpdate" disabled  formControlName="serviceTypeUpdate"></label>
+</div>
+<div>
+  <label><input type="number" name="radiusUpdate" formControlName="radiusUpdate"></label>
+</div>
+<div>
+  <button type="submit" name="updateRadius" [disabled]="!updateForm.valid">ثبت</button>
+</div>
+</form>
 <h2>اضافه کردن شعاع جستجو جدید</h2>
 <form [formGroup]="myForm" (ngSubmit)="onSubmit()" >
     <div>
