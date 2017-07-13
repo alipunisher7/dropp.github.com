@@ -18,6 +18,8 @@ body {
   border-radius: 3px;
   font-family: inherit;
   height: 30px;
+  border: 0;
+  padding: 0 15px;
 }
 
 %card {
@@ -47,6 +49,7 @@ body {
 
 .search {
   @extend %search-input;
+  width: 100%;
   flex: 1;
 }
 
@@ -93,16 +96,65 @@ body {
   }
 }
 
-.btn-outline {
+.btn {
   @extend %btn;
-  background: transparent;
-  border: 1px solid;
 
-  &.btn-accent {
-    border-color: $accent;
-    color: $accent;
+  &.error {
+    background: $error;
+  }
+
+  &.warning {
+    background: $warning;
+  }
+
+  &.success {
+    background: $success;
+  }
+
+  &.accent {
+    background: $accent;
+  }
+
+  &.outline {
+    @extend %btn;
+    background: transparent;
+    border: 1px solid;
+
+    &.error {
+      border-color: $error;
+      color: $error;
+    }
+
+    &.warning {
+      border-color: $warning;
+      color: $warning;
+    }
+
+    &.success {
+      border-color: $success;
+      color: $success;
+    }
+
+    &.accent {
+      border-color: $accent;
+      color: $accent;
+    }
   }
 }
+
+.btn:disabled {
+  background: $disable;
+  border: 0;
+  color: $text-disable;
+
+  &.outline {
+    border-color: $disable;
+    background: transparent;
+    border: 1px solid;
+    color: $text-gray;
+  }
+}
+
 
 .card {
   @extend %card;

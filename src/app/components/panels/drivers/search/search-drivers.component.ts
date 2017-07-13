@@ -8,7 +8,7 @@ import { IDriver, Notification, NotificationTypes } from '../../../../models';
   styleUrls: ['./search-drivers.component.scss']
 })
 export class SearchDriversComponent implements OnInit {
-  query: string;
+  query: string = '';
   drivers: IDriver[];
   selectedDriver: IDriver;
 
@@ -16,11 +16,13 @@ export class SearchDriversComponent implements OnInit {
   }
 
   searchDrivers() {
-    this._operatorServices.searchDrivers(this.query).subscribe(res => this.drivers = res);
+    // TODO: count and prefix
+    this._operatorServices.searchDrivers(this.query, 10, 0).subscribe(res => this.drivers = res);
   }
 
   ngOnInit() {
-    const el = this._el.nativeElement.k
+    // const el = this._el.nativeElement.k
+    this.searchDrivers();
   }
 
   OnSearch() {
@@ -36,6 +38,9 @@ export class SearchDriversComponent implements OnInit {
       res => {
         let notification = new Notification({ title: 'ثبت شد', info: `راننده مورد نظر بن شد`, type: NotificationTypes.success });
         this._notification.notify(notification);
+        console.log('res: ', res);
+        console.log('drivers: ', this.drivers);
+        // TODO: UPDATE UI
       },
       err => {
         alert(err);

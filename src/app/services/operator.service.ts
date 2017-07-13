@@ -124,9 +124,11 @@ export class OperatorService {
       .catch(this.handleError);
   }
 
-  searchDrivers(data) {
-    let params: URLSearchParams = new URLSearchParams();
-    params.set('q', data);
+  searchDrivers(data, count, offset) {
+    let params = new URLSearchParams();
+    params.append('q', data);
+    params.append('count', count);
+    params.append('offset', offset);
 
     return this._http.search(this.searchDriversUrl, params)
       .map(res => {
@@ -234,7 +236,7 @@ export class OperatorService {
           let error = { url: this.banDriverUrl, status: json.status, statusCode: json.statusCode };
           throw error;
         }
-        return true;
+        return data;
       })
       .catch(this.handleError);
   }

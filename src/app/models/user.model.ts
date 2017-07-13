@@ -1,17 +1,15 @@
-export enum gender { f, m }
-
-interface IUser {
+export interface IUser {
+  email?: string;
   username: string;
   password?: string;
   firstName?: string;
   lastName?: string;
   phoneNumber?: string;
-  email?: string;
   city?: string;
-  gender?: gender | string;
+  gender?: string;
 }
 
-export class User {
+export class User implements IUser {
   public username: string;
   public password?: string;
   public firstName?: string;
@@ -19,7 +17,7 @@ export class User {
   public phoneNumber?: string;
   public email?: string;
   public city?: string;
-  public gender?: gender | string;
+  public gender?: string;
 
   constructor(user: IUser) {
     this.username = user.username;
