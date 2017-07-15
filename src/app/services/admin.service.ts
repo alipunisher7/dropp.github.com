@@ -77,7 +77,7 @@ export class AdminService {
   }
 
   insertRadius(radius): Observable<any> {
-    let url = this._adminApi.insertRadius;
+    let url = this._adminApi.insertRadiusUrl;
 
     return this._http
       .post(url, radius)
@@ -109,6 +109,22 @@ export class AdminService {
       .catch(this.handleError);
   }
 
+  getRadiuses(): Observable<any> {
+    let url = this._adminApi.getRadiusesUrl;
+
+    return this._http
+      .get(url)
+      .map((res: Response) => {
+        let json = res.json();
+        if (json.statusCode !== 1) {
+          throw new ApiError(url, json)
+        }
+
+        return json;
+      })
+      .catch(this.handleError);
+  }
+
   getRadiusByServiceType(serviceType: string): Observable<any> {
     let url = this._adminApi.getRadiusOfServiceUrl(serviceType);
 
@@ -125,11 +141,11 @@ export class AdminService {
       .catch(this.handleError);
   }
 
-  insertTarrif(data) {
+  insertTarrif(tarrif) {
     let url = this._adminApi.insertTarrifUrl;
 
     return this._http
-      .post(url, data)
+      .post(url, tarrif)
       .map((res: Response) => {
         let json = res.json();
         if (json.statusCode !== 1) {
@@ -140,18 +156,12 @@ export class AdminService {
       .catch(this.handleError);
   }
 
-  // getVoucher(data) {
-  //   return this._http
-  //     .post(this.voucherRegisterUrl, data)
-  //     .map((res: Response) => {
-  //       let json = res.json();
-  //       if (json.statusCode !== 1) {
-  //         throw new ApiError(url, json)
-  //       }
-  //       return json.data;
-  //     })
-  //     .catch(this.handleError);
-  // }
+  getTarrif(): Observable<any> {
+    let url = this._adminApi.getTarrifUrl;
+
+    return this._http.get(url)
+      .map((res: Response) => res.json);
+  }
 
   handleError(err: any) {
     if (err instanceof Response) {

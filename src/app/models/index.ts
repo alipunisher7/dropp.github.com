@@ -12,3 +12,4 @@ export * from './services.model';
 export * from './tarrif.model';
 export * from './radius.model';
 export * from './api-error.model';
+export * from './search-param.model';

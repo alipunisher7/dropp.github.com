@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { URLSearchParams } from '@angular/http';
+import { URLSearchParams, Response } from '@angular/http';
 import { AuthHttpService } from './auth-http.service';
 import { Observable } from 'rxjs/Observable';
-import { ServiceType } from 'models'
+import { ServiceType, ApiError, ISearchParam } from 'models'
 import { OperatorApi } from 'configs';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/debounce';
@@ -10,101 +10,58 @@ import 'rxjs/add/operator/debounce';
 @Injectable()
 export class OperatorService {
 
-  constructor(private _http: AuthHttpService, private _operatorApi: OperatorApi) {}
+  constructor(private _http: AuthHttpService, private _operatorApi: OperatorApi) { }
 
-  getOnlineTrips(): Observable<any> {
-    let url = this._operatorApi;
-    return this._http.get(url).map(res => res.json);
-  }
+  insertSubscribe(subscribe) {
+    let url = this._operatorApi.insertSubscribeUrl;
 
-  getTodayTrips(): Observable<ServiceType> {
-    let url = this._operatorApi;
-    return this._http.get(url).map(res => new ServiceType(res.json));
-  }
-
-  getOnlineDrivers(): Observable<any> {
-
-let url = this._operatorApi;
-    return this._http.get(url).map(res => res.json().data);
-  }
-
-  getAllDrivers(): Observable<object> {
-    let url = this._operatorApi;
-    return this._http.get(url).map(res => res.json().data);
-  }
-
-  getNewPassengers(): Observable<any> {
-    let url = this._operatorApi;
-    return this._http.get(url).map(res => res.json);
-  }
-
-  getAllPassengers(): Observable<any> {
-    let url = this._operatorApi;
-    return this._http.get(url).map(res => res.json);
-  }
-
-  getNewOrganizations(): Observable<any> {
-    let url = this._operatorApi;
-    return this._http.get(url).map(res => res.json);
-  }
-
-  getAllOrganizations(): Observable<any> {
-    let url = this._operatorApi;
-    return this._http.get(url).map(res => res.json);
-  }
-
-  getOrganizations(data): Observable<any> {
-    data = { "username": data };
-    console.log(data);
-    let url = this._operatorApi;
-    return this._http.post(url, data)
-      .map(res => {
+    return this._http.post(url, subscribe)
+      .map((res: Response) => {
         let json = res.json();
         if (json.statusCode !== 1) {
-          let error = { url, status: json.status, statusCode: json.statusCode };
-          throw error;
+          throw new ApiError(url, json);
         }
-        // let data = json.data.Driver;
+        let data = json.data;
+        console.log(data);
         return data;
       })
       .catch(this.handleError);
   }
 
-  getDriverInfo(): Observable<any> {
-    let url = this._operatorApi;
-    return this._http.get(url).map(res => res.json);
-  }
+  confirmDriver(driver) {
+    let url = this._operatorApi.confirmDriverUrl(driver);
 
-  getLowRateDriver(): Observable<any> {
-    let url = this._operatorApi;
-    return this._http
-      .get(url)
-      .map(res => {
+    return this._http.post(url, driver)
+      .map((res: Response) => {
         let json = res.json();
         if (json.statusCode !== 1) {
-          let error = { url, status: json.status, statusCode: json.statusCode };
-          throw error;
+          throw new ApiError(url, json);
         }
-
-        let data = json.data.users.Drivers;
+        let data = json.data;
+        console.log(data);
         return data;
       })
       .catch(this.handleError);
   }
 
-  searchDrivers(data, count, offset) {
+  getDriver(username): Observable<any> {
+    let url = this._operatorApi.getDriverUrl(username);
+    return this._http.get(url).map((res: Response) => res.json);
+  }
+
+  searchDrivers(param: ISearchParam) {
+    let url = this._operatorApi.searchDriversUrl;
+
     let params = new URLSearchParams();
-    params.append('q', data);
-    params.append('count', count);
-    params.append('offset', offset);
+    params.append('q', param.query);
+    params.append('count', param.count);
+    params.append('offset', param.offset);
 
-let url = this._operatorApi;
     return this._http.search(url, params)
-      .map(res => {
+      .map((res: Response) => {
         let json = res.json();
         if (json.statusCode !== 1) {
-          let error = { url, status: json.status, statusCode: json.statusCode };
-          throw error;
+          throw new ApiError(url, json);
         }
         let data = json.data.Drivers;
         return data;
@@ -112,53 +69,58 @@ let url = this._operatorApi;
       .catch(this.handleError);
   }
 
-  searchPassengers(data) {
-    data = { "username": data };
-    console.log(data);
-    let url = this._operatorApi;
-    return this._http.post(url, data)
-      .map(res => {
+  getDriversCount() {
+    let url = this._operatorApi.getDriversCount;
+
+    return this._http.get(url)
+      .map((res: Response) => {
         let json = res.json();
         if (json.statusCode !== 1) {
-          let error = { url, status: json.status, statusCode: json.statusCode };
-          throw error;
+          throw new ApiError(url, json);
         }
-        let data = json.data.Passenger;
+        let data = json.data;
         return data;
       })
       .catch(this.handleError);
   }
 
-  searchTrips(str: string) {
+  getTodayTrips(): Observable<ServiceType> {
     let url = this._operatorApi;
-    return this._http.get(url).map(res => res.json());
+    return this._http.get(url).map((res: Response) => new ServiceType(res.json));
   }
 
-  searchDriversCredit(data) {
-    data = { "username": data };
-    let url = this._operatorApi;
-    return this._http.post(url, data)
-      .map(res => {
+  getOnlineDrivers(): Observable<any> {
+    let url = this._operatorApi.getOnlineDriversUrl;
+
+    return this._http
+      .get(url)
+      .map((res: Response) => res.json().data);
+  }
+
+  getOnlineDriversCount() {
+    let url = this._operatorApi.getOnlineDriversCountUrl;
+
+    return this._http
+      .get(url)
+      .map((res: Response) => {
         let json = res.json();
         if (json.statusCode !== 1) {
-          let error = { url, status: json.status, statusCode: json.statusCode };
-          throw error;
+          throw new ApiError(url, json);
         }
-        let data = json.data['driver'];
+        let data = json.data;
         return data;
       })
       .catch(this.handleError);
   }
 
   getDriversCredit() {
-    let url = this._operatorApi;
+    let url = this._operatorApi.getDriversCreditUrl;
     return this._http
       .get(url)
-      .map(res => {
+      .map((res: Response) => {
         let json = res.json();
         if (json.statusCode !== 1) {
-          let error = { url, status: json.status, statusCode: json.statusCode };
-          throw error;
+          throw new ApiError(url, json);
         }
 
         let data = json.data['driversCredit'];
@@ -168,15 +130,114 @@ let url = this._operatorApi;
       .catch(this.handleError);
   }
 
-  getBannedDrivers() {
-    let url = this._operatorApi;
+  getDriverCredit(username: string) {
+    let url = this._operatorApi.getDriverCreditUrl(username);
+
     return this._http
       .get(url)
-      .map(res => {
+      .map((res: Response) => {
         let json = res.json();
         if (json.statusCode !== 1) {
-          let error = { url, status: json.status, statusCode: json.statusCode };
-          throw error;
+          throw new ApiError(url, json);
+        }
+        let data = json.data['driver'];
+        return data;
+      })
+      .catch(this.handleError);
+  }
+
+  getLowRateDrivers(): Observable<any> {
+    let url = this._operatorApi.getLowRateDriversUrl;
+    return this._http
+      .get(url)
+      .map((res: Response) => {
+        let json = res.json();
+        if (json.statusCode !== 1) {
+          throw new ApiError(url, json);
+        }
+
+        let data = json.data.users.Drivers;
+        return data;
+      })
+      .catch(this.handleError);
+  }
+
+  searchPassengers(param: ISearchParam) {
+    let url = this._operatorApi.searchPassengersUrl;
+
+    let params = new URLSearchParams();
+    params.append('q', param.query);
+    params.append('count', param.count);
+    params.append('offset', param.offset);
+
+    return this._http.search(url, params)
+      .map((res: Response) => {
+        let json = res.json();
+        if (json.statusCode !== 1) {
+          throw new ApiError(url, json);
+        }
+        let data = json.data.Passenger;
+        return data;
+      })
+      .catch(this.handleError);
+  }
+
+  banPassenger(username: string) {
+    let url = this._operatorApi.banPassengerUrl;
+    let body = { username }
+
+    return this._http.post(url, body)
+      .map((res: Response) => {
+        let json = res.json();
+        if (json.statusCode !== 1) {
+          throw new ApiError(url, json);
+        }
+        return json;
+      })
+      .catch(this.handleError);
+  }
+
+  getBannedPassengers() {
+    let url = this._operatorApi.getBannedPassengersUrl;
+
+    return this._http
+      .get(url)
+      .map((res: Response) => {
+        let json = res.json();
+        if (json.statusCode !== 1) {
+          throw new ApiError(url, json);
+        }
+
+        let data = json.data['banPassengers'];
+        return data;
+      })
+      .catch(this.handleError);
+  }
+
+  banDriver(username: string) {
+    let url = this._operatorApi.banDriverUrl;
+    let body = { username };
+
+    return this._http.post(url, body)
+      .map((res: Response) => {
+        let json = res.json();
+        if (json.statusCode !== 1) {
+          throw new ApiError(url, json);
+        }
+        return json;
+      })
+      .catch(this.handleError);
+  }
+
+  getBannedDrivers() {
+    let url = this._operatorApi.getBannedDriversUrl;
+
+    return this._http
+      .get(url)
+      .map((res: Response) => {
+        let json = res.json();
+        if (json.statusCode !== 1) {
+          throw new ApiError(url, json);
         }
 
         let data = json.data['banDrivers'];
@@ -185,64 +246,117 @@ let url = this._operatorApi;
       .catch(this.handleError);
   }
 
-  getBannedPassengers() {
-    let url = this._operatorApi;
+  insertOrganization(): Observable<any> {
+    let url = this._operatorApi.insertOrganizationUrl;
+
     return this._http
       .get(url)
-      .map(res => {
-        let json = res.json();
-        if (json.statusCode !== 1) {
-          let error = { url, status: json.status, statusCode: json.statusCode };
-          throw error;
-        }
+      .map((res: Response) => res.json);
+  }
 
-        let data = json.data['banPassengers'];
-        return data;
-      })
-      .catch(this.handleError);
-  }
-  banDriver(data) {
-    data = { "username": data };
-    let url = this._operatorApi;
-    return this._http.post(url, data)
-      .map(res => {
+  getOrganization(username: string): Observable<any> {
+    let url = this._operatorApi.getOrganizationUrl(username);
+    return this._http.get(url)
+      .map((res: Response) => {
         let json = res.json();
         if (json.statusCode !== 1) {
-          let error = { url, status: json.status, statusCode: json.statusCode };
-          throw error;
-        }
-        return data;
-      })
-      .catch(this.handleError);
-  }
-  banPassenger(data) {
-    data = { "username": data };
-    let url = this._operatorApi;
-    return this._http.post(url, data)
-      .map(res => {
-        let json = res.json();
-        if (json.statusCode !== 1) {
-          let error = { url, status: json.status, statusCode: json.statusCode };
-          throw error;
-        }
-        return json;
-      })
-      .catch(this.handleError);
-  }
-  subscribeRegister(data) {
-    let url = this._operatorApi;
-    return this._http.post(url, data)
-      .map(res => {
-        let json = res.json();
-        if (json.statusCode !== 1) {
-          let error = { url, status: json.status, statusCode: json.statusCode };
-          throw error;
+          throw new ApiError(url, json);
         }
         let data = json.data;
-        console.log(data);
         return data;
       })
       .catch(this.handleError);
+  }
+
+  confirmOrganization(username: string): Observable<any> {
+    let url = this._operatorApi.getOrganizationUrl(username);
+    return this._http.post(url, undefined)
+      .map((res: Response) => {
+        let json = res.json();
+        if (json.statusCode !== 1) {
+          throw new ApiError(url, json);
+        }
+        let data = json.data;
+        return data;
+      })
+      .catch(this.handleError);
+  }
+
+  getOrganizations(): Observable<any> {
+    let url = this._operatorApi.getOrganizationsUrl;
+
+    return this._http.get(url)
+      .map((res: Response) => {
+        let json = res.json();
+        if (json.statusCode !== 1) {
+          throw new ApiError(url, json);
+        }
+        let data = json.data;
+        return data;
+      })
+      .catch(this.handleError);
+  }
+
+  removeOrganizations(username: string): Observable<any> {
+    let url = this._operatorApi.removeOrganizationsUrl(username);
+
+    return this._http.get(url)
+      .map((res: Response) => {
+        let json = res.json();
+        if (json.statusCode !== 1) {
+          throw new ApiError(url, json);
+        }
+        let data = json.data;
+        return data;
+      })
+      .catch(this.handleError);
+  }
+
+  getPassengersTicketForDriver(driverUsername): Observable<any> {
+    let url = this._operatorApi.getPassengersTicketForDriverUrl(driverUsername);
+
+    return this._http.get(url)
+      .map((res: Response) => {
+        let json = res.json();
+        if (json.statusCode !== 1) {
+          throw new ApiError(url, json);
+        }
+        let data = json.data;
+        return data;
+      })
+      .catch(this.handleError);
+  }
+
+  getTickets(): Observable<any> {
+    let url = this._operatorApi.getTicketsUrl;
+
+    return this._http.get(url).map((res: Response) => res.json);
+  }
+
+  getNewPassengers(): Observable<any> {
+    let url = this._operatorApi;
+    return this._http.get(url).map((res: Response) => res.json);
+  }
+
+  getNewOrganizations(): Observable<any> {
+    let url = this._operatorApi;
+    return this._http.get(url).map((res: Response) => res.json);
+  }
+
+  getAllOrganizations(): Observable<any> {
+    let url = this._operatorApi;
+    return this._http.get(url).map((res: Response) => res.json);
+  }
+
+  searchTrips(str: string) {
+    let url = this._operatorApi;
+    return this._http.get(url).map((res: Response) => res.json());
+  }
+
+  getOnlineTrips(): Observable<any> {
+    throw new Error('Not Implemented');
+    // let url = this._operatorApi.getOnlineTripsUrl;
+    // return this._http.get(url).map((res: Response) => res.json);
   }
 
   handleError(err: any) {
@@ -255,23 +369,6 @@ let url = this._operatorApi;
     }
     console.error(err);  // debug
     return Observable.throw(err || 'backend server error');
-  }
-
-  handleRespown(res) {
-    console.log(res);
-    console.log('res');
-    let json = res.json();
-
-    if (!json) {
-      throw new Error('Bad data');
-    }
-
-    switch (json.statusCode) {
-      case 1:
-        return json.data;
-      default:
-        throw new Error('Error');
-    }
   }
 
 }

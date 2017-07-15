@@ -1,10 +1,14 @@
 import { API_URL } from './api.provider';
+const masterApi = `${API_URL}/master`;
 
 export class MasterApi {
-  private masterApi = `${API_URL}/master`;
 
-  public insertOperator = `${this.masterApi}/operators`;
-  public removeOperator = (operatorId) => `${this.masterApi}/operators/${operatorId}`;
-  public getTarrifUrl = `${this.masterApi}/ticketSubjects`;
-  public insertTicketSubjectUrl = `${this.masterApi}/ticketSubjects`;
+  public insertOperatorUrl = `${masterApi}/operators`;
+  public removeOperatorUrl = (operatorId) => `${masterApi}/operators/${operatorId}`;
+
+  public insertTicketSubjectUrl = `${masterApi}/ticketSubjects`;
+  public getTicketSubjectsUrl = `${masterApi}/ticketSubjects`;
+
+  public insertVoucherUrl = `${masterApi}/vouchers`;
+  public getVouchersUrl = `${masterApi}/vouchers`;
 }

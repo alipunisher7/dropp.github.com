@@ -2,7 +2,7 @@ import { Injectable  } from '@angular/core';
 import { AuthHttpService } from './auth-http.service';
 import { Observable } from 'rxjs/Observable';
 import { COPApi } from 'configs';
-import { Radius } from 'models';
+import { Radius, ApiError } from 'models';
 
 import 'rxjs/operator/map';
 import 'rxjs/add/operator/catch';
@@ -31,8 +31,7 @@ export class CopService {
       .map(res => {
         let json = res.json();
         if (json.statusCode !== 1) {
-          let error = { url, status: json.status, statusCode: json.statusCode };
-          throw error;
+          throw new ApiError(url, json);
         }
 
         return json;
@@ -48,8 +47,7 @@ export class CopService {
       .map(res => {
         let json = res.json();
         if (json.statusCode !== 1) {
-          let error = { url, status: json.status, statusCode: json.statusCode };
-          throw error;
+          throw new ApiError(url, json);
         }
 
         return json;
@@ -65,8 +63,7 @@ export class CopService {
       .map(res => {
         let json = res.json();
         if (json.statusCode !== 1) {
-          let error = { url, status: json.status, statusCode: json.statusCode };
-          throw error;
+          throw new ApiError(url, json);
         }
 
         return json;
