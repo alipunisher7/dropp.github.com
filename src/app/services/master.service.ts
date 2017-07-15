@@ -87,15 +87,8 @@ export class MasterService {
       .catch(this.handleError);
   }
 
-  handleError(err: any) {
-    if (err instanceof Response) {
-      return Observable.throw(err.json().then(err => err) || 'backend server error');
-      // if you're using lite-server, use the following line
-      // instead of the line above:
-      //return Observable.throw(err.text() || 'backend server error');
-    }
-
-    console.error(err);  // debug
+  handleError(err: ApiError) {
+    console.error(err);
     return Observable.throw(err || 'backend server error');
   }
 }

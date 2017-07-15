@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
-import { User } from 'models';
+import { IUser, User } from 'models';
 import { API_URL } from 'configs';
 
 @Injectable()
@@ -30,8 +30,8 @@ export class AuthService {
     return token;
   }
 
-  login(user: User) {
-    this.currentUser = user;
+  login(user: IUser) {
+    this.currentUser = new User(user);
     console.log('Login In: ');
 
     let body = JSON.stringify(user);

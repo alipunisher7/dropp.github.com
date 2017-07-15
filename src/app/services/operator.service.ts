@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { URLSearchParams, Response } from '@angular/http';
 import { AuthHttpService } from './auth-http.service';
 import { Observable } from 'rxjs/Observable';
-import { ServiceType, ApiError, ISearchParam } from 'models'
+import { ServiceType, ApiError, ISearchParam, Driver } from 'models'
 import { OperatorApi } from './providers';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/debounce';
@@ -57,15 +57,14 @@ export class OperatorService {
     params.append('q', param.query);
     params.append('count', param.count);
     params.append('offset', param.offset);
-
     return this._http.search(url, params)
       .map((res: Response) => {
         let json = res.json();
         if (json.statusCode !== 1) {
           throw new ApiError(url, json);
         }
-        let data = json.data.Drivers;
-        return data;
+        let drivers = json.data.Drivers.map((driver) => new Driver(driver));
+        return drivers;
       })
       .catch(this.handleError);
   }
@@ -368,15 +367,8 @@ export class OperatorService {
   }
   // -- Not Implemented -- //
 
-  handleError(err: any) {
-    console.log('sever error:', err);  // debug
-    if (err instanceof Response) {
-      return Observable.throw(err.json().then(err => err) || 'backend server error');
-      // if you're using lite-server, use the following line
-      // instead of the line above:
-      //return Observable.throw(err.text() || 'backend server error');
-    }
-    console.error(err);  // debug
+  handleError(err: ApiError) {
+    console.error(err);
     return Observable.throw(err || 'backend server error');
   }
 

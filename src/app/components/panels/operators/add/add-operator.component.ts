@@ -52,12 +52,14 @@ export class AddOperatorComponent implements OnInit {
 
   convertOperatorData(data): Operator {
     let birthDate = new Date(data.birthDate);
-    let operator: Operator = {
+    let operator: Operator = new Operator({
       city: data.city,
-      day: birthDate.getDate(),
-      month: birthDate.getMonth() + 1,
-      year: birthDate.getFullYear(),
       email: data.email,
+      birthDate: {
+        day: birthDate.getDate(),
+        month: birthDate.getMonth() + 1,
+        year: birthDate.getFullYear()
+      },
       firstName: data.firstName,
       gender: data.gender,
       lastName: data.lastName,
@@ -65,7 +67,7 @@ export class AddOperatorComponent implements OnInit {
       phoneNumber: data.phoneNumber,
       username: data.username,
       workNumber: data.workPhoneCode + data.workNumber
-    };
+    });
 
     return operator;
   }
