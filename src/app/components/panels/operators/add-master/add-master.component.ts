@@ -37,7 +37,7 @@ export class AddMasterComponent implements OnInit {
   onSubmit() {
     let operator = this.convertOperatorData(this.myForm.value);
     console.log(operator);
-    this._adminService.addMOp(operator).subscribe(res => {
+    this._adminService.insertMaster(operator).subscribe(res => {
       let notification = new Notification({ title: 'ثبت شد', info: `اپراتور ارشد جدید ثبت شد`, type: NotificationTypes.success });
       this._notification.notify(notification);
     },

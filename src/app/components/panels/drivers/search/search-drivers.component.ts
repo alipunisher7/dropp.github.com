@@ -1,6 +1,6 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
-import { OperatorService, NotificationService} from '../../../../services';
-import { IDriver, Notification, NotificationTypes } from '../../../../models';
+import { OperatorService, NotificationService} from 'services';
+import { IDriver, Notification, NotificationTypes,ISearchParam } from 'models';
 
 @Component({
   selector: 'ts-search-drivers',
@@ -8,6 +8,7 @@ import { IDriver, Notification, NotificationTypes } from '../../../../models';
   styleUrls: ['./search-drivers.component.scss']
 })
 export class SearchDriversComponent implements OnInit {
+
   query: string = '';
   drivers: IDriver[];
   selectedDriver: IDriver;
@@ -17,7 +18,7 @@ export class SearchDriversComponent implements OnInit {
 
   searchDrivers() {
     // TODO: count and prefix
-    this._operatorServices.searchDrivers(this.query, 10, 0).subscribe(res => this.drivers = res);
+    this._operatorServices.searchDrivers({query: this.query}).subscribe(res => this.drivers = res);
   }
 
   ngOnInit() {

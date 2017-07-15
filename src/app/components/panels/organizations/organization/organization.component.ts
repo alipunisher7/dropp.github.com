@@ -15,7 +15,7 @@ export class OrganizationsComponent implements OnInit {
 
   searchOrganization() {
     this._operatorservice
-      .getOrganizations(this.searchStr)
+      .getOrganizations()
       .subscribe(res => this.OrganizationInfo = res);
   }
 

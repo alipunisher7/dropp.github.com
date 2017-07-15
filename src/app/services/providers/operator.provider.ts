@@ -1,4 +1,4 @@
-import { API_URL } from './api.provider';
+import { API_URL } from 'configs';
 const operatorApi = `${API_URL}/operator`;
 
 export class OperatorApi {

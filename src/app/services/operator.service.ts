@@ -3,7 +3,7 @@ import { URLSearchParams, Response } from '@angular/http';
 import { AuthHttpService } from './auth-http.service';
 import { Observable } from 'rxjs/Observable';
 import { ServiceType, ApiError, ISearchParam } from 'models'
-import { OperatorApi } from 'configs';
+import { OperatorApi } from './providers';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/debounce';
 
@@ -28,6 +28,7 @@ export class OperatorService {
       .catch(this.handleError);
   }
 
+  // -- Drivers -- //
   confirmDriver(driver) {
     let url = this._operatorApi.confirmDriverUrl(driver);
 
@@ -84,9 +85,36 @@ export class OperatorService {
       .catch(this.handleError);
   }
 
-  getTodayTrips(): Observable<ServiceType> {
-    let url = this._operatorApi;
-    return this._http.get(url).map((res: Response) => new ServiceType(res.json));
+  banDriver(username: string) {
+    let url = this._operatorApi.banDriverUrl;
+    let body = { username };
+
+    return this._http.post(url, body)
+    .map((res: Response) => {
+      let json = res.json();
+      if (json.statusCode !== 1) {
+        throw new ApiError(url, json);
+      }
+      return json;
+    })
+    .catch(this.handleError);
+  }
+
+  getBannedDrivers() {
+    let url = this._operatorApi.getBannedDriversUrl;
+
+    return this._http
+    .get(url)
+    .map((res: Response) => {
+      let json = res.json();
+      if (json.statusCode !== 1) {
+        throw new ApiError(url, json);
+      }
+
+      let data = json.data['banDrivers'];
+      return data;
+    })
+    .catch(this.handleError);
   }
 
   getOnlineDrivers(): Observable<any> {
@@ -161,7 +189,10 @@ export class OperatorService {
       })
       .catch(this.handleError);
   }
+  // -- Drivers -- //
 
+
+  // -- Passenger -- //
   searchPassengers(param: ISearchParam) {
     let url = this._operatorApi.searchPassengersUrl;
 
@@ -213,39 +244,9 @@ export class OperatorService {
       })
       .catch(this.handleError);
   }
+  // -- Passenger -- //
 
-  banDriver(username: string) {
-    let url = this._operatorApi.banDriverUrl;
-    let body = { username };
-
-    return this._http.post(url, body)
-      .map((res: Response) => {
-        let json = res.json();
-        if (json.statusCode !== 1) {
-          throw new ApiError(url, json);
-        }
-        return json;
-      })
-      .catch(this.handleError);
-  }
-
-  getBannedDrivers() {
-    let url = this._operatorApi.getBannedDriversUrl;
-
-    return this._http
-      .get(url)
-      .map((res: Response) => {
-        let json = res.json();
-        if (json.statusCode !== 1) {
-          throw new ApiError(url, json);
-        }
-
-        let data = json.data['banDrivers'];
-        return data;
-      })
-      .catch(this.handleError);
-  }
-
+  // -- Organization -- //
   insertOrganization(): Observable<any> {
     let url = this._operatorApi.insertOrganizationUrl;
 
@@ -311,6 +312,14 @@ export class OperatorService {
       })
       .catch(this.handleError);
   }
+  // -- Organization -- //
+
+  // -- Tickets -- //
+  getTickets(): Observable<any> {
+    let url = this._operatorApi.getTicketsUrl;
+
+    return this._http.get(url).map((res: Response) => res.json);
+  }
 
   getPassengersTicketForDriver(driverUsername): Observable<any> {
     let url = this._operatorApi.getPassengersTicketForDriverUrl(driverUsername);
@@ -326,38 +335,38 @@ export class OperatorService {
       })
       .catch(this.handleError);
   }
+  // -- Tickets -- //
 
-  getTickets(): Observable<any> {
-    let url = this._operatorApi.getTicketsUrl;
 
-    return this._http.get(url).map((res: Response) => res.json);
+  // -- Not Implemented -- //
+  getNewPassengersCount(): Observable<any> {
+    throw new Error('Not Implemented');
   }
 
-  getNewPassengers(): Observable<any> {
-    let url = this._operatorApi;
-    return this._http.get(url).map((res: Response) => res.json);
+  getPassengersCount(): Observable<any> {
+    throw new Error('Not Implemented');
   }
 
-  getNewOrganizations(): Observable<any> {
-    let url = this._operatorApi;
-    return this._http.get(url).map((res: Response) => res.json);
+  getOrganizationsCount(): Observable<any> {
+    throw new Error('Not Implemented');
   }
 
-  getAllOrganizations(): Observable<any> {
-    let url = this._operatorApi;
-    return this._http.get(url).map((res: Response) => res.json);
+  getNewOrganizationsCount(): Observable<any> {
+    throw new Error('Not Implemented');
+  }
+
+  getTodayTripsCount(): Observable<ServiceType> {
+    throw new Error('Not Implemented');
+  }
+
+  getOnlineTripsCount(): Observable<any> {
+    throw new Error('Not Implemented');
   }
 
   searchTrips(str: string) {
-    let url = this._operatorApi;
-    return this._http.get(url).map((res: Response) => res.json());
-  }
-
-  getOnlineTrips(): Observable<any> {
     throw new Error('Not Implemented');
-    // let url = this._operatorApi.getOnlineTripsUrl;
-    // return this._http.get(url).map((res: Response) => res.json);
   }
+  // -- Not Implemented -- //
 
   handleError(err: any) {
     console.log('sever error:', err);  // debug

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { API_URL } from './api.provider';
+import { API_URL } from 'configs';
 
 const adminApi = `${API_URL}/operator`;
 

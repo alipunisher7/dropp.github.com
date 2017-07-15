@@ -25,14 +25,14 @@ export class ManageSearchRadiusComponent implements OnInit {
     });
   }
 
-  getRadius() {
-    this._adminService.getRadius().subscribe((radiuses: Radius[]) => {
+  getRadiuses() {
+    this._adminService.getRadiuses().subscribe((radiuses: Radius[]) => {
       this.radiuses = radiuses;
     });
   }
 
   onSubmit() {
-    this._adminService.submitRadius(this.myForm.value).subscribe(
+    this._adminService.insertRadius(this.myForm.value).subscribe(
       res => {
         let notification = new Notification({ title: 'ثبت شد', info: `شعاع جستجو جدید ثبت شد`, type: NotificationTypes.success });
         this._notification.notify(notification);
@@ -48,11 +48,11 @@ export class ManageSearchRadiusComponent implements OnInit {
   }
 
   onUpdate() {
-    let updateRadius = {
+    let updatedRadius = {
       radius: this.updateForm.value['radiusUpdate'],
       serviceType: this.updateForm.value['serviceTypeUpdate']
     }
-    this._adminService.updateRadius(updateRadius).subscribe(
+    this._adminService.updateRadiusByServiceType(updatedRadius).subscribe(
       res => {
         let notification = new Notification({ title: 'ثبت شد', info: `شعاع جستجو آپدیت شد`, type: NotificationTypes.success });
         this._notification.notify(notification);
@@ -62,7 +62,7 @@ export class ManageSearchRadiusComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getRadius();
+    this.getRadiuses();
   }
 
 }

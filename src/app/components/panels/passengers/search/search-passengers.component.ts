@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { OperatorService, NotificationService } from 'services';
-import { IPassenger, Notification, NotificationTypes } from 'models';
+import { IPassenger, Notification, NotificationTypes, ISearchParam } from 'models';
 
 @Component({
   selector: 'ts-search-passengers',
@@ -9,14 +9,14 @@ import { IPassenger, Notification, NotificationTypes } from 'models';
 })
 export class SearchPassengersComponent implements OnInit {
 
-  searchStr: string;
+  query: string = '';
   passengers: IPassenger[];
   selectedPassenger: IPassenger;
 
   constructor(private _operatorServices: OperatorService, private _notification: NotificationService) { }
 
   searchPassengers() {
-    this._operatorServices.searchPassengers(this.searchStr).subscribe(res => this.passengers = res);
+    this._operatorServices.searchPassengers({query: this.query}).subscribe(res => this.passengers = res);
   }
 
   ngOnInit() {

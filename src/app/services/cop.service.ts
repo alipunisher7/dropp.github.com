@@ -1,7 +1,7 @@
 import { Injectable  } from '@angular/core';
 import { AuthHttpService } from './auth-http.service';
 import { Observable } from 'rxjs/Observable';
-import { COPApi } from 'configs';
+import { COPApi } from './providers';
 import { Radius, ApiError } from 'models';
 
 import 'rxjs/operator/map';
@@ -9,7 +9,6 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 
 @Injectable()
-
 export class CopService {
 
   constructor(private _http: AuthHttpService, private _copApi: COPApi) { }

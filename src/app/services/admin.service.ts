@@ -2,7 +2,7 @@ import { Injectable  } from '@angular/core';
 import { Response } from '@angular/http';
 import { AuthHttpService } from './auth-http.service';
 import { Observable } from 'rxjs/Observable';
-import { AdminApi } from 'configs';
+import { AdminApi } from './providers';
 import { Radius, ApiError } from 'models';
 
 import 'rxjs/operator/map';
