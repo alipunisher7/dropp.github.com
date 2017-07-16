@@ -1,4 +1,4 @@
-import { API_URL } from './api.provider';
+import { API_URL } from 'configs';
 const masterApi = `${API_URL}/master`;
 
 export class MasterApi {

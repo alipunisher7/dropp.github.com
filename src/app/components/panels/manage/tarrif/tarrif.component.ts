@@ -28,12 +28,12 @@ export class TarrifComponent implements OnInit {
   }
 
   viewTarrif() {
-    this._adminService.viewTarrif().subscribe(res => this.Tarrifs = res);
+    this._adminService.getTarrif().subscribe(res => this.Tarrifs = res);
   }
 
   onSubmit() {
     console.log(this.myForm.value)
-    this._adminService.submitTarrif(this.myForm.value).subscribe(
+    this._adminService.insertTarrif(this.myForm.value).subscribe(
       res => {
         let notification = new Notification({ title: 'ثبت شد', info: `تعرفه جدید ثبت شد`, type: NotificationTypes.success });
         this._notification.notify(notification);

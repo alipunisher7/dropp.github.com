@@ -12,8 +12,8 @@
     <tr *ngFor="let driverCredit of driverCredit">
       <td>{{driverCredit.user}}</td>
       <td>{{driverCredit.credit}}</td>
-      <td></td>
-      <td></td>
+      <td>{{driverCredit.cardNumber}}</td>
+      <td>{{driverCredit.accountNumber}}</td>
     </tr>
     <tr *ngIf="!driverCredit.length" class="no-data">
       <td colspan=75%>

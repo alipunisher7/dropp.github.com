@@ -1,5 +1,5 @@
 <h2>مسافر ها</h2>
-<input type="search" name="searchPassengers" class="form-ctrl search" placeholder="جستجو ..." (keyup)="OnSearch()" [(ngModel)]="searchStr">
+<input type="search" name="searchPassengers" class="form-ctrl search" placeholder="جستجو ..." (keyup)="OnSearch()" [(ngModel)]="query">
 <table class="table" >
   <thead>
     <tr>
@@ -12,15 +12,15 @@
     </tr>
   </thead>
   <tbody >
-    <tr *ngIf="passengers">
-    <td>{{passengers.username}}</td>
+    <tr *ngFor="let passenger of passengers">
+    <td>{{passenger.username}}</td>
     <td></td>
-    <td>{{passengers.credit}}</td>
-    <td *ngIf="passengers.stateCode===1">فعال</td>
-    <td *ngIf="passengers.stateCode===0">غیر فعال</td>
-    <td *ngIf="passengers.stateCode===-1">بن شده</td>
-    <td *ngIf="passengers.stateCode!== -1"><button (click)="banPassenger(passengers.username)">بن</button></td>
-    <td><button (click)="onMoreClick(passengers)" [disabled]="passengers.stateCode===-1">کلیک</button></td>
+    <td>{{passenger.credit}}</td>
+    <td *ngIf="passenger.stateCode===1">فعال</td>
+    <td *ngIf="passenger.stateCode===0">غیر فعال</td>
+    <td *ngIf="passenger.stateCode===-1">بن شده</td>
+    <td ><button class="btn outline error" (click)="banPassenger(passenger.username)" [disabled]="passenger.stateCode=== -1">بن</button></td>
+    <td><button class="btn accent" (click)="onMoreClick(passenger)" >اطلاعات بیشتر</button></td>
     </tr>
   </tbody>
 </table>

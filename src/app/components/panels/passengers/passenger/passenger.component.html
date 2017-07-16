@@ -1,23 +1,36 @@
 <h2>اطلاعات کامل مسافر</h2>
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>نام</th>
       <th>نام خانوادگی</th>
       <th>نام کاربری</th>
-      <th>اعتبار حساب</th>
       <th>جنسیت</th>
       <th>تاریخ تولد</th>
+      <th>ایمیل</th>
+      <th>شماره تلفن</th>
+      <th>اعتبار حساب</th>
       <th>وضعیت</th>
       <th>سیستم عامل</th>
       <th>نسخه سیستم عامل</th>
-      <th>ایمیل</th>
+      <th>تاریخ ثبت نام</th>
       <th>تعداد سفر</th>
     </tr>
   </thead>
   <tbody>
-    <tr >
-
+    <tr *ngIf="passenger" >
+        <!-- <td>{{passenger.passengerInfo.firstName}}</td>
+        <td>{{passenger.passengerInfo.lastName}}</td>
+        <td>{{passenger.username}}</td>
+        <td>{{passenger.passengerInfo.gender}}</td>
+        <td>{{passenger.passengerInfo.birthDate}}</td>
+        <td>{{passenger.passengerInfo.email}}</td>
+        <td>{{passenger.phoneNumber}}</td>
+        <td>{{passenger.credit}}</td>
+        <td>{{passenger.stateCode}}</td>
+        <td>{{passenger.device.OS}}</td>
+        <td>{{passenger.device.OSVersion}}</td>
+        <td>{{passenger.registrationDate}}</td> -->
     </tr>
   </tbody>
 </table>

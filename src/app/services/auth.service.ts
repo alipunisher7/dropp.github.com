@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
-import { User } from 'models';
-import { API } from 'configs';
+import { IUser, User } from 'models';
+import { API_URL } from 'configs';
 
 @Injectable()
 export class AuthService {
@@ -19,7 +19,7 @@ export class AuthService {
     let token;
     if (!this.currentUser || !localStorage.getItem('token')) {
       // TODO : Login
-      this.login({ username: 'ali', password: '123456' });
+      this.login({ username: 'master', password: 'master' });
       return;
       // console.error('[AuthService]: User not existed');
       // throw 'Current user not found, NAVIGATION TO LOGIN';
@@ -30,8 +30,8 @@ export class AuthService {
     return token;
   }
 
-  login(user: User) {
-    this.currentUser = user;
+  login(user: IUser) {
+    this.currentUser = new User(user);
     console.log('Login In: ');
 
     let body = JSON.stringify(user);
@@ -39,7 +39,7 @@ export class AuthService {
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
 
-    let obs = this._http.post(`${API}/admin/login`, body, options)
+    let obs = this._http.post(`${API_URL}/login`, body, options)
       .map(this.handleAuthResonse)
       .subscribe(_ => { console.log(`Loged in as ${this.currentUser.username}`); });
   }
@@ -59,6 +59,7 @@ export class AuthService {
   }
 
   handleAuthResonse = (res) => {
+    console.log('res: ', res);
     let token = res.headers.get('Authorization');
     // console.log('Get token from server: ', token);
     this.setToken(token);

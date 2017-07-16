@@ -1,3 +1,5 @@
+import { BirthDate } from './birthdate.model';
+
 export interface IUser {
   email?: string;
   username: string;
@@ -7,9 +9,16 @@ export interface IUser {
   phoneNumber?: string;
   city?: string;
   gender?: string;
+  birthDate?: BirthDate;
+}
+
+const GenderNames = {
+  'F': 'زن',
+  'M': 'مرد'
 }
 
 export class User implements IUser {
+
   public username: string;
   public password?: string;
   public firstName?: string;
@@ -18,6 +27,12 @@ export class User implements IUser {
   public email?: string;
   public city?: string;
   public gender?: string;
+  public birthDate?: BirthDate;
+
+  getGenderName() {
+    let gender = !!this.gender ? GenderNames[this.gender] : 'N/A';
+    return gender;
+  }
 
   constructor(user: IUser) {
     this.username = user.username;
@@ -28,12 +43,19 @@ export class User implements IUser {
     this.email = user.email;
     this.city = user.city;
     this.gender = user.gender;
+    this.birthDate = user.birthDate;
   }
+}
+
+export interface IOperator extends IUser {
+  workNumber: string;
 }
 
 export class Operator extends User {
   public workNumber: string;
-  public year: number;
-  public month: number;
-  public day: number;
+
+  constructor(operator: IOperator) {
+    super(operator);
+    this.workNumber = operator.workNumber;
+  }
 }

@@ -8,13 +8,13 @@ import { IDriverCredit } from 'models';
   styleUrls: ['./driver-credit.component.scss']
 })
 export class DriverCreditComponent implements OnInit {
-  searchStr: string;
-  driverCredit: IDriverCredit;
+  driverUsername: string;
+  driversCredit: IDriverCredit[];
 
   constructor(private _operatorService: OperatorService) { }
 
   searchDriversCredit() {
-    this._operatorService.searchDriversCredit(this.searchStr).subscribe(res => this.driverCredit = res);
+    this._operatorService.getDriverCredit(this.driverUsername).subscribe(res => this.driversCredit = res);
   }
 
   ngOnInit() {

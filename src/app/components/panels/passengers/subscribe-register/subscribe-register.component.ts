@@ -23,7 +23,7 @@ export class SubscribeRegisterComponent implements OnInit {
     });
   }
   onSubmit() {
-    this._operatorservice.subscribeRegister(this.myForm.value).subscribe(
+    this._operatorservice.insertSubscribe(this.myForm.value).subscribe(
       res => {
         alert(res.code)
         let notification = new Notification({ title: 'ثبت شد', info: `اشتراک جدید ثبت شد`, type: NotificationTypes.success });

@@ -2,7 +2,7 @@ import { Injectable  } from '@angular/core';
 import { Response } from '@angular/http';
 import { AuthHttpService } from './auth-http.service';
 import { Observable } from 'rxjs/Observable';
-import { AdminApi } from 'configs';
+import { AdminApi } from './providers';
 import { Radius, ApiError } from 'models';
 
 import 'rxjs/operator/map';
@@ -54,6 +54,7 @@ export class AdminService {
         if (json.statusCode !== 1) {
           throw new ApiError(url, json)
         }
+        console.log(json);
         return json;
       })
       .catch(this.handleError);
@@ -63,15 +64,16 @@ export class AdminService {
     let url = this._adminApi.getServicesOfCityUrl(cityName);
 
     return this._http
-      .post(url, cityName)
+      .get(url)
       .map((res: Response) => {
         let json = res.json();
         if (json.statusCode !== 1) {
           throw new ApiError(url, json)
         }
-
-        let radiuses = json.data.searchRadius.map(_ => new Radius(_));
-        return radiuses;
+        let data = json.data.activeServices;
+        console.log(json);
+        console.log(data);
+        return data;
       })
       .catch(this.handleError);
   }
@@ -104,7 +106,7 @@ export class AdminService {
           throw new ApiError(url, json)
         }
 
-        return json;
+
       })
       .catch(this.handleError);
   }
@@ -119,8 +121,8 @@ export class AdminService {
         if (json.statusCode !== 1) {
           throw new ApiError(url, json)
         }
-
-        return json;
+        let radiuses = json.data.searchRadius.map(_ => new Radius(_));
+        return radiuses;
       })
       .catch(this.handleError);
   }
@@ -163,14 +165,8 @@ export class AdminService {
       .map((res: Response) => res.json);
   }
 
-  handleError(err: any) {
-    if (err instanceof Response) {
-      return Observable.throw(err.json().then(err => err) || 'backend server error');
-      // if you're using lite-server, use the following line
-      // instead of the line above:
-      //return Observable.throw(err.text() || 'backend server error');
-    }
-    console.error(err);  // debug
+  handleError(err: ApiError) {
+    console.error(err);
     return Observable.throw(err || 'backend server error');
   }
 }

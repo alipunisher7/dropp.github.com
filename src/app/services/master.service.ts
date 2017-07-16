@@ -2,7 +2,7 @@ import { Injectable  } from '@angular/core';
 import { Response  } from '@angular/http';
 import { AuthHttpService } from './auth-http.service';
 import { Observable } from 'rxjs/Observable';
-import { MasterApi } from 'configs';
+import { MasterApi } from './providers';
 import { Radius, ApiError } from 'models';
 
 import 'rxjs/operator/map';
@@ -10,7 +10,7 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 
 @Injectable()
-export class AdminService {
+export class MasterService {
 
   constructor(private _http: AuthHttpService, private _masterApi: MasterApi) { }
 
@@ -87,15 +87,8 @@ export class AdminService {
       .catch(this.handleError);
   }
 
-  handleError(err: any) {
-    if (err instanceof Response) {
-      return Observable.throw(err.json().then(err => err) || 'backend server error');
-      // if you're using lite-server, use the following line
-      // instead of the line above:
-      //return Observable.throw(err.text() || 'backend server error');
-    }
-
-    console.error(err);  // debug
+  handleError(err: ApiError) {
+    console.error(err);
     return Observable.throw(err || 'backend server error');
   }
 }

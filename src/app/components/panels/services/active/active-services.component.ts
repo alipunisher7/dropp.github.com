@@ -23,9 +23,8 @@ export class ActiveServicesComponent implements OnInit {
   // viewActiveServices() {
   //   this._adminService.viewActiveServices().subscribe();
   // }
-  onChange(data) {
-    data = { city: data };
-    this._adminService.getServicesOfCity(data).subscribe(res => this.activeServices = res)
+  onChange(city) {
+    this._adminService.getServicesOfCity(city).subscribe(res => { console.log(res); this.activeServices = res })
   }
 
   onSubmit() {

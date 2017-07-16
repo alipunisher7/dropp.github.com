@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
-import { AdminService, NotificationService } from 'services';
+import { MasterService, NotificationService } from 'services';
 import { Operator, Notification, NotificationTypes } from 'models';
 
 @Component({
@@ -11,7 +11,7 @@ import { Operator, Notification, NotificationTypes } from 'models';
 export class AddOperatorComponent implements OnInit {
   myForm: FormGroup;
 
-  constructor(private _adminService: AdminService, private _notification: NotificationService) {
+  constructor(private _masterService: MasterService, private _notification: NotificationService) {
     this.myForm = new FormGroup({
       'firstName': new FormControl('', [Validators.required, Validators.minLength(3)]),
       'lastName': new FormControl('', [Validators.required, Validators.minLength(3)]),
@@ -19,7 +19,7 @@ export class AddOperatorComponent implements OnInit {
       'city': new FormControl('', Validators.required),
       'workPhoneCode': new FormControl('', Validators.minLength(3)),
       'workNumber': new FormControl('', Validators.minLength(7)),
-      'phoneNumber': new FormControl('', Validators.required),
+      'phoneNumber': new FormControl('', [Validators.required, Validators.minLength(11)]),
       'email': new FormControl('', [Validators.required, Validators.pattern("[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?")]),
       'username': new FormControl('', [Validators.required, Validators.minLength(3)]),
       'userpassword': new FormGroup({
@@ -37,7 +37,7 @@ export class AddOperatorComponent implements OnInit {
   onSubmit() {
     let operator = this.convertOperatorData(this.myForm.value);
     console.log(operator);
-    this._adminService.addOp(operator).subscribe(res => {
+    this._masterService.insertOperator(operator).subscribe(res => {
       let notification = new Notification({ title: 'ثبت شد', info: `اپراتور جدید ثبت شد`, type: NotificationTypes.success });
       this._notification.notify(notification);
     },
@@ -52,12 +52,14 @@ export class AddOperatorComponent implements OnInit {
 
   convertOperatorData(data): Operator {
     let birthDate = new Date(data.birthDate);
-    let operator: Operator = {
+    let operator: Operator = new Operator({
       city: data.city,
-      day: birthDate.getDate(),
-      month: birthDate.getMonth() + 1,
-      year: birthDate.getFullYear(),
       email: data.email,
+      birthDate: {
+        day: birthDate.getDate(),
+        month: birthDate.getMonth() + 1,
+        year: birthDate.getFullYear()
+      },
       firstName: data.firstName,
       gender: data.gender,
       lastName: data.lastName,
@@ -65,7 +67,7 @@ export class AddOperatorComponent implements OnInit {
       phoneNumber: data.phoneNumber,
       username: data.username,
       workNumber: data.workPhoneCode + data.workNumber
-    };
+    });
 
     return operator;
   }

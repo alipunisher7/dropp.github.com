@@ -19,7 +19,7 @@ export class AddMasterComponent implements OnInit {
       'city': new FormControl('', Validators.required),
       'workPhoneCode': new FormControl('', Validators.minLength(3)),
       'workNumber': new FormControl('', Validators.minLength(7)),
-      'phoneNumber': new FormControl('', Validators.required),
+      'phoneNumber': new FormControl('', [Validators.required, Validators.minLength(11)]),
       'email': new FormControl('', [Validators.required, Validators.pattern("[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?")]),
       'username': new FormControl('', [Validators.required, Validators.minLength(3)]),
       'userpassword': new FormGroup({
@@ -52,11 +52,13 @@ export class AddMasterComponent implements OnInit {
 
   convertOperatorData(data): Operator {
     let birthDate = new Date(data.birthDate);
-    let operator: Operator = {
+    let operator = new Operator({
       city: data.city,
-      day: birthDate.getDate(),
-      month: birthDate.getMonth() + 1,
-      year: birthDate.getFullYear(),
+      birthDate: {
+        day: birthDate.getDate(),
+        month: birthDate.getMonth() + 1,
+        year: birthDate.getFullYear(),
+      },
       email: data.email,
       firstName: data.firstName,
       gender: data.gender,
@@ -65,7 +67,7 @@ export class AddMasterComponent implements OnInit {
       phoneNumber: data.phoneNumber,
       username: data.username,
       workNumber: data.workPhoneCode + data.workNumber
-    };
+    });
 
     return operator;
   }

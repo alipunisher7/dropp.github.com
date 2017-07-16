@@ -1,7 +1,8 @@
 import { Address } from './address.model';
 import { Vehicle } from './vehicle.model';
 import { Device } from './device.model';
-import { IUser } from './user.model';
+import { IUser, User } from './user.model';
+import { BirthDate } from './birthdate.model';
 
 export enum DriverStatus {
   Banned = -1,
@@ -15,7 +16,6 @@ export enum DriverStatus {
 export interface IDriver extends IUser {
   serviceType?: string;
   address?: Address;
-  birthDate?: string;
   vehicle?: Vehicle;
   nationalNumber?: string;
   registrationDate?: string;
@@ -24,7 +24,7 @@ export interface IDriver extends IUser {
   device?: Device;
 }
 
-export class Driver implements IDriver {
+export class Driver extends User {
   StatusCodeNames = {
     "-1": "بن شده",
     "0": "غیر فعال",
@@ -43,7 +43,6 @@ export class Driver implements IDriver {
   gender?: string;
   serviceType?: string;
   address?: Address;
-  birthDate?: string;
   vehicle?: Vehicle;
   nationalNumber?: string;
   registrationDate?: string;
@@ -56,6 +55,7 @@ export class Driver implements IDriver {
   }
 
   constructor(driver: IDriver) {
+    super(driver);
     this.email = driver.email;
     this.username = driver.username;
     this.password = driver.password;
@@ -72,7 +72,7 @@ export class Driver implements IDriver {
     this.registrationDate = driver.registrationDate;
     this.stateCode = driver.stateCode;
     this.credit = driver.credit;
-    this.device = driver.device;
+    this.device = driver.device || new Device({});
   }
 
 }

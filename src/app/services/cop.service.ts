@@ -1,7 +1,7 @@
 import { Injectable  } from '@angular/core';
 import { AuthHttpService } from './auth-http.service';
 import { Observable } from 'rxjs/Observable';
-import { COPApi } from 'configs';
+import { COPApi } from './providers';
 import { Radius, ApiError } from 'models';
 
 import 'rxjs/operator/map';
@@ -9,7 +9,6 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 
 @Injectable()
-
 export class CopService {
 
   constructor(private _http: AuthHttpService, private _copApi: COPApi) { }
@@ -19,7 +18,14 @@ export class CopService {
 
     return this._http
       .post(url, manufacture)
-      .map(res => res)
+      .map(res => {
+        let json = res.json();
+        if (json.statusCode !== 1) {
+          throw new ApiError(url, json);
+        }
+
+        return json;
+      })
       .catch(this.handleError);
   }
 
@@ -49,8 +55,8 @@ export class CopService {
         if (json.statusCode !== 1) {
           throw new ApiError(url, json);
         }
-
-        return json;
+        let data = json.data['All Manufacture'];
+        return data;
       })
       .catch(this.handleError);
   }
@@ -71,14 +77,8 @@ export class CopService {
       .catch(this.handleError);
   }
 
-  handleError(err: any) {
-    if (err instanceof Response) {
-      return Observable.throw(err.json().then(err => err) || 'backend server error');
-      // if you're using lite-server, use the following line
-      // instead of the line above:
-      //return Observable.throw(err.text() || 'backend server error');
-    }
-    console.error(err);  // debug
+  handleError(err: ApiError) {
+    console.error(err);
     return Observable.throw(err || 'backend server error');
   }
 }

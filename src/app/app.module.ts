@@ -5,11 +5,20 @@ import { HttpModule } from '@angular/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import {
+  AdminApi,
+  COPApi,
+  MasterApi,
+  OperatorApi
+} from 'services/providers';
+
+import {
   OperatorService,
   AdminService,
   AuthHttpService,
   NotificationService,
-  AuthService
+  AuthService,
+  MasterService,
+  CopService
 } from 'services';
 
 import { AppRoutingModule } from 'app-routing.module';
@@ -157,7 +166,13 @@ import { AddMasterComponent } from './components/panels/operators/add-master/add
     AdminService,
     AuthHttpService,
     AuthService,
-    NotificationService
+    NotificationService,
+    MasterService,
+    CopService,
+    AdminApi,
+    MasterApi,
+    COPApi,
+    OperatorApi
   ],
   bootstrap: [AppComponent]
 })

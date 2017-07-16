@@ -22,6 +22,11 @@
       <td *ngIf="activeService.status===true">فعال</td>
       <td><button>کلیک</button></td>
     </tr>
+    <tr *ngIf="!activeService" class="no-data">
+      <td colspan=75%>
+        سرویس فعالی موجود نیست
+      </td>
+    </tr>
   </tbody>
 </table><br>
 <h2>فعال کردن سرویس جدید</h2>

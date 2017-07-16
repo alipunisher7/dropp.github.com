@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { OperatorService } from '../../../../services';
-import { IDriver } from '../../../../models';
+import { OperatorService } from 'services';
+import { IDriver } from 'models';
 
 @Component({
   selector: 'ts-online-driver',
@@ -9,7 +9,7 @@ import { IDriver } from '../../../../models';
 })
 export class OnlineDriverComponent implements OnInit {
 
-  @Input() drivers: IDriver;
+  drivers: IDriver;
 
   constructor(private _operatorServices: OperatorService) { }
 
@@ -17,8 +17,8 @@ export class OnlineDriverComponent implements OnInit {
   }
 
   getOnlineDrivers() {
-    this._operatorServices.getDriverInfo().subscribe(data => {
-
+    this._operatorServices.getOnlineDrivers().subscribe(drivers => {
+      this.drivers = drivers;
     })
   }
 

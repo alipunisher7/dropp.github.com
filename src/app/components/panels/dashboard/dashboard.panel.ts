@@ -43,26 +43,26 @@ export class DashboardPanel implements OnInit {
 
   }
 
-  getOnlineTrips() {
-    this._operatorServices.getOnlineTrips().subscribe(data => {
+  getOnlineTripsCount() {
+    this._operatorServices.getOnlineTripsCount().subscribe(data => {
       this.tripCard.info1.data = data;
     })
   }
 
-  getTodayTrips() {
-    this._operatorServices.getTodayTrips().subscribe(data => {
+  getTodayTripsCount() {
+    this._operatorServices.getTodayTripsCount().subscribe(data => {
       this.tripCard.info2.data = data;
     })
   }
 
-  getOnlineDrivers() {
-    this._operatorServices.getOnlineDrivers().subscribe(data => {
+  getOnlineDriversCount() {
+    this._operatorServices.getOnlineDriversCount().subscribe(data => {
       this.driverCard.info1.data = data;
     })
   }
 
-  getAllDrivers() {
-    this._operatorServices.getAllDrivers().subscribe(
+  getDriversCount() {
+    this._operatorServices.getDriversCount().subscribe(
 
       (services: ServiceType) => {
         console.log(services);
@@ -80,31 +80,32 @@ export class DashboardPanel implements OnInit {
     )
   }
 
-  getNewPassengers() {
-    this._operatorServices.getNewPassengers().subscribe(data => {
+  getNewPassengersCount() {
+    this._operatorServices.getNewPassengersCount().subscribe(data => {
       this.passengerCard.info1.data = data;
     })
   }
 
-  getAllPassengers() {
-    this._operatorServices.getAllPassengers().subscribe(data => {
+  getPassengersCount() {
+    this._operatorServices.getPassengersCount().subscribe(data => {
       this.passengerCard.info2.data = data;
     })
   }
 
-  getNewOrganizations() {
-    this._operatorServices.getNewOrganizations().subscribe(data => {
+  getNewOrganizationsCount() {
+    this._operatorServices.getNewOrganizationsCount().subscribe(data => {
       this.organizationCard.info1.data = data;
     })
   }
 
-  getAllOrganizations() {
-    this._operatorServices.getAllOrganizations().subscribe(data => {
+  getOrganizationsCount() {
+    this._operatorServices.getOrganizationsCount().subscribe(data => {
       this.organizationCard.info2.data = data;
     })
   }
 
   ngOnInit() {
-    this.getAllDrivers();
+    this.getDriversCount();
+    // this.getOnlineDriversCount();
   }
 }
