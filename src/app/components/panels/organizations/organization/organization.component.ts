@@ -14,9 +14,7 @@ export class OrganizationsComponent implements OnInit {
   constructor(private _operatorservice: OperatorService) { }
 
   searchOrganization() {
-    this._operatorservice
-      .getOrganizations(this.searchStr)
-      .subscribe(res => this.OrganizationInfo = res);
+
   }
 
   ngOnInit() {

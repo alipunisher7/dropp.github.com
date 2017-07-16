@@ -25,11 +25,11 @@ export class ActiveServicesComponent implements OnInit {
   // }
   onChange(data) {
     data = { city: data };
-    this._adminService.getActiveServices(data).subscribe(res => this.activeServices = res)
+    this._adminService.getServicesOfCity(data).subscribe(res => this.activeServices = res)
   }
 
   onSubmit() {
-    this._adminService.submitActiveServices(this.myForm.value).subscribe(res => {
+    this._adminService.insertService(this.myForm.value).subscribe(res => {
       let notification = new Notification({ title: 'ثبت شد', info: `سرویس جدید ثبت شد`, type: NotificationTypes.success });
       this._notification.notify(notification);
     },
