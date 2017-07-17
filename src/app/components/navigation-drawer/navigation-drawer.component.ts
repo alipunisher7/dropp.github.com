@@ -35,7 +35,12 @@ export class NavigationDrawerComponent implements OnInit, AfterViewInit {
           { title: 'ثبت اشتراک', icon: 'fa fa-user-o', route: 'subscribe-register' }
         ]
       },
-      { title: 'سازمان ها', icon: 'fa fa-building', route: 'organizations' },
+      {
+        title: 'سازمان ها', icon: 'fa fa-building', route: 'organizations',
+        subNavs: [
+          { title: 'جستجوی سازمان ', icon: 'fa fa-building', route: 'search' },
+        ]
+      },
       {
         title: 'سفر ها', icon: 'fa fa-plane', route: 'trips',
         subNavs: [
@@ -81,7 +86,7 @@ export class NavigationDrawerComponent implements OnInit, AfterViewInit {
 
   openCurrentNav() {
     let el = this.elRef.nativeElement.querySelector('.active');
-    if(el) {
+    if (el) {
       let currentRoute = el.getAttribute('href').slice(1);
       this.navItems.find(_ => _.route == currentRoute).isOpen = true;
 

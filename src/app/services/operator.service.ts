@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { URLSearchParams, Response } from '@angular/http';
 import { AuthHttpService } from './auth-http.service';
 import { Observable } from 'rxjs/Observable';
-import { ServiceType, ApiError, ISearchParam, Driver } from 'models'
+import { ServiceType, ApiError, ISearchParam, Driver, Organization } from 'models'
 import { OperatorApi } from './providers';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/debounce';
@@ -112,6 +112,19 @@ export class OperatorService {
 
         let data = json.data['banDrivers'];
         return data;
+      })
+      .catch(this.handleError);
+  }
+  unBanDriver(username) {
+    let url = this._operatorApi.unBanDriverUrl;
+    let body = { username };
+    return this._http.post(url, body)
+      .map((res: Response) => {
+        let json = res.json();
+        if (json.statusCode !== 1) {
+          throw new ApiError(url, json);
+        }
+        return json;
       })
       .catch(this.handleError);
   }
@@ -244,6 +257,19 @@ export class OperatorService {
       })
       .catch(this.handleError);
   }
+  unBanPassenger(username) {
+    let url = this._operatorApi.unBanDriverUrl;
+    let body = { username };
+    return this._http.post(url, body)
+      .map((res: Response) => {
+        let json = res.json();
+        if (json.statusCode !== 1) {
+          throw new ApiError(url, json);
+        }
+        return json;
+      })
+      .catch(this.handleError);
+  }
   // -- Passenger -- //
 
   // -- Organization -- //
@@ -283,17 +309,23 @@ export class OperatorService {
       .catch(this.handleError);
   }
 
-  getOrganizations(): Observable<any> {
+  searchOrganizations(param: ISearchParam) {
     let url = this._operatorApi.getOrganizationsUrl;
 
-    return this._http.get(url)
+    let params = new URLSearchParams();
+    params.append('q', param.query);
+    params.append('count', param.count);
+    params.append('offset', param.offset);
+
+    return this._http.search(url, params)
       .map((res: Response) => {
         let json = res.json();
         if (json.statusCode !== 1) {
           throw new ApiError(url, json);
         }
-        let data = json.data;
-        return data;
+        let organizations = json.data.organizations.map(organization => new Organization(organization));
+        console.log(organizations);
+        return organizations;
       })
       .catch(this.handleError);
   }

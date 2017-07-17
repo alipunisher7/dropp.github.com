@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { OperatorService } from 'services';
-import { User } from 'models';
+import { OperatorService, NotificationService } from 'services';
+import { User, Notification, NotificationTypes} from 'models';
 
 @Component({
   selector: 'ts-manage-banned-users',
@@ -11,7 +11,7 @@ export class ManageBannedUsersComponent implements OnInit {
   drivers: User[];
   passengers: User[];
 
-  constructor(private _operatorService: OperatorService) { }
+  constructor(private _operatorService: OperatorService, private _notification: NotificationService) { }
 
   getBannedDrivers() {
     this._operatorService.getBannedDrivers().subscribe(res => this.drivers = res);
@@ -19,6 +19,24 @@ export class ManageBannedUsersComponent implements OnInit {
 
   getBannedPassengers() {
     this._operatorService.getBannedPassengers().subscribe(res => this.passengers = res);
+  }
+  unBanDriver(username) {
+    this._operatorService.unBanDriver(username).subscribe(
+      res => {
+        let notification = new Notification({ title: 'ثبت شد', info: `راننده مورد نظر رفع بن شد `, type: NotificationTypes.success });
+        this._notification.notify(notification);
+      },
+      error => { alert(error); }
+    );
+  }
+  unBanPassenger(username) {
+    this._operatorService.unBanPassenger(username).subscribe(
+      res => {
+        let notification = new Notification({ title: 'ثبت شد', info: `مسافر مورد نظر رفع بن شد `, type: NotificationTypes.success });
+        this._notification.notify(notification);
+      },
+      error => { alert(error); }
+    );
   }
 
   ngOnInit() {

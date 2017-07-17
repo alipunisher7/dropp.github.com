@@ -1,0 +1,36 @@
+<h2>جستجو سازمان ها</h2>
+<input class="search form-ctrl" type="search" name="searchOrganization" placeholder="جستجو ..." (keyup)="OnSearch()" [(ngModel)]="query">
+<table class="table" >
+  <thead>
+    <tr>
+      <th>نام سازمان</th>
+      <th>نام کاربری</th>
+      <th>ایمیل</th>
+      <th>شماره محل کار</th>
+      <th>وضعیت</th>
+      <th>حذف</th>
+      <th>بن کردن</th>
+      <th>رفع بن</th>
+      <th>اطلاعات بیشتر</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let organization of organizations">
+        <td>{{organization.name}}</td>
+        <td>{{organization.username}}</td>
+        <td>{{organization.email}}</td>
+        <td>{{organization.workNumber}}</td>
+        <td>{{organization.accountState}}</td>
+        <td><button >حذف</button></td>
+        <td><button  >بن</button></td>
+        <td><button  >رفع بن</button></td>
+        <td><button (click)="onMoreClick(organization)" class="btn accent" >اطلاعات بیشتر</button></td>
+    </tr>
+    <tr  class="no-data">
+      <td colspan=75%>
+        سازمانی وجود ندارد
+      </td>
+    </tr>
+  </tbody>
+</table>
+<ts-organization *ngIf="selectedOrganization" [organization]="selectedOrganization"></ts-organization>

@@ -9,9 +9,11 @@ import { NotificationTypes, Notification, ITarrif } from 'models'
   styleUrls: ['./tarrif.component.scss']
 })
 export class TarrifComponent implements OnInit {
-
-  myForm: FormGroup;
+  query: string = '';
   Tarrifs: ITarrif[];
+  resultCount = 20;
+  page = 0;
+  myForm: FormGroup;
   constructor(private _adminService: AdminService, private _notification: NotificationService) {
     this.myForm = new FormGroup({
       'city': new FormControl('', Validators.required),
@@ -27,7 +29,7 @@ export class TarrifComponent implements OnInit {
     });
   }
 
-  viewTarrif() {
+  searchTarrif() {
     this._adminService.getTarrif().subscribe(res => this.Tarrifs = res);
   }
 

@@ -1,6 +1,6 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
 import { OperatorService, NotificationService} from 'services';
-import { Driver, Notification, NotificationTypes,ISearchParam } from 'models';
+import { Driver, Notification, NotificationTypes, ISearchParam } from 'models';
 
 @Component({
   selector: 'ts-search-drivers',
@@ -15,12 +15,12 @@ export class SearchDriversComponent implements OnInit {
   resultCount = 20;
   page = 0;
 
-  constructor(private _operatorServices: OperatorService, private _notification: NotificationService, private _el: ElementRef) {
+  constructor(private _operatorService: OperatorService, private _notification: NotificationService, private _el: ElementRef) {
   }
 
   searchDrivers() {
     // TODO: count and prefix
-    this._operatorServices.searchDrivers({query: this.query, count: this.resultCount, offset: this.page}).subscribe(res => this.drivers = res);
+    this._operatorService.searchDrivers({ query: this.query, count: this.resultCount, offset: this.page }).subscribe(res => this.drivers = res);
   }
 
   ngOnInit() {
@@ -37,7 +37,7 @@ export class SearchDriversComponent implements OnInit {
   }
 
   banDriver(data) {
-    this._operatorServices.banDriver(data).subscribe(
+    this._operatorService.banDriver(data).subscribe(
       res => {
         let notification = new Notification({ title: 'ثبت شد', info: `راننده مورد نظر بن شد`, type: NotificationTypes.success });
         this._notification.notify(notification);
@@ -50,5 +50,15 @@ export class SearchDriversComponent implements OnInit {
       }
     );
   }
+  unBanDriver(username) {
+    this._operatorService.unBanDriver(username).subscribe(
+      res => {
+        let notification = new Notification({ title: 'ثبت شد', info: `راننده مورد نظر رفع بن شد `, type: NotificationTypes.success });
+        this._notification.notify(notification);
+      },
+      error => { alert(error); }
+    );
+  }
+
 
 }

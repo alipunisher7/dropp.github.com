@@ -157,6 +157,21 @@ export class AdminService {
       })
       .catch(this.handleError);
   }
+  updateTarrif(tarrif): Observable<any> {
+    let url = this._adminApi.updateTarrifUrl;
+
+    return this._http
+      .patch(url, tarrif)
+      .map((res: Response) => {
+        let json = res.json();
+        if (json.statusCode !== 1) {
+          throw new ApiError(url, json)
+        }
+
+
+      })
+      .catch(this.handleError);
+  }
 
   getTarrif(): Observable<any> {
     let url = this._adminApi.getTarrifUrl;

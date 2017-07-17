@@ -20,6 +20,7 @@ export class AdminApi {
   public getRadiusOfServiceUrl = (serviceType: string) => `${adminApi}/searchRadiuses/${serviceType}`;
 
   public insertTarrifUrl = `${adminApi}/tariffs`;
+  public updateTarrifUrl = `${adminApi}/tariffs`;
   public getTarrifUrl = `${adminApi}/ticketSubjects`;
 
 }

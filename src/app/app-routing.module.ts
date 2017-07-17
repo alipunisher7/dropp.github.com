@@ -12,7 +12,7 @@ import { PassengersPanel, SearchPassengersComponent, SubscribeRegisterComponent 
 
 import { TripsPanel, SearchTripsComponent } from 'components/panels/trips';
 
-import { OrganizationsPanel } from 'components/panels/organizations';
+import { OrganizationsPanel, SearchOrganizationComponent } from 'components/panels/organizations';
 
 import {
   ManagePanel,
@@ -57,7 +57,11 @@ const routes: Routes = [
       { path: 'search', component: SearchTripsComponent }
     ]
   },
-  { path: 'organizations', component: OrganizationsPanel },
+  {
+    path: 'organizations', component: OrganizationsPanel, children: [
+      { path: 'search', component: SearchOrganizationComponent }
+    ]
+  },
   {
     path: 'operators', component: OperatorsPanel, children: [
       { path: 'add', component: AddOperatorComponent },

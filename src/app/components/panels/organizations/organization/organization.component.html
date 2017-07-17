@@ -1,24 +1,35 @@
 <h2>نمایش اطلاعات سازمان های ثبت شده </h2>
-<input type="search" name="searchOrganization" placeholder="جستجو ..." (keyup)="OnSearch()" [(ngModel)]="searchStr">
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>نام سازمان</th>
       <th>نام کاربری</th>
-      <th>شماره محل کار</th>
-      <th>شماره همراه</th>
       <th>ایمیل</th>
-      <th>تعداد کارکنان</th>
-      <th>توضیحات</th>
+      <th>شماره محل کار</th>
+      <th>وضعیت</th>
       <th>نام ثبت نام کننده</th>
       <th>نام خانوادگی ثبت نام کننده</th>
       <th>سمت ثبت نام کننده</th>
+      <th>شماره همراه</th>
+      <th>تعداد کارکنان</th>
+      <th>توضیحات</th>
       <th>آدرس سازمان</th>
     </tr>
   </thead>
   <tbody>
-    <tr >
-
+    <tr *ngIf="organization">
+      <td>{{organization.name}}</td>
+      <td>{{organization.username}}</td>
+      <td>{{organization.email}}</td>
+      <td>{{organization.workNumber}}</td>
+      <td>{{organization.accountState}}</td>
+      <td>{{organization.registrarFirstName}}</td>
+      <td>{{organization.registrarLastName}}</td>
+      <td>{{organization.registrarRole}}</td>
+      <td>{{organization.phoneNumber}}</td>
+      <td>{{organization.count}}</td>
+      <td>{{organization.description}}</td>
+      <td>{{organization.address.toString()}}</td>
     </tr>
   </tbody>
 </table>

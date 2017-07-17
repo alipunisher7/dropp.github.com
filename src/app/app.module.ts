@@ -94,6 +94,7 @@ import { SupportPanel } from 'components/panels/support';
 import { SearchTripsComponent } from './components/panels/trips/search/search-trips.component';
 import { SubscribeRegisterComponent } from './components/panels/passengers/subscribe-register/subscribe-register.component';
 import { AddMasterComponent } from './components/panels/operators/add-master/add-master.component';
+import { SearchOrganizationComponent } from './components/panels/organizations/search/search-organization.component';
 
 
 @NgModule({
@@ -151,7 +152,8 @@ import { AddMasterComponent } from './components/panels/operators/add-master/add
 
     SearchTripsComponent,
     SubscribeRegisterComponent,
-    AddMasterComponent
+    AddMasterComponent,
+    SearchOrganizationComponent
   ],
   imports: [
     BrowserModule,

@@ -10,6 +10,7 @@
       <th>اعتبار حساب</th>
       <th>وضعیت</th>
       <th>بن کردن</th>
+      <th>رفع بن</th>
       <th>اطلاعات بیشتر</th>
     </tr>
   </thead>
@@ -22,6 +23,7 @@
       <td>{{driver.credit}}</td>
       <td >{{driver.status}}</td>
       <td><button class="btn outline error" (click)="banDriver(driver.username)" [disabled]="driver.stateCode=== -1">بن</button></td>
+      <td><button class="btn outline error" (click)="unBanDriver(driver.username)" [disabled]="driver.stateCode!== -1">رفع بن</button></td>
       <td><button class="btn accent" (click)="onMoreClick(driver)">اطلاعات بیشتر</button></td>
     </tr>
     <tr *ngIf="!drivers" class="no-data">

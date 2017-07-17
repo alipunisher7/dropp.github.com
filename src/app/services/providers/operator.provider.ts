@@ -20,9 +20,11 @@ export class OperatorApi {
   public searchPassengersUrl = `${operatorApi}/passengers`;
   public banPassengerUrl = `${operatorApi}/banPassenger`;
   public getBannedPassengersUrl = `${operatorApi}/passengers/banned`;
+  public unBanDPassengerUrl = `${operatorApi}/unBanPassenger`;
 
   public banDriverUrl = `${operatorApi}/banDriver`;
   public getBannedDriversUrl = `${operatorApi}/drivers/banned`;
+  public unBanDriverUrl = `${operatorApi}/unBanDriver`;
 
   public insertOrganizationUrl = `${operatorApi}/organizations`;
 
@@ -41,4 +43,5 @@ export class OperatorApi {
   public getAllPassengersUrl = ``;
   public getAllOrganizationsUrl = ``;
   public getDriverInfoUrl = ``;
+
 }
