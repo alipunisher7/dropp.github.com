@@ -25,9 +25,9 @@ import {
   ManageSearchRadiusComponent
 } from 'components/panels/manage';
 
-import { OperatorsPanel, AddOperatorComponent, AddMasterComponent } from 'components/panels/operators';
+import { OperatorsPanel, AddOperatorComponent, AddMasterComponent, SearchOperatorComponent} from 'components/panels/operators';
 
-import { SupportPanel } from 'components/panels/support';
+import { SupportPanel, ViewTicketsComponent } from 'components/panels/support';
 
 import { ServicePanel, ActiveServicesComponent } from 'components/panels/services';
 
@@ -66,6 +66,7 @@ const routes: Routes = [
     path: 'operators', component: OperatorsPanel, children: [
       { path: 'add', component: AddOperatorComponent },
       { path: 'add-master', component: AddMasterComponent },
+      { path: 'search', component: SearchOperatorComponent },
     ]
   },
   // { path: 'admin', component: OrganizationsComponent },
@@ -82,7 +83,11 @@ const routes: Routes = [
 
   },
   { path: 'send-taxi', component: SendTaxiComponent },
-  { path: 'support', component: SupportPanel }
+  {
+    path: 'support', component: SupportPanel, children: [
+      { path: 'view-ticket', component: ViewTicketsComponent }
+    ]
+  }
 ];
 
 @NgModule({

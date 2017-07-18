@@ -350,7 +350,16 @@ export class OperatorService {
   getTickets(): Observable<any> {
     let url = this._operatorApi.getTicketsUrl;
 
-    return this._http.get(url).map((res: Response) => res.json);
+    return this._http.get(url)
+      .map((res: Response) => {
+        let json = res.json();
+        if (json.statusCode !== 1) {
+          throw new ApiError(url, json);
+        }
+        let data = json.data['All Unresolved Tickets'];
+        return data;
+      })
+      .catch(this.handleError);
   }
 
   getPassengersTicketForDriver(driverUsername): Observable<any> {

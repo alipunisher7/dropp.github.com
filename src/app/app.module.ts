@@ -95,6 +95,11 @@ import { SearchTripsComponent } from './components/panels/trips/search/search-tr
 import { SubscribeRegisterComponent } from './components/panels/passengers/subscribe-register/subscribe-register.component';
 import { AddMasterComponent } from './components/panels/operators/add-master/add-master.component';
 import { SearchOrganizationComponent } from './components/panels/organizations/search/search-organization.component';
+import { SearchOperatorComponent } from './components/panels/operators/search/search-operator.component';
+import { OperatorComponent } from './components/panels/operators/operator/operator.component';
+import { ViewTicketsComponent } from './components/panels/support/view-tickets/view-tickets.component';
+import { SearchForAdminComponent } from './components/panels/operators/search-for-admin/search-for-admin.component';
+import { OperatorForAdminComponent } from './components/panels/operators/operator-for-admin/operator-for-admin.component';
 
 
 @NgModule({
@@ -153,7 +158,12 @@ import { SearchOrganizationComponent } from './components/panels/organizations/s
     SearchTripsComponent,
     SubscribeRegisterComponent,
     AddMasterComponent,
-    SearchOrganizationComponent
+    SearchOrganizationComponent,
+    SearchOperatorComponent,
+    OperatorComponent,
+    ViewTicketsComponent,
+    SearchForAdminComponent,
+    OperatorForAdminComponent
   ],
   imports: [
     BrowserModule,

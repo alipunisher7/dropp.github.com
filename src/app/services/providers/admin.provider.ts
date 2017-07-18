@@ -21,6 +21,8 @@ export class AdminApi {
 
   public insertTarrifUrl = `${adminApi}/tariffs`;
   public updateTarrifUrl = `${adminApi}/tariffs`;
-  public getTarrifUrl = `${adminApi}/ticketSubjects`;
-
+  public searchTarrifUrl = `${adminApi}/tariffs`;
+  // public getTarrifUrl = `${adminApi}/ticketSubjects`;
+  public banMasterUrl = `${adminApi}/banMaster`;
+  public unBanMasterUrl = `${adminApi}/unBanMaster`;
 }

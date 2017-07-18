@@ -49,13 +49,16 @@ export class User implements IUser {
 
 export interface IOperator extends IUser {
   workNumber: string;
+  accountState?: string;
 }
 
 export class Operator extends User {
   public workNumber: string;
+  public accountState?: string;
 
   constructor(operator: IOperator) {
     super(operator);
     this.workNumber = operator.workNumber;
+    this.accountState = operator.accountState;
   }
 }

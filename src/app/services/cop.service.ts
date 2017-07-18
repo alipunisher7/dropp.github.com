@@ -55,7 +55,7 @@ export class CopService {
         if (json.statusCode !== 1) {
           throw new ApiError(url, json);
         }
-        let data = json.data['All Manufacture'];
+        let data = json.data['All Manufactures'];
         return data;
       })
       .catch(this.handleError);

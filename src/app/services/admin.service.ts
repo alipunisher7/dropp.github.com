@@ -1,9 +1,9 @@
 import { Injectable  } from '@angular/core';
-import { Response } from '@angular/http';
+import { Response, URLSearchParams } from '@angular/http';
 import { AuthHttpService } from './auth-http.service';
 import { Observable } from 'rxjs/Observable';
 import { AdminApi } from './providers';
-import { Radius, ApiError } from 'models';
+import { Radius, ApiError, ISearchParam } from 'models';
 
 import 'rxjs/operator/map';
 import 'rxjs/add/operator/catch';
@@ -172,13 +172,57 @@ export class AdminService {
       })
       .catch(this.handleError);
   }
+  searchTarrif(param: ISearchParam) {
+    let url = this._adminApi.searchTarrifUrl;
 
-  getTarrif(): Observable<any> {
-    let url = this._adminApi.getTarrifUrl;
+    let params = new URLSearchParams();
+    params.append('q', param.query);
+    params.append('count', param.count);
+    params.append('offset', param.offset);
 
-    return this._http.get(url)
-      .map((res: Response) => res.json);
+    return this._http.search(url, params)
+      .map((res: Response) => {
+        let json = res.json();
+        if (json.statusCode !== 1) {
+          throw new ApiError(url, json);
+        }
+        let data = json.data.operators;
+        console.log(data);
+        return data;
+      })
+      .catch(this.handleError);
   }
+  banMaster(username) {
+    let url = this._adminApi.banMasterUrl;
+    let body = { username }
+    return this._http.post(url, body)
+      .map((res: Response) => {
+        let json = res.json();
+        if (json.statusCode !== 1) {
+          throw new ApiError(url, json);
+        }
+        return json;
+      })
+      .catch(this.handleError);
+  }
+  unBanMaster(username) {
+    let url = this._adminApi.unBanMasterUrl;
+    let body = { username };
+    return this._http.post(url, body)
+      .map((res: Response) => {
+        let json = res.json();
+        if (json.statusCode !== 1) {
+          throw new ApiError(url, json);
+        }
+        return json;
+      })
+  }
+  // getTarrif(): Observable<any> {
+  //   let url = this._adminApi.getTarrifUrl;
+  //
+  //   return this._http.get(url)
+  //     .map((res: Response) => res.json);
+  // }
 
   handleError(err: ApiError) {
     console.error(err);

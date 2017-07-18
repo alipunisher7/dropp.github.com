@@ -1,9 +1,9 @@
 import { Injectable  } from '@angular/core';
-import { Response  } from '@angular/http';
+import { Response, URLSearchParams  } from '@angular/http';
 import { AuthHttpService } from './auth-http.service';
 import { Observable } from 'rxjs/Observable';
 import { MasterApi } from './providers';
-import { Radius, ApiError } from 'models';
+import { Radius, ApiError, ISearchParam } from 'models';
 
 import 'rxjs/operator/map';
 import 'rxjs/add/operator/catch';
@@ -81,6 +81,54 @@ export class MasterService {
         let json = res.json();
         if (json.statusCode !== 1) {
           throw new ApiError(url, json)
+        }
+        return json;
+      })
+      .catch(this.handleError);
+  }
+  searchOperators(param: ISearchParam) {
+    let url = this._masterApi.searchOperatorsUrl;
+
+    let params = new URLSearchParams();
+    params.append('q', param.query);
+    params.append('count', param.count);
+    params.append('offset', param.offset);
+
+    return this._http.search(url, params)
+      .map((res: Response) => {
+        let json = res.json();
+        if (json.statusCode !== 1) {
+          throw new ApiError(url, json);
+        }
+        let data = json.data.operators;
+        console.log(data);
+        return data;
+      })
+      .catch(this.handleError);
+  }
+  banDriver(username: string) {
+    let url = this._masterApi.banOperatorUrl;
+    let body = { username };
+
+    return this._http.post(url, body)
+      .map((res: Response) => {
+        let json = res.json();
+        if (json.statusCode !== 1) {
+          throw new ApiError(url, json);
+        }
+        return json;
+      })
+      .catch(this.handleError);
+  }
+  unBanDriver(username: string) {
+    let url = this._masterApi.unBanOperatorUrl;
+    let body = { username };
+
+    return this._http.post(url, body)
+      .map((res: Response) => {
+        let json = res.json();
+        if (json.statusCode !== 1) {
+          throw new ApiError(url, json);
         }
         return json;
       })

@@ -10,7 +10,7 @@ import { NotificationTypes, Notification, ITarrif } from 'models'
 })
 export class TarrifComponent implements OnInit {
   query: string = '';
-  Tarrifs: ITarrif[];
+  tariffs: ITarrif[];
   resultCount = 20;
   page = 0;
   myForm: FormGroup;
@@ -29,8 +29,11 @@ export class TarrifComponent implements OnInit {
     });
   }
 
-  searchTarrif() {
-    this._adminService.getTarrif().subscribe(res => this.Tarrifs = res);
+  searchTariff() {
+    this._adminService.searchTarrif({ query: this.query, count: this.resultCount, offset: this.page }).subscribe(res => this.tariffs = res);
+  }
+  OnSearch() {
+    this.searchTariff();
   }
 
   onSubmit() {
@@ -45,6 +48,7 @@ export class TarrifComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.searchTariff();
   }
 
 }

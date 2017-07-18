@@ -1,0 +1,34 @@
+<h2>جستجو اپراتور ها</h2>
+<input class="search form-ctrl" type="search" name="searchOperators" placeholder="جستجو ..." (keyup)="OnSearch()" [(ngModel)]="query">
+<table class="table" >
+  <thead>
+    <tr>
+      <th>نام راننده</th>
+      <th>نام خانوادگی</th>
+      <th>نام کاربری</th>
+      <th>شماره محل کار</th>
+      <th>وضعیت</th>
+      <th>بن کردن</th>
+      <th>رفع بن</th>
+      <th>اطلاعات بیشتر</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let operator of operators">
+      <td>{{operator.firstName}}</td>
+      <td>{{operator.lastName}}</td>
+      <td>{{operator.username}}</td>
+      <td>{{operator.workNumber}}</td>
+      <td>{{operator.accountState}}</td>
+      <td><button class="btn outline error" (click)="banMaster(operator.username)" [disabled]="operator.accountState=== 'BANNED'">بن</button></td>
+      <td><button class="btn outline error" (click)="unBanMaster(operator.username)" [disabled]="operator.accountState!== 'BANNED'">رفع بن</button></td>
+      <td><button class="btn accent" (click)="onMoreClick(operator)">اطلاعات بیشتر</button></td>
+    </tr>
+    <tr *ngIf="!operator" class="no-data">
+      <td colspan=75%>
+        راننده ای وجود ندارد
+      </td>
+    </tr>
+  </tbody>
+</table>
+<ts-operator-for-admin *ngIf="selectedOperator" [operator]="selectedOperator"></ts-operator-for-admin>

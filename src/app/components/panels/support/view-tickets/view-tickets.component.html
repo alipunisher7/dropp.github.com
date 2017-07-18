@@ -1,0 +1,21 @@
+<h2>نمایش تیکت ها</h2>
+<table class="table">
+  <thead>
+    <tr>
+      <th>موضوع</th>
+      <th>متن تیکت</th>
+      <th>نام کاربری مسافر</th>
+      <th>نام کاربری راننده</th>
+      <th>تغییر وضعیت</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let ticket of tickets">
+      <td>{{ticket.subject}}</td>
+      <td>{{ticket.description}}</td>
+      <td>{{ticket.username}}</td>
+      <td></td>
+      <td><button >رسیدگی شد</button></td>
+    </tr>
+  </tbody>
+</table>
