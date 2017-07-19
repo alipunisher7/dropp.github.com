@@ -8,7 +8,7 @@ import {
   AdminApi,
   COPApi,
   MasterApi,
-  OperatorApi
+  OperatorApi,
 } from 'services/providers';
 
 import {
@@ -18,7 +18,8 @@ import {
   NotificationService,
   AuthService,
   MasterService,
-  CopService
+  CopService,
+  NavigationService
 } from 'services';
 
 import { AppRoutingModule } from 'app-routing.module';
@@ -173,6 +174,7 @@ import { InputDirective } from './directives/input.directive';
     NotificationService,
     MasterService,
     CopService,
+    NavigationService,
     AdminApi,
     MasterApi,
     COPApi,

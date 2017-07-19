@@ -16,7 +16,10 @@ export class InputComponent implements OnInit, AfterContentInit {
   }
 
   ngAfterContentInit() {
-    console.log('input: ', this.input);
+  }
+
+  focus() {
+    this.input.focus();
   }
 
 }

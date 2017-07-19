@@ -1,12 +1,14 @@
 <h2 class="title">ثبت اشتراک مسافر</h2>
 
 <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
-  <ts-input>
-    <input tsInput type="text" id="firstName" name="firstName" placeholder="نام" formControlName="firstName">
-  </ts-input>
-  <ts-input>
-    <input tsInput type="text" id="lastName" name="lastName" placeholder="نام خانوادگی" formControlName="lastName">
-  </ts-input>
+  <div class="input-group">
+    <ts-input>
+      <input tsInput type="text" id="firstName" name="firstName" placeholder="نام" formControlName="firstName">
+    </ts-input>
+    <ts-input>
+      <input tsInput type="text" id="lastName" name="lastName" placeholder="نام خانوادگی" formControlName="lastName">
+    </ts-input>
+  </div>
   <ts-input>
     <input tsInput type="text" id="phoneNumber" name="phoneNumber" placeholder="شماره تماس" formControlName="phoneNumber">
   </ts-input>
@@ -20,16 +22,14 @@
     <input tsInput type="text" id="postalCode" name="postalCode" placeholder="کدپستی" formControlName="postalCode">
   </ts-input>
   <div>
-    <div>
-      <label>استان</label>
-      <select name="state" formControlName="state">
+    <label>استان</label>
+    <select name="state" formControlName="state">
         <option value="">استان را انتخاب کنید</option>
         <option value="TE">تهران</option>
         <option value="KH">خراسان</option>
         <option value="IS">اصفهان</option>
         <option value="GO">گلستان</option>
       </select>
-    </div>
   </div>
   <div>
     <label>شهر</label>

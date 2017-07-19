@@ -8,7 +8,7 @@ export class Device implements IDivece {
   OSVersion: string;
 
   constructor(device?: IDivece) {
-    this.OS = device.OS || 'N/A';
-    this.OSVersion = device.OSVersion || 'N/A';
+    this.OS = (!device || !device.OS) ? '-' : device.OS;
+    this.OSVersion = (!device || !device.OSVersion) ? '-' : device.OSVersion;
   }
 }

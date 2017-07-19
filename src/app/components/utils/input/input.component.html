@@ -1,5 +1,5 @@
 <div [ngClass]="{up: input.focused || input.hasValue }">
-  <label>{{input.placeholder}}</label>
+  <label (click)="focus()">{{input.placeholder}}</label>
   <ng-content>
   </ng-content>
   <span class="border"></span>

@@ -2,6 +2,7 @@
 
 :host {
   padding: $input-padding;
+  flex: 1;
 }
 
 div {
@@ -12,8 +13,6 @@ div {
 }
 
 .border {
-  width: 100%;
-  // position: relative;
 
   &::after {
     transition: 1s width;
@@ -30,13 +29,13 @@ div {
   .border {
     &::after {
       width: 100%;
-      border-color: $accent;
+      border-color: $accent-text;
     }
   }
 
   label {
-    bottom: 65%;
-    color: $accent;
+    bottom: 90%;
+    color: $accent-text;
     font-size: .6rem;
   }
 }

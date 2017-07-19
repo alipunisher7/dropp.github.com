@@ -7,6 +7,7 @@ export * from './service-type.model';
 export * from './manufactures.model';
 export * from './notification.model';
 export * from './user.model';
+export * from './operator.model';
 export * from './organization.model';
 export * from './services.model';
 export * from './tarrif.model';

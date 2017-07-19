@@ -43,7 +43,9 @@ body {
   padding: 1em 5%;
 }
 
-
+.form-ctrl {
+  margin: 10px 0;
+}
 
 .form-group {
   margin-bottom: 15px;
@@ -70,6 +72,15 @@ body {
     background: transparent;
     border: 0;
     border-bottom: 1px solid $text;
+  }
+}
+
+.input-group {
+  display: flex;
+  flex-flow: row nowrap;
+
+  ts-input:not(:last-child) {
+    margin-left: 10px;
   }
 }
 
@@ -245,6 +256,15 @@ body {
 
   li {
     display: inline-block;
+    color: $text-disable;
+
+    a {
+      color: $accent-text;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
 
     &:not(:first-child)::before {
       padding: 0 5px;

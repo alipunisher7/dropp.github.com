@@ -8,9 +8,11 @@ export interface IUser {
   lastName?: string;
   phoneNumber?: string;
   city?: string;
-  gender?: string;
+  gender?: Gender;
   birthDate?: BirthDate;
 }
+
+type Gender = 'F' | 'M';
 
 const GenderNames = {
   'F': 'زن',
@@ -26,11 +28,12 @@ export class User implements IUser {
   public phoneNumber?: string;
   public email?: string;
   public city?: string;
-  public gender?: string;
+  public gender?: Gender;
   public birthDate?: BirthDate;
 
   getGenderName() {
-    let gender = !!this.gender ? GenderNames[this.gender] : 'N/A';
+    console.log('this.gender: ', this.gender);
+    let gender = !!this.gender ? GenderNames[this.gender] : '-';
     return gender;
   }
 
@@ -44,18 +47,5 @@ export class User implements IUser {
     this.city = user.city;
     this.gender = user.gender;
     this.birthDate = user.birthDate;
-  }
-}
-
-export interface IOperator extends IUser {
-  workNumber: string;
-}
-
-export class Operator extends User {
-  public workNumber: string;
-
-  constructor(operator: IOperator) {
-    super(operator);
-    this.workNumber = operator.workNumber;
   }
 }

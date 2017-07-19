@@ -30,7 +30,7 @@ export class AuthHttpService {
   search(url, params) {
     let options = this.createRequestOptions();
     options.search = params;
-    console.log('GET ', url, '/', options.params.toString());
+    console.log('GET ', `${url}?${options.params.toString()}`);
     return this.http.get(url, options);
   }
 
