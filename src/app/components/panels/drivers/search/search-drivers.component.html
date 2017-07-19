@@ -1,6 +1,6 @@
 <h2>راننده ها</h2>
-<input class="search form-ctrl" type="search" name="searchDrivers" placeholder="جستجو ..." (keyup)="OnSearch()" [(ngModel)]="query">
-<table class="table" >
+<input class="search form-ctrl" type="search" name="searchDrivers" placeholder="جستجو ..." [formControl]="searchControl" [value]="search">
+<table class="table">
   <thead>
     <tr>
       <th>نام راننده</th>
@@ -20,7 +20,7 @@
       <td>{{driver.username}}</td>
       <td>{{driver.serviceType}}</td>
       <td>{{driver.credit}}</td>
-      <td >{{driver.status}}</td>
+      <td>{{driver.status}}</td>
       <td><button class="btn outline error" (click)="banDriver(driver.username)" [disabled]="driver.stateCode=== -1">بن</button></td>
       <td><button class="btn accent" (click)="onMoreClick(driver)">اطلاعات بیشتر</button></td>
     </tr>

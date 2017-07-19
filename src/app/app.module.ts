@@ -94,6 +94,8 @@ import { SupportPanel } from 'components/panels/support';
 import { SearchTripsComponent } from './components/panels/trips/search/search-trips.component';
 import { SubscribeRegisterComponent } from './components/panels/passengers/subscribe-register/subscribe-register.component';
 import { AddMasterComponent } from './components/panels/operators/add-master/add-master.component';
+import { InputComponent } from './components/utils/input/input.component';
+import { InputDirective } from './directives/input.directive';
 
 
 @NgModule({
@@ -151,7 +153,9 @@ import { AddMasterComponent } from './components/panels/operators/add-master/add
 
     SearchTripsComponent,
     SubscribeRegisterComponent,
-    AddMasterComponent
+    AddMasterComponent,
+    InputComponent,
+    InputDirective
   ],
   imports: [
     BrowserModule,

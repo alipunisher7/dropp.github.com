@@ -1,6 +1,11 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { OperatorService, NotificationService} from 'services';
-import { Driver, Notification, NotificationTypes,ISearchParam } from 'models';
+import { Driver, Notification, NotificationTypes, ISearchParam } from 'models';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/debounceTime';
+import 'rxjs/add/operator/throttleTime';
+import 'rxjs/add/observable/fromEvent';
 
 @Component({
   selector: 'ts-search-drivers',
@@ -9,26 +14,30 @@ import { Driver, Notification, NotificationTypes,ISearchParam } from 'models';
 })
 export class SearchDriversComponent implements OnInit {
 
-  query: string = '';
+  search: string = '';
+  searchControl = new FormControl();
   drivers: Driver[];
   selectedDriver: Driver;
   resultCount = 20;
   page = 0;
 
-  constructor(private _operatorServices: OperatorService, private _notification: NotificationService, private _el: ElementRef) {
+  constructor(private _operatorServices: OperatorService, private _notification: NotificationService) {
   }
 
   searchDrivers() {
     // TODO: count and prefix
-    this._operatorServices.searchDrivers({query: this.query, count: this.resultCount, offset: this.page}).subscribe(res => this.drivers = res);
+    this._operatorServices.searchDrivers({ query: this.search, count: this.resultCount, offset: this.page }).subscribe(res => this.drivers = res);
   }
 
   ngOnInit() {
-    // const el = this._el.nativeElement.k
-    this.searchDrivers();
-  }
+    // debounce keystroke events
+    this.searchControl.valueChanges
+      .debounceTime(400)
+      .subscribe(newValue => {
+        this.search = newValue
+        this.searchDrivers();
+      });
 
-  OnSearch() {
     this.searchDrivers();
   }
 

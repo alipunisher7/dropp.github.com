@@ -24,23 +24,16 @@ export interface IDriver extends IUser {
   device?: Device;
 }
 
-export class Driver extends User {
-  StatusCodeNames = {
-    "-1": "بن شده",
-    "0": "غیر فعال",
-    "1": "درحال ثبت نام",
-    "2": "منتظر تایید",
-    "3": "تایید شده"
-  }
+const StatusCodeNames = {
+  "-1": "بن شده",
+  "0": "غیر فعال",
+  "1": "درحال ثبت نام",
+  "2": "منتظر تایید",
+  "3": "تایید شده"
+}
 
-  email?: string;
-  username: string;
-  password?: string;
-  firstName?: string;
-  lastName?: string;
-  phoneNumber?: string;
-  city?: string;
-  gender?: string;
+export class Driver extends User {
+
   serviceType?: string;
   address?: Address;
   vehicle?: Vehicle;
@@ -51,19 +44,11 @@ export class Driver extends User {
   device?: Device;
 
   get status() {
-    return this.StatusCodeNames[this.stateCode];
+    return StatusCodeNames[this.stateCode];
   }
 
   constructor(driver: IDriver) {
     super(driver);
-    this.email = driver.email;
-    this.username = driver.username;
-    this.password = driver.password;
-    this.firstName = driver.firstName;
-    this.lastName = driver.lastName;
-    this.phoneNumber = driver.phoneNumber;
-    this.city = driver.city;
-    this.gender = driver.gender;
     this.serviceType = driver.serviceType;
     this.address = driver.address;
     this.birthDate = driver.birthDate;
@@ -72,7 +57,7 @@ export class Driver extends User {
     this.registrationDate = driver.registrationDate;
     this.stateCode = driver.stateCode;
     this.credit = driver.credit;
-    this.device = driver.device || new Device({});
+    this.device = driver.device || new Device();
   }
 
 }

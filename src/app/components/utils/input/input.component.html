@@ -1,0 +1,6 @@
+<div [ngClass]="{up: input.focused || input.hasValue }">
+  <label>{{input.placeholder}}</label>
+  <ng-content>
+  </ng-content>
+  <span class="border"></span>
+</div>

@@ -1,0 +1,50 @@
+@import 'variables';
+
+:host {
+  padding: $input-padding;
+}
+
+div {
+  display: block;
+  position: relative;
+  margin-bottom: $input-margin;
+  border-bottom: 1px solid $text-disable;
+}
+
+.border {
+  width: 100%;
+  // position: relative;
+
+  &::after {
+    transition: 1s width;
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    right: 0;
+    width: 0;
+    border-bottom: 1px solid;
+  }
+}
+
+.up {
+  .border {
+    &::after {
+      width: 100%;
+      border-color: $accent;
+    }
+  }
+
+  label {
+    bottom: 65%;
+    color: $accent;
+    font-size: .6rem;
+  }
+}
+
+label {
+  position: absolute;
+  padding: $input-padding;
+  bottom: 23%;
+  right: 0;
+  transition: 400ms bottom, 400ms font-size;
+}
