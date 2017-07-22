@@ -20,9 +20,11 @@ export class AdminApi {
   public getRadiusOfServiceUrl = (serviceType: string) => `${adminApi}/searchRadiuses/${serviceType}`;
 
   public insertTarrifUrl = `${adminApi}/tariffs`;
-  public updateTarrifUrl = `${adminApi}/tariffs`;
-  public searchTarrifUrl = `${adminApi}/tariffs`;
+  public updateTariffUrl = `${adminApi}/tariffs`;
+  public getTarrifUrl = (cityName: string) => `${adminApi}/tariffs/${cityName}`;
   // public getTarrifUrl = `${adminApi}/ticketSubjects`;
   public banMasterUrl = `${adminApi}/banMaster`;
   public unBanMasterUrl = `${adminApi}/unBanMaster`;
+  public enableServiceUrl = (serviceID) => `${adminApi}/services/${serviceID}/enable`;
+  public disableServiceUrl = (serviceID) => `${adminApi}/services/${serviceID}/disable`;
 }

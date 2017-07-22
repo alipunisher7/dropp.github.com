@@ -258,8 +258,9 @@ export class OperatorService {
       .catch(this.handleError);
   }
   unBanPassenger(username) {
-    let url = this._operatorApi.unBanDriverUrl;
-    let body = { username };
+    let url = this._operatorApi.unBanDPassengerUrl;
+    let body = { username }
+
     return this._http.post(url, body)
       .map((res: Response) => {
         let json = res.json();

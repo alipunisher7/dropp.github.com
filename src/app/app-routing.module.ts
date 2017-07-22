@@ -25,7 +25,7 @@ import {
   ManageSearchRadiusComponent
 } from 'components/panels/manage';
 
-import { OperatorsPanel, AddOperatorComponent, AddMasterComponent, SearchOperatorComponent} from 'components/panels/operators';
+import { OperatorsPanel, AddOperatorComponent, AddMasterComponent, SearchOperatorComponent, SearchForAdminComponent} from 'components/panels/operators';
 
 import { SupportPanel, ViewTicketsComponent } from 'components/panels/support';
 
@@ -67,6 +67,7 @@ const routes: Routes = [
       { path: 'add', component: AddOperatorComponent },
       { path: 'add-master', component: AddMasterComponent },
       { path: 'search', component: SearchOperatorComponent },
+      { path: 'search-for-admin', component: SearchForAdminComponent },
     ]
   },
   // { path: 'admin', component: OrganizationsComponent },

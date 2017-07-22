@@ -12,16 +12,17 @@ export class ManageVouchersComponent implements OnInit {
   constructor(private _masterService: MasterService, private _notification: NotificationService) {
     this.myForm = new FormGroup({
       'description': new FormControl('', [Validators.required, Validators.minLength(5)]),
-      'voucher_code_type': new FormControl('', Validators.required),
-      'discount_value': new FormControl('', Validators.required),
+      'codeType': new FormControl('', Validators.required),
+      'value': new FormControl('', Validators.required),
       'code': new FormControl('', Validators.minLength(5)),
-      'start_date': new FormControl('', Validators.required),
-      'expire_date': new FormControl('', Validators.required),
-      'max_use': new FormControl('', Validators.required),
-      'count': new FormControl('', Validators.required),
+      'startDate': new FormControl('', Validators.required),
+      'expireDate': new FormControl('', Validators.required),
+      'maxUse': new FormControl('', Validators.required),
+      'generationType': new FormControl('A')
     });
   }
   onSubmit() {
+
     this._masterService.insertVoucher(this.myForm.value).subscribe(
       res => {
         alert(res)

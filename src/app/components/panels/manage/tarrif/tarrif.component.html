@@ -1,5 +1,14 @@
 <h2>تعرفه ها</h2>
-<input class="search form-ctrl" type="search" name="searchDrivers" placeholder="جستجو ..." (keyup)="OnSearch()" [(ngModel)]="query">
+<div>
+  <label>شهر</label>
+  <select  (change)=onChange($event.target.value)>
+    <option value="">شهر را انتخاب کنید</option>
+    <option value="TE">تهران</option>
+    <option value="MA">مشهد</option>
+    <option value="IS">اصفهان</option>
+    <option value="GO">گرگان</option>
+  </select>
+</div>
 <h3>نمایش تعرفه ها</h3>
 <table class="table">
   <thead>
@@ -17,11 +26,50 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td></td>
+    <tr *ngFor="let tariff of tariffs">
+      <td>{{tariff.cityName}}</td>
+      <td>{{tariff.serviceTypeName}}</td>
+      <td>{{tariff.before2KM}}</td>
+      <td>{{tariff.after2KM}}</td>
+      <td>{{tariff.perMin}}</td>
+      <td>{{tariff.waitingMin}}</td>
+      <td>{{tariff.entrance}}</td>
+      <td>{{tariff.twoWayCost}}</td>
+      <td>{{tariff.coShare}}</td>
+      <td ><button (click)="updateTariff(tariff)">ویرایش</button></td>
     </tr>
   </tbody>
 </table>
+<form [formGroup]="updateForm" (ngSubmit)="onUpdate()" *ngIf="selectedTariff">
+<h2>تغییر تعرفه</h2>
+<div>
+  <label>آی دی<input type="number" name="tariffIDUpdate"   formControlName="tariffIDUpdate"></label>
+</div>
+<div>
+  <label>هزینه هر متر قبل از 2 کیلومتر<input type="text" name="before2KMUpdate" formControlName="before2KMUpdate"></label>
+</div>
+<div>
+  <label>هزینه هر متر بعد از 2 کیلومتر<input type="text" name="after2KMUpdate" formControlName="after2KMUpdate"></label>
+</div>
+<div>
+  <label>هزینه هر دقیقه سفر<input type="text" name="perMinUpdate" formControlName="perMinUpdate"></label>
+</div>
+<div>
+  <label>هزینه هر دقیقه انتظار<input type="text" name="waitingMinUpdate" formControlName="waitingMinUpdate"></label>
+</div>
+<div>
+  <label>هزینه ورودی<input type="text" name="entranceUpdate" formControlName="entranceUpdate"></label>
+</div>
+<div>
+  <label>درصد سفر بازگشت<input type="text" name="twoWayCostUpdate" formControlName="twoWayCostUpdate"></label>
+</div>
+<div>
+  <label>درصد سهم شرکت<input type="text" name="coShareUpdate" formControlName="coShareUpdate"></label>
+</div>
+<div>
+  <button type="submit" name="updateTariff" [disabled]="!updateForm.valid">ثبت</button>
+</div>
+</form>
 <h3>اضافه کردن تعرفه</h3>
 <form [formGroup]='myForm' (ngSubmit)="onSubmit()" >
   <div>

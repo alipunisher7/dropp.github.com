@@ -1,1 +1,1 @@
-export * from './operators-for-admin.component';
+export * from './operator-for-admin.component';

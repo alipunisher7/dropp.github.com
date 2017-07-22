@@ -9,7 +9,7 @@ export * from './notification.model';
 export * from './user.model';
 export * from './organization.model';
 export * from './services.model';
-export * from './tarrif.model';
+export * from './tariff.model';
 export * from './radius.model';
 export * from './api-error.model';
 export * from './search-param.model';

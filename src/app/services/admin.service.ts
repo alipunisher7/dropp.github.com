@@ -3,7 +3,7 @@ import { Response, URLSearchParams } from '@angular/http';
 import { AuthHttpService } from './auth-http.service';
 import { Observable } from 'rxjs/Observable';
 import { AdminApi } from './providers';
-import { Radius, ApiError, ISearchParam } from 'models';
+import { Radius, ApiError, ISearchParam, Tariff } from 'models';
 
 import 'rxjs/operator/map';
 import 'rxjs/add/operator/catch';
@@ -157,8 +157,8 @@ export class AdminService {
       })
       .catch(this.handleError);
   }
-  updateTarrif(tarrif): Observable<any> {
-    let url = this._adminApi.updateTarrifUrl;
+  updateTariff(tarrif): Observable<any> {
+    let url = this._adminApi.updateTariffUrl;
 
     return this._http
       .patch(url, tarrif)
@@ -167,26 +167,22 @@ export class AdminService {
         if (json.statusCode !== 1) {
           throw new ApiError(url, json)
         }
-
-
+        return json;
       })
       .catch(this.handleError);
   }
-  searchTarrif(param: ISearchParam) {
-    let url = this._adminApi.searchTarrifUrl;
 
-    let params = new URLSearchParams();
-    params.append('q', param.query);
-    params.append('count', param.count);
-    params.append('offset', param.offset);
+  getTarrif(cityName: string): Observable<any> {
+    let url = this._adminApi.getTarrifUrl(cityName);
 
-    return this._http.search(url, params)
+    return this._http
+      .get(url)
       .map((res: Response) => {
         let json = res.json();
         if (json.statusCode !== 1) {
-          throw new ApiError(url, json);
+          throw new ApiError(url, json)
         }
-        let data = json.data.operators;
+        let data = json.data.tariffs.map(tariff => new Tariff(tariff));
         console.log(data);
         return data;
       })
@@ -217,6 +213,40 @@ export class AdminService {
         return json;
       })
   }
+  // enableService(serviceID: number): Observable<any> {
+  //
+  // }
+  enableService(serviceID) {
+    let url = this._adminApi.enableServiceUrl(serviceID);
+    let body = '';
+    return this._http
+      .patch(url, body)
+      .map((res: Response) => {
+        let json = res.json();
+        if (json.statusCode !== 1) {
+          throw new ApiError(url, json)
+        }
+
+        return json;
+      })
+      .catch(this.handleError);
+  }
+  disableService(serviceID) {
+    let url = this._adminApi.disableServiceUrl(serviceID);
+    let body = '';
+    return this._http
+      .patch(url, body)
+      .map((res: Response) => {
+        let json = res.json();
+        if (json.statusCode !== 1) {
+          throw new ApiError(url, json)
+        }
+
+        return json;
+      })
+      .catch(this.handleError);
+  }
+
   // getTarrif(): Observable<any> {
   //   let url = this._adminApi.getTarrifUrl;
   //
