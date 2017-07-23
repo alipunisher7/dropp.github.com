@@ -100,6 +100,8 @@ import { OperatorComponent } from './components/panels/operators/operator/operat
 import { ViewTicketsComponent } from './components/panels/support/view-tickets/view-tickets.component';
 import { SearchForAdminComponent } from './components/panels/operators/search-for-admin/search-for-admin.component';
 import { OperatorForAdminComponent } from './components/panels/operators/operator-for-admin/operator-for-admin.component';
+import { SearchSubscribesComponent } from './components/panels/passengers/search-subscribes/search-subscribes.component';
+import { BugsComponent } from './components/panels/manage/bugs/bugs.component';
 
 
 @NgModule({
@@ -163,7 +165,9 @@ import { OperatorForAdminComponent } from './components/panels/operators/operato
     OperatorComponent,
     ViewTicketsComponent,
     SearchForAdminComponent,
-    OperatorForAdminComponent
+    OperatorForAdminComponent,
+    SearchSubscribesComponent,
+    BugsComponent
   ],
   imports: [
     BrowserModule,

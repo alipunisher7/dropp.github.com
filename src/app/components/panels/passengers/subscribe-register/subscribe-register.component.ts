@@ -15,8 +15,8 @@ export class SubscribeRegisterComponent implements OnInit {
       'firstName': new FormControl('', [Validators.required, Validators.minLength(3)]),
       'lastName': new FormControl('', [Validators.required, Validators.minLength(3)]),
       'phoneNumber': new FormControl('', [Validators.required, Validators.minLength(10)]),
-      'line1': new FormControl('', [Validators.required, Validators.minLength(10)]),
-      'line2': new FormControl('', Validators.minLength(10)),
+      'line1': new FormControl('', [Validators.required, Validators.minLength(5)]),
+      'line2': new FormControl('', Validators.minLength(5)),
       'postalCode': new FormControl('', Validators.minLength(10)),
       'state': new FormControl('', Validators.required),
       'city': new FormControl('', Validators.required)

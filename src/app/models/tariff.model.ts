@@ -1,4 +1,5 @@
 export interface ITariff {
+  id?: number;
   tariffID?: number;
   city?: string;
   serviceType?: string;
@@ -11,6 +12,7 @@ export interface ITariff {
   coShare: string;
 }
 export class Tariff implements ITariff {
+  id?: number;
   tariffID?: number;
   city?: string;
   serviceType?: string;
@@ -43,6 +45,7 @@ export class Tariff implements ITariff {
     return this.serviceTypeNames[this.serviceType];
   }
   constructor(tariff: ITariff) {
+    this.id = tariff.id;
     this.tariffID = tariff.tariffID;
     this.serviceType = tariff.serviceType;
     this.city = tariff.city;

@@ -1,3 +1,24 @@
+<h2>نمایش کد های تخفیف</h2>
+<table class="table">
+  <thead>
+    <tr>
+      <th>کد تخفیف</th>
+      <th>توضیحات</th>
+      <th>حداکثر تعداد استفاده</th>
+      <th>استفاده شده</th>
+      <th>اطلاعات بیشتر</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
 <h2>ایجاد کد تخفیف</h2>
 <form [formGroup]='myForm' (ngSubmit)="onSubmit()" >
   <div>
@@ -15,7 +36,7 @@
     <label>میزان تخفیف<input type="number" name="value" value="" formControlName="value"></label>
   </div>
   <div>
-    <label>کد دستی<input type="checkbox" [checked]="isManual" (change)="isManual =!isManual" name="generationType" value="generationType"></label>
+    <label>کد دستی<input type="checkbox" [checked]="isManual" (change)="isManual =!isManual" (change)="check()" name="generationType" value=""></label>
   </div>
   <div *ngIf="isManual" >
     <label>کد<input type="text" name="code" value="" formControlName="code"></label>

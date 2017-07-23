@@ -21,6 +21,9 @@ export class ManageVouchersComponent implements OnInit {
       'generationType': new FormControl('A')
     });
   }
+  check() {
+    this.myForm.controls['generationType'].setValue('M');
+  }
   onSubmit() {
 
     this._masterService.insertVoucher(this.myForm.value).subscribe(

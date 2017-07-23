@@ -8,7 +8,7 @@ import { DashboardPanel } from 'components/panels/dashboard';
 
 import { DriversPanel, DriverCreditComponent, SearchDriversComponent, LowRateDriversComponent } from 'components/panels/drivers';
 
-import { PassengersPanel, SearchPassengersComponent, SubscribeRegisterComponent } from 'components/panels/passengers';
+import { PassengersPanel, SearchPassengersComponent, SubscribeRegisterComponent, SearchSubscribesComponent } from 'components/panels/passengers';
 
 import { TripsPanel, SearchTripsComponent } from 'components/panels/trips';
 
@@ -49,7 +49,8 @@ const routes: Routes = [
   {
     path: 'passengers', component: PassengersPanel, children: [
       { path: 'search', component: SearchPassengersComponent },
-      { path: 'subscribe-register', component: SubscribeRegisterComponent }
+      { path: 'subscribe-register', component: SubscribeRegisterComponent },
+      { path: 'search-subscribe', component: SearchSubscribesComponent },
     ]
   },
   {

@@ -4,6 +4,7 @@ const operatorApi = `${API_URL}/operator`;
 export class OperatorApi {
 
   public insertSubscribeUrl = `${operatorApi}/subscribes`;
+  public searchSubscribeUrl = `${operatorApi}/subscribes`;
   public confirmDriverUrl = (driverUsername) => `${operatorApi}/confirmDriver/${driverUsername}`;
 
   public getDriverUrl = (driverUsername) => `${operatorApi}/drivers/${driverUsername}`;
@@ -35,13 +36,14 @@ export class OperatorApi {
   public getPassengersTicketForDriverUrl = (driverUsername) => `${operatorApi}/${driverUsername}/tickets/passengers`;
 
   public getTicketsUrl = `${operatorApi}/tickets`;
+  public resolveTicketUrl = (id) => `${operatorApi}/tickets/${id}/resolve`;
 
-  public getOnlineTripsUrl = `${operatorApi}/trips/online`;
-  public getTodayTripsUrl = ``;
+  public getOnlineTripsUrl = `${operatorApi}/trips/online/count`;
+  public getTodayTripsUrl = `${operatorApi}/trips/count`;
   public getAllDriversUrl = `${operatorApi}/viewNumberOfAllDrivers`;
-  public getNewPassengersUrl = ``;
-  public getAllPassengersUrl = ``;
-  public getAllOrganizationsUrl = ``;
+  public getAllPassengersUrl = `${operatorApi}/passengers/count`;
+  public getNewPassengersUrl = `${operatorApi}/passengers/new/count`;
+  public getAllOrganizationsUrl = `${operatorApi}/organizations/count`;
   public getDriverInfoUrl = ``;
 
 }

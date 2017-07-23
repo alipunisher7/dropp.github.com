@@ -55,8 +55,7 @@ export class TarrifComponent implements OnInit {
   }
   updateTariff(tariff: Tariff) {
     this.selectedTariff = tariff;
-    this.updateForm.controls['cityUpdate'].setValue(tariff.city);
-    this.updateForm.controls['serviceTypeUpdate'].setValue(tariff.serviceType);
+    this.updateForm.controls['tariffIDUpdate'].setValue(tariff.id);
     this.updateForm.controls['before2KMUpdate'].setValue(tariff.before2KM);
     this.updateForm.controls['after2KMUpdate'].setValue(tariff.after2KM);
     this.updateForm.controls['perMinUpdate'].setValue(tariff.perMin);
@@ -73,11 +72,11 @@ export class TarrifComponent implements OnInit {
       after2KM: this.updateForm.value['after2KMUpdate'],
       perMin: this.updateForm.value['perMinUpdate'],
       waitingMin: this.updateForm.value['waitingMinUpdate'],
-      entrance: this.updateForm.value['entranceMinUpdate'],
+      entrance: this.updateForm.value['entranceUpdate'],
       twoWayCost: this.updateForm.value['twoWayCostUpdate'],
       coShare: this.updateForm.value['coShareUpdate'],
     }
-    console.log(this.updateForm.value)
+    console.log(updatedTariff)
     this._adminService.updateTariff(updatedTariff).subscribe(
       res => {
         let notification = new Notification({ title: 'ثبت شد', info: `تعرفه آپدیت شد`, type: NotificationTypes.success });

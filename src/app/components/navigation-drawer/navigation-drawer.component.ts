@@ -32,7 +32,8 @@ export class NavigationDrawerComponent implements OnInit, AfterViewInit {
         title: 'مسافر ها', icon: 'fa fa-street-view', route: 'passengers',
         subNavs: [
           { title: 'جستجوی مسافر', icon: 'fa fa-user-o', route: 'search' },
-          { title: 'ثبت اشتراک', icon: 'fa fa-user-o', route: 'subscribe-register' }
+          { title: 'ثبت اشتراک', icon: 'fa fa-user-o', route: 'subscribe-register' },
+          { title: 'جستجو اشتراک ها', icon: 'fa fa-user-o', route: 'search-subscribe' },
         ]
       },
       {
@@ -66,6 +67,7 @@ export class NavigationDrawerComponent implements OnInit, AfterViewInit {
           { title: 'تیکت', icon: 'fa fa-money', route: 'tickets' },
           { title: 'کد تخفیف', icon: 'fa fa-money', route: 'manage-vouchers' },
           { title: ' کاربران منع شده', icon: 'fa fa-ban', route: 'manage-banned-users' },
+          { title: 'خطاها', icon: 'fa fa-ban', route: 'bugs' },
         ],
       },
       {

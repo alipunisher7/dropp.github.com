@@ -45,13 +45,13 @@ export class DashboardPanel implements OnInit {
 
   getOnlineTripsCount() {
     this._operatorServices.getOnlineTripsCount().subscribe(data => {
-      this.tripCard.info1.data = data;
+      this.tripCard.info1.data = data.numberOfOnlineTrips;
     })
   }
 
   getTodayTripsCount() {
     this._operatorServices.getTodayTripsCount().subscribe(data => {
-      this.tripCard.info2.data = data;
+      this.tripCard.info2.data = data.numberOfTodaysTrips;
     })
   }
 
@@ -82,13 +82,13 @@ export class DashboardPanel implements OnInit {
 
   getNewPassengersCount() {
     this._operatorServices.getNewPassengersCount().subscribe(data => {
-      this.passengerCard.info1.data = data;
+      this.passengerCard.info1.data = data.numberOfNewPassengers;
     })
   }
 
   getPassengersCount() {
     this._operatorServices.getPassengersCount().subscribe(data => {
-      this.passengerCard.info2.data = data;
+      this.passengerCard.info2.data = data.numberOfAllPassengers;
     })
   }
 
@@ -100,12 +100,17 @@ export class DashboardPanel implements OnInit {
 
   getOrganizationsCount() {
     this._operatorServices.getOrganizationsCount().subscribe(data => {
-      this.organizationCard.info2.data = data;
+      this.organizationCard.info2.data = data.numberOfAllOrganizations;
     })
   }
 
   ngOnInit() {
     this.getDriversCount();
+    this.getPassengersCount();
+    this.getNewPassengersCount();
+    this.getTodayTripsCount();
+    this.getOnlineTripsCount();
+    this.getOrganizationsCount();
     // this.getOnlineDriversCount();
   }
 }

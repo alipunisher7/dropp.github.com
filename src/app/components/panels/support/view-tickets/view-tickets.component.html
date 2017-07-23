@@ -13,9 +13,9 @@
     <tr *ngFor="let ticket of tickets">
       <td>{{ticket.subject}}</td>
       <td>{{ticket.description}}</td>
-      <td>{{ticket.username}}</td>
-      <td></td>
-      <td><button >رسیدگی شد</button></td>
+      <td>{{ticket.passengerUsername}}</td>
+      <td>{{ticket.driverUsername}}</td>
+      <td><button (click)="resolved(ticket)" >رسیدگی شد</button></td>
     </tr>
   </tbody>
 </table>

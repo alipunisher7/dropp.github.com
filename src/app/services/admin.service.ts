@@ -213,9 +213,7 @@ export class AdminService {
         return json;
       })
   }
-  // enableService(serviceID: number): Observable<any> {
-  //
-  // }
+
   enableService(serviceID) {
     let url = this._adminApi.enableServiceUrl(serviceID);
     let body = '';

@@ -1,4 +1,4 @@
-<h2>سرویس های فعال</h2>
+<h2>سرویس ها</h2>
 <div>
   <select (change)=onChange($event.target.value)>
     <option value="">شهر را انتخاب کنید</option>
@@ -22,8 +22,8 @@
       <td>{{activeService.type}}</td>
       <td *ngIf="activeService.status===true">فعال</td>
       <td *ngIf="activeService.status===false">غیر فعال</td>
-      <td><button [disabled]="activeService.status ===true">کلیک</button></td>
-      <td><button [disabled]="activeService.status ===false">کلیک</button></td>
+      <td><button (click)="enable(activeService.id)" [disabled]="activeService.status ===true">کلیک</button></td>
+      <td><button (click)="disable(activeService.id)" [disabled]="activeService.status ===false">کلیک</button></td>
     </tr>
     <tr *ngIf="!activeService" class="no-data">
       <td colspan=75%>
@@ -52,5 +52,5 @@
      <option value="L">لوکس</option>
    </select>
 
-  <button type="submit" name="submitActiveService">ثبت</button>
+  <button type="submit" name="submitActiveService" [disabled]="!myForm.valid">ثبت</button>
 </form>
