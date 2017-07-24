@@ -11,4 +11,7 @@ export class MasterApi {
 
   public insertVoucherUrl = `${masterApi}/vouchers`;
   public getVouchersUrl = `${masterApi}/vouchers`;
+  public searchOperatorsUrl = `${masterApi}/operators`;
+  public banOperatorUrl = `${masterApi}/banOperator`;
+  public unBanOperatorUrl = `${masterApi}/unBanOperator`;
 }

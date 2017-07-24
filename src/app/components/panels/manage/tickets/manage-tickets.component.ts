@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Notification, NotificationTypes } from 'models';
+import { Notification, NotificationTypes, ITickets } from 'models';
 import { MasterService, NotificationService } from 'services'
 
 @Component({
@@ -18,6 +18,7 @@ export class ManageTicketsComponent implements OnInit {
       'subjectGroup': new FormControl()
     })
   }
+
 
   OnSubmit() {
     this._masterService.insertTicketSubject(this.myForm.value).subscribe(

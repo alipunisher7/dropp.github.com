@@ -42,4 +42,15 @@ export class SearchPassengersComponent implements OnInit {
       }
     );
   }
+  unBanPassenger(data) {
+    this._operatorServices.unBanPassenger(data).subscribe(
+      res => {
+        let notification = new Notification({ title: 'ثبت شد', info: `مسافر مورد نظر رفع بن شد`, type: NotificationTypes.success });
+        this._notification.notify(notification);
+      },
+      err => {
+        alert(err);
+      }
+    );
+  }
 }

@@ -1,0 +1,24 @@
+<h2>اشتراک ها</h2>
+<input type="search" name="searchSubscribe" class="form-ctrl search" placeholder="جستجو ..." (keyup)="OnSearch()" [(ngModel)]="query">
+<table class="table" >
+  <thead>
+    <tr>
+      <th>نام</th>
+      <th>نام خانوادگی</th>
+      <th>شماره تماس</th>
+      <th>آدرس</th>
+      <th>کدپستی</th>
+      <th>کد اشتراک</th>
+    </tr>
+  </thead>
+  <tbody >
+    <tr *ngFor="let subscribeUser of subscribeUsers">
+    <td>{{subscribeUser.firstName}}</td>
+    <td>{{subscribeUser.lastName}}</td>
+    <td>{{subscribeUser.phoneNumber}}</td>
+    <td>{{subscribeUser.address.toString()}}</td>
+    <td>{{subscribeUser.address.postalCode}}</td>
+    <td>{{subscribeUser.code}}</td>
+    </tr>
+  </tbody>
+</table>

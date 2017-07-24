@@ -10,7 +10,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SupportPanel implements OnInit {
 
+
   constructor() { }
+
 
   ngOnInit() {
   }

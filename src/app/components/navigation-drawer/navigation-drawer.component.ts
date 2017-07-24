@@ -31,10 +31,16 @@ export class NavigationDrawerComponent implements OnInit, AfterViewInit {
         title: 'مسافر ها', icon: 'fa fa-street-view', route: 'passengers',
         subNavs: [
           { title: 'جستجوی مسافر', icon: 'fa fa-user-o', route: 'search' },
-          { title: 'ثبت اشتراک', icon: 'fa fa-user-o', route: 'subscribe-register' }
+          { title: 'ثبت اشتراک', icon: 'fa fa-user-o', route: 'subscribe-register' },
+          { title: 'جستجو اشتراک ها', icon: 'fa fa-user-o', route: 'search-subscribe' },
         ]
       },
-      { title: 'سازمان ها', icon: 'fa fa-building', route: 'organizations' },
+      {
+        title: 'سازمان ها', icon: 'fa fa-building', route: 'organizations',
+        subNavs: [
+          { title: 'جستجوی سازمان ', icon: 'fa fa-building', route: 'search' },
+        ]
+      },
       {
         title: 'سفر ها', icon: 'fa fa-plane', route: 'trips',
         subNavs: [
@@ -45,7 +51,9 @@ export class NavigationDrawerComponent implements OnInit, AfterViewInit {
         title: 'اپراتورها', icon: 'fa fa-user-o', route: 'operators',
         subNavs: [
           { title: 'اضافه کردن اپراتور', icon: 'fa fa-user-o', route: 'add' },
-          { title: ' اضافه کردن اپراتور ارشد', icon: 'fa fa-user-o', route: 'add-master' }
+          { title: ' اضافه کردن اپراتور ارشد', icon: 'fa fa-user-o', route: 'add-master' },
+          { title: 'جستجو اپراتور', icon: 'fa fa-user-o', route: 'search' },
+          { title: 'جستجو اپراتور(ادمین)', icon: 'fa fa-user-o', route: 'search-for-admin' }
         ]
       },
       {
@@ -58,8 +66,15 @@ export class NavigationDrawerComponent implements OnInit, AfterViewInit {
           { title: 'تیکت', icon: 'fa fa-money', route: 'tickets' },
           { title: 'کد تخفیف', icon: 'fa fa-money', route: 'manage-vouchers' },
           { title: ' کاربران منع شده', icon: 'fa fa-ban', route: 'manage-banned-users' },
+          { title: 'خطاها', icon: 'fa fa-ban', route: 'bugs' },
         ],
       },
+      {
+        title: 'پشتیبانی', icon: 'fa fa-user-o', route: 'support',
+        subNavs: [
+          { title: 'نمایش تیکت ها', icon: 'fa fa-envelope-o', route: 'view-ticket' }
+        ]
+      }
     ];
   }
 

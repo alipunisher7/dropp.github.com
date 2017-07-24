@@ -26,6 +26,29 @@ export class ActiveServicesComponent implements OnInit {
   onChange(city) {
     this._adminService.getServicesOfCity(city).subscribe(res => { console.log(res); this.activeServices = res })
   }
+  enable(id) {
+    this._adminService.enableService(id).subscribe(
+      res => {
+        let notification = new Notification({ title: 'فعال شد', info: 'سرویس مورد نظر فعال شد', type: NotificationTypes.success });
+        this._notification.notify(notification);
+      },
+      err => {
+        alert(err);
+      }
+    )
+  }
+  disable(id) {
+    this._adminService.disableService(id).subscribe(
+      res => {
+        let notification = new Notification({ title: 'غیر فعال شد', info: 'سرویس مورد نظر غیر فعال شد', type: NotificationTypes.success });
+        this._notification.notify(notification);
+      },
+      err => {
+        alert(err);
+      }
+
+    )
+  }
 
   onSubmit() {
     this._adminService.insertService(this.myForm.value).subscribe(res => {

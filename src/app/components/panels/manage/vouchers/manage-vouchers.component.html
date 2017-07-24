@@ -1,3 +1,24 @@
+<h2>نمایش کد های تخفیف</h2>
+<table class="table">
+  <thead>
+    <tr>
+      <th>کد تخفیف</th>
+      <th>توضیحات</th>
+      <th>حداکثر تعداد استفاده</th>
+      <th>استفاده شده</th>
+      <th>اطلاعات بیشتر</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
 <h2>ایجاد کد تخفیف</h2>
 <form [formGroup]='myForm' (ngSubmit)="onSubmit()" >
   <div>
@@ -5,32 +26,30 @@
   </div>
   <div>
     <label>نوع کد تخفیف
-      <select  name="voucher_code_type" formControlName="voucher_code_type">
-        <option value="percent">درصد</option>
-        <option value="price">مبلغ</option>
+      <select  name="codeType" formControlName="codeType">
+        <option value="P">درصد</option>
+        <option value="A">مبلغ</option>
       </select>
     </label>
   </div>
   <div>
-    <label>میزان تخفیف<input type="number" name="discount_value" value="" formControlName="discount_value"></label>
+    <label>میزان تخفیف<input type="number" name="value" value="" formControlName="value"></label>
   </div>
   <div>
+    <label>کد دستی<input type="checkbox" [checked]="isManual" (change)="isManual =!isManual" (change)="check()" name="generationType" value=""></label>
+  </div>
+  <div *ngIf="isManual" >
     <label>کد<input type="text" name="code" value="" formControlName="code"></label>
-    <span>*کد تخفیف میتواند به صورت خودکار نیز ایجاد شود. برای این کار فیلد کد را خالی بگذارید*</span>
   </div>
   <div>
-    <label>تاریخ شروع<input type="date" name="start_date" value="" formControlName="start_date"></label>
+    <label>تاریخ شروع<input type="date" name="startDate" value="" formControlName="startDate"></label>
   </div>
   <div>
-    <label>تاریخ انقضا<input type="date" name="expire_date" value="" formControlName="expire_date"></label>
+    <label>تاریخ انقضا<input type="date" name="expireDate" value="" formControlName="expireDate"></label>
   </div>
   <div>
-    <label>حداکثر تعداد قابل استفاده<input type="number" name="max_use" value="" formControlName="max_use"></label>
+    <label>حداکثر تعداد قابل استفاده<input type="number" name="maxUse" value="" formControlName="maxUse"></label>
   </div>
-  <div>
-    <label>تعداد کد<input type="number" name="count" value="" formControlName="count"></label>
-  </div>
-
   <div>
     <button type="submit" [disabled]="!myForm.valid">ثبت</button>
   </div>

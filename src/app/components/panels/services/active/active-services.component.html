@@ -1,4 +1,4 @@
-<h2>سرویس های فعال</h2>
+<h2>سرویس ها</h2>
 <div>
   <select (change)=onChange($event.target.value)>
     <option value="">شهر را انتخاب کنید</option>
@@ -13,6 +13,7 @@
     <tr>
       <th>سرویس</th>
       <th>وضعیت</th>
+      <th>فعال کردن</th>
       <th>غیر فعال کردن</th>
     </tr>
   </thead>
@@ -20,7 +21,9 @@
     <tr *ngFor="let activeService of activeServices">
       <td>{{activeService.type}}</td>
       <td *ngIf="activeService.status===true">فعال</td>
-      <td><button>کلیک</button></td>
+      <td *ngIf="activeService.status===false">غیر فعال</td>
+      <td><button (click)="enable(activeService.id)" [disabled]="activeService.status ===true">کلیک</button></td>
+      <td><button (click)="disable(activeService.id)" [disabled]="activeService.status ===false">کلیک</button></td>
     </tr>
     <tr *ngIf="!activeService" class="no-data">
       <td colspan=75%>
@@ -29,7 +32,7 @@
     </tr>
   </tbody>
 </table><br>
-<h2>فعال کردن سرویس جدید</h2>
+<h2>اضافه کردن سرویس جدید</h2>
 <form [formGroup]='myForm' (ngSubmit)="onSubmit()">
   <select formControlName="city">
      <option value="">شهر را انتخاب کنید</option>
@@ -49,5 +52,5 @@
      <option value="L">لوکس</option>
    </select>
 
-  <button type="submit" name="submitActiveService">ثبت</button>
+  <button type="submit" name="submitActiveService" [disabled]="!myForm.valid">ثبت</button>
 </form>

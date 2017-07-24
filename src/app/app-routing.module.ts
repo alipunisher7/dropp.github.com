@@ -8,11 +8,11 @@ import { DashboardPanel } from 'components/panels/dashboard';
 
 import { DriversPanel, DriverCreditComponent, SearchDriversComponent, LowRateDriversComponent } from 'components/panels/drivers';
 
-import { PassengersPanel, SearchPassengersComponent, SubscribeRegisterComponent } from 'components/panels/passengers';
+import { PassengersPanel, SearchPassengersComponent, SubscribeRegisterComponent, SearchSubscribesComponent } from 'components/panels/passengers';
 
 import { TripsPanel, SearchTripsComponent } from 'components/panels/trips';
 
-import { OrganizationsPanel } from 'components/panels/organizations';
+import { OrganizationsPanel, SearchOrganizationComponent } from 'components/panels/organizations';
 
 import {
   ManagePanel,
@@ -25,9 +25,9 @@ import {
   ManageSearchRadiusComponent
 } from 'components/panels/manage';
 
-import { OperatorsPanel, AddOperatorComponent, AddMasterComponent } from 'components/panels/operators';
+import { OperatorsPanel, AddOperatorComponent, AddMasterComponent, SearchOperatorComponent, SearchForAdminComponent} from 'components/panels/operators';
 
-import { SupportPanel } from 'components/panels/support';
+import { SupportPanel, ViewTicketsComponent } from 'components/panels/support';
 
 import { ServicePanel, ActiveServicesComponent } from 'components/panels/services';
 
@@ -49,7 +49,8 @@ const routes: Routes = [
   {
     path: 'passengers', component: PassengersPanel, children: [
       { path: 'search', component: SearchPassengersComponent },
-      { path: 'subscribe-register', component: SubscribeRegisterComponent }
+      { path: 'subscribe-register', component: SubscribeRegisterComponent },
+      { path: 'search-subscribe', component: SearchSubscribesComponent },
     ]
   },
   {
@@ -57,11 +58,17 @@ const routes: Routes = [
       { path: 'search', component: SearchTripsComponent }
     ]
   },
-  { path: 'organizations', component: OrganizationsPanel },
+  {
+    path: 'organizations', component: OrganizationsPanel, children: [
+      { path: 'search', component: SearchOrganizationComponent }
+    ]
+  },
   {
     path: 'operators', component: OperatorsPanel, children: [
       { path: 'add', component: AddOperatorComponent },
       { path: 'add-master', component: AddMasterComponent },
+      { path: 'search', component: SearchOperatorComponent },
+      { path: 'search-for-admin', component: SearchForAdminComponent },
     ]
   },
   // { path: 'admin', component: OrganizationsComponent },
@@ -78,7 +85,11 @@ const routes: Routes = [
 
   },
   { path: 'send-taxi', component: SendTaxiComponent },
-  { path: 'support', component: SupportPanel }
+  {
+    path: 'support', component: SupportPanel, children: [
+      { path: 'view-ticket', component: ViewTicketsComponent }
+    ]
+  }
 ];
 
 @NgModule({

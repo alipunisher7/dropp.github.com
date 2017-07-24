@@ -100,6 +100,7 @@ import { SubscribeRegisterComponent } from './components/panels/passengers/subsc
 import { AddMasterComponent } from './components/panels/operators/add-master/add-master.component';
 import { InputComponent } from './components/utils/input/input.component';
 import { InputDirective } from './directives/input.directive';
+import { OperatorForAdminComponent } from './components/panels/operators/operator-for-admin/operator-for-admin.component';
 
 
 @NgModule({

@@ -6,6 +6,7 @@ export interface IOperator extends IUser {
 
 export class Operator extends User {
   public workNumber: string;
+  public accountState?: string;
 
   constructor(operator: IOperator) {
     super(operator);
