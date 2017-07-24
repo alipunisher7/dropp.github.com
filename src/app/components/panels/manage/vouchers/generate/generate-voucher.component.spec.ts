@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { OperatorsForAdminComponent } from './operators-for-admin.component';
+import { GenerateVoucherComponent } from './generate-voucher.component';
 
-describe('OperatorsForAdminComponent', () => {
-  let component: OperatorsForAdminComponent;
-  let fixture: ComponentFixture<OperatorsForAdminComponent>;
+describe('GenerateVoucherComponent', () => {
+  let component: GenerateVoucherComponent;
+  let fixture: ComponentFixture<GenerateVoucherComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ OperatorsForAdminComponent ]
+      declarations: [ GenerateVoucherComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(OperatorsForAdminComponent);
+    fixture = TestBed.createComponent(GenerateVoucherComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

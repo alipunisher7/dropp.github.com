@@ -19,38 +19,4 @@
     </tr>
   </tbody>
 </table>
-<h2>ایجاد کد تخفیف</h2>
-<form [formGroup]='myForm' (ngSubmit)="onSubmit()" >
-  <div>
-      <label>توضیحات<input type="text" name="description" value="" formControlName="description"></label>
-  </div>
-  <div>
-    <label>نوع کد تخفیف
-      <select  name="codeType" formControlName="codeType">
-        <option value="P">درصد</option>
-        <option value="A">مبلغ</option>
-      </select>
-    </label>
-  </div>
-  <div>
-    <label>میزان تخفیف<input type="number" name="value" value="" formControlName="value"></label>
-  </div>
-  <div>
-    <label>کد دستی<input type="checkbox" [checked]="isManual" (change)="isManual =!isManual" (change)="check()" name="generationType" value=""></label>
-  </div>
-  <div *ngIf="isManual" >
-    <label>کد<input type="text" name="code" value="" formControlName="code"></label>
-  </div>
-  <div>
-    <label>تاریخ شروع<input type="date" name="startDate" value="" formControlName="startDate"></label>
-  </div>
-  <div>
-    <label>تاریخ انقضا<input type="date" name="expireDate" value="" formControlName="expireDate"></label>
-  </div>
-  <div>
-    <label>حداکثر تعداد قابل استفاده<input type="number" name="maxUse" value="" formControlName="maxUse"></label>
-  </div>
-  <div>
-    <button type="submit" [disabled]="!myForm.valid">ثبت</button>
-  </div>
-</form>
+<ts-generate-voucher></ts-generate-voucher>

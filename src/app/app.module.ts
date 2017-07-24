@@ -51,6 +51,8 @@ import {
   ManageBannedUsersComponent,
   ManageTicketsComponent,
   ManageVouchersComponent,
+  GenerateVoucherComponent,
+  VoucherComponent,
   TarrifComponent
 } from 'components/panels/manage';
 
@@ -68,13 +70,15 @@ import {
 import {
   PassengersPanel,
   PassengerComponent,
-  SearchPassengersComponent
+  SearchPassengersComponent,
+  SearchSubscribesComponent,
 } from './components/panels/passengers';
 
 import {
   OrganizationsPanel,
   OrganizationsComponent,
-  ConfirmOrganizationsComponent
+  ConfirmOrganizationsComponent,
+  SearchOrganizationComponent
 } from 'components/panels/organizations';
 
 import {
@@ -91,17 +95,21 @@ import {
 import {
   OperatorsPanel,
   AddOperatorComponent,
-  ManageOperatorsComponent
+  ManageOperatorsComponent,
+  SearchOperatorComponent,
+  OperatorComponent
 } from './components/panels/operators';
 
-import { SupportPanel } from 'components/panels/support';
+import {
+  SupportPanel,
+  ViewTicketsComponent
+} from 'components/panels/support';
+
 import { SearchTripsComponent } from './components/panels/trips/search/search-trips.component';
 import { SubscribeRegisterComponent } from './components/panels/passengers/subscribe-register/subscribe-register.component';
 import { AddMasterComponent } from './components/panels/operators/add-master/add-master.component';
 import { InputComponent } from './components/utils/input/input.component';
 import { InputDirective } from './directives/input.directive';
-import { OperatorForAdminComponent } from './components/panels/operators/operator-for-admin/operator-for-admin.component';
-
 
 @NgModule({
   declarations: [
@@ -138,12 +146,16 @@ import { OperatorForAdminComponent } from './components/panels/operators/operato
 
     PassengersPanel,
     PassengerComponent,
+    SearchSubscribesComponent,
 
     OrganizationsPanel,
     OrganizationsComponent,
     ConfirmOrganizationsComponent,
+    SearchOrganizationComponent,
 
     AddOperatorComponent,
+    SearchOperatorComponent,
+    OperatorComponent,
 
     TripsPanel,
     OperatorsPanel,
@@ -151,16 +163,20 @@ import { OperatorForAdminComponent } from './components/panels/operators/operato
     SearchPassengersComponent,
     TripsComponent,
     SendTaxiComponent,
-    SupportPanel,
     ServicesComponent,
     NotificationComponent,
     DriverComponent,
+
+    SupportPanel,
+    ViewTicketsComponent,
 
     SearchTripsComponent,
     SubscribeRegisterComponent,
     AddMasterComponent,
     InputComponent,
-    InputDirective
+    InputDirective,
+    GenerateVoucherComponent,
+    VoucherComponent
   ],
   imports: [
     BrowserModule,
