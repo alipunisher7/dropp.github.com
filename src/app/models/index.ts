@@ -15,3 +15,4 @@ export * from './radius.model';
 export * from './api-error.model';
 export * from './search-param.model';
 export * from './services.model';
+export * from './coordinate.model';

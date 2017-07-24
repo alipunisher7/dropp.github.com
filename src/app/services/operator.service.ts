@@ -1,3 +1,4 @@
+
 import { Injectable } from '@angular/core';
 import { URLSearchParams, Response } from '@angular/http';
 import { AuthHttpService } from './auth-http.service';
@@ -337,6 +338,21 @@ export class OperatorService {
   }
   // -- Tickets -- //
 
+  requestTrip(trip): Observable<any> {
+    let url = this._operatorApi.requestTripUrl;
+
+    return this._http
+      .post(url, trip)
+      .map( (res: Response) => {
+        let json = res.json();
+        if (json.statusCode !== 1) {
+          throw new ApiError(url, json);
+        }
+        let data = json.data;
+        return data;
+      })
+      .catch(this.handleError);
+  }
 
   // -- Not Implemented -- //
   getNewPassengersCount(): Observable<any> {

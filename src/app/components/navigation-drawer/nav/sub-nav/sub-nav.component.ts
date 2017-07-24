@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ISubNavItem } from 'models';
+import { INav } from 'models';
 
 @Component({
   selector: 'ts-sub-nav',
@@ -9,7 +9,7 @@ import { ISubNavItem } from 'models';
 export class SubNavComponent implements OnInit {
 
   @Input() thisRoute: string;
-  @Input() subNavs: ISubNavItem[] = [];
+  @Input() subNavs: INav[] = [];
 
   constructor() { }
 

@@ -178,6 +178,13 @@ body {
 
 .btn {
   @extend %btn;
+  margin: $input-margin 0;
+
+  &.block {
+    display: block;
+    width: 100%;
+    flex: 1;
+  }
 
   &.error {
     background: $error;

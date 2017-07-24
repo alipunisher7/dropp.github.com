@@ -3,6 +3,9 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AgmCoreModule } from '@agm/core';
+
+import { GOOGLE_MAP_API_TOKEN } from 'configs';
 
 import {
   AdminApi,
@@ -164,7 +167,12 @@ import { InputDirective } from './directives/input.directive';
     HttpModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AgmCoreModule.forRoot({
+      apiKey: GOOGLE_MAP_API_TOKEN,
+      libraries: ['places']
+    })
+
   ],
   providers: [
     OperatorService,
