@@ -27,4 +27,5 @@ export class AdminApi {
   public unBanMasterUrl = `${adminApi}/unBanMaster`;
   public enableServiceUrl = (serviceID) => `${adminApi}/services/${serviceID}/enable`;
   public disableServiceUrl = (serviceID) => `${adminApi}/services/${serviceID}/disable`;
+  public getBugsUrl = `${adminApi}/bugs`;
 }

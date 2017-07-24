@@ -22,7 +22,8 @@ import {
   ManageBannedUsersComponent,
   ManageVouchersComponent,
   TarrifComponent,
-  ManageSearchRadiusComponent
+  ManageSearchRadiusComponent,
+  BugsComponent
 } from 'components/panels/manage';
 
 import { OperatorsPanel, AddOperatorComponent, AddMasterComponent, SearchOperatorComponent, SearchForAdminComponent} from 'components/panels/operators';
@@ -80,7 +81,8 @@ const routes: Routes = [
       { path: 'tarrif', component: TarrifComponent },
       { path: 'search-radius', component: ManageSearchRadiusComponent },
       { path: 'manage-vouchers', component: ManageVouchersComponent },
-      { path: 'manage-banned-users', component: ManageBannedUsersComponent }
+      { path: 'manage-banned-users', component: ManageBannedUsersComponent },
+      { path: 'bugs', component: BugsComponent },
     ]
 
   },

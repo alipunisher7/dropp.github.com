@@ -244,6 +244,20 @@ export class AdminService {
       })
       .catch(this.handleError);
   }
+  getBugs() {
+    let url = this._adminApi.getBugsUrl;
+    return this._http.get(url)
+      .map((res: Response) => {
+        let json = res.json();
+        if (json.statusCode !== 1) {
+          throw new ApiError(url, json)
+        }
+        let data = json.data.bugs;
+        console.log(data);
+        return data;
+      })
+      .catch(this.handleError);
+  }
 
   // getTarrif(): Observable<any> {
   //   let url = this._adminApi.getTarrifUrl;

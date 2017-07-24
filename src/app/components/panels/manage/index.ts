@@ -6,3 +6,4 @@ export * from './tickets';
 export * from './vouchers';
 export * from './tarrif';
 export * from './search-radius';
+export * from './bugs';
