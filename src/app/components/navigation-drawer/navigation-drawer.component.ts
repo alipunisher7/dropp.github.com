@@ -18,8 +18,7 @@ export class NavigationDrawerComponent implements OnInit, AfterViewInit {
         subNavs: [
           { title: 'جستجوی راننده', icon: 'fa fa-taxi', route: 'search' },
           { title: 'موجودی حساب کل راننده ها', icon: 'fa fa-taxi', route: 'drivers-credit' },
-          { title: 'راننده ها با امتیاز پایین', icon: 'fa fa-taxi', route: 'low-rate' },
-
+          { title: 'راننده ها با امتیاز پایین', icon: 'fa fa-taxi', route: 'low-rate' }
         ],
       },
       {
@@ -79,7 +78,6 @@ export class NavigationDrawerComponent implements OnInit, AfterViewInit {
     ];
   }
 
-
   ngAfterViewInit() {
     setTimeout(() => {
       this.openCurrentNav();
@@ -90,7 +88,9 @@ export class NavigationDrawerComponent implements OnInit, AfterViewInit {
   }
 
   onNavClick(navItem: INavItem) {
-    this.navItems.forEach(_ => _.isOpen = false);
+    this.navItems.forEach(_ => {
+      if(_.hasOwnProperty('isOpen')) { _.isOpen = false }
+    });
     this.openCurrentNav();
   }
 
@@ -98,7 +98,10 @@ export class NavigationDrawerComponent implements OnInit, AfterViewInit {
     let el = this.elRef.nativeElement.querySelector('.active');
     if (el) {
       let currentRoute = el.getAttribute('href').slice(1);
-      this.navItems.find(_ => _.route == currentRoute).isOpen = true;
+      let activeNav = this.navItems.find(_ => _.route == currentRoute);
+      if(activeNav) {
+        activeNav.isOpen = true;
+      }
 
     }
   }

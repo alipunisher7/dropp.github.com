@@ -36,9 +36,15 @@ p {
   margin: 0;
 }
 
-input,
-select {
+button ,
+input ,
+optgroup ,
+select ,
+textarea {
   &:focus {
     outline: none;
   }
+
+  font-family: inherit;
+  font-size: inherit;
 }

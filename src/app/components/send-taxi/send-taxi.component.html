@@ -1,3 +1,30 @@
-<p>
-  send-taxi works!
-</p>
+<form class="main" action="index.html" method="post">
+  <section class="pass-info">
+    <ts-input>
+      <input tsInput type="text" name="" value="" placeholder="شماره همراه">
+    </ts-input>
+    <ts-input>
+      <input tsInput type="text" name="" value="" placeholder="نام مسافر">
+    </ts-input>
+    <ts-input>
+      <input tsInput type="text" name="" value="" placeholder="شماره اشتراک">
+    </ts-input>
+    <div class="">
+      <label for="">رفت و برگشت</label>
+      <input type="checkbox" name="" value="">
+    </div>
+    <button class="btn accent block" type="button" name="button">درخواست</button>
+  </section>
+  <section class="map">
+    <div class="hud">
+      <input #search class="hud-input hidden" type="text" name="" value="{{searchStr}}" placeholder="مبدا را وارد کنید">
+      <span class="marker"></span>
+    </div>
+    <agm-map [latitude]="mapCoordinate.lat" [longitude]="mapCoordinate.lng" [disableDefaultUI]="false" [zoom]="zoom" [minZoom]="10" [streetViewControl]="false" (mousedown)="mapDown = false" (mouseup)="mapDown = true" (centerChange)="centerChanged.next($event).bind(this)">
+      <agm-marker *ngIf="origin" [latitude]="origin.lat" [longitude]="origin.lng" [iconUrl]="orgIconUrl" [markerDraggable]="false" (dragEnd)="onOrgDragEnd($event)"></agm-marker>
+      <agm-marker *ngIf="dest" [latitude]="dest.lat" [longitude]="dest.lng" [iconUrl]="destIconUrl" [markerDraggable]="false" (dragEnd)="onDestDragEnd($event)"></agm-marker>
+      <!-- <agm-circle [fillColor]="'#ff0000'" [radius]="100" [latitude]="lat" [longitude]="lng"></agm-circle> -->
+    </agm-map>
+    <button class="btn accent block" type="button" name="button" (click)="onSelectOrigin()">انتخاب مبدا</button>
+  </section>
+</form>

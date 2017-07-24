@@ -3,12 +3,15 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AgmCoreModule } from '@agm/core';
+
+import { GOOGLE_MAP_API_TOKEN } from 'configs';
 
 import {
   AdminApi,
   COPApi,
   MasterApi,
-  OperatorApi
+  OperatorApi,
 } from 'services/providers';
 
 import {
@@ -18,7 +21,8 @@ import {
   NotificationService,
   AuthService,
   MasterService,
-  CopService
+  CopService,
+  NavigationService
 } from 'services';
 
 import { AppRoutingModule } from 'app-routing.module';
@@ -47,6 +51,8 @@ import {
   ManageBannedUsersComponent,
   ManageTicketsComponent,
   ManageVouchersComponent,
+  GenerateVoucherComponent,
+  VoucherComponent,
   TarrifComponent
 } from 'components/panels/manage';
 
@@ -64,13 +70,15 @@ import {
 import {
   PassengersPanel,
   PassengerComponent,
-  SearchPassengersComponent
+  SearchPassengersComponent,
+  SearchSubscribesComponent,
 } from './components/panels/passengers';
 
 import {
   OrganizationsPanel,
   OrganizationsComponent,
-  ConfirmOrganizationsComponent
+  ConfirmOrganizationsComponent,
+  SearchOrganizationComponent
 } from 'components/panels/organizations';
 
 import {
@@ -87,22 +95,21 @@ import {
 import {
   OperatorsPanel,
   AddOperatorComponent,
-  ManageOperatorsComponent
+  ManageOperatorsComponent,
+  SearchOperatorComponent,
+  OperatorComponent
 } from './components/panels/operators';
 
-import { SupportPanel } from 'components/panels/support';
+import {
+  SupportPanel,
+  ViewTicketsComponent
+} from 'components/panels/support';
+
 import { SearchTripsComponent } from './components/panels/trips/search/search-trips.component';
 import { SubscribeRegisterComponent } from './components/panels/passengers/subscribe-register/subscribe-register.component';
 import { AddMasterComponent } from './components/panels/operators/add-master/add-master.component';
-import { SearchOrganizationComponent } from './components/panels/organizations/search/search-organization.component';
-import { SearchOperatorComponent } from './components/panels/operators/search/search-operator.component';
-import { OperatorComponent } from './components/panels/operators/operator/operator.component';
-import { ViewTicketsComponent } from './components/panels/support/view-tickets/view-tickets.component';
-import { SearchForAdminComponent } from './components/panels/operators/search-for-admin/search-for-admin.component';
-import { OperatorForAdminComponent } from './components/panels/operators/operator-for-admin/operator-for-admin.component';
-import { SearchSubscribesComponent } from './components/panels/passengers/search-subscribes/search-subscribes.component';
-import { BugsComponent } from './components/panels/manage/bugs/bugs.component';
-
+import { InputComponent } from './components/utils/input/input.component';
+import { InputDirective } from './directives/input.directive';
 
 @NgModule({
   declarations: [
@@ -139,12 +146,16 @@ import { BugsComponent } from './components/panels/manage/bugs/bugs.component';
 
     PassengersPanel,
     PassengerComponent,
+    SearchSubscribesComponent,
 
     OrganizationsPanel,
     OrganizationsComponent,
     ConfirmOrganizationsComponent,
+    SearchOrganizationComponent,
 
     AddOperatorComponent,
+    SearchOperatorComponent,
+    OperatorComponent,
 
     TripsPanel,
     OperatorsPanel,
@@ -152,22 +163,20 @@ import { BugsComponent } from './components/panels/manage/bugs/bugs.component';
     SearchPassengersComponent,
     TripsComponent,
     SendTaxiComponent,
-    SupportPanel,
     ServicesComponent,
     NotificationComponent,
     DriverComponent,
 
+    SupportPanel,
+    ViewTicketsComponent,
+
     SearchTripsComponent,
     SubscribeRegisterComponent,
     AddMasterComponent,
-    SearchOrganizationComponent,
-    SearchOperatorComponent,
-    OperatorComponent,
-    ViewTicketsComponent,
-    SearchForAdminComponent,
-    OperatorForAdminComponent,
-    SearchSubscribesComponent,
-    BugsComponent
+    InputComponent,
+    InputDirective,
+    GenerateVoucherComponent,
+    VoucherComponent
   ],
   imports: [
     BrowserModule,
@@ -175,7 +184,12 @@ import { BugsComponent } from './components/panels/manage/bugs/bugs.component';
     HttpModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AgmCoreModule.forRoot({
+      apiKey: GOOGLE_MAP_API_TOKEN,
+      libraries: ['places']
+    })
+
   ],
   providers: [
     OperatorService,
@@ -185,6 +199,7 @@ import { BugsComponent } from './components/panels/manage/bugs/bugs.component';
     NotificationService,
     MasterService,
     CopService,
+    NavigationService,
     AdminApi,
     MasterApi,
     COPApi,

@@ -1,38 +1,39 @@
-<h2>ثبت اشتراک مسافر</h2>
+<h2 class="title">ثبت اشتراک مسافر</h2>
+
 <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
-  <div>
-    <label>نام <input type="text" name="firstName" placeholder="نام" formControlName="firstName"></label>
+  <div class="input-group">
+    <ts-input>
+      <input tsInput type="text" id="firstName" name="firstName" placeholder="نام" formControlName="firstName">
+    </ts-input>
+    <ts-input>
+      <input tsInput type="text" id="lastName" name="lastName" placeholder="نام خانوادگی" formControlName="lastName">
+    </ts-input>
   </div>
+  <ts-input>
+    <input tsInput type="text" id="phoneNumber" name="phoneNumber" placeholder="شماره تماس" formControlName="phoneNumber">
+  </ts-input>
+  <ts-input>
+    <input tsInput type="text" id="line1" name="line1" placeholder="آدرس خط اول" formControlName="line1">
+  </ts-input>
+  <ts-input>
+    <input tsInput type="text" id="line2" name="line2" placeholder="آدرس خط دوم" formControlName="line2">
+  </ts-input>
+  <ts-input>
+    <input tsInput type="text" id="postalCode" name="postalCode" placeholder="کدپستی" formControlName="postalCode">
+  </ts-input>
   <div>
-    <label>نام خانوادگی<input type="text" name="lastName" placeholder="نام خانوادگی" formControlName="lastName"></label>
-  </div>
-  <div>
-    <label>شماره تماس<input type="text" name="phoneNumber" placeholder="شماره تماس" formControlName="phoneNumber"></label>
-  </div>
-  <div>
-    <label>آدرس خط اول<input type="text" name="line1" placeholder="آدرس خط اول"  formControlName="line1"></label>
-  </div>
-  <div>
-    <label>آدرس خط دوم<input type="text" name="line2" placeholder="آدرس خط دوم"  formControlName="line2"></label>
-  </div>
-  <div>
-    <label>کد پستی<input type="text" name="postalCode" placeholder="کدپستی"  formControlName="postalCode"></label>
-  </div>
-  <div>
-    <div>
-      <label>استان</label>
-      <select  name="state" formControlName="state">
+    <label>استان</label>
+    <select name="state" formControlName="state">
         <option value="">استان را انتخاب کنید</option>
         <option value="تهران">تهران</option>
         <option value="خراسان">خراسان</option>
         <option value="اصفهان">اصفهان</option>
         <option value="گلستان">گلستان</option>
       </select>
-    </div>
   </div>
   <div>
     <label>شهر</label>
-    <select  name="city" formControlName="city">
+    <select name="city" formControlName="city">
       <option value="">شهر را انتخاب کنید</option>
       <option value="تهران">تهران</option>
       <option value="مشهد">مشهد</option>

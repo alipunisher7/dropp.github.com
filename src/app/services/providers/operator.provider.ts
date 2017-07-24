@@ -46,4 +46,5 @@ export class OperatorApi {
   public getAllOrganizationsUrl = `${operatorApi}/organizations/count`;
   public getDriverInfoUrl = ``;
 
+  public requestTripUrl = `${API_URL}/passenger/trip/request`
 }

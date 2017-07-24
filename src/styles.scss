@@ -44,7 +44,83 @@ body {
 }
 
 .form-ctrl {
-  margin: 1em 0;
+  margin: 10px 0;
+}
+
+.form-group {
+  margin-bottom: 15px;
+  position: relative;
+
+  &:focus {
+    label {
+      background: red;
+    }
+  }
+
+  label {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding: $input-padding;
+    color: $disable;
+  }
+
+  .input {
+    outline: 0;
+    width: 100%;
+    vertical-align: bottom;
+    background: transparent;
+    border: 0;
+    border-bottom: 1px solid $text;
+  }
+}
+
+.input-group {
+  display: flex;
+  flex-flow: row nowrap;
+
+  ts-input:not(:last-child) {
+    margin-left: 10px;
+  }
+}
+
+.input {
+  outline: 0;
+  padding: $input-padding;
+  width: 100%;
+  vertical-align: bottom;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid $text;
+}
+
+.ts-input {
+  outline: 0;
+  padding: $input-padding;
+  width: 100%;
+  vertical-align: bottom;
+  background: transparent;
+  border: 0;
+  // border-bottom: 1px solid $text;
+
+  &::-webkit-input-placeholder {
+    /* WebKit browsers */
+    color: transparent;
+    user-select: none;
+  }
+
+  &::-moz-placeholder {
+    /* Mozilla Firefox 19+ */
+    color: transparent;
+    user-select: none;
+  }
+
+  &:-ms-input-placeholder {
+    /* Internet Explorer 10+ */
+    color: transparent;
+    user-select: none;
+  }
+
 }
 
 .search {
@@ -96,8 +172,19 @@ body {
   }
 }
 
+.title {
+  margin-bottom: 10px;
+}
+
 .btn {
   @extend %btn;
+  margin: $input-margin 0;
+
+  &.block {
+    display: block;
+    width: 100%;
+    flex: 1;
+  }
 
   &.error {
     background: $error;
@@ -176,6 +263,15 @@ body {
 
   li {
     display: inline-block;
+    color: $text-disable;
+
+    a {
+      color: $accent-text;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
 
     &:not(:first-child)::before {
       padding: 0 5px;

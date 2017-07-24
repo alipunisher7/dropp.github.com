@@ -30,19 +30,22 @@ export class AuthHttpService {
   search(url, params) {
     let options = this.createRequestOptions();
     options.search = params;
-    console.log(options);
+    console.log('GET ', `${url}?${options.params.toString()}`);
     return this.http.get(url, options);
   }
 
   get(url) {
     let options = this.createRequestOptions();
+    console.log('GET ', url);
     return this.http.get(url, options);
   }
 
   post(url, data) {
     let options = this.createRequestOptions();
     let body = JSON.stringify(data);
-    console.log(body);
+    console.log('POST ', url);
+    console.log('body: ', body);
+    console.log('--POST--');
 
     return this.http.post(url, body, options);
   }
@@ -50,6 +53,8 @@ export class AuthHttpService {
   put(url, data) {
     let options = this.createRequestOptions();
     let body = JSON.stringify(data);
+    console.log('PATCH ', url);
+    console.log('body ', body);
     return this.http.put(url, body, options);
   }
 
