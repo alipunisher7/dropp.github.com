@@ -6,17 +6,41 @@
       <th>توضیحات</th>
       <th>حداکثر تعداد استفاده</th>
       <th>استفاده شده</th>
+      <th>ویرایش</th>
       <th>اطلاعات بیشتر</th>
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
+    <tr *ngFor="let voucher of vouchers">
+      <td>{{voucher.code}}</td>
+      <td>{{voucher.description}}</td>
+      <td>{{voucher.maxUses}}</td>
+      <td>{{voucher.used}}</td>
+      <td><button (click)="editVoucher(voucher)" >ویرایش</button></td>
+      <th><button (click)="onMoreClick(voucher)" >اطلاعات بیشتر</button></th>
     </tr>
   </tbody>
 </table>
+<ts-voucher *ngIf="selectedVoucher" [voucher]="selectedVoucher" ></ts-voucher>
+<form  [formGroup]='updateForm' (ngSubmit)="onUpdate()" *ngIf="editedVoucher">
+  <h2>ویرایش کد تخفیف</h2>
+  <div>
+    <label>حداکثر تعداد استفاده<input type="text" name="maxUse" value="" formControlName="maxUse"></label>
+  </div>
+  <div>
+    <label>توضیحات<input type="text" name="description" value="" formControlName="description"></label>
+  </div>
+  <div>
+    <label>تاریخ شروع<input type="text" name="startDate" value="" formControlName="startDate"></label>
+  </div>
+  <div>
+    <label>تاریخ انقضا<input type="text" name="expireDate" value="" formControlName="expireDate"></label>
+  </div>
+  <div>
+    <label>نوع تخفیف<input type="text" name="codeType" value="" formControlName="codeType"></label>
+  </div>
+  <div>
+    <label>میزان تخفیف<input type="text" name="value" value="" formControlName="value"></label>
+  </div>
+</form>
 <ts-generate-voucher></ts-generate-voucher>

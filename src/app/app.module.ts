@@ -53,7 +53,8 @@ import {
   ManageVouchersComponent,
   GenerateVoucherComponent,
   VoucherComponent,
-  TarrifComponent
+  TarrifComponent,
+  BugsComponent
 } from 'components/panels/manage';
 
 import {
@@ -140,6 +141,7 @@ import { InputDirective } from './directives/input.directive';
     ManageOperatorsComponent,
     ManageTicketsComponent,
     TarrifComponent,
+    BugsComponent,
 
     ServicePanel,
     ActiveServicesComponent,

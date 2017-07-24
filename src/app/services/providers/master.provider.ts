@@ -14,4 +14,6 @@ export class MasterApi {
   public searchOperatorsUrl = `${masterApi}/operators`;
   public banOperatorUrl = `${masterApi}/banOperator`;
   public unBanOperatorUrl = `${masterApi}/unBanOperator`;
+
+  public updateVoucherUrl = (id) => `${masterApi}/vouchers/${id}`;
 }

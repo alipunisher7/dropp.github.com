@@ -1,3 +1,33 @@
-<p>
-  voucher works!
-</p>
+<h2>اطلاعات کامل کد تخفیف</h2>
+<table class="table">
+  <thead>
+    <tr>
+      <th>کد تخفیف</th>
+      <th>توضیحات</th>
+      <th>نوع تخفیف</th>
+      <th>میزان تخفیف</th>
+      <th>تاریخ شروع</th>
+      <th>تاریخ انقضا</th>
+      <th>حداکثر تعداد قابل استفاده</th>
+      <th>استفاده شده</th>
+      <th>نوع تولید کد</th>
+      <th>تاریخ تولید کد</th>
+      <th>نام کاربری سازنده</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngIf="voucher">
+      <td>{{voucher.code}}</td>
+      <td>{{voucher.description}}</td>
+      <td>{{voucher.voucherTypeName}}</td>
+      <td>{{voucher.discountValue}}</td>
+      <td>{{voucher.startDate}}</td>
+      <td>{{voucher.expireDate}}</td>
+      <td>{{voucher.maxUses}}</td>
+      <td>{{voucher.used}}</td>
+      <td>{{voucher.generationTypeName}}</td>
+      <td>{{voucher.creationDate}}</td>
+      <td>{{voucher.creatorUsername}}</td>
+    </tr>
+  </tbody>
+</table>

@@ -28,4 +28,5 @@ export class AdminApi {
   public enableServiceUrl = (serviceID) => `${adminApi}/services/${serviceID}/enable`;
   public disableServiceUrl = (serviceID) => `${adminApi}/services/${serviceID}/disable`;
   public getBugsUrl = `${adminApi}/bugs`;
+  public resolveBugUrl = (id: number) => `${adminApi}/bugs/${id}/resolve`;
 }

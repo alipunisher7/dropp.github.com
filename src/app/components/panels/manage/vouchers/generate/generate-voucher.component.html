@@ -12,7 +12,7 @@
     </label>
   </div>
   <div>
-    <label>میزان تخفیف<input type="number" name="value" value="" formControlName="value"></label>
+    <label>میزان تخفیف<input type="text" name="value" value="" formControlName="value"></label>
   </div>
   <div>
     <label>کد دستی<input type="checkbox" [checked]="isManual" (change)="isManual =!isManual" (change)="check()" name="generationType" value=""></label>
@@ -27,7 +27,7 @@
     <label>تاریخ انقضا<input type="date" name="expireDate" value="" formControlName="expireDate"></label>
   </div>
   <div>
-    <label>حداکثر تعداد قابل استفاده<input type="number" name="maxUse" value="" formControlName="maxUse"></label>
+    <label>حداکثر تعداد قابل استفاده<input type="text" name="maxUse" value="" formControlName="maxUse"></label>
   </div>
   <div>
     <button type="submit" [disabled]="!myForm.valid">ثبت</button>

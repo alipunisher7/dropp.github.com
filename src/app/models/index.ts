@@ -18,3 +18,5 @@ export * from './services.model';
 export * from './tickets.model';
 export * from './subscribeUser.model';
 export * from './coordinate.model';
+export * from './bugs.model';
+export * from './vouchers.model';

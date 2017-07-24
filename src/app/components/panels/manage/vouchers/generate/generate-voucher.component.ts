@@ -36,7 +36,6 @@ export class GenerateVoucherComponent implements OnInit {
 
     this._masterService.insertVoucher(this.myForm.value).subscribe(
       res => {
-        alert(res)
         let notification = new Notification({ title: 'ثبت شد', info: `کد اشتراک ثبت شد`, type: NotificationTypes.success });
         this._notification.notify(notification);
       },

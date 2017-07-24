@@ -6,13 +6,18 @@
       <th>نام کاربری</th>
       <th>وضعیت</th>
       <th>نوع کاربر</th>
+      <th>تغییر وضعیت</th>
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td></td>
-      <td></td>
-      <td></td>
+    <tr *ngFor="let bug of bugs">
+      <td>{{bug.description}}</td>
+      <td *ngIf="bug.passengerUsername">{{bug.passengerUsername}}</td>
+      <td *ngIf="bug.driverUsername">{{bug.driverUsername}}</td>
+      <td>{{bug.stateName}}</td>
+      <td *ngIf="bug.passengerUsername">مسافر</td>
+      <td *ngIf="bug.driverUsername">راننده</td>
+      <td><button (click)="onChange(bug.id)">کلیک</button></td>
     </tr>
   </tbody>
 </table>

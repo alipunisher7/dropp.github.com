@@ -136,6 +136,21 @@ export class MasterService {
       .catch(this.handleError);
   }
 
+  updateVoucher(id) {
+    let url = this._masterApi.updateVoucherUrl(id);
+    let body = '';
+
+    return this._http.patch(url, body)
+      .map((res: Response) => {
+        let json = res.json();
+        if (json.statusCode !== 1) {
+          throw new ApiError(url, json);
+        }
+        return json;
+      })
+      .catch(this.handleError);
+  }
+
   handleError(err: ApiError) {
     console.error(err);
     return Observable.throw(err || 'backend server error');

@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { URLSearchParams, Response } from '@angular/http';
 import { AuthHttpService } from './auth-http.service';
 import { Observable } from 'rxjs/Observable';
-import { ServiceType, ApiError, ISearchParam, Driver, Organization, SubscribeUser } from 'models'
+import { ServiceType, ApiError, ISearchParam, Driver, Organization, SubscribeUser, Vouchers } from 'models'
 import { OperatorApi } from './providers';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/debounce';
@@ -421,7 +421,7 @@ export class OperatorService {
 
     return this._http
       .post(url, trip)
-      .map( (res: Response) => {
+      .map((res: Response) => {
         let json = res.json();
         if (json.statusCode !== 1) {
           throw new ApiError(url, json);
@@ -508,6 +508,19 @@ export class OperatorService {
         return count;
       })
       .catch(this.handleError);
+  }
+  getVouchers() {
+    let url = this._operatorApi.getVouchersUrl;
+    return this._http.get(url)
+      .map((res: Response) => {
+        let json = res.json();
+        if (json.statusCode !== 1) {
+          throw new ApiError(url, json);
+        }
+        let data = json.data.vouchers.map(vouchers => new Vouchers(vouchers));
+        console.log(data);
+        return data;
+      })
   }
 
   searchTrips(str: string) {

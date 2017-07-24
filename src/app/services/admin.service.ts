@@ -3,7 +3,7 @@ import { Response, URLSearchParams } from '@angular/http';
 import { AuthHttpService } from './auth-http.service';
 import { Observable } from 'rxjs/Observable';
 import { AdminApi } from './providers';
-import { Radius, ApiError, ISearchParam, Tariff } from 'models';
+import { Radius, ApiError, ISearchParam, Tariff, Bugs } from 'models';
 
 import 'rxjs/operator/map';
 import 'rxjs/add/operator/catch';
@@ -252,9 +252,21 @@ export class AdminService {
         if (json.statusCode !== 1) {
           throw new ApiError(url, json)
         }
-        let data = json.data.bugs;
-        console.log(data);
+        let data = json.data.bugs.map(bugs => new Bugs(bugs));
         return data;
+      })
+      .catch(this.handleError);
+  }
+  resolveBug(id: number) {
+    let url = this._adminApi.resolveBugUrl(id);
+    let body = '';
+    return this._http.patch(url, body)
+      .map((res: Response) => {
+        let json = res.json();
+        if (json.statusCode !== 1) {
+          throw new ApiError(url, json);
+        }
+        return json;
       })
       .catch(this.handleError);
   }

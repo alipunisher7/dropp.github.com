@@ -3,12 +3,14 @@ export interface IBugs {
   passengerUsername?: string;
   driverUsername?: string;
   state: string;
+  id: number;
 }
 export class Bugs implements IBugs {
   description: string;
   passengerUsername?: string;
   driverUsername?: string;
   state: string;
+  id: number;
   private stateNames = {
     "U": "رسیدگی نشده",
     "R": "رسیدگی شده"
@@ -21,5 +23,6 @@ export class Bugs implements IBugs {
     this.passengerUsername = bugs.passengerUsername;
     this.driverUsername = bugs.driverUsername;
     this.state = bugs.state;
+    this.id = bugs.id;
   }
 }
