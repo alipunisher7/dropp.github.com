@@ -1,6 +1,28 @@
 <h2>اضافه کردن موضوع تیکت جدید</h2>
 <form [formGroup]="myForm" (ngSubmit)="OnSubmit()">
-  <label>موضوع<input type="text" name="subject" formControlName="subject"></label>
-  <label>دسته<input type="text" name="subject" formControlName="subjectGroup"></label>
+  <div>
+    <label>موضوع<input type="text" name="subject" formControlName="subject"></label>
+  </div>
+  <div>
+    <label>
+      گروه
+      <select  name="role" formControlName="role">
+        <option value="">گروه مورد نظر را انتخاب کنید</option>
+        <option value="D">راننده</option>
+        <option value="P">مسافر</option>
+      </select>
+    </label>
+  </div>
+  <div>
+    <label>
+      دسته
+      <select  name="parentID" formControlName="parentID">
+        <option value="">دسته مورد نظر را انتخاب کنید</option>
+        <option value="{{ticket.id}}" *ngFor="let ticket of tickets">{{ticket.subject}}</option>
+      </select>
+    </label>
+  </div>
+<div>
   <button type="submit" name="submitTicketSubject" [disabled]="!myForm.valid">ثبت</button>
+</div>
 </form>

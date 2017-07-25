@@ -49,4 +49,6 @@ export class OperatorApi {
   public requestTripUrl = `${API_URL}/passenger/trip/request`;
 
   public getVouchersUrl = `${operatorApi}/vouchers`;
+
+  public getStatesUrl = `${operatorApi}/states`;
 }

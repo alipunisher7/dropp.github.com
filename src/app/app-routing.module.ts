@@ -23,7 +23,9 @@ import {
   ManageVouchersComponent,
   TarrifComponent,
   ManageSearchRadiusComponent,
-  BugsComponent
+  BugsComponent,
+  SystemSettingComponent,
+  StateCityComponent
 } from 'components/panels/manage';
 
 import { OperatorsPanel, AddOperatorComponent, AddMasterComponent, SearchOperatorComponent} from 'components/panels/operators';
@@ -83,6 +85,8 @@ const routes: Routes = [
       { path: 'manage-vouchers', component: ManageVouchersComponent },
       { path: 'manage-banned-users', component: ManageBannedUsersComponent },
       { path: 'bugs', component: BugsComponent },
+      { path: 'system-setting', component: SystemSettingComponent },
+      { path: 'state-city', component: StateCityComponent },
     ]
 
   },

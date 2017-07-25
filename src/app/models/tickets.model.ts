@@ -1,7 +1,8 @@
 export interface ITickets {
   subject: string;
-  description: string;
-  passengerUsername: string;
-  driverUsername: string;
-  id: string;
+  description?: string;
+  passengerUsername?: string;
+  driverUsername?: string;
+  id?: string;
+  role?: string;
 }

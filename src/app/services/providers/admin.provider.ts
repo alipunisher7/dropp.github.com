@@ -25,8 +25,16 @@ export class AdminApi {
   // public getTarrifUrl = `${adminApi}/ticketSubjects`;
   public banMasterUrl = `${adminApi}/banMaster`;
   public unBanMasterUrl = `${adminApi}/unBanMaster`;
+
   public enableServiceUrl = (serviceID) => `${adminApi}/services/${serviceID}/enable`;
   public disableServiceUrl = (serviceID) => `${adminApi}/services/${serviceID}/disable`;
+
   public getBugsUrl = `${adminApi}/bugs`;
   public resolveBugUrl = (id: number) => `${adminApi}/bugs/${id}/resolve`;
+
+  public getSystemSettingUrl = `${adminApi}/settings`;
+  public updateSystemSettingUrl = `${adminApi}/settings`;
+
+  public insertStateUrl = `${adminApi}/states`;
+  public insertCityUrl = (id) => `${adminApi}/cities/${id}`;
 }

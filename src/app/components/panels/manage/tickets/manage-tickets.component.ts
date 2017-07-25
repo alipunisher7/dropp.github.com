@@ -11,15 +11,18 @@ import { MasterService, NotificationService } from 'services'
 export class ManageTicketsComponent implements OnInit {
 
   myForm: FormGroup;
-
+  tickets: ITickets[];
   constructor(private _masterService: MasterService, private _notification: NotificationService) {
     this.myForm = new FormGroup({
       'subject': new FormControl('', [Validators.required, Validators.minLength(3)]),
-      'subjectGroup': new FormControl()
+      'role': new FormControl('', Validators.required),
+      'parentID': new FormControl('')
     })
   }
 
-
+  getTicketSubjects() {
+    this._masterService.getTicketSubjects().subscribe(res => this.tickets = res);
+  }
   OnSubmit() {
     this._masterService.insertTicketSubject(this.myForm.value).subscribe(
       res => {
@@ -31,6 +34,7 @@ export class ManageTicketsComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.getTicketSubjects();
   }
 
 }

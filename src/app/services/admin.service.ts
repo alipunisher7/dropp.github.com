@@ -271,6 +271,57 @@ export class AdminService {
       .catch(this.handleError);
   }
 
+  getSystemSetting() {
+    let url = this._adminApi.getSystemSettingUrl;
+    return this._http.get(url)
+      .map((res: Response) => {
+        let json = res.json();
+        if (json.statusCode !== 1) {
+          throw new ApiError(url, json);
+        }
+        let data = json.data.systemSetting;
+        console.log(data)
+        return data;
+      })
+      .catch(this.handleError);
+  }
+  updateSystemSetting(data) {
+    let url = this._adminApi.updateSystemSettingUrl;
+    return this._http.patch(url, data)
+      .map((res: Response) => {
+        let json = res.json();
+        if (json.statusCode !== 1) {
+          throw new ApiError(url, json);
+        }
+        return json;
+      })
+      .catch(this.handleError);
+  }
+  insertState(state) {
+    let url = this._adminApi.insertStateUrl;
+    return this._http.post(url, state)
+      .map((res: Response) => {
+        let json = res.json();
+        if (json.statusCode !== 1) {
+          throw new ApiError(url, json);
+        }
+        return json;
+      })
+      .catch(this.handleError);
+  }
+  insertCity(data) {
+    let url = this._adminApi.insertCityUrl(data.id);
+    return this._http.post(url, data)
+      .map((res: Response) => {
+        let json = res.json();
+        if (json.statusCode !== 1) {
+          throw new ApiError(url, json);
+        }
+        return json;
+      })
+      .catch(this.handleError);
+  }
+
   // getTarrif(): Observable<any> {
   //   let url = this._adminApi.getTarrifUrl;
   //

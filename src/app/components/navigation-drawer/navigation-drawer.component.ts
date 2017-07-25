@@ -67,6 +67,8 @@ export class NavigationDrawerComponent implements OnInit, AfterViewInit {
           { title: 'کد تخفیف', icon: 'fa fa-money', route: 'manage-vouchers' },
           { title: ' کاربران منع شده', icon: 'fa fa-ban', route: 'manage-banned-users' },
           { title: 'خطاها', icon: 'fa fa-ban', route: 'bugs' },
+          { title: 'تنظیمات سیستم', icon: 'fa fa-ban', route: 'system-setting' },
+          { title: 'استان و شهر', icon: 'fa fa-ban', route: 'state-city' },
         ],
       },
       {
@@ -89,7 +91,7 @@ export class NavigationDrawerComponent implements OnInit, AfterViewInit {
 
   onNavClick(navItem: INavItem) {
     this.navItems.forEach(_ => {
-      if(_.hasOwnProperty('isOpen')) { _.isOpen = false }
+      if (_.hasOwnProperty('isOpen')) { _.isOpen = false }
     });
     this.openCurrentNav();
   }
@@ -99,7 +101,7 @@ export class NavigationDrawerComponent implements OnInit, AfterViewInit {
     if (el) {
       let currentRoute = el.getAttribute('href').slice(1);
       let activeNav = this.navItems.find(_ => _.route == currentRoute);
-      if(activeNav) {
+      if (activeNav) {
         activeNav.isOpen = true;
       }
 

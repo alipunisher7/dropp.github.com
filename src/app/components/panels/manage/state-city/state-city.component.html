@@ -1,0 +1,30 @@
+<h2>اضافه کردن استان</h2>
+<form [formGroup]='stateForm' (ngSubmit)="onSubmitState()">
+  <div>
+    <label>
+      نام استان
+      <input type="text" name="name" value="" formControlName="name" >
+    </label>
+  </div>
+  <div>
+    <button type="submit" name="submitState" [disabled]="!stateForm.valid">ثبت</button>
+  </div>
+</form>
+<h2>اضافه کردن شهر</h2>
+<form [formGroup]='cityForm' (ngSubmit)="onSubmitCity()">
+  <div>
+    <label>
+    نام شهر
+      <input type="text" name="cityName" value="" formControlName="cityName" >
+    </label>
+    <label>
+        <select  name="id" formControlName="id">
+            <option value="">استان را انتخاب کنید</option>
+            <option *ngFor="let state of states" value="{{state.id}}">{{state.name}}</option>
+        </select>
+    </label>
+  </div>
+  <div>
+    <button type="submit" name="submitState" [disabled]="!cityForm.valid">ثبت</button>
+  </div>
+</form>

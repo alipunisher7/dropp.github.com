@@ -522,6 +522,18 @@ export class OperatorService {
         return data;
       })
   }
+  getStates() {
+    let url = this._operatorApi.getStatesUrl;
+    return this._http.get(url)
+      .map((res: Response) => {
+        let json = res.json();
+        if (json.statusCode !== 1) {
+          throw new ApiError(url, json);
+        }
+        let data = json.data.allStates;
+        return data;
+      })
+  }
 
   searchTrips(str: string) {
     throw new Error('Not Implemented');

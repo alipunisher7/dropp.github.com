@@ -111,6 +111,8 @@ import { SubscribeRegisterComponent } from './components/panels/passengers/subsc
 import { AddMasterComponent } from './components/panels/operators/add-master/add-master.component';
 import { InputComponent } from './components/utils/input/input.component';
 import { InputDirective } from './directives/input.directive';
+import { SystemSettingComponent } from './components/panels/manage/system-setting/system-setting.component';
+import { StateCityComponent } from './components/panels/manage/state-city/state-city.component';
 
 @NgModule({
   declarations: [
@@ -178,7 +180,9 @@ import { InputDirective } from './directives/input.directive';
     InputComponent,
     InputDirective,
     GenerateVoucherComponent,
-    VoucherComponent
+    VoucherComponent,
+    SystemSettingComponent,
+    StateCityComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,87 @@
+<h2>تنظیمات سیستم</h2>
+<form [formGroup]="updateForm" (ngSubmit)="onUpdate()" *ngIf="settings">
+  <div>
+    <label>
+      ارسال اس ام اس
+        <input type="checkbox" name="smsSender" value="" (change)="toggle('smsSender')" [checked]="settings.smsSender" >
+    </label>
+  </div>
+  <div>
+    <label>
+      ارسال ایمیل
+      <input type="checkbox" name="emailSender" value="" (change)="toggle('emailSender')" [checked]="settings.emailSender" >
+    </label>
+  </div>
+  <div>
+    <label>
+      آپدیت اندروید
+      <input type="checkbox" name="androidUpdate" value="" (change)="toggle('androidUpdate')" [checked]="settings.androidUpdate" >
+    </label>
+  </div>
+  <div>
+    <label>
+    آپدیت اضطراری اندروید
+      <input type="checkbox" name="androidUpdateCritical" value="" (change)="toggle('androidUpdateCritical')" [checked]="settings.androidUpdateCritical" >
+    </label>
+  </div>
+  <div>
+    <label>
+      آپدیت آی او اس
+      <input type="checkbox" name="IOSUpdate" value="" (change)="toggle('IOSUpdate')" [checked]="settings.IOSUpdate" >
+    </label>
+  </div>
+  <div>
+    <label>
+      آپدیت اضطراری آی او اس
+        <input type="checkbox" name="IOSUpdateCritical" value="" (change)="toggle('IOSUpdateCritical')" [checked]="settings.IOSUpdateCritical" >
+    </label>
+  </div>
+  <div>
+    <label>
+      اس ام اس رخداد استثنا
+      <input type="checkbox" name="exceptionOccurrenceSms" value="" (change)="toggle('exceptionOccurrenceSms')" [checked]="settings.exceptionOccurrenceSms" >
+    </label>
+  </div>
+  <div>
+    <label>
+    ایمیل رخداد استثنا
+        <input type="checkbox" name="exceptionOccurrenceEmail" value="" (change)="toggle('exceptionOccurrenceEmail')" [checked]="settings.exceptionOccurrenceEmail" >
+    </label>
+  </div>
+  <div>
+    <label>
+      اس ام اس گزارش روزانه
+      <input type="checkbox" name="dailySmsReport" value="" (change)="toggle('dailySmsReport')" [checked]="settings.dailySmsReport" >
+    </label>
+  </div>
+  <div>
+    <label>
+      ایمیل گزارش روزانه
+      <input type="checkbox" name="dailyEmailReport" value="" (change)="toggle('dailyEmailReport')" [checked]="settings.dailyEmailReport" >
+    </label>
+  </div>
+  <div>
+    <label>
+      اس ام اس گزارش هفتگی
+      <input type="checkbox" name="weeklySmsReport" value="" (change)="toggle('weeklySmsReport')" [checked]="settings.weeklySmsReport" >
+    </label>
+  </div>
+  <div>
+    <label>
+      ایمیل گزارش هفتگی
+        <input type="checkbox" name="weeklyEmailReport" value="" (change)="toggle('weeklyEmailReport')" [checked]="settings.weeklyEmailReport" >
+    </label>
+  </div>
+  <div>
+    <label>
+      ایمیل گزارش ماهانه
+      <input type="checkbox" name="monthlyEmailReport" value="" (change)="toggle('monthlyEmailReport')" [checked]="settings.monthlyEmailReport" >
+    </label>
+  </div>
+  <div>
+    <label>
+      رقبا
+        <input type="checkbox" name="allowCompetitors" value="" (change)="toggle('allowCompetitors')" [checked]="settings.allowCompetitors" >
+    </label>
+  </div>
+</form>

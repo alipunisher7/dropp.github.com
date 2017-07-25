@@ -67,7 +67,8 @@ export class MasterService {
         if (json.statusCode !== 1) {
           throw new ApiError(url, json);
         }
-        return json;
+        let data = json.data.primarySubjects;
+        return data;
       })
       .catch(this.handleError);
   }
