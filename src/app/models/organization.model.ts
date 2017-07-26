@@ -37,8 +37,18 @@ export class Organization implements IOrganization {
     "LESS_THAN_1000": "کمتر از 1000 نفر",
     "MORE_THAN_10000": "بیشتر از 1000 نفر"
   }
+  accountStateNames = {
+    "VERIFIED": "تایید شده",
+    "READY_TO_VERIFY": "آماده تایید",
+    "ACTIVATED": "فعال شده",
+    "REGISTERED": "ثبت نام شده",
+    "BANNED": "بن شده"
+  }
   get count() {
     return this.empCountNames[this.empCount];
+  }
+  get accountStateName() {
+    return this.accountStateNames[this.accountState];
   }
 
   constructor(organization: IOrganization) {

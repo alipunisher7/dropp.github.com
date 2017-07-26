@@ -52,16 +52,14 @@ export class OperatorService {
   // -- Drivers -- //
   confirmDriver(driver) {
     let url = this._operatorApi.confirmDriverUrl(driver);
-
-    return this._http.post(url, driver)
+    let body = '';
+    return this._http.patch(url, body)
       .map((res: Response) => {
         let json = res.json();
         if (json.statusCode !== 1) {
           throw new ApiError(url, json);
         }
-        let data = json.data;
-        console.log(data);
-        return data;
+        return json;
       })
       .catch(this.handleError);
   }
@@ -222,6 +220,25 @@ export class OperatorService {
       })
       .catch(this.handleError);
   }
+  uploadDriverDoc(fileType, username, file) {
+
+    let url = this._operatorApi.uploadDriverDocUrl(fileType, username);
+    let formData: FormData = new FormData();
+    formData.append('file', file, file.name);
+    console.log(formData);
+
+    return this._http
+      .postFile(url, formData)
+      .map((res: Response) => {
+        let json = res.json();
+        if (json.statusCode !== 1) {
+          throw new ApiError(url, json);
+        }
+
+        return json;
+      })
+      .catch(this.handleError);
+  }
   // -- Drivers -- //
 
 
@@ -320,19 +337,6 @@ export class OperatorService {
       .catch(this.handleError);
   }
 
-  confirmOrganization(username: string): Observable<any> {
-    let url = this._operatorApi.getOrganizationUrl(username);
-    return this._http.post(url, undefined)
-      .map((res: Response) => {
-        let json = res.json();
-        if (json.statusCode !== 1) {
-          throw new ApiError(url, json);
-        }
-        let data = json.data;
-        return data;
-      })
-      .catch(this.handleError);
-  }
 
   searchOrganizations(param: ISearchParam) {
     let url = this._operatorApi.getOrganizationsUrl;
@@ -358,14 +362,26 @@ export class OperatorService {
   removeOrganizations(username: string): Observable<any> {
     let url = this._operatorApi.removeOrganizationsUrl(username);
 
-    return this._http.get(url)
+    return this._http.delete(url)
       .map((res: Response) => {
         let json = res.json();
         if (json.statusCode !== 1) {
           throw new ApiError(url, json);
         }
-        let data = json.data;
-        return data;
+        return json;
+      })
+      .catch(this.handleError);
+  }
+  confirmOrganizations(username: string): Observable<any> {
+    let url = this._operatorApi.confirmOrganizationsUrl(username);
+    let body = '';
+    return this._http.post(url, body)
+      .map((res: Response) => {
+        let json = res.json();
+        if (json.statusCode !== 1) {
+          throw new ApiError(url, json);
+        }
+        return json;
       })
       .catch(this.handleError);
   }

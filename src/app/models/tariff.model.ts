@@ -24,19 +24,19 @@ export class Tariff implements ITariff {
   twoWayCost: string;
   coShare: string;
   private cityNames = {
-    "GORGAN": "گرگان",
-    "TEHRAN": "تهران",
-    "ISFAHAN": "اصفهان",
-    "MASHHAD": "مشهد",
+    "GO": "گرگان",
+    "TE": "تهران",
+    "IS": "اصفهان",
+    "MA": "مشهد",
   }
   private serviceTypeNames = {
-    "NORMAL": "نرمال",
-    "TAXI": "تاکسی",
-    "MOTOR_DELIVERY": "پیک",
-    "MOTOR_TRANSPORT": "موتور",
-    "LUX": "لوکس",
-    "SUV": "SUV",
-    "ECO": "اکو",
+    "N": "نرمال",
+    "T": "تاکسی",
+    "D": "پیک",
+    "R": "موتور",
+    "L": "لوکس",
+    "S": "SUV",
+    "E": "اکو",
   }
   get cityName() {
     return this.cityNames[this.city];

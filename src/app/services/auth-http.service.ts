@@ -50,6 +50,12 @@ export class AuthHttpService {
     return this.http.post(url, body, options);
   }
 
+  postFile(url, formData) {
+    console.log('POST ', `${url}`);
+    console.log('FormData', formData);
+    return this.http.post(url, formData);
+  }
+
   put(url, data) {
     let options = this.createRequestOptions();
     let body = JSON.stringify(data);

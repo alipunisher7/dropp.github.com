@@ -6,7 +6,7 @@ import { SendTaxiComponent } from 'components/send-taxi';
 
 import { DashboardPanel } from 'components/panels/dashboard';
 
-import { DriversPanel, DriverCreditComponent, SearchDriversComponent, LowRateDriversComponent } from 'components/panels/drivers';
+import { DriversPanel, DriverCreditComponent, SearchDriversComponent, LowRateDriversComponent, ConfirmDriversComponent } from 'components/panels/drivers';
 
 import { PassengersPanel, SearchPassengersComponent, SubscribeRegisterComponent, SearchSubscribesComponent } from 'components/panels/passengers';
 
@@ -46,7 +46,8 @@ const routes: Routes = [
     path: 'drivers', component: DriversPanel, children: [
       { path: 'drivers-credit', component: DriverCreditComponent },
       { path: 'search', component: SearchDriversComponent },
-      { path: 'low-rate', component: LowRateDriversComponent }
+      { path: 'low-rate', component: LowRateDriversComponent },
+      { path: 'confirm-driver', component: ConfirmDriversComponent }
     ]
   },
   {

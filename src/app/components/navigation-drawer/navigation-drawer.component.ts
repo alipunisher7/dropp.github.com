@@ -18,7 +18,8 @@ export class NavigationDrawerComponent implements OnInit, AfterViewInit {
         subNavs: [
           { title: 'جستجوی راننده', icon: 'fa fa-taxi', route: 'search' },
           { title: 'موجودی حساب کل راننده ها', icon: 'fa fa-taxi', route: 'drivers-credit' },
-          { title: 'راننده ها با امتیاز پایین', icon: 'fa fa-taxi', route: 'low-rate' }
+          { title: 'راننده ها با امتیاز پایین', icon: 'fa fa-taxi', route: 'low-rate' },
+          { title: 'تایید راننده ها', icon: 'fa fa-taxi', route: 'confirm-driver' },
         ],
       },
       {

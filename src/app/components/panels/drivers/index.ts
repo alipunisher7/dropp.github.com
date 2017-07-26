@@ -6,3 +6,4 @@ export * from './low-rate';
 export * from './manage';
 export * from './online';
 export * from './search';
+export * from './confirm';

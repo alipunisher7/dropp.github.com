@@ -113,6 +113,7 @@ import { InputComponent } from './components/utils/input/input.component';
 import { InputDirective } from './directives/input.directive';
 import { SystemSettingComponent } from './components/panels/manage/system-setting/system-setting.component';
 import { StateCityComponent } from './components/panels/manage/state-city/state-city.component';
+import { ConfirmDriversComponent } from './components/panels/drivers/confirm/confirm-drivers.component';
 
 @NgModule({
   declarations: [
@@ -182,7 +183,8 @@ import { StateCityComponent } from './components/panels/manage/state-city/state-
     GenerateVoucherComponent,
     VoucherComponent,
     SystemSettingComponent,
-    StateCityComponent
+    StateCityComponent,
+    ConfirmDriversComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,54 @@
+<h2>تایید راننده ها</h2>
+<input class="search form-ctrl" type="search" name="searchDrivers" placeholder="جستجو ..." [formControl]="searchControl" [value]="search">
+<table  class="table">
+  <thead>
+    <tr>
+      <th>نام</th>
+      <th>نام خانوادگی</th>
+      <th>نام کاربری</th>
+      <th>نوع سرویس</th>
+      <th>تایید</th>
+      <th>آپلود مدارک</th>
+      <th>اطلاعات بیشتر</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let driver of drivers" >
+      <td>{{driver.firstName}}</td>
+      <td>{{driver.lastName}}</td>
+      <td>{{driver.username}}</td>
+      <td>{{driver.serviceType}}</td>
+      <td><button (click)="confirm()" [disabled]="driver.stateCode ===3">تایید</button></td>
+      <td><button (click)="upload(driver)">آپلود</button></td>
+      <td><button (click)="onMoreClick(driver)">اطلاعات بیشتر</button></td>
+    </tr>
+  </tbody>
+</table>
+
+<form [formGroup]="uploadForm" (ngSubmit)="onUpload(driverUpload.username)" *ngIf="driverUpload" >
+  <h2>آپلود مدارک</h2>
+<div>
+  <label>
+    نوع مدرک
+    <select formControlName="fileType" name="fileType">
+      <option value="">نوع مدرک را انتخاب کنید</option>
+      <option value="N">کارت ملی</option>
+      <option value="P">شناسنامه</option>
+      <option value="D">گواهینامه</option>
+      <option value="C">قرارداد</option>
+      <option value="V">کارت ماشین</option>
+      <option value="I">بیمه</option>
+    </select>
+  </label>
+</div>
+<div>
+  <label>
+      مدرک
+      <input type="file" (change)="fileChange($event)" placeholder="Upload file" accept=".jpeg,.png,.jpg,.pdf">
+  </label>
+</div>
+<div>
+  <button type="submit" name="submitUpload">ثبت</button>
+</div>
+</form>
+<ts-driver *ngIf="driverMoreInfo" [driver]="driverMoreInfo"></ts-driver>

@@ -8,6 +8,7 @@
       <th>ایمیل</th>
       <th>شماره محل کار</th>
       <th>وضعیت</th>
+      <th>تایید</th>
       <th>حذف</th>
       <th>بن کردن</th>
       <th>رفع بن</th>
@@ -20,8 +21,9 @@
         <td>{{organization.username}}</td>
         <td>{{organization.email}}</td>
         <td>{{organization.workNumber}}</td>
-        <td>{{organization.accountState}}</td>
-        <td><button >حذف</button></td>
+        <td>{{organization.accountStateName}}</td>
+        <td><button [disabled]="organization.accountState ==='VERIFIED'" (click)="confirm(organization.username)" >تایید</button></td>
+        <td><button (click)="remove(organization.username)" >حذف</button></td>
         <td><button  >بن</button></td>
         <td><button  >رفع بن</button></td>
         <td><button (click)="onMoreClick(organization)" class="btn accent" >اطلاعات بیشتر</button></td>
