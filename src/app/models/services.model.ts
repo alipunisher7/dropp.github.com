@@ -32,7 +32,6 @@ export class Services implements IServices {
   }
 
   constructor(services: IServices) {
-    console.log(services);
     this.status = services.status;
     this.type = services.type;
     this.id = services.id;

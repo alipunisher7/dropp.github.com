@@ -70,12 +70,8 @@ export class AdminService {
         if (json.statusCode !== 1) {
           throw new ApiError(url, json)
         }
-        console.log(json.data.activeServices);
-        console.log(new Services({ id: 4, status: "true", type: "N" }));
 
         let data: Services[] = json.data.activeServices.map(services => new Services(services));
-        console.log(data);
-        console.log(json);
         return data;
       })
       .catch(this.handleError);

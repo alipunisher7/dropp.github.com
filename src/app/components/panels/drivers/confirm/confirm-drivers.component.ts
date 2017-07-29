@@ -71,6 +71,7 @@ export class ConfirmDriversComponent implements OnInit {
     this.driverMoreInfo = driver;
   }
   confirm(username) {
+    confirm('آیا میخواهید تایید کنید');
     this._operatorservice.confirmDriver(username).subscribe(
       res => {
         let notification = new Notification({ title: 'تایید شد', info: 'راننده مورد نظر تایید شد', type: NotificationTypes.success });

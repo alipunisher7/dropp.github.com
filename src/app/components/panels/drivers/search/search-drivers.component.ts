@@ -45,26 +45,28 @@ export class SearchDriversComponent implements OnInit {
     this.selectedDriver = new Driver(data);
   }
 
-  banDriver(data) {
+  banDriver(driver) {
+    let data = driver.username;
+    confirm('آیا میخواهید بن کنید؟');
     this._operatorServices.banDriver(data).subscribe(
       res => {
         let notification = new Notification({ title: 'ثبت شد', info: `راننده مورد نظر بن شد`, type: NotificationTypes.success });
         this._notification.notify(notification);
-        console.log('res: ', res);
-        console.log('drivers: ', this.drivers);
-        // TODO: UPDATE UI
+        driver.stateCode = '-1';
       },
       err => {
         alert(err);
       }
     );
   }
-  unBanDriver(data) {
+  unBanDriver(driver) {
+    let data = driver.username;
+    confirm('آیا میخواهید رفع بن کنید؟');
     this._operatorServices.unBanDriver(data).subscribe(
       res => {
         let notification = new Notification({ title: 'ثبت شد', info: `راننده مورد نظر رفع بن شد`, type: NotificationTypes.success });
         this._notification.notify(notification);
-        // TODO: UPDATE UI
+        driver.stateCode = '3';
       },
       err => {
         alert(err);

@@ -17,11 +17,11 @@
     <td>{{passenger.username}}</td>
     <td></td>
     <td>{{passenger.credit}}</td>
-    <td *ngIf="passenger.stateCode===1">فعال</td>
-    <td *ngIf="passenger.stateCode===0">غیر فعال</td>
-    <td *ngIf="passenger.stateCode===-1">بن شده</td>
-    <td ><button class="btn outline error" (click)="banPassenger(passenger.username)" [disabled]="passenger.stateCode === -1">بن</button></td>
-    <td ><button class="btn outline error" (click)="unBanPassenger(passenger.username)" [disabled]="passenger.stateCode !== -1">رفع بن</button></td>
+    <td *ngIf="passenger.stateCode==1">فعال</td>
+    <td *ngIf="passenger.stateCode==0">غیر فعال</td>
+    <td *ngIf="passenger.stateCode==-1">بن شده</td>
+    <td ><button class="btn outline error" (click)="banPassenger(passenger)" [disabled]="passenger.stateCode == -1">بن</button></td>
+    <td ><button class="btn outline error" (click)="unBanPassenger(passenger)" [disabled]="passenger.stateCode != -1">رفع بن</button></td>
     <td><button class="btn accent" (click)="onMoreClick(passenger)" >اطلاعات بیشتر</button></td>
     </tr>
   </tbody>
