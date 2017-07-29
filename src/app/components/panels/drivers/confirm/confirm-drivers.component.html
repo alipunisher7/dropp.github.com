@@ -17,10 +17,15 @@
       <td>{{driver.firstName}}</td>
       <td>{{driver.lastName}}</td>
       <td>{{driver.username}}</td>
-      <td>{{driver.serviceType}}</td>
-      <td><button (click)="confirm()" [disabled]="driver.stateCode ===3">تایید</button></td>
+      <td>{{driver.serviceTypeName}}</td>
+      <td><button (click)="confirm(driver.username)" [disabled]="driver.stateCode ===3">تایید</button></td>
       <td><button (click)="upload(driver)">آپلود</button></td>
       <td><button (click)="onMoreClick(driver)">اطلاعات بیشتر</button></td>
+    </tr>
+    <tr *ngIf="!driver" class="no-data">
+      <td colspan=75%>
+        راننده ای وجود ندارد
+      </td>
     </tr>
   </tbody>
 </table>
@@ -44,11 +49,11 @@
 <div>
   <label>
       مدرک
-      <input type="file" (change)="fileChange($event)" placeholder="Upload file" accept=".jpeg,.png,.jpg,.pdf">
+      <input type="file" name="file" formControlName="file" (change)="fileChange($event)" placeholder="Upload file" accept=".jpeg,.png,.jpg,.pdf">
   </label>
 </div>
 <div>
-  <button type="submit" name="submitUpload">ثبت</button>
+  <button type="submit" name="submitUpload" >ثبت</button>
 </div>
 </form>
 <ts-driver *ngIf="driverMoreInfo" [driver]="driverMoreInfo"></ts-driver>

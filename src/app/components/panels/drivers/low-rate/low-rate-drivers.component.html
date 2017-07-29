@@ -11,5 +11,10 @@
       <td>{{lowRateDriver.username}}</td>
       <td>{{lowRateDriver.avg}}</td>
     </tr>
+    <tr *ngIf="!lowRateDriver" class="no-data">
+      <td colspan=75%>
+        راننده ای وجود ندارد
+      </td>
+    </tr>
   </tbody>
 </table>

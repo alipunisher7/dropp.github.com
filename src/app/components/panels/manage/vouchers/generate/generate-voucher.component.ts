@@ -14,13 +14,13 @@ export class GenerateVoucherComponent implements OnInit {
 
   constructor(private _masterService: MasterService, private _notification: NotificationService) {
     this.myForm = new FormGroup({
-      'description': new FormControl('', [Validators.required, Validators.minLength(5)]),
-      'codeType': new FormControl('', Validators.required),
-      'value': new FormControl('', Validators.required),
-      'code': new FormControl('', Validators.minLength(5)),
+      'description': new FormControl('', [Validators.required, Validators.minLength(3)]),
+      'voucherType': new FormControl('', Validators.required),
+      'discountValue': new FormControl('', Validators.required),
+      'code': new FormControl('', Validators.minLength(3)),
       'startDate': new FormControl('', Validators.required),
       'expireDate': new FormControl('', Validators.required),
-      'maxUse': new FormControl('', Validators.required),
+      'maxUses': new FormControl('', Validators.required),
       'generationType': new FormControl('A')
     });
   }
@@ -36,7 +36,7 @@ export class GenerateVoucherComponent implements OnInit {
 
     this._masterService.insertVoucher(this.myForm.value).subscribe(
       res => {
-        let notification = new Notification({ title: 'ثبت شد', info: `کد اشتراک ثبت شد`, type: NotificationTypes.success });
+        let notification = new Notification({ title: 'ثبت شد', info: `کد تخفیف ثبت شد`, type: NotificationTypes.success });
         this._notification.notify(notification);
       },
       err => {

@@ -22,10 +22,10 @@
   </tbody>
 </table>
 <ts-voucher *ngIf="selectedVoucher" [voucher]="selectedVoucher" ></ts-voucher>
-<form  [formGroup]='updateForm' (ngSubmit)="onUpdate()" *ngIf="editedVoucher">
+<form  [formGroup]='updateForm' (ngSubmit)="onUpdate(editedVoucher.id)" *ngIf="editedVoucher">
   <h2>ویرایش کد تخفیف</h2>
   <div>
-    <label>حداکثر تعداد استفاده<input type="text" name="maxUse" value="" formControlName="maxUse"></label>
+    <label>حداکثر تعداد استفاده<input type="text" name="maxUses" value="" formControlName="maxUses"></label>
   </div>
   <div>
     <label>توضیحات<input type="text" name="description" value="" formControlName="description"></label>
@@ -37,10 +37,19 @@
     <label>تاریخ انقضا<input type="text" name="expireDate" value="" formControlName="expireDate"></label>
   </div>
   <div>
-    <label>نوع تخفیف<input type="text" name="codeType" value="" formControlName="codeType"></label>
+    <label>نوع کد تخفیف
+      <select  name="voucherType" formControlName="voucherType">
+        <option value="">نوع </option>
+        <option value="P">درصد</option>
+        <option value="A">مبلغ</option>
+      </select>
+    </label>
   </div>
   <div>
-    <label>میزان تخفیف<input type="text" name="value" value="" formControlName="value"></label>
+    <label>میزان تخفیف<input type="text" name="discountValue" value="" formControlName="discountValue"></label>
+  </div>
+  <div>
+    <button type="submit" name="updateVoucher" >ویرایش</button>
   </div>
 </form>
 <ts-generate-voucher></ts-generate-voucher>

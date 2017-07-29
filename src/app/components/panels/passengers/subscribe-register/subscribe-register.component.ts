@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormGroup, FormControl, Validators, ReactiveFormsModule} from '@angular/forms';
 import {OperatorService, NotificationService} from 'services';
-import {Notification, NotificationTypes} from 'models';
+import {Notification, NotificationTypes, IStates, ICities} from 'models';
 
 @Component({
   selector: 'ts-subscribe-register',
@@ -10,6 +10,8 @@ import {Notification, NotificationTypes} from 'models';
 })
 export class SubscribeRegisterComponent implements OnInit {
   myForm: FormGroup;
+  states: IStates;
+  cities: ICities;
   constructor(private _operatorservice: OperatorService, private _notification: NotificationService) {
     this.myForm = new FormGroup({
       'firstName': new FormControl('', [Validators.required, Validators.minLength(3)]),
@@ -34,9 +36,15 @@ export class SubscribeRegisterComponent implements OnInit {
       }
     );
   }
-
+  getState() {
+    this._operatorservice.getStates().subscribe(res => this.states = res);
+  }
+  onChange(id) {
+    this._operatorservice.getCities(id).subscribe(res => this.cities = res);
+  }
 
   ngOnInit() {
+    this.getState();
   }
 
 }

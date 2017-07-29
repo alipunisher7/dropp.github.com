@@ -23,22 +23,17 @@
   </ts-input>
   <div>
     <label>استان</label>
-    <select name="state" formControlName="state">
+    <select name="state" formControlName="state" (change)="onChange($event.target.value)" >
         <option value="">استان را انتخاب کنید</option>
-        <option value="تهران">تهران</option>
-        <option value="خراسان">خراسان</option>
-        <option value="اصفهان">اصفهان</option>
-        <option value="گلستان">گلستان</option>
+        <option *ngFor="let state of states" value="{{state.id}}">{{state.name}}</option>
       </select>
   </div>
   <div>
     <label>شهر</label>
     <select name="city" formControlName="city">
       <option value="">شهر را انتخاب کنید</option>
-      <option value="تهران">تهران</option>
-      <option value="مشهد">مشهد</option>
-      <option value="اصفهان">اصفهان</option>
-      <option value="گرگان">گرگان</option>
+      <option *ngFor="let city of cities" value="{{city.id}}">{{city.name}}</option>
+
     </select>
   </div>
   <div>

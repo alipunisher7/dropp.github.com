@@ -59,5 +59,17 @@ export class SearchDriversComponent implements OnInit {
       }
     );
   }
+  unBanDriver(data) {
+    this._operatorServices.unBanDriver(data).subscribe(
+      res => {
+        let notification = new Notification({ title: 'ثبت شد', info: `راننده مورد نظر رفع بن شد`, type: NotificationTypes.success });
+        this._notification.notify(notification);
+        // TODO: UPDATE UI
+      },
+      err => {
+        alert(err);
+      }
+    );
+  }
 
 }

@@ -72,7 +72,6 @@ const routes: Routes = [
       { path: 'add', component: AddOperatorComponent },
       { path: 'add-master', component: AddMasterComponent },
       { path: 'search', component: SearchOperatorComponent },
-      { path: 'search-for-admin', component: SearchOperatorComponent },
     ]
   },
   // { path: 'admin', component: OrganizationsComponent },

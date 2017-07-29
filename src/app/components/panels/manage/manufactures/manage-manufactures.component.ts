@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CopService, NotificationService } from 'services';
-import { Notification, NotificationTypes} from 'models';
+import { Notification, NotificationTypes, Manufacture} from 'models';
 
 @Component({
   selector: 'ts-manage-manufactures',
@@ -11,7 +11,7 @@ import { Notification, NotificationTypes} from 'models';
 export class ManageManufacturesComponent implements OnInit {
 
   myForm: FormGroup;
-
+  manufactures: Manufacture[];
   constructor(private _copService: CopService, private _notification: NotificationService) {
     this.myForm = new FormGroup({
       'name': new FormControl('', [Validators.required, Validators.minLength(3)])
@@ -27,8 +27,12 @@ export class ManageManufacturesComponent implements OnInit {
       error => { alert(error); }
     );
   }
+  getManufactures() {
+    this._copService.getManufacture().subscribe(res => this.manufactures = res);
+  }
 
   ngOnInit() {
+    this.getManufactures();
   }
 
 }

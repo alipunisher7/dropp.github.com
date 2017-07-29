@@ -13,8 +13,8 @@ export class AddMasterComponent implements OnInit {
 
   constructor(private _adminService: AdminService, private _notification: NotificationService) {
     this.myForm = new FormGroup({
-      'firstName': new FormControl('', [Validators.required, Validators.minLength(3)]),
-      'lastName': new FormControl('', [Validators.required, Validators.minLength(3)]),
+      'firstName': new FormControl('', [Validators.required, Validators.minLength(2)]),
+      'lastName': new FormControl('', [Validators.required, Validators.minLength(2)]),
       'birthDate': new FormControl('', Validators.required),
       'city': new FormControl('', Validators.required),
       'workPhoneCode': new FormControl('', Validators.minLength(3)),

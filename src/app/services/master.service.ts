@@ -3,7 +3,7 @@ import { Response, URLSearchParams  } from '@angular/http';
 import { AuthHttpService } from './auth-http.service';
 import { Observable } from 'rxjs/Observable';
 import { MasterApi } from './providers';
-import { Radius, ApiError, ISearchParam } from 'models';
+import { Radius, ApiError, ISearchParam, Operator } from 'models';
 
 import 'rxjs/operator/map';
 import 'rxjs/add/operator/catch';
@@ -102,7 +102,7 @@ export class MasterService {
         if (json.statusCode !== 1) {
           throw new ApiError(url, json);
         }
-        let data = json.data.operators;
+        let data = json.data.operators.map(operator => new Operator(operator));
         console.log(data);
         return data;
       })
@@ -137,9 +137,9 @@ export class MasterService {
       .catch(this.handleError);
   }
 
-  updateVoucher(id) {
+  updateVoucher(id, data) {
     let url = this._masterApi.updateVoucherUrl(id);
-    let body = '';
+    let body = data;
 
     return this._http.patch(url, body)
       .map((res: Response) => {

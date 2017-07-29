@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {MasterService, NotificationService} from 'services';
-import {IOperator, Notification, NotificationTypes} from 'models';
+import {Operator, Notification, NotificationTypes} from 'models';
 @Component({
   selector: 'ts-search-operator',
   templateUrl: './search-operator.component.html',
@@ -10,8 +10,8 @@ export class SearchOperatorComponent implements OnInit {
 
   constructor(private _masterService: MasterService, private _notification: NotificationService) { }
   query: string = '';
-  operators: IOperator[];
-  selectedOperator: IOperator;
+  operators: Operator[];
+  selectedOperator: Operator;
   resultCount = 20;
   page = 0;
   searchOperators() {

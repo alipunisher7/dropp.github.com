@@ -19,9 +19,9 @@
       <td>{{operator.lastName}}</td>
       <td>{{operator.username}}</td>
       <td>{{operator.workNumber}}</td>
-      <td>{{operator.accountState}}</td>
-      <td><button class="btn outline error" (click)="banOperator(operator.username)" [disabled]="operator.accountState=== 'BANNED'">بن</button></td>
-      <td><button class="btn outline error" (click)="unBanOperator(operator.username)" [disabled]="operator.accountState!== 'BANNED'">رفع بن</button></td>
+      <td>{{operator.accountStateName}}</td>
+      <td><button class="btn outline error" (click)="banOperator(operator.username)" [disabled]="operator.accountState=== -1">بن</button></td>
+      <td><button class="btn outline error" (click)="unBanOperator(operator.username)" [disabled]="operator.accountState!== -1 ">رفع بن</button></td>
       <td><button class="btn accent" (click)="onMoreClick(operator)">اطلاعات بیشتر</button></td>
     </tr>
     <tr *ngIf="!operator" class="no-data">

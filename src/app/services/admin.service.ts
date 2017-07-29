@@ -3,7 +3,7 @@ import { Response, URLSearchParams } from '@angular/http';
 import { AuthHttpService } from './auth-http.service';
 import { Observable } from 'rxjs/Observable';
 import { AdminApi } from './providers';
-import { Radius, ApiError, ISearchParam, Tariff, Bugs } from 'models';
+import { Radius, ApiError, ISearchParam, Tariff, Bugs, Services } from 'models';
 
 import 'rxjs/operator/map';
 import 'rxjs/add/operator/catch';
@@ -70,9 +70,12 @@ export class AdminService {
         if (json.statusCode !== 1) {
           throw new ApiError(url, json)
         }
-        let data = json.data.activeServices;
-        console.log(json);
+        console.log(json.data.activeServices);
+        console.log(new Services({ id: 4, status: "true", type: "N" }));
+
+        let data: Services[] = json.data.activeServices.map(services => new Services(services));
         console.log(data);
+        console.log(json);
         return data;
       })
       .catch(this.handleError);
@@ -145,7 +148,7 @@ export class AdminService {
 
   insertTarrif(tarrif) {
     let url = this._adminApi.insertTarrifUrl;
-
+    console.log(tarrif);
     return this._http
       .post(url, tarrif)
       .map((res: Response) => {
@@ -159,7 +162,7 @@ export class AdminService {
   }
   updateTariff(tarrif): Observable<any> {
     let url = this._adminApi.updateTariffUrl;
-
+    console.log(tarrif);
     return this._http
       .patch(url, tarrif)
       .map((res: Response) => {
@@ -253,6 +256,8 @@ export class AdminService {
           throw new ApiError(url, json)
         }
         let data = json.data.bugs.map(bugs => new Bugs(bugs));
+        console.log(data);
+        console.log(json);
         return data;
       })
       .catch(this.handleError);

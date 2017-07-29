@@ -35,9 +35,8 @@ export class ConfirmDriversComponent implements OnInit {
       });
 
     this.searchDrivers();
+
   }
-
-
   fileChange(event) {
     let fileList: FileList = event.target.files;
     if (fileList.length > 0) {
@@ -60,7 +59,7 @@ export class ConfirmDriversComponent implements OnInit {
     console.log(this.file);
     this._operatorservice.uploadDriverDoc(fileType, username, this.file).subscribe(
       res => {
-        let notification = new Notification({ title: 'ثبت شد', info: `راننده مورد نظر بن شد`, type: NotificationTypes.success });
+        let notification = new Notification({ title: 'ثبت شد', info: `مدرک مورد نظر ثبت شد`, type: NotificationTypes.success });
         this._notificationservice.notify(notification);
       },
       err => {
@@ -71,4 +70,16 @@ export class ConfirmDriversComponent implements OnInit {
   onMoreClick(driver) {
     this.driverMoreInfo = driver;
   }
+  confirm(username) {
+    this._operatorservice.confirmDriver(username).subscribe(
+      res => {
+        let notification = new Notification({ title: 'تایید شد', info: 'راننده مورد نظر تایید شد', type: NotificationTypes.success });
+        this._notificationservice.notify(notification);
+      },
+      err => {
+        alert(err);
+      }
+    )
+  }
+
 }

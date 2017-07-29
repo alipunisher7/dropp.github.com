@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { IDriver } from 'models';
+import { Driver } from 'models';
 @Component({
   selector: 'ts-driver',
   templateUrl: './driver.component.html',
@@ -7,7 +7,7 @@ import { IDriver } from 'models';
 })
 export class DriverComponent implements OnInit {
 
-  @Input() driver: IDriver;
+  @Input() driver: Driver;
 
   constructor() { }
 

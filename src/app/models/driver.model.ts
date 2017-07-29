@@ -31,6 +31,15 @@ const StatusCodeNames = {
   "2": "منتظر تایید",
   "3": "تایید شده"
 }
+const serviceTypeNames = {
+  "ECO": "اکو",
+  "LUX": "لوکس",
+  "NORMAL": "نرمال",
+  "MOTOR_TRANSPORT": "موتور",
+  "MOTOR_DELIVERY": "پیک",
+  "TAXI": "تاکسی",
+  "SUV": "SUV",
+}
 
 export class Driver extends User {
 
@@ -45,6 +54,9 @@ export class Driver extends User {
 
   get status() {
     return StatusCodeNames[this.stateCode];
+  }
+  get serviceTypeName() {
+    return serviceTypeNames[this.serviceType];
   }
 
   constructor(driver: IDriver) {

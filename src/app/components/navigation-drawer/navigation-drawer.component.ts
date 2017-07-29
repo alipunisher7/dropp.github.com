@@ -17,7 +17,7 @@ export class NavigationDrawerComponent implements OnInit, AfterViewInit {
         title: 'راننده ها', icon: 'fa fa-drivers-license', route: 'drivers',
         subNavs: [
           { title: 'جستجوی راننده', icon: 'fa fa-taxi', route: 'search' },
-          { title: 'موجودی حساب کل راننده ها', icon: 'fa fa-taxi', route: 'drivers-credit' },
+          { title: 'موجودی حساب راننده ها', icon: 'fa fa-taxi', route: 'drivers-credit' },
           { title: 'راننده ها با امتیاز پایین', icon: 'fa fa-taxi', route: 'low-rate' },
           { title: 'تایید راننده ها', icon: 'fa fa-taxi', route: 'confirm-driver' },
         ],
@@ -53,8 +53,7 @@ export class NavigationDrawerComponent implements OnInit, AfterViewInit {
         subNavs: [
           { title: 'اضافه کردن اپراتور', icon: 'fa fa-user-o', route: 'add' },
           { title: ' اضافه کردن اپراتور ارشد', icon: 'fa fa-user-o', route: 'add-master' },
-          { title: 'جستجو اپراتور', icon: 'fa fa-user-o', route: 'search' },
-          { title: 'جستجو اپراتور(ادمین)', icon: 'fa fa-user-o', route: 'search-for-admin' }
+          { title: 'جستجو اپراتور', icon: 'fa fa-user-o', route: 'search' }
         ]
       },
       {

@@ -4,14 +4,14 @@
     <label for="firstName">نام</label>
     <input type="text" name="firstName" placeholder="نام" formControlName="firstName"  >
     <div *ngIf="myForm.controls['firstName'].dirty && !myForm.controls['firstName'].valid">
-      <span>نام حداقل باید 3 کاراکتر باشد</span>
+      <span>نام حداقل باید 2 کاراکتر باشد</span>
     </div>
   </div>
   <div>
     <label for="lastName">نام خانوادگی</label>
     <input type="text" name="lastName" placeholder="نام خانوادگی" formControlName="lastName"  >
     <div *ngIf="myForm.controls['lastName'].dirty && !myForm.controls['lastName'].valid">
-      <span>نام خانوادگی حداقل باید 3 کاراکتر باشد</span>
+      <span>نام خانوادگی حداقل باید 2 کاراکتر باشد</span>
     </div>
   </div>
   <div>

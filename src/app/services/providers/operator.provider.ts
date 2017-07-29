@@ -53,4 +53,5 @@ export class OperatorApi {
   public getVouchersUrl = `${operatorApi}/vouchers`;
 
   public getStatesUrl = `${operatorApi}/states`;
+  public getCitiesUrl = (id) => `${operatorApi}/cities/${id}`;
 }

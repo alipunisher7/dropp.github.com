@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AdminService, NotificationService } from 'services';
 import { FormGroup, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
-import {IServices, Notification, NotificationTypes} from 'models';
+import {Services, Notification, NotificationTypes} from 'models';
 
 @Component({
   selector: 'ts-active-services',
@@ -11,7 +11,7 @@ import {IServices, Notification, NotificationTypes} from 'models';
 export class ActiveServicesComponent implements OnInit {
 
   myForm: FormGroup;
-  activeServices: IServices[];
+  activeServices: Services[];
 
   constructor(private _adminService: AdminService, private _notification: NotificationService) {
     this.myForm = new FormGroup({
@@ -20,11 +20,8 @@ export class ActiveServicesComponent implements OnInit {
     })
   }
 
-  // viewActiveServices() {
-  //   this._adminService.viewActiveServices().subscribe();
-  // }
   onChange(city) {
-    this._adminService.getServicesOfCity(city).subscribe(res => { console.log(res); this.activeServices = res })
+    this._adminService.getServicesOfCity(city).subscribe(res => this.activeServices = res)
   }
   enable(id) {
     this._adminService.enableService(id).subscribe(

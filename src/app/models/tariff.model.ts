@@ -1,6 +1,6 @@
 export interface ITariff {
-  id?: number;
-  tariffID?: number;
+  id?: string;
+  tariffID?: string;
   city?: string;
   serviceType?: string;
   before2KM: string;
@@ -12,8 +12,8 @@ export interface ITariff {
   coShare: string;
 }
 export class Tariff implements ITariff {
-  id?: number;
-  tariffID?: number;
+  id?: string;
+  tariffID?: string;
   city?: string;
   serviceType?: string;
   before2KM: string;

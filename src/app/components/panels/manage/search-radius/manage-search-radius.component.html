@@ -18,7 +18,7 @@
 <form [formGroup]="updateForm" (ngSubmit)="onUpdate()" *ngIf="selectedRadius">
 <h2>تغیر شعاع جستجو</h2>
 <div>
-  <label><input type="text" name="serviceTypeUpdate"   formControlName="serviceTypeUpdate"></label>
+  <label><input type="text" name="serviceTypeUpdate"  readonly  formControlName="serviceTypeUpdate"></label>
 </div>
 <div>
   <label><input type="number" name="radiusUpdate" formControlName="radiusUpdate"></label>
@@ -44,7 +44,7 @@
     </div>
     <div>
       <label>شعاع</label>
-      <input type="number" name="radius"  formControlName="radius">
+      <input type="text" name="radius"  formControlName="radius">
     </div>
     <div>
       <button type="submit" name="submitRadius" [disabled]="!myForm.valid">ثبت</button>

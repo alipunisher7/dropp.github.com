@@ -19,9 +19,8 @@
   </thead>
   <tbody>
     <tr *ngFor="let activeService of activeServices">
-      <td>{{activeService.type}}</td>
-      <td *ngIf="activeService.status===true">فعال</td>
-      <td *ngIf="activeService.status===false">غیر فعال</td>
+      <td>{{activeService.typeName}}</td>
+      <td >{{activeService.statusName}}</td>
       <td><button (click)="enable(activeService.id)" [disabled]="activeService.status ===true">کلیک</button></td>
       <td><button (click)="disable(activeService.id)" [disabled]="activeService.status ===false">کلیک</button></td>
     </tr>

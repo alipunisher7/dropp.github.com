@@ -550,6 +550,18 @@ export class OperatorService {
         return data;
       })
   }
+  getCities(id) {
+    let url = this._operatorApi.getCitiesUrl(id);
+    return this._http.get(url)
+      .map((res: Response) => {
+        let json = res.json();
+        if (json.statusCode !== 1) {
+          throw new ApiError(url, json);
+        }
+        let data = json.data.cities;
+        return data;
+      })
+  }
 
   searchTrips(str: string) {
     throw new Error('Not Implemented');

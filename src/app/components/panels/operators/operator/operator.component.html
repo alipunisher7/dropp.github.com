@@ -20,13 +20,13 @@
       <td>{{operator.firstName}}</td>
       <td>{{operator.lastName}}</td>
       <td>{{operator.username}}</td>
-      <!-- <td>{{operator.gender}}</td> -->
+      <td>{{operator.getGenderName()}}</td>
       <td>{{operator.workNumber}}</td>
       <td>{{operator.phoneNumber}}</td>
-      <!-- <td>{{operator.birthDate}}</td> -->
-      <!-- <td>{{operator.email}}</td> -->
-      <!-- <td>{{operator.city}}</td> -->
-      <td>{{operator.accountState}}</td>
+      <td>{{operator.birthDate}}</td>
+      <td>{{operator.email}}</td>
+      <td>{{operator.city}}</td>
+      <td>{{operator.accountStateName}}</td>
 
     </tr>
     <tr *ngIf="!operator" class="no-data">

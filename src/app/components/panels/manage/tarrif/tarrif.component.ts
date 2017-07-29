@@ -55,14 +55,14 @@ export class TarrifComponent implements OnInit {
   }
   updateTariff(tariff: Tariff) {
     this.selectedTariff = tariff;
-    this.updateForm.controls['tariffIDUpdate'].setValue(tariff.id);
-    this.updateForm.controls['before2KMUpdate'].setValue(tariff.before2KM);
-    this.updateForm.controls['after2KMUpdate'].setValue(tariff.after2KM);
-    this.updateForm.controls['perMinUpdate'].setValue(tariff.perMin);
-    this.updateForm.controls['waitingMinUpdate'].setValue(tariff.waitingMin);
-    this.updateForm.controls['entranceUpdate'].setValue(tariff.entrance);
-    this.updateForm.controls['twoWayCostUpdate'].setValue(tariff.twoWayCost);
-    this.updateForm.controls['coShareUpdate'].setValue(tariff.coShare);
+    this.updateForm.controls['tariffIDUpdate'].setValue(tariff.id.toString());
+    this.updateForm.controls['before2KMUpdate'].setValue(tariff.before2KM.toString());
+    this.updateForm.controls['after2KMUpdate'].setValue(tariff.after2KM.toString());
+    this.updateForm.controls['perMinUpdate'].setValue(tariff.perMin.toString());
+    this.updateForm.controls['waitingMinUpdate'].setValue(tariff.waitingMin.toString());
+    this.updateForm.controls['entranceUpdate'].setValue(tariff.entrance.toString());
+    this.updateForm.controls['twoWayCostUpdate'].setValue(tariff.twoWayCost.toString());
+    this.updateForm.controls['coShareUpdate'].setValue(tariff.coShare.toString());
   }
 
   onUpdate() {
@@ -76,7 +76,7 @@ export class TarrifComponent implements OnInit {
       twoWayCost: this.updateForm.value['twoWayCostUpdate'],
       coShare: this.updateForm.value['coShareUpdate'],
     }
-    console.log(updatedTariff)
+    console.log(updatedTariff);
     this._adminService.updateTariff(updatedTariff).subscribe(
       res => {
         let notification = new Notification({ title: 'ثبت شد', info: `تعرفه آپدیت شد`, type: NotificationTypes.success });

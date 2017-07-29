@@ -52,6 +52,7 @@ export class ManageSearchRadiusComponent implements OnInit {
       radius: this.updateForm.value['radiusUpdate'],
       serviceType: this.updateForm.value['serviceTypeUpdate']
     }
+    console.log(updatedRadius);
     this._adminService.updateRadiusByServiceType(updatedRadius).subscribe(
       res => {
         let notification = new Notification({ title: 'ثبت شد', info: `شعاع جستجو آپدیت شد`, type: NotificationTypes.success });

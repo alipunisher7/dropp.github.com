@@ -1,4 +1,4 @@
 export class Manufacture {
-  id: String;
+  id?: String;
   name: String;
 }

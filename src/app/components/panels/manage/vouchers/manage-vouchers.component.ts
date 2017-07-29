@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { OperatorService, MasterService } from 'services';
+import { OperatorService, MasterService, NotificationService } from 'services';
 import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
-import { Vouchers } from 'models';
+import { Vouchers, Notification, NotificationTypes} from 'models';
 
 @Component({
   selector: 'ts-manage-vouchers',
@@ -17,14 +17,14 @@ export class ManageVouchersComponent implements OnInit {
 
 
 
-  constructor(private _operatorservice: OperatorService, private _masterservice: MasterService) {
+  constructor(private _operatorservice: OperatorService, private _masterservice: MasterService, private _notificationservice: NotificationService) {
     this.updateForm = new FormGroup({
-      'maxUse': new FormControl('', Validators.required),
+      'maxUses': new FormControl('', Validators.required),
       'description': new FormControl('', [Validators.required, Validators.minLength(5)]),
       'startDate': new FormControl('', Validators.required),
       'expireDate': new FormControl('', Validators.required),
-      'codeType': new FormControl('', Validators.required),
-      'value': new FormControl('', Validators.required)
+      'voucherType': new FormControl('', Validators.required),
+      'discountValue': new FormControl('', Validators.required)
     });
   }
 
@@ -39,12 +39,23 @@ export class ManageVouchersComponent implements OnInit {
 
   editVoucher(voucher) {
     this.editedVoucher = voucher;
-    // this.updateForm.controls['maxUse'].setValue(this.editedVoucher.maxUse);
+    this.updateForm.controls['maxUses'].setValue(this.editedVoucher.maxUses);
     this.updateForm.controls['description'].setValue(this.editedVoucher.description);
     this.updateForm.controls['startDate'].setValue(this.editedVoucher.startDate);
     this.updateForm.controls['expireDate'].setValue(this.editedVoucher.expireDate);
-    // this.updateForm.controls['codeType'].setValue(this.editedVoucher.codeType);
-    // this.updateForm.controls['value'].setValue(this.editedVoucher.value);
+    this.updateForm.controls['voucherType'].setValue(this.editedVoucher.voucherType);
+    this.updateForm.controls['discountValue'].setValue(this.editedVoucher.discountValue);
+  }
+  onUpdate(id) {
+    this._masterservice.updateVoucher(id, this.updateForm.value).subscribe(
+      res => {
+        let notification = new Notification({ title: 'ویرایش شد', info: 'کد تخفیف مورد نظر ویرایش شد', type: NotificationTypes.success });
+        this._notificationservice.notify(notification);
+      },
+      err => {
+        alert(err);
+      }
+    )
   }
 
   ngOnInit() {
