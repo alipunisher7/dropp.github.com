@@ -51,6 +51,13 @@ export class ManageVouchersComponent implements OnInit {
       res => {
         let notification = new Notification({ title: 'ویرایش شد', info: 'کد تخفیف مورد نظر ویرایش شد', type: NotificationTypes.success });
         this._notificationservice.notify(notification);
+        this.editedVoucher.description = this.updateForm.controls['description'].value;
+        this.editedVoucher.maxUses = this.updateForm.controls['maxUses'].value;
+        this.editedVoucher.startDate = this.updateForm.controls['startDate'].value;
+        this.editedVoucher.expireDate = this.updateForm.controls['expireDate'].value;
+        this.editedVoucher.voucherType = this.updateForm.controls['voucherType'].value;
+        this.editedVoucher.discountValue = this.updateForm.controls['discountValue'].value;
+        this.editedVoucher = null;
       },
       err => {
         alert(err);

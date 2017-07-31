@@ -20,8 +20,8 @@ export class ManageTicketsComponent implements OnInit {
     })
   }
 
-  getTicketSubjects() {
-    this._masterService.getTicketSubjects().subscribe(res => this.tickets = res);
+  onChange(val) {
+    this._masterService.getTicketSubjects().subscribe(res => this.tickets = res.filter(item => item.role == val));
   }
   OnSubmit() {
     this._masterService.insertTicketSubject(this.myForm.value).subscribe(
@@ -34,7 +34,7 @@ export class ManageTicketsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getTicketSubjects();
+
   }
 
 }

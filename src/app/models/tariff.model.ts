@@ -9,7 +9,7 @@ export interface ITariff {
   waitingMin: string;
   entrance: string;
   twoWayCost: string;
-  coShare: string;
+  genoShare: string;
 }
 export class Tariff implements ITariff {
   id?: string;
@@ -22,7 +22,7 @@ export class Tariff implements ITariff {
   waitingMin: string;
   entrance: string;
   twoWayCost: string;
-  coShare: string;
+  genoShare: string;
   private cityNames = {
     "GO": "گرگان",
     "TE": "تهران",
@@ -55,7 +55,7 @@ export class Tariff implements ITariff {
     this.waitingMin = tariff.waitingMin;
     this.entrance = tariff.entrance;
     this.twoWayCost = tariff.twoWayCost;
-    this.coShare = tariff.coShare;
+    this.genoShare = tariff.genoShare;
   }
 
 }

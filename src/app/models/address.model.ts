@@ -14,7 +14,13 @@ export class Address implements IAddress {
   line2?: string;
 
   toString() {
-    return `${this.state} - ${this.city} - ${this.line1} ${this.line2} `;
+    if (this.line2) {
+
+      return `${this.state} - ${this.city} - ${this.line1} ${this.line2} `;
+    }
+    else {
+      return `${this.state} - ${this.city} - ${this.line1}`;
+    }
   }
 
   constructor(address) {

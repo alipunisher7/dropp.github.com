@@ -30,6 +30,9 @@ export class SubscribeRegisterComponent implements OnInit {
         alert(res.code)
         let notification = new Notification({ title: 'ثبت شد', info: `اشتراک جدید ثبت شد`, type: NotificationTypes.success });
         this._notification.notify(notification);
+        this.myForm.reset();
+        this.myForm.controls['state'].setValue('');
+        this.myForm.controls['city'].setValue('');
       },
       err => {
         alert(err);

@@ -23,7 +23,7 @@ export class TarrifComponent implements OnInit {
       'waitingMin': new FormControl('', Validators.required),
       'entrance': new FormControl('', Validators.required),
       'twoWayCost': new FormControl('', Validators.required),
-      'coShare': new FormControl('', Validators.required)
+      'genoShare': new FormControl('', Validators.required)
 
     });
     this.updateForm = new FormGroup({
@@ -34,7 +34,7 @@ export class TarrifComponent implements OnInit {
       'waitingMinUpdate': new FormControl('', Validators.required),
       'entranceUpdate': new FormControl('', Validators.required),
       'twoWayCostUpdate': new FormControl('', Validators.required),
-      'coShareUpdate': new FormControl('', Validators.required)
+      'genoShareUpdate': new FormControl('', Validators.required)
     });
   }
 
@@ -62,7 +62,7 @@ export class TarrifComponent implements OnInit {
     this.updateForm.controls['waitingMinUpdate'].setValue(tariff.waitingMin.toString());
     this.updateForm.controls['entranceUpdate'].setValue(tariff.entrance.toString());
     this.updateForm.controls['twoWayCostUpdate'].setValue(tariff.twoWayCost.toString());
-    this.updateForm.controls['coShareUpdate'].setValue(tariff.coShare.toString());
+    this.updateForm.controls['genoShareUpdate'].setValue(tariff.genoShare.toString());
   }
 
   onUpdate() {
@@ -74,13 +74,21 @@ export class TarrifComponent implements OnInit {
       waitingMin: this.updateForm.value['waitingMinUpdate'],
       entrance: this.updateForm.value['entranceUpdate'],
       twoWayCost: this.updateForm.value['twoWayCostUpdate'],
-      coShare: this.updateForm.value['coShareUpdate'],
+      genoShare: this.updateForm.value['genoShareUpdate'],
     }
     console.log(updatedTariff);
     this._adminService.updateTariff(updatedTariff).subscribe(
       res => {
         let notification = new Notification({ title: 'ثبت شد', info: `تعرفه آپدیت شد`, type: NotificationTypes.success });
         this._notification.notify(notification);
+        this.selectedTariff.before2KM = this.updateForm.controls['before2KM'].value;
+        this.selectedTariff.after2KM = this.updateForm.controls['after2KM'].value;
+        this.selectedTariff.perMin = this.updateForm.controls['perMin'].value;
+        this.selectedTariff.waitingMin = this.updateForm.controls['waitingMin'].value;
+        this.selectedTariff.entrance = this.updateForm.controls['entrance'].value;
+        this.selectedTariff.twoWayCost = this.updateForm.controls['twoWayCost'].value;
+        this.selectedTariff.genoShare = this.updateForm.controls['genoShare'].value;
+        this.selectedTariff = null;
       },
       error => { alert(error); }
     );

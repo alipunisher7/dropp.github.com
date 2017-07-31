@@ -14,11 +14,12 @@ export class BugsComponent implements OnInit {
   getbugs() {
     this._adminservice.getBugs().subscribe(res => this.bugs = res);
   }
-  onChange(id) {
-    this._adminservice.resolveBug(id).subscribe(
+  onChange(bug) {
+    this._adminservice.resolveBug(bug.id).subscribe(
       res => {
         let notification = new Notification({ title: 'ثبت شد', info: 'خطا مورد نظر رسیدگی شد', type: NotificationTypes.success });
         this._notificationservice.notify(notification);
+        bug.state = 'R';
       },
       err => {
         alert(err);

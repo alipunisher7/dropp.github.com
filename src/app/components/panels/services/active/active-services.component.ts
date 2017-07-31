@@ -23,24 +23,26 @@ export class ActiveServicesComponent implements OnInit {
   onChange(city) {
     this._adminService.getServicesOfCity(city).subscribe(res => this.activeServices = res)
   }
-  enable(id) {
+  enable(service) {
     confirm('آیا میخواهید فعال کنید؟');
-    this._adminService.enableService(id).subscribe(
+    this._adminService.enableService(service.id).subscribe(
       res => {
         let notification = new Notification({ title: 'فعال شد', info: 'سرویس مورد نظر فعال شد', type: NotificationTypes.success });
         this._notification.notify(notification);
+        service.status = true;
       },
       err => {
         alert(err);
       }
     )
   }
-  disable(id) {
+  disable(service) {
     confirm('آیا میخواهید غیر فعال کنید');
-    this._adminService.disableService(id).subscribe(
+    this._adminService.disableService(service.id).subscribe(
       res => {
         let notification = new Notification({ title: 'غیر فعال شد', info: 'سرویس مورد نظر غیر فعال شد', type: NotificationTypes.success });
         this._notification.notify(notification);
+        service.status = false;
       },
       err => {
         alert(err);

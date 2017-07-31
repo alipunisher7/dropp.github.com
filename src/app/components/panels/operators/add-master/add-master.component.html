@@ -42,6 +42,9 @@
   <div>
     <label for="phoneNumber">تلفن همراه</label>
     <input type="text" name="phoneNumber" placeholder="تلفن همراه" formControlName="phoneNumber"  >
+    <div *ngIf="myForm.controls['phoneNumber'].dirty && !myForm.controls['phoneNumber'].valid" >
+      <span>تلفن همراه باید حداقل 11 کاراکتر باشد</span>
+    </div>
   </div>
   <div>
     <label for="email">ایمیل</label>

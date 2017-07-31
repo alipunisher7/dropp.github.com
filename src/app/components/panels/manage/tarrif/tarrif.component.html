@@ -35,7 +35,7 @@
       <td>{{tariff.waitingMin}}</td>
       <td>{{tariff.entrance}}</td>
       <td>{{tariff.twoWayCost}}</td>
-      <td>{{tariff.coShare}}</td>
+      <td>{{tariff.genoShare}}</td>
       <td ><button (click)="updateTariff(tariff)">ویرایش</button></td>
     </tr>
   </tbody>
@@ -64,7 +64,7 @@
   <label>درصد سفر بازگشت<input type="text" name="twoWayCostUpdate" formControlName="twoWayCostUpdate"></label>
 </div>
 <div>
-  <label>درصد سهم شرکت<input type="text" name="coShareUpdate" formControlName="coShareUpdate"></label>
+  <label>درصد سهم شرکت<input type="text" name="genoShareUpdate" formControlName="genoShareUpdate"></label>
 </div>
 <div>
   <button type="submit" name="updateTariff" [disabled]="!updateForm.valid">ثبت</button>
@@ -121,7 +121,7 @@
   </div>
    <div>
     <label >درصد سهم شرکت</label>
-    <input type="text" name="coShare" formControlName="coShare" >
+    <input type="text" name="genoShare" formControlName="genoShare" >
   </div>
   <div>
     <button type="submit" name="submitAddTarrif" [disabled]="!myForm.valid">ثبت</button>

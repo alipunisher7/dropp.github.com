@@ -17,7 +17,7 @@
       <td>{{bug.stateName}}</td>
       <td *ngIf="bug.passengerUsername">مسافر</td>
       <td *ngIf="bug.driverUsername">راننده</td>
-      <td><button (click)="onChange(bug.id)">کلیک</button></td>
+      <td><button (click)="onChange(bug)" [disabled]="bug.state ==  'R'">کلیک</button></td>
     </tr>
   </tbody>
 </table>

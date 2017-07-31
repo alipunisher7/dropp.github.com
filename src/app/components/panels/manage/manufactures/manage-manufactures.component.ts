@@ -23,6 +23,7 @@ export class ManageManufacturesComponent implements OnInit {
       res => {
         let notification = new Notification({ title: 'ثبت شد', info: `خودروسازی جدید ثبت شد  `, type: NotificationTypes.success });
         this._notification.notify(notification);
+        this.manufactures.push(new Manufacture({ 'name': this.myForm.controls['name'].value }));
       },
       error => { alert(error); }
     );

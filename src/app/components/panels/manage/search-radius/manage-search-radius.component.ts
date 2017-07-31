@@ -36,6 +36,8 @@ export class ManageSearchRadiusComponent implements OnInit {
       res => {
         let notification = new Notification({ title: 'ثبت شد', info: `شعاع جستجو جدید ثبت شد`, type: NotificationTypes.success });
         this._notification.notify(notification);
+        this.radiuses.push(new Radius({ 'serviceType': this.myForm.controls['serviceType'].value, 'radius': this.myForm.controls['radius'].value })
+        )
       },
       error => { alert(error); }
     );
@@ -57,6 +59,8 @@ export class ManageSearchRadiusComponent implements OnInit {
       res => {
         let notification = new Notification({ title: 'ثبت شد', info: `شعاع جستجو آپدیت شد`, type: NotificationTypes.success });
         this._notification.notify(notification);
+        this.selectedRadius.radius = this.updateForm.controls['radiusUpdate'].value;
+        this.selectedRadius = null;
       },
       error => { alert(error); }
     );

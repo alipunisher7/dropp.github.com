@@ -21,8 +21,8 @@
     <tr *ngFor="let activeService of activeServices">
       <td>{{activeService.typeName}}</td>
       <td >{{activeService.statusName}}</td>
-      <td><button (click)="enable(activeService.id)" [disabled]="activeService.status ===true">کلیک</button></td>
-      <td><button (click)="disable(activeService.id)" [disabled]="activeService.status ===false">کلیک</button></td>
+      <td><button (click)="enable(activeService)" [disabled]="activeService.status ===true">کلیک</button></td>
+      <td><button (click)="disable(activeService)" [disabled]="activeService.status ===false">کلیک</button></td>
     </tr>
     <tr *ngIf="!activeService" class="no-data">
       <td colspan=75%>

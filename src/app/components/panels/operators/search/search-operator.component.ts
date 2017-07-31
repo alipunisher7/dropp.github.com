@@ -26,22 +26,24 @@ export class SearchOperatorComponent implements OnInit {
   onMoreClick(operator) {
     this.selectedOperator = operator;
   }
-  banOperator(username) {
-    this._masterService.banDriver(username).subscribe(
+  banOperator(operator) {
+    this._masterService.banDriver(operator.username).subscribe(
       res => {
         let notification = new Notification({ title: 'ثبت شد', info: `اپراتور مورد نظر بن شد`, type: NotificationTypes.success });
         this._notification.notify(notification);
+        operator.accountState = '-1';
       },
       err => {
         alert(err);
       }
     );
   }
-  unBanOperator(username) {
-    this._masterService.unBanDriver(username).subscribe(
+  unBanOperator(operator) {
+    this._masterService.unBanDriver(operator.username).subscribe(
       res => {
         let notification = new Notification({ title: 'ثبت شد', info: 'اپراتور مورد نظر رفع بن شد', type: NotificationTypes.success });
         this._notification.notify(notification);
+        operator.accountState = '3';
       },
       err => {
         alert(err);

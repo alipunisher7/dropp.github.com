@@ -40,6 +40,8 @@ export class AddMasterComponent implements OnInit {
     this._adminService.insertMaster(operator).subscribe(res => {
       let notification = new Notification({ title: 'ثبت شد', info: `اپراتور ارشد جدید ثبت شد`, type: NotificationTypes.success });
       this._notification.notify(notification);
+      this.myForm.reset();
+      this.myForm.controls['city'].setValue('');
     },
       err => {
         alert(err);

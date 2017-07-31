@@ -22,3 +22,4 @@ export * from './vouchers.model';
 export * from './settings.model';
 export * from './states.model';
 export * from './cities.model';
+export * from './destination.model';

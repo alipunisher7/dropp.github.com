@@ -17,7 +17,7 @@
       <td>{{driver.username}}</td>
       <td>{{driver.phoneNumber}}</td>
       <td>راننده</td>
-      <td><button (click)="unBanDriver(driver.username)">رفع بن</button></td>
+      <td><button (click)="unBanDriver(driver)">رفع بن</button></td>
     </tr>
     <tr *ngFor="let passenger of passengers">
       <td>{{passenger.firstName}}</td>
@@ -25,7 +25,7 @@
       <td>{{passenger.username}}</td>
       <td>{{passenger.phoneNumber}}</td>
       <td>مسافر</td>
-      <td><button (click)="unBanPassenger(passenger.username)">رفع بن</button></td>
+      <td><button (click)="unBanPassenger(passenger)">رفع بن</button></td>
     </tr>
   </tbody>
 </table>

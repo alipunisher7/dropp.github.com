@@ -6,7 +6,7 @@
   <div>
     <label>
       گروه
-      <select  name="role" formControlName="role">
+      <select  name="role" formControlName="role" (change)="onChange($event.target.value)">
         <option value="">گروه مورد نظر را انتخاب کنید</option>
         <option value="D">راننده</option>
         <option value="P">مسافر</option>

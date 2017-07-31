@@ -3,20 +3,22 @@ export interface IRadius {
   radius: string;
 }
 
+const serviceTypeNames = {
+  "T": "تاکسی",
+  "E": "اکو",
+  "N": "نرمال",
+  "L": "لوکس",
+  "S": "SUV",
+  "R": "موتور",
+  "D": "پیک"
+}
+
 export class Radius implements IRadius {
   serviceType: string;
   radius: string;
-  serviceTypeNames = {
-    "T": "تاکسی",
-    "E": "اکو",
-    "N": "نرمال",
-    "L": "لوکس",
-    "S": "SUV",
-    "R": "موتور",
-    "D": "پیک"
-  }
+
   get type() {
-    return this.serviceTypeNames[this.serviceType];
+    return serviceTypeNames[this.serviceType];
   }
 
   constructor(radius: IRadius) {

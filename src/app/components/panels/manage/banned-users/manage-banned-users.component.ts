@@ -20,20 +20,28 @@ export class ManageBannedUsersComponent implements OnInit {
   getBannedPassengers() {
     this._operatorService.getBannedPassengers().subscribe(res => this.passengers = res);
   }
-  unBanDriver(username) {
-    this._operatorService.unBanDriver(username).subscribe(
+  unBanDriver(driver) {
+    this._operatorService.unBanDriver(driver.username).subscribe(
       res => {
         let notification = new Notification({ title: 'ثبت شد', info: `راننده مورد نظر رفع بن شد `, type: NotificationTypes.success });
         this._notification.notify(notification);
+        let index = this.drivers.indexOf(driver);
+        if (index > -1) {
+          this.drivers.splice(index, 1);
+        }
       },
       error => { alert(error); }
     );
   }
-  unBanPassenger(username) {
-    this._operatorService.unBanPassenger(username).subscribe(
+  unBanPassenger(passenger) {
+    this._operatorService.unBanPassenger(passenger.username).subscribe(
       res => {
         let notification = new Notification({ title: 'ثبت شد', info: `مسافر مورد نظر رفع بن شد `, type: NotificationTypes.success });
         this._notification.notify(notification);
+        let index = this.passengers.indexOf(passenger);
+        if (index > -1) {
+          this.passengers.splice(index, 1);
+        }
       },
       error => { alert(error); }
     );

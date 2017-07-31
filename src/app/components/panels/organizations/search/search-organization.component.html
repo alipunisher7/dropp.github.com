@@ -22,7 +22,7 @@
         <td>{{organization.email}}</td>
         <td>{{organization.workNumber}}</td>
         <td>{{organization.accountStateName}}</td>
-        <td><button [disabled]="organization.accountState ==='VERIFIED'" (click)="confirm(organization.username)" >تایید</button></td>
+        <td><button [disabled]="organization.accountState ==='VERIFIED'" (click)="confirm(organization)" >تایید</button></td>
         <td><button (click)="remove(organization.username)" >حذف</button></td>
         <td><button  >بن</button></td>
         <td><button  >رفع بن</button></td>

@@ -1,18 +1,18 @@
+import {Destination} from './destination.model';
+import {Vehicle} from './Vehicle.model';
 export interface ITrip {
-  uuid: string;
-  passengerUsername: string;
-  driverUsername: string;
-  tripDate: string;
-  startTime?: string;
-  endTime?: string;
-  source?: string;
-  destination?: string;
+  serviceType: string;
   cost: string;
-  cash_payment?: string;
-  credit_payment?: string;
-  rate?: string;
-  state?: string;
-  operator?: string;
-  subuser?: string;
-  voucher?: string;
+  city: string;
+  originAddress?: string;
+  destinations?: Destination[];
+  waitingTime: string;
+  cashPayment?: string;
+  creditPayment?: string;
+  driverUsername: string;
+  passengerUsername: string;
+  vehicle: Vehicle;
+  uuid: string;
+  startDate: string;
+
 }
