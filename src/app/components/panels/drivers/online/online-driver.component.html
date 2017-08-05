@@ -1,20 +1,24 @@
 <h2>راننده های آنلاین</h2>
-<input type="search" name="searchOnlineDriver" placeholder="جستجو ...">
-<table>
+<table class="table">
   <thead>
     <tr>
-      <th>راننده</th>
-      <th>ایمیل</th>
-      <th>شماره‌همراه</th>
-      <th>اطلاعات خودرو</th>
+      <th>نام کاربری</th>
+      <th>نوع سرویس</th>
+      <th>شماره همراه</th>
+      <th>امتیاز</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let driver of drivers">
-      <td>{{driver.name}}</td>
-      <td>{{driver.email}}</td>
-      <td>{{driver.phone}}</td>
-      <td>{{driver.carInfo}}</td>
+      <td>{{driver.username}}</td>
+      <td>{{driver.serviceType}}</td>
+      <td>{{driver.phoneNumber}}</td>
+      <td>{{driver.rate}}</td>
+    </tr>
+    <tr *ngIf="!driver" class="no-data">
+      <td colspan=75%>
+        راننده ای وجود ندارد
+      </td>
     </tr>
   </tbody>
 </table>

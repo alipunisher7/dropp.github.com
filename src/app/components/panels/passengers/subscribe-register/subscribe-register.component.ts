@@ -25,7 +25,17 @@ export class SubscribeRegisterComponent implements OnInit {
     });
   }
   onSubmit() {
-    this._operatorservice.insertSubscribe(this.myForm.value).subscribe(
+    let subUser = {
+      firstName: this.myForm.value['firstName'],
+      lastName: this.myForm.value['lastName'],
+      phoneNumber: this.myForm.value['phoneNumber'],
+      line1: this.myForm.value['line1'],
+      line2: this.myForm.value['line2'],
+      postalCode: this.myForm.value['postalCode'],
+      city: this.myForm.value['city']
+    }
+
+    this._operatorservice.insertSubscribe(subUser).subscribe(
       res => {
         alert(res.code)
         let notification = new Notification({ title: 'ثبت شد', info: `اشتراک جدید ثبت شد`, type: NotificationTypes.success });

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers, RequestOptions } from '@angular/http';
+import { Http, Headers, RequestOptions, ResponseContentType } from '@angular/http';
 import { AuthService } from './auth.service';
 import { User } from 'models';
 
@@ -58,6 +58,15 @@ export class AuthHttpService {
     console.log('POST ', `${url}`);
     console.log('FormData', formData);
     return this.http.post(url, formData, options);
+  }
+
+  getReport(url) {
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/vnd.ms-excel');
+    headers.append('Authorization', this._auth.token)
+
+    let options = new RequestOptions({ headers: headers, responseType: ResponseContentType.Blob });
+    return this.http.get(url, options);
   }
 
   put(url, data) {

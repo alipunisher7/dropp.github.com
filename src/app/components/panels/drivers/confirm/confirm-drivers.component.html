@@ -18,7 +18,7 @@
       <td>{{driver.lastName}}</td>
       <td>{{driver.username}}</td>
       <td>{{driver.serviceTypeName}}</td>
-      <td><button (click)="confirm(driver.username)" [disabled]="driver.stateCode ===3">تایید</button></td>
+      <td><button (click)="confirm(driver)" [disabled]="driver.stateCode ===3">تایید</button></td>
       <td><button (click)="upload(driver)">آپلود</button></td>
       <td><button (click)="onMoreClick(driver)">اطلاعات بیشتر</button></td>
     </tr>

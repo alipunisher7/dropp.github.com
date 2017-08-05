@@ -4,8 +4,8 @@
   <thead>
     <tr>
       <th>نام راننده</th>
-      <th>نام خانوادگی</th>
       <th>نام کاربری</th>
+      <th>نقش</th>
       <th>شماره محل کار</th>
       <th>وضعیت</th>
       <th>بن کردن</th>
@@ -15,13 +15,17 @@
   </thead>
   <tbody>
     <tr *ngFor="let operator of operators">
-      <td>{{operator.firstName}}</td>
-      <td>{{operator.lastName}}</td>
+      <td>{{operator.name()}}</td>
       <td>{{operator.username}}</td>
+      <td>{{operator.roleName}}</td>
       <td>{{operator.workNumber}}</td>
       <td>{{operator.accountStateName}}</td>
-      <td><button class="btn outline error" (click)="banOperator(operator)" [disabled]="operator.accountState == -1">بن</button></td>
-      <td><button class="btn outline error" (click)="unBanOperator(operator)" [disabled]="operator.accountState != -1 ">رفع بن</button></td>
+      <td *ngIf="operator.role == 'O'"><button  class="btn outline error" (click)="banOperator(operator)" [disabled]="operator.accountState == -1">بن</button></td>
+      <td *ngIf="operator.role == 'O'"><button  class="btn outline error" (click)="unBanOperator(operator)" [disabled]="operator.accountState != -1 ">رفع بن</button></td>
+      <td *ngIf="operator.role == 'M'"><button  class="btn outline error" (click)="banMaster(operator)" [disabled]="operator.accountState == -1">بن</button></td>
+      <td *ngIf="operator.role == 'M'"><button  class="btn outline error" (click)="unBanMaster(operator)" [disabled]="operator.accountState != -1 ">رفع بن</button></td>
+      <td *ngIf="operator.role == 'A'"><button  class="btn outline error" (click)="banOperator(operator)" [disabled]="true">بن</button></td>
+      <td *ngIf="operator.role == 'A'"><button  class="btn outline error" (click)="unBanOperator(operator)" [disabled]="true">رفع بن</button></td>
       <td><button class="btn accent" (click)="onMoreClick(operator)">اطلاعات بیشتر</button></td>
     </tr>
     <tr *ngIf="!operator" class="no-data">

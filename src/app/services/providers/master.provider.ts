@@ -5,6 +5,7 @@ export class MasterApi {
 
   public insertOperatorUrl = `${masterApi}/operators`;
   public removeOperatorUrl = (operatorId) => `${masterApi}/operators/${operatorId}`;
+  public updateOperatorUrl = (id) => `${masterApi}/operators/${id}`;
 
   public insertTicketSubjectUrl = `${masterApi}/ticketSubjects`;
   public getTicketSubjectsUrl = `${masterApi}/ticketSubjects`;

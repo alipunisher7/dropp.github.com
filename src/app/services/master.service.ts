@@ -43,6 +43,18 @@ export class MasterService {
       })
       .catch(this.handleError);
   }
+  updateOperator(id, data) {
+    let url = this._masterApi.updateOperatorUrl(id);
+    return this._http.patch(url, data)
+      .map((res: Response) => {
+        let json = res.json();
+        if (json.statusCode !== 1) {
+          throw new ApiError(url, json);
+        }
+        return json;
+      })
+      .catch(this.handleError);
+  }
 
   insertTicketSubject(subject) {
     let url = this._masterApi.insertTicketSubjectUrl;

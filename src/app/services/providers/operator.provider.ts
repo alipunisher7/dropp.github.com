@@ -54,4 +54,6 @@ export class OperatorApi {
 
   public getStatesUrl = `${operatorApi}/states`;
   public getCitiesUrl = (id) => `${operatorApi}/cities/${id}`;
+  public searchTripsUrl = `${operatorApi}/trips`;
+  public onlineTripsUrl = `${operatorApi}/trips/online`;
 }

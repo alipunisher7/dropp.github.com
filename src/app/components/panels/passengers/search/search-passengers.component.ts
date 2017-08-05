@@ -32,29 +32,41 @@ export class SearchPassengersComponent implements OnInit {
     this.selectedPassenger = data;
   }
   banPassenger(passenger: Passenger) {
-    let username = passenger.username;
-    this._operatorServices.banPassenger(username).subscribe(
-      res => {
-        let notification = new Notification({ title: 'ثبت شد', info: `مسافر مورد نظر بن شد`, type: NotificationTypes.success });
-        this._notification.notify(notification);
-        passenger.stateCode = '-1';
-      },
-      err => {
-        alert(err);
-      }
-    );
+    if (confirm('آیا مطمئن هستید؟')) {
+
+      let username = passenger.username;
+      this._operatorServices.banPassenger(username).subscribe(
+        res => {
+          let notification = new Notification({ title: 'ثبت شد', info: `مسافر مورد نظر بن شد`, type: NotificationTypes.success });
+          this._notification.notify(notification);
+          passenger.stateCode = '-1';
+        },
+        err => {
+          alert(err);
+        }
+      );
+    }
+    else {
+      alert('کنسل شد');
+    }
   }
   unBanPassenger(passenger) {
-    let data = passenger.username;
-    this._operatorServices.unBanPassenger(data).subscribe(
-      res => {
-        let notification = new Notification({ title: 'ثبت شد', info: `مسافر مورد نظر رفع بن شد`, type: NotificationTypes.success });
-        this._notification.notify(notification);
-        passenger.stateCode = '1';
-      },
-      err => {
-        alert(err);
-      }
-    );
+    if (confirm('آیا مطمئن هستید؟')) {
+
+      let data = passenger.username;
+      this._operatorServices.unBanPassenger(data).subscribe(
+        res => {
+          let notification = new Notification({ title: 'ثبت شد', info: `مسافر مورد نظر رفع بن شد`, type: NotificationTypes.success });
+          this._notification.notify(notification);
+          passenger.stateCode = '1';
+        },
+        err => {
+          alert(err);
+        }
+      );
+    }
+    else {
+      alert('کنسل شد');
+    }
   }
 }

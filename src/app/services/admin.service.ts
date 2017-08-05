@@ -323,6 +323,24 @@ export class AdminService {
       .catch(this.handleError);
   }
 
+  getDriversAgeReport() {
+    let url = this._adminApi.getDriversAgeReportUrl;
+    return this._http.getReport(url);
+  }
+  getTripReport() {
+    let url = this._adminApi.getTripReportUrl;
+    return this._http.getReport(url);
+  }
+  getPassengersAgeReport() {
+    let url = this._adminApi.getPassengersAgeReportUrl;
+    return this._http.getReport(url);
+  }
+  getOperatorsAgeReport() {
+    let url = this._adminApi.getOperatorsAgeReportUrl;
+    return this._http.getReport(url);
+  }
+
+
   // getTarrif(): Observable<any> {
   //   let url = this._adminApi.getTarrifUrl;
   //

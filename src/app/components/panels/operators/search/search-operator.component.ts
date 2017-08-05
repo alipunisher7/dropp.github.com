@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {MasterService, NotificationService} from 'services';
+import {MasterService, NotificationService, AdminService} from 'services';
 import {Operator, Notification, NotificationTypes} from 'models';
 @Component({
   selector: 'ts-search-operator',
@@ -8,7 +8,7 @@ import {Operator, Notification, NotificationTypes} from 'models';
 })
 export class SearchOperatorComponent implements OnInit {
 
-  constructor(private _masterService: MasterService, private _notification: NotificationService) { }
+  constructor(private _masterService: MasterService, private _notification: NotificationService, private _adminservice: AdminService) { }
   query: string = '';
   operators: Operator[];
   selectedOperator: Operator;
@@ -42,6 +42,30 @@ export class SearchOperatorComponent implements OnInit {
     this._masterService.unBanDriver(operator.username).subscribe(
       res => {
         let notification = new Notification({ title: 'ثبت شد', info: 'اپراتور مورد نظر رفع بن شد', type: NotificationTypes.success });
+        this._notification.notify(notification);
+        operator.accountState = '3';
+      },
+      err => {
+        alert(err);
+      }
+    );
+  }
+  banMaster(operator) {
+    this._adminservice.banMaster(operator.username).subscribe(
+      res => {
+        let notification = new Notification({ title: 'ثبت شد', info: `اپراتور ارشد مورد نظر بن شد`, type: NotificationTypes.success });
+        this._notification.notify(notification);
+        operator.accountState = '-1';
+      },
+      err => {
+        alert(err);
+      }
+    );
+  }
+  unBanMaster(operator) {
+    this._adminservice.unBanMaster(operator.username).subscribe(
+      res => {
+        let notification = new Notification({ title: 'ثبت شد', info: 'اپراتور ارشد مورد نظر رفع بن شد', type: NotificationTypes.success });
         this._notification.notify(notification);
         operator.accountState = '3';
       },

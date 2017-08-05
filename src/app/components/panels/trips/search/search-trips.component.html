@@ -1,5 +1,5 @@
 <h2>سفر ها</h2>
-<input type="search" name="searchTrips" class="form-ctrl search" placeholder="جستجو ..." (keyup)="onSearch()" [(ngModel)]="searchStr">
+<input type="search"  name="searchTrips" class="form-ctrl search" placeholder="جستجو ..." [formControl]="searchControl" [value]="search">
 <table class="table">
   <thead>
     <tr>
@@ -12,15 +12,15 @@
     </tr>
   </thead>
   <tbody>
-    <tr >
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <!-- <td><button (click)="onMoreClick(trip)">کلیک</button></td> -->
+    <tr *ngFor="let trip of trips">
+      <td>{{trip.UUID}}</td>
+      <td>{{trip.passengerUsername}}</td>
+      <td>{{trip.driverUsername}}</td>
+      <td>{{trip.startDate}}</td>
+      <td>{{trip.cost}}</td>
+      <td><button class="btn accent" (click)="onMoreClick(trip)">اطلاعات بیشتر</button></td>
     </tr>
   </tbody>
 </table>
 
-<!-- <ts-trips *ngIf="selectedTrip" [trip]="selectedTrip"></ts-trips> -->
+<ts-trips *ngIf="selectedTrip" [trip]="selectedTrip"></ts-trips>

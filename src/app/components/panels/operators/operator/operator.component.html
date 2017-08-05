@@ -12,7 +12,7 @@
       <th>ایمیل</th>
       <th>شهر</th>
       <th>وضعیت</th>
-
+      <th>ویرایش</th>
     </tr>
   </thead>
   <tbody>
@@ -27,6 +27,7 @@
       <td>{{operator.email}}</td>
       <td>{{operator.city}}</td>
       <td>{{operator.accountStateName}}</td>
+      <td><button class="btn" (click)="edit(operator)" >ویرایش</button></td>
 
     </tr>
     <tr *ngIf="!operator" class="no-data">
@@ -36,3 +37,83 @@
     </tr>
   </tbody>
 </table>
+<div *ngIf="editOperator">
+  <h2>ویرایش اپراتور</h2>
+  <form [formGroup]="myForm" (ngSubmit)="onSubmit()" >
+    <div>
+      <label for="firstName">نام</label>
+      <input type="text" name="firstName" placeholder="نام" formControlName="firstName"  >
+      <div *ngIf="myForm.controls['firstName'].dirty && !myForm.controls['firstName'].valid">
+        <span>نام حداقل باید 2 کاراکتر باشد</span>
+      </div>
+    </div>
+    <div>
+      <label for="lastName">نام خانوادگی</label>
+      <input type="text" name="lastName" placeholder="نام خانوادگی" formControlName="lastName"  >
+      <div *ngIf="myForm.controls['lastName'].dirty && !myForm.controls['lastName'].valid">
+        <span>نام خانوادگی حداقل باید 2 کاراکتر باشد</span>
+      </div>
+    </div>
+    <div>
+      <label for="birthDate">تاریخ تولد</label>
+      <input type="date" name="birthDate" placeholder="تاریخ تولد" formControlName="birthDate"  >
+    </div>
+    <div>
+      <label for="city">شهر</label>
+      <select  name="city" formControlName="city"  >
+            <option value="">انتخاب شهر</option>
+            <option value="TE">تهران</option>
+            <option value="MA">مشهد</option>
+            <option value="IS">اصفهان</option>
+            <option value="GO">گرگان</option>
+      </select>
+    </div>
+    <div>
+      <label for="workNumber">تلفن محل کار</label>
+      <input type="text" name="workNumber" placeholder="تلفن"  formControlName="workNumber" >
+      <div *ngIf="myForm.controls['workNumber'].dirty && !myForm.controls['workNumber'].valid" >
+        <span>شماره حداقل باید 7 کاراکتر باشد</span>
+      </div>
+    </div>
+    <div>
+      <label for="phoneNumber">تلفن همراه</label>
+      <input type="text" name="phoneNumber" placeholder="تلفن همراه" formControlName="phoneNumber"  >
+      <div *ngIf="myForm.controls['phoneNumber'].dirty && !myForm.controls['phoneNumber'].valid" >
+        <span>شماره همراه باید 11 کاراکتر باشد</span>
+      </div>
+    </div>
+    <div>
+      <label for="email">ایمیل</label>
+      <input type="email" name="email" placeholder="ایمیل" formControlName="email"
+      >
+      <div *ngIf="myForm.controls['email'].dirty && !myForm.controls['email'].valid" >
+        <span>ایمیل نامعتبر است</span>
+      </div>
+    </div>
+    <div formGroupName="userpassword">
+      <div>
+        <label for="password">رمز عبور</label>
+        <input type="password" name="password" placeholder="رمز عبور" formControlName="password" >
+        <div *ngIf="myForm.controls['userpassword'].controls['password'].dirty && !myForm.controls['userpassword'].controls['password'].valid" >
+          <span>رمز عبور باید حداقل 6 کاراکتر باشد</span>
+        </div>
+      </div>
+      <div>
+        <label for="re-password">تکرار رمز عبور</label>
+        <input type="password" name="re-password" placeholder="تکرار رمز عبور" formControlName="re-password"  >
+      </div>
+      <div *ngIf="myForm.controls['userpassword'].controls['re-password'].dirty && !myForm.controls['userpassword'].valid" >
+        <span>رمز عبور و تکرار آن یکسان نیست</span>
+      </div>
+    </div>
+    <div>
+      <label for="gender">جنسیت</label>
+      <input type="radio" name="gender" value="M" checked formControlName="gender" > آقا<br>
+      <input type="radio" name="gender" value="F" formControlName="gender"  > خانم
+    </div>
+    <div>
+        <button type="submit" name="submitMop" [disabled]="!myForm.valid" >ثبت</button>
+    </div>
+  </form>
+
+</div>

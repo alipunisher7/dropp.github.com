@@ -6,11 +6,11 @@ import { SendTaxiComponent } from 'components/send-taxi';
 
 import { DashboardPanel } from 'components/panels/dashboard';
 
-import { DriversPanel, DriverCreditComponent, SearchDriversComponent, LowRateDriversComponent, ConfirmDriversComponent } from 'components/panels/drivers';
+import { DriversPanel, DriverCreditComponent, SearchDriversComponent, LowRateDriversComponent, ConfirmDriversComponent, OnlineDriverComponent } from 'components/panels/drivers';
 
 import { PassengersPanel, SearchPassengersComponent, SubscribeRegisterComponent, SearchSubscribesComponent } from 'components/panels/passengers';
 
-import { TripsPanel, SearchTripsComponent } from 'components/panels/trips';
+import { TripsPanel, SearchTripsComponent, OnlineTripsComponent } from 'components/panels/trips';
 
 import { OrganizationsPanel, SearchOrganizationComponent } from 'components/panels/organizations';
 
@@ -34,6 +34,9 @@ import { SupportPanel, ViewTicketsComponent } from 'components/panels/support';
 
 import { ServicePanel, ActiveServicesComponent } from 'components/panels/services';
 
+import { DriversDebtComponent, ProviderPanelComponent, ProviderDebtComponent} from 'components/panels/providers';
+import {ReportPanelComponent, ReportComponent} from 'components/panels/reports';
+
 const routes: Routes = [
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
   { path: 'dashboard', component: DashboardPanel },
@@ -44,6 +47,7 @@ const routes: Routes = [
   },
   {
     path: 'drivers', component: DriversPanel, children: [
+      { path: 'online', component: OnlineDriverComponent },
       { path: 'drivers-credit', component: DriverCreditComponent },
       { path: 'search', component: SearchDriversComponent },
       { path: 'low-rate', component: LowRateDriversComponent },
@@ -59,7 +63,8 @@ const routes: Routes = [
   },
   {
     path: 'trips', component: TripsPanel, children: [
-      { path: 'search', component: SearchTripsComponent }
+      { path: 'search', component: SearchTripsComponent },
+      { path: 'online', component: OnlineTripsComponent },
     ]
   },
   {
@@ -94,6 +99,19 @@ const routes: Routes = [
   {
     path: 'support', component: SupportPanel, children: [
       { path: 'view-ticket', component: ViewTicketsComponent }
+    ]
+  },
+  {
+    path: 'provider', component: ProviderPanelComponent, children:
+    [
+      { path: 'debt', component: DriversDebtComponent },
+      { path: 'provider-debt', component: ProviderDebtComponent },
+    ]
+  },
+  {
+    path: 'report', component: ReportPanelComponent, children:
+    [
+      { path: 'get-report', component: ReportComponent }
     ]
   }
 ];

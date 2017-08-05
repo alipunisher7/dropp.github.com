@@ -7,10 +7,9 @@
       <th>نام کاربری راننده</th>
       <th>تاریخ سفر</th>
       <th>هزینه</th>
-      <th>زمان شروع</th>
-       <th>زمان پایان</th>
        <th>مبدا</th>
-       <th>مقصد</th>
+       <th>مقصد 1</th>
+       <!-- <th>مقصد 2</th> -->
        <th>پرداخت نقدی</th>
        <th>پرداخت از کیف پول</th>
        <th>امتیاز</th>
@@ -21,8 +20,18 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
-
+    <tr *ngIf="trip">
+      <td>{{trip.UUID}}</td>
+      <td>{{trip.passengerUsername}}</td>
+      <td>{{trip.driverUsername}}</td>
+      <td>{{trip.startDate}}</td>
+      <td>{{trip.cost}}</td>
+      <td>{{trip.originAddress}}</td>
+      <td>{{trip.destinations[0].address}}</td>
+      <!-- <td >{{trip.destinations[1].address}}</td> -->
+      <td>{{trip.cashPayment}}</td>
+      <td>{{trip.creditPayment}}</td>
+      <td>{{trip.rate}}</td>
     </tr>
   </tbody>
 </table>

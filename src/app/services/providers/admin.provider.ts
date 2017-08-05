@@ -37,4 +37,8 @@ export class AdminApi {
 
   public insertStateUrl = `${adminApi}/states`;
   public insertCityUrl = (id) => `${adminApi}/cities/${id}`;
+  public getDriversAgeReportUrl = `${adminApi}/report/drivers/age`;
+  public getPassengersAgeReportUrl = `${adminApi}/report/passengers/age`;
+  public getOperatorsAgeReportUrl = `${adminApi}/report/operators/age`;
+  public getTripReportUrl = `${adminApi}/report/trips/2017-08-01/2017-08-03`;
 }

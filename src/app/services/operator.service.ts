@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { URLSearchParams, Response } from '@angular/http';
 import { AuthHttpService } from './auth-http.service';
 import { Observable } from 'rxjs/Observable';
-import { ServiceType, ApiError, ISearchParam, Driver, Organization, SubscribeUser, Vouchers } from 'models'
+import { ServiceType, ApiError, ISearchParam, Driver, Organization, SubscribeUser, Vouchers, Trip } from 'models'
 import { OperatorApi } from './providers';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/debounce';
@@ -151,9 +151,16 @@ export class OperatorService {
   getOnlineDrivers(): Observable<any> {
     let url = this._operatorApi.getOnlineDriversUrl;
 
-    return this._http
-      .get(url)
-      .map((res: Response) => res.json().data);
+    return this._http.get(url)
+      .map((res: Response) => {
+        let json = res.json();
+        if (json.statusCode !== 1) {
+          throw new ApiError(url, json);
+        }
+        let data = json.data.onlines;
+        return data;
+      })
+      .catch(this.handleError);
   }
 
   getOnlineDriversCount() {
@@ -563,10 +570,42 @@ export class OperatorService {
       })
   }
 
-  searchTrips(str: string) {
-    throw new Error('Not Implemented');
+
+  searchTrips(param: ISearchParam) {
+    let url = this._operatorApi.searchTripsUrl;
+
+    let params = new URLSearchParams();
+    params.append('q', param.query);
+    params.append('count', param.count);
+    params.append('offset', param.offset);
+
+    return this._http.search(url, params)
+      .map((res: Response) => {
+        let json = res.json();
+        if (json.statusCode !== 1) {
+          throw new ApiError(url, json);
+        }
+        let trips = json.data.trips.map(trips => new Trip(trips));
+        console.log(trips);
+        return trips;
+      })
+      .catch(this.handleError);
   }
-  // -- Not Implemented -- //
+  getOnlineTrips() {
+    let url = this._operatorApi.onlineTripsUrl;
+    return this._http.get(url)
+      .map((res: Response) => {
+        let json = res.json();
+        if (json.statusCode !== 1) {
+          throw new ApiError(url, json);
+        }
+        let data = json.data.onlineTrips;
+        console.log(data);
+        return data;
+      })
+      .catch(this.handleError);
+  }
+
 
   handleError(err: ApiError) {
     console.error(err);

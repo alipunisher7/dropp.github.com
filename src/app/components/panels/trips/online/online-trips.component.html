@@ -1,0 +1,23 @@
+<h2>راننده های آنلاین</h2>
+<table class="table">
+  <thead>
+    <tr>
+      <th>نام کاربری راننده</th>
+      <th>نام کاربری مسافر</th>
+      <th>آدرس مبدا</th>
+      <th>آدرس مقصد</th>
+      <th>آدرس مقصد</th>
+      <th>خودرو</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let trip of trips">
+      <td>{{trip.driverUsername}}</td>
+      <td>{{trip.passengerUsername}}</td>
+      <td></td>
+      <td>{{trip.destinations[0].address}}</td>
+      <td></td>
+      <td>{{trip.vehicle.name}}</td>
+    </tr>
+  </tbody>
+</table>

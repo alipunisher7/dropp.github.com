@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { OperatorService } from 'services';
 import { Card, ServiceType  } from 'models';
+import {Observable} from 'rxjs/Rx';
 
 @Component({
   selector: 'ts-dashboard-panel',
@@ -43,7 +44,9 @@ export class DashboardPanel implements OnInit {
 
   }
 
+
   getOnlineTripsCount() {
+    let timer = Observable.timer(2000, 1000);
     this._operatorServices.getOnlineTripsCount().subscribe(data => {
       this.tripCard.info1.data = data.numberOfOnlineTrips;
     })
@@ -105,12 +108,14 @@ export class DashboardPanel implements OnInit {
   }
 
   ngOnInit() {
-    this.getDriversCount();
-    this.getPassengersCount();
-    this.getNewPassengersCount();
-    this.getTodayTripsCount();
-    this.getOnlineTripsCount();
-    this.getOrganizationsCount();
+    let timer = Observable.timer(1, 60000);
+    timer.subscribe(t => { this.getDriversCount(); });
+    timer.subscribe(t => { this.getPassengersCount(); });
+    timer.subscribe(t => { this.getNewPassengersCount(); });
+    timer.subscribe(t => { this.getTodayTripsCount(); });
+    timer.subscribe(t => { this.getOnlineTripsCount(); });
+    timer.subscribe(t => { this.getOrganizationsCount(); });
+
     // this.getOnlineDriversCount();
   }
 }

@@ -12,6 +12,7 @@ import {
   COPApi,
   MasterApi,
   OperatorApi,
+  ProviderApi
 } from 'services/providers';
 
 import {
@@ -22,7 +23,8 @@ import {
   AuthService,
   MasterService,
   CopService,
-  NavigationService
+  NavigationService,
+  ProviderService
 } from 'services';
 
 import { AppRoutingModule } from 'app-routing.module';
@@ -114,6 +116,13 @@ import { InputDirective } from './directives/input.directive';
 import { SystemSettingComponent } from './components/panels/manage/system-setting/system-setting.component';
 import { StateCityComponent } from './components/panels/manage/state-city/state-city.component';
 import { ConfirmDriversComponent } from './components/panels/drivers/confirm/confirm-drivers.component';
+import { DriversDebtComponent } from './components/panels/providers/drivers-debt/drivers-debt.component';
+import { ProviderPanelComponent } from './components/panels/providers/provider-panel.component';
+import { ReportPanelComponent } from './components/panels/reports/report-panel.component';
+import { ReportComponent } from './components/panels/reports/report/report.component';
+import { OnlineTripsComponent } from './components/panels/trips/online/online-trips.component';
+import { ProviderDebtComponent } from './components/panels/providers/provider-debt/provider-debt.component';
+
 
 @NgModule({
   declarations: [
@@ -185,6 +194,12 @@ import { ConfirmDriversComponent } from './components/panels/drivers/confirm/con
     SystemSettingComponent,
     StateCityComponent,
     ConfirmDriversComponent,
+    DriversDebtComponent,
+    ProviderPanelComponent,
+    ReportPanelComponent,
+    ReportComponent,
+    OnlineTripsComponent,
+    ProviderDebtComponent,
   ],
   imports: [
     BrowserModule,
@@ -208,10 +223,12 @@ import { ConfirmDriversComponent } from './components/panels/drivers/confirm/con
     MasterService,
     CopService,
     NavigationService,
+    ProviderService,
     AdminApi,
     MasterApi,
     COPApi,
-    OperatorApi
+    OperatorApi,
+    ProviderApi
   ],
   bootstrap: [AppComponent]
 })

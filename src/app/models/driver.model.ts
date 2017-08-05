@@ -22,6 +22,7 @@ export interface IDriver extends IUser {
   stateCode?: number;
   credit?: string;
   device?: Device;
+  rate?: string;
 }
 
 const StatusCodeNames = {
@@ -51,6 +52,7 @@ export class Driver extends User {
   stateCode?: number;
   credit?: string;
   device?: Device;
+  rate?: string;
 
   get status() {
     return StatusCodeNames[this.stateCode];
