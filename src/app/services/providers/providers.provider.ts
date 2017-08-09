@@ -7,4 +7,9 @@ export class ProviderApi {
   public driverMostDebtUrl = `${providerApi}/drivers/mostDebt`;
   public driverDebtgtUrl = (value) => `${providerApi}/drivers/debt/gt/${value}`;
   public providerclaimUrl = `${providerApi}/claim`;
+  public searchDriversUrl = `${providerApi}/drivers`;
+  public banDriversUrl = `${providerApi}/banDriver`;
+  public deactiveDriversUrl = `${providerApi}/deactiveDriver`;
+  public getDriversReportUrl = `${providerApi}/report/drivers`;
+  public getProviderClaimReportUrl = `${providerApi}/report/claim`;
 }

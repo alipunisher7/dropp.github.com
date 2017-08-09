@@ -122,6 +122,10 @@ import { ReportPanelComponent } from './components/panels/reports/report-panel.c
 import { ReportComponent } from './components/panels/reports/report/report.component';
 import { OnlineTripsComponent } from './components/panels/trips/online/online-trips.component';
 import { ProviderDebtComponent } from './components/panels/providers/provider-debt/provider-debt.component';
+import { ShowProvidersComponent } from './components/panels/providers/show-providers/show-providers.component';
+import { ProviderSearchDriversComponent } from './components/panels/providers/search/provider-search-drivers.component';
+import { AddProviderComponent } from './components/panels/providers/add/add-provider.component';
+import { LoginComponent } from './components/login/login/login.component';
 
 
 @NgModule({
@@ -200,6 +204,10 @@ import { ProviderDebtComponent } from './components/panels/providers/provider-de
     ReportComponent,
     OnlineTripsComponent,
     ProviderDebtComponent,
+    ShowProvidersComponent,
+    ProviderSearchDriversComponent,
+    AddProviderComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,

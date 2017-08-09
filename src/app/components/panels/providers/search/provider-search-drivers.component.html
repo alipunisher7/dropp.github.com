@@ -1,0 +1,22 @@
+<h2>جستجو راننده ها</h2>
+<input class="search form-ctrl" type="search" name="searchDrivers" placeholder="جستجو ..." [formControl]="searchControl" [value]="search">
+<table class="table">
+  <thead>
+    <tr>
+      <th>نام کاربری</th>
+      <th>بدهی</th>
+      <th>بن کردن</th>
+      <th>رفع بن </th>
+      <th>غیر فعال کردن</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let driver of drivers">
+      <td>{{driver.username}}</td>
+      <td>{{driver.credit}}</td>
+      <td><button (click)=banDriver(driver)>بن</button></td>
+      <td><button >رفع بن</button></td>
+      <td><button (click)=deactiveDriver(driver) >غیر فعال کردن</button></td>
+    </tr>
+  </tbody>
+</table>

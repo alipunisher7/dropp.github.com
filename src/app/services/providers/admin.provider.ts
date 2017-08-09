@@ -41,4 +41,8 @@ export class AdminApi {
   public getPassengersAgeReportUrl = `${adminApi}/report/passengers/age`;
   public getOperatorsAgeReportUrl = `${adminApi}/report/operators/age`;
   public getTripReportUrl = `${adminApi}/report/trips/2017-08-01/2017-08-03`;
+  public insertProviderUrl = `${adminApi}/providers`;
+  public getTripsCostReportUrl = `${adminApi}/report/trips/cost`;
+  public getDevicesReportUrl = `${adminApi}/report/devices`;
+
 }

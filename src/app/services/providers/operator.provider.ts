@@ -5,7 +5,7 @@ export class OperatorApi {
 
   public insertSubscribeUrl = `${operatorApi}/subscribes`;
   public searchSubscribeUrl = `${operatorApi}/subscribes`;
-  public confirmDriverUrl = (driverUsername) => `${operatorApi}/confirmDriver/${driverUsername}`;
+  public confirmDriverUrl = `${operatorApi}/confirmDriver`;
   public uploadDriverDocUrl = (fileType, username) => `${operatorApi}/drivers/files/${fileType}/${username}`;
 
   public getDriverUrl = (driverUsername) => `${operatorApi}/drivers/${driverUsername}`;
@@ -56,4 +56,5 @@ export class OperatorApi {
   public getCitiesUrl = (id) => `${operatorApi}/cities/${id}`;
   public searchTripsUrl = `${operatorApi}/trips`;
   public onlineTripsUrl = `${operatorApi}/trips/online`;
+  public getProvidersUrl = `${operatorApi}/providers`;
 }

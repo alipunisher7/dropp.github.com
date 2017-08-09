@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
-import {OperatorService, NotificationService} from 'services';
-import {Notification, NotificationTypes, Driver} from 'models';
+import {OperatorService, NotificationService, AdminService} from 'services';
+import {Notification, NotificationTypes, Driver, IServiceProviders} from 'models';
 
 @Component({
   selector: 'ts-confirm-drivers',
@@ -9,6 +9,7 @@ import {Notification, NotificationTypes, Driver} from 'models';
   styleUrls: ['./confirm-drivers.component.scss']
 })
 export class ConfirmDriversComponent implements OnInit {
+  serviceProviders: IServiceProviders[];
   driverUpload: Driver;
   driverMoreInfo: Driver;
   uploadForm: FormGroup;
@@ -35,7 +36,7 @@ export class ConfirmDriversComponent implements OnInit {
       });
 
     this.searchDrivers();
-
+    this.getProviders();
   }
   fileChange(event) {
     let fileList: FileList = event.target.files;
@@ -43,6 +44,9 @@ export class ConfirmDriversComponent implements OnInit {
       this.file = fileList[0];
 
     }
+  }
+  getProviders() {
+    this._operatorservice.getProviders().subscribe(res => this.serviceProviders = res);
   }
 
   searchDrivers() {
@@ -70,9 +74,9 @@ export class ConfirmDriversComponent implements OnInit {
   onMoreClick(driver) {
     this.driverMoreInfo = driver;
   }
-  confirm(driver) {
+  confirm(driver, provider) {
     confirm('آیا میخواهید تایید کنید');
-    this._operatorservice.confirmDriver(driver.username).subscribe(
+    this._operatorservice.confirmDriver(driver.username, provider).subscribe(
       res => {
         let notification = new Notification({ title: 'تایید شد', info: 'راننده مورد نظر تایید شد', type: NotificationTypes.success });
         this._notificationservice.notify(notification);

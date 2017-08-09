@@ -9,11 +9,11 @@
       <th>هزینه</th>
        <th>مبدا</th>
        <th>مقصد 1</th>
-       <!-- <th>مقصد 2</th> -->
+       <th>مقصد 2</th>
        <th>پرداخت نقدی</th>
        <th>پرداخت از کیف پول</th>
        <th>امتیاز</th>
-       <th>وضعیت</th>
+       <th>سفر یکطرفه</th>
        <th>نام کاربری اپراتور</th>
        <th>شماره اشتراک</th>
        <th>کد تخفیف</th>
@@ -28,10 +28,16 @@
       <td>{{trip.cost}}</td>
       <td>{{trip.originAddress}}</td>
       <td>{{trip.destinations[0].address}}</td>
-      <!-- <td >{{trip.destinations[1].address}}</td> -->
+      <td *ngIf="trip.destinations[1]" >{{trip.destinations[1].address}}</td>
+      <td *ngIf="!trip.destinations[1]" >---</td>
       <td>{{trip.cashPayment}}</td>
       <td>{{trip.creditPayment}}</td>
       <td>{{trip.rate}}</td>
+      <td>{{trip.isOneWayName}}</td>
+      <td *ngIf="trip.operatorUsername" >{{trip.operatorUsername}}</td>
+      <td *ngIf="!trip.operatorUsername" >---</td>
+      <td *ngIf="trip.subscriptionCode" >{{trip.subscriptionCode}}</td>
+      <td *ngIf="!trip.subscriptionCode" >---</td>
     </tr>
   </tbody>
 </table>

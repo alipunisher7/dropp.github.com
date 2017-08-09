@@ -24,3 +24,4 @@ export * from './states.model';
 export * from './cities.model';
 export * from './destination.model';
 export * from './drivers-debt.model';
+export * from './service-providers.model';

@@ -19,7 +19,7 @@ export class AuthService {
     let token;
     if (!this.currentUser || !localStorage.getItem('token')) {
       // TODO : Login
-      this.login({ username: 'master', password: 'master' });
+      this.login({ username: 'admin', password: 'admin' });
       return;
       // console.error('[AuthService]: User not existed');
       // throw 'Current user not found, NAVIGATION TO LOGIN';
@@ -38,7 +38,7 @@ export class AuthService {
     console.log(body);
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
-
+    console.log('ApiURL', API_URL)
     let obs = this._http.post(`${API_URL}/login`, body, options)
       .map(this.handleAuthResonse)
       .subscribe(_ => { console.log(`Loged in as ${this.currentUser.username}`); });

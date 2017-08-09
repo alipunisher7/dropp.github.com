@@ -50,9 +50,13 @@ export class OperatorService {
   }
 
   // -- Drivers -- //
-  confirmDriver(driver) {
-    let url = this._operatorApi.confirmDriverUrl(driver);
-    let body = '';
+  confirmDriver(driver, provider) {
+    let url = this._operatorApi.confirmDriverUrl;
+    let body = {
+      "username": driver,
+      "providerID": provider
+    }
+
     return this._http.patch(url, body)
       .map((res: Response) => {
         let json = res.json();
@@ -605,7 +609,19 @@ export class OperatorService {
       })
       .catch(this.handleError);
   }
-
+  getProviders() {
+    let url = this._operatorApi.getProvidersUrl;
+    return this._http.get(url)
+      .map((res: Response) => {
+        let json = res.json();
+        if (json.statusCode !== 1) {
+          throw new ApiError(url, json);
+        }
+        let data = json.data.serviceProvider;
+        return data;
+      })
+      .catch(this.handleError);
+  }
 
   handleError(err: ApiError) {
     console.error(err);

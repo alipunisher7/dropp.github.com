@@ -35,6 +35,7 @@ export interface ITrip {
   startDate?: string;
   rate?: string;
   isOneWay?: string
+  operatorUsername?: string;
   subscriptionCode?: string;
   deliveryInfo?: DeliveryInfo;
 
@@ -59,8 +60,16 @@ export class Trip implements ITrip {
   startDate?: string;
   rate?: string;
   isOneWay?: string
+  operatorUsername?: string;
   subscriptionCode?: string
   deliveryInfo?: DeliveryInfo;
+  isOneWayNames = {
+    true: 'بله',
+    false: 'خیر'
+  }
+  get isOneWayName() {
+    return this.isOneWayNames[this.isOneWay];
+  }
   constructor(trip: ITrip) {
     this.serviceType = trip.serviceType;
     this.loc = trip.loc;
@@ -80,6 +89,7 @@ export class Trip implements ITrip {
     this.UUID = trip.UUID;
     this.startDate = trip.startDate;
     this.rate = trip.rate;
+    this.operatorUsername = trip.operatorUsername;
     this.isOneWay = trip.isOneWay;
     this.subscriptionCode = trip.subscriptionCode;
     this.deliveryInfo = trip.deliveryInfo;

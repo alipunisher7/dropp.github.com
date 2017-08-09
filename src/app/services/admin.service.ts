@@ -339,6 +339,26 @@ export class AdminService {
     let url = this._adminApi.getOperatorsAgeReportUrl;
     return this._http.getReport(url);
   }
+  insertProvider(data) {
+    let url = this._adminApi.insertProviderUrl;
+    return this._http.post(url, data)
+      .map((res: Response) => {
+        let json = res.json();
+        if (json.statusCode !== 1) {
+          throw new ApiError(url, json);
+        }
+        return json;
+      })
+      .catch(this.handleError);
+  }
+  getTripsCostReport() {
+    let url = this._adminApi.getTripsCostReportUrl;
+    return this._http.getReport(url);
+  }
+  getDevicesReport() {
+    let url = this._adminApi.getDevicesReportUrl;
+    return this._http.getReport(url);
+  }
 
 
   // getTarrif(): Observable<any> {

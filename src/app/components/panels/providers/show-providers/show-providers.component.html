@@ -1,0 +1,18 @@
+<h2>نمایش ارائه دهنده ها</h2>
+<table class="table">
+  <thead>
+    <tr>
+      <th>نام ارائه دهنده</th>
+      <th>میزان طلب از راننده ها</th>
+      <th>کل طلب</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let serviceProvider of serviceProviders">
+      <td>{{serviceProvider.name}}</td>
+      <td>{{serviceProvider.driversClaim}}</td>
+      <td>{{serviceProvider.totalClaim}}</td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>

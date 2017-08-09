@@ -1,0 +1,13 @@
+<h2>اضافه کردن ارائه دهنده</h2>
+<form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+    <div>
+      <label>
+        نام ارائه دهنده
+        <input type="text" name="name" formControlName="name" value="">
+      </label>
+      <button class="btn" type="submit" name="submitInsertProvider" [disabled]="!myForm.valid">ثبت</button>
+      <div *ngIf="myForm.controls['name'].dirty && !myForm.controls['name'].valid">
+        <span>نام حداقل باید 3 کاراکتر باشد</span>
+      </div>
+    </div>
+</form>

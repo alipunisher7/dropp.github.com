@@ -7,6 +7,7 @@
       <th>نام خانوادگی</th>
       <th>نام کاربری</th>
       <th>نوع سرویس</th>
+      <th>انتخاب ارائه دهنده</th>
       <th>تایید</th>
       <th>آپلود مدارک</th>
       <th>اطلاعات بیشتر</th>
@@ -18,7 +19,13 @@
       <td>{{driver.lastName}}</td>
       <td>{{driver.username}}</td>
       <td>{{driver.serviceTypeName}}</td>
-      <td><button (click)="confirm(driver)" [disabled]="driver.stateCode ===3">تایید</button></td>
+      <td>
+        <select #providers>
+            <option value="">ارائه دهنده را انتخاب کنید</option>
+            <option *ngFor="let serviceProvider of serviceProviders" value="{{serviceProvider.id}}">{{serviceProvider.name}}</option>
+        </select>
+      </td>
+      <td><button (click)="confirm(driver,providers.value)" [disabled]="driver.stateCode ===3">تایید</button></td>
       <td><button (click)="upload(driver)">آپلود</button></td>
       <td><button (click)="onMoreClick(driver)">اطلاعات بیشتر</button></td>
     </tr>

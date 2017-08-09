@@ -83,6 +83,60 @@ export class ProviderService {
       })
       .catch(this.handleError);
   }
+  searchDrivers(param: ISearchParam) {
+    let url = this._providerApi.searchDriversUrl;
+
+    let params = new URLSearchParams();
+    params.append('q', param.query);
+    params.append('count', param.count);
+    params.append('offset', param.offset);
+
+    return this._http.search(url, params)
+      .map((res: Response) => {
+        let json = res.json();
+        if (json.statusCode !== 1) {
+          throw new ApiError(url, json);
+        }
+        let data = json.data.drivers;
+        console.log(data);
+        return data;
+      })
+      .catch(this.handleError);
+  }
+  banDriver(username) {
+    let url = this._providerApi.banDriversUrl;
+    let body = { username };
+    return this._http.post(url, body)
+      .map((res: Response) => {
+        let json = res.json();
+        if (json.statusCode !== 1) {
+          throw new ApiError(url, json);
+        }
+        return json;
+      })
+      .catch(this.handleError);
+  }
+  deactiveDriver(username) {
+    let url = this._providerApi.deactiveDriversUrl;
+    let body = { username };
+    return this._http.post(url, body)
+      .map((res: Response) => {
+        let json = res.json();
+        if (json.statusCode !== 1) {
+          throw new ApiError(url, json);
+        }
+        return json;
+      })
+      .catch(this.handleError);
+  }
+  getDriversReport() {
+    let url = this._providerApi.getDriversReportUrl;
+    return this._http.getReport(url);
+  }
+  getProviderClaimReport() {
+    let url = this._providerApi.getProviderClaimReportUrl;
+    return this._http.getReport(url);
+  }
 
   handleError(err: ApiError) {
     console.error(err);

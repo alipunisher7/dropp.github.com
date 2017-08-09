@@ -34,7 +34,7 @@ import { SupportPanel, ViewTicketsComponent } from 'components/panels/support';
 
 import { ServicePanel, ActiveServicesComponent } from 'components/panels/services';
 
-import { DriversDebtComponent, ProviderPanelComponent, ProviderDebtComponent} from 'components/panels/providers';
+import { DriversDebtComponent, ProviderPanelComponent, ProviderDebtComponent, ShowProvidersComponent, ProviderSearchDriversComponent, AddProviderComponent} from 'components/panels/providers';
 import {ReportPanelComponent, ReportComponent} from 'components/panels/reports';
 
 const routes: Routes = [
@@ -104,8 +104,11 @@ const routes: Routes = [
   {
     path: 'provider', component: ProviderPanelComponent, children:
     [
+      { path: 'search', component: ProviderSearchDriversComponent },
+      { path: 'show-providers', component: ShowProvidersComponent },
       { path: 'debt', component: DriversDebtComponent },
       { path: 'provider-debt', component: ProviderDebtComponent },
+      { path: 'add-provider', component: AddProviderComponent },
     ]
   },
   {
