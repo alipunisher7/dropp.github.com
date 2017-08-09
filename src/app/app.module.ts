@@ -24,7 +24,8 @@ import {
   MasterService,
   CopService,
   NavigationService,
-  ProviderService
+  ProviderService,
+  AuthGuard
 } from 'services';
 
 import { AppRoutingModule } from 'app-routing.module';
@@ -125,7 +126,7 @@ import { ProviderDebtComponent } from './components/panels/providers/provider-de
 import { ShowProvidersComponent } from './components/panels/providers/show-providers/show-providers.component';
 import { ProviderSearchDriversComponent } from './components/panels/providers/search/provider-search-drivers.component';
 import { AddProviderComponent } from './components/panels/providers/add/add-provider.component';
-import { LoginComponent } from './components/login/login/login.component';
+import { LoginComponent } from './components/login/login.component';
 
 
 @NgModule({
@@ -236,7 +237,8 @@ import { LoginComponent } from './components/login/login/login.component';
     MasterApi,
     COPApi,
     OperatorApi,
-    ProviderApi
+    ProviderApi,
+    AuthGuard
   ],
   bootstrap: [AppComponent]
 })

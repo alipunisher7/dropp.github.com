@@ -1,7 +1,7 @@
 <hr *ngIf="seperator" />
 
 <nav class="nav" role="navigation" (click)="onNavClick()">
-  <a class="nav-btn" routerLink="{{navItem.route}}" routerLinkActive='active'>
+  <a class="nav-btn" routerLink="{{'operator/' + navItem.route}}" routerLinkActive='active'>
     <i class="nav-icon {{navItem.icon}}" aria-hidden="true"></i>
     <h2 class="nav-title">{{navItem.title}}</h2>
   </a>

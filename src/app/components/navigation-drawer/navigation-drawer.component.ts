@@ -118,6 +118,8 @@ export class NavigationDrawerComponent implements OnInit, AfterViewInit {
     let el = this.elRef.nativeElement.querySelector('.active');
     if (el) {
       let currentRoute = el.getAttribute('href').slice(1);
+      if (currentRoute === null) return;
+      currentRoute = currentRoute.split('/')[1];
       let activeNav = this.navItems.find(_ => _.route == currentRoute);
       if (activeNav) {
         activeNav.isOpen = true;

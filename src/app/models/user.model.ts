@@ -2,6 +2,7 @@ import { BirthDate } from './birthdate.model';
 
 export interface IUser {
   email?: string;
+  role?: string;
   username: string;
   password?: string;
   firstName?: string;
@@ -20,7 +21,7 @@ const GenderNames = {
 }
 
 export class User implements IUser {
-
+  public role?: string;
   public username: string;
   public password?: string;
   public firstName?: string;
@@ -39,6 +40,7 @@ export class User implements IUser {
 
   constructor(user: IUser) {
     this.username = user.username;
+    this.role = user.role;
     this.password = user.password;
     this.phoneNumber = user.phoneNumber;
     this.firstName = user.firstName;

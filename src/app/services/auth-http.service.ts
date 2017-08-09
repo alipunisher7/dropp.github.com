@@ -7,12 +7,6 @@ import { User } from 'models';
 export class AuthHttpService {
 
   constructor(private http: Http, private _auth: AuthService) {
-    this.login();
-  }
-
-  login() {
-    let user = new User({ username: 'admin', password: 'admin' })
-    this._auth.login(user);
   }
 
   createRequestOptions(): RequestOptions {

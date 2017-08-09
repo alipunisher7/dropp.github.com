@@ -1,0 +1,18 @@
+<h2>ورود به سیستم</h2>
+<form [formGroup]= "myForm" (ngSubmit)="onSubmit()" >
+  <div>
+    <label>
+      نام کاربری
+    </label>
+    <input type="text" name="username" value="" formControlName="username">
+  </div>
+  <div>
+    <label>
+      رمز عبور
+    </label>
+    <input type="password" name="password" value="" formControlName="password">
+  </div>
+  <div>
+    <button type="submit" name="login">ورود</button>
+  </div>
+</form>

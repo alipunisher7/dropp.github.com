@@ -1,7 +1,11 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
-import { IUser, User } from 'models';
+import { IUser, User, ApiError } from 'models';
 import { API_URL } from 'configs';
+import { Observable } from 'rxjs/Observable';
+import { JwtHelper } from 'utils/jwt-helper';
+import 'rxjs/operator/do';
 
 @Injectable()
 export class AuthService {
@@ -9,25 +13,54 @@ export class AuthService {
   // private jwtHelper = new JwtHelper();
   private _cachedToken: string;
   get token(): string {
-    return this._cachedToken || this.getNewToken();
+    return this._cachedToken || this.getToken();
   }
 
-  constructor(private _http: Http) { }
+  constructor(private _http: Http, private _router: Router) { }
 
-  getNewToken(): string {
-    console.warn('Cached token not found');
-    let token;
-    if (!this.currentUser || !localStorage.getItem('token')) {
-      // TODO : Login
-      this.login({ username: 'admin', password: 'admin' });
+  getToken(): string {
+    this._cachedToken = localStorage.getItem('token');
+    this.getUserInfoFromToken();
+    return this._cachedToken;
+  }
+
+  getUserInfoFromToken(token?) {
+    token = token || this._cachedToken;
+    if (!token) {
       return;
-      // console.error('[AuthService]: User not existed');
-      // throw 'Current user not found, NAVIGATION TO LOGIN';
+    }
+    try {
+      console.log(token)
+      let decoded = new JwtHelper().decodeToken(this._cachedToken);
+      this.currentUser = new User({ username: decoded.sub, role: decoded.role });
+      console.log('currentUser', this.currentUser);
+    } catch (e) {
+      this.signout();
     }
 
-    token = localStorage.getItem('token');
-    this._cachedToken = token;
-    return token;
+  }
+
+  // // getNewToken(): string {
+  // //   console.warn('Cached token not found');
+  // //   let token;
+  // //   if (!this.currentUser || !localStorage.getItem('token')) {
+  // //     // TODO : Login
+  // //     this.login({ username: 'admin', password: 'admin' });
+  // //     return;
+  // //     // console.error('[AuthService]: User not existed');
+  // //     // throw 'Current user not found, NAVIGATION TO LOGIN';
+  // //   }
+  //
+  //   token = localStorage.getItem('token');
+  //   this._cachedToken = token;
+  //   return token;
+  // }
+
+  isLoggedIn(): boolean {
+    let isLoggedIn = Boolean(this.currentUser) || Boolean(this.token);
+    console.log('currentUser', this.currentUser);
+    console.log('token', this.token);
+    return isLoggedIn;
   }
 
   login(user: IUser) {
@@ -38,10 +71,10 @@ export class AuthService {
     console.log(body);
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
-    console.log('ApiURL', API_URL)
-    let obs = this._http.post(`${API_URL}/login`, body, options)
+
+    return this._http.post(`${API_URL}/login`, body, options)
       .map(this.handleAuthResonse)
-      .subscribe(_ => { console.log(`Loged in as ${this.currentUser.username}`); });
+      .catch(this.handleError);
   }
 
   refreshToken() {
@@ -50,25 +83,28 @@ export class AuthService {
     let options = new RequestOptions({ headers: headers });
 
     return this._http.post('http://31.184.132.215:8080/geno/TSO/api/rest/refreshToken', body, options)
-      .map(this.handleAuthResonse)
-      .subscribe(console.log);
+      .map(this.handleAuthResonse);
   }
 
   signout() {
+    this.currentUser = null;
     this.unsetToken();
+    this._router.navigate(['login']);
   }
 
   handleAuthResonse = (res) => {
     console.log('res: ', res);
     let token = res.headers.get('Authorization');
-    // console.log('Get token from server: ', token);
     this.setToken(token);
-    if (res.ok && res.status !== 200) {
-      let error = { request: 'login', ...res.json() };
-      throw error;
+    let json = res.json();
+
+    if (json.statusCode !== 1) {
+      throw new ApiError('Login', json)
     }
 
-    return res.json();
+    console.log('getUserInfoFromToken');
+    this.getUserInfoFromToken();
+    return token;
   }
 
   // register(user: User) {
@@ -98,5 +134,10 @@ export class AuthService {
   unsetToken() {
     this._cachedToken = null;
     localStorage.removeItem('token');
+  }
+
+  handleError(err: ApiError) {
+    console.error(err);
+    return Observable.throw(err || 'backend server error');
   }
 }
