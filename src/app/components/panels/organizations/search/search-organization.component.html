@@ -10,8 +10,8 @@
       <th>وضعیت</th>
       <th>تایید</th>
       <th>حذف</th>
-      <th>بن کردن</th>
-      <th>رفع بن</th>
+      <!-- <th>بن کردن</th>
+      <th>رفع بن</th> -->
       <th>اطلاعات بیشتر</th>
     </tr>
   </thead>
@@ -24,8 +24,8 @@
         <td>{{organization.accountStateName}}</td>
         <td><button [disabled]="organization.accountState ==='VERIFIED'" (click)="confirm(organization)" >تایید</button></td>
         <td><button (click)="remove(organization.username)" >حذف</button></td>
-        <td><button  >بن</button></td>
-        <td><button  >رفع بن</button></td>
+        <!-- <td><button  >بن</button></td>
+        <td><button  >رفع بن</button></td> -->
         <td><button (click)="onMoreClick(organization)" class="btn accent" >اطلاعات بیشتر</button></td>
     </tr>
     <tr  class="no-data">

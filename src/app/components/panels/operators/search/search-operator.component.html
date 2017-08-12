@@ -20,6 +20,8 @@
       <td>{{operator.roleName}}</td>
       <td>{{operator.workNumber}}</td>
       <td>{{operator.accountStateName}}</td>
+      <td *ngIf="operator.role == 'P'"><button  class="btn outline error" (click)="banOperator(operator)" [disabled]="operator.accountState == -1">بن</button></td>
+      <td *ngIf="operator.role == 'P'"><button  class="btn outline error" (click)="unBanOperator(operator)" [disabled]="operator.accountState != -1 ">رفع بن</button></td>
       <td *ngIf="operator.role == 'O'"><button  class="btn outline error" (click)="banOperator(operator)" [disabled]="operator.accountState == -1">بن</button></td>
       <td *ngIf="operator.role == 'O'"><button  class="btn outline error" (click)="unBanOperator(operator)" [disabled]="operator.accountState != -1 ">رفع بن</button></td>
       <td *ngIf="operator.role == 'M'"><button  class="btn outline error" (click)="banMaster(operator)" [disabled]="operator.accountState == -1">بن</button></td>

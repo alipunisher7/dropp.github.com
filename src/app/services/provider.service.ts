@@ -14,19 +14,7 @@ export class ProviderService {
 
   constructor(private _http: AuthHttpService, private _providerApi: ProviderApi) { }
 
-  getDriversDebt() {
-    let url = this._providerApi.driversDebtUrl;
-    return this._http.get(url)
-      .map((res: Response) => {
-        let json = res.json();
-        if (json.statusCode !== 1) {
-          throw new ApiError(url, json)
-        }
-        let data = json.data.drivers;
-        return data;
-      })
-      .catch(this.handleError)
-  }
+
   driverPay(username) {
     let url = this._providerApi.driverPayUrl(username);
     let body = '';
@@ -136,6 +124,20 @@ export class ProviderService {
   getProviderClaimReport() {
     let url = this._providerApi.getProviderClaimReportUrl;
     return this._http.getReport(url);
+  }
+  banDriversGtThan(credit) {
+    let url = this._providerApi.banDriversGtThanUrl(credit);
+    let body = '';
+    return this._http.post(url, body)
+      .map((res: Response) => {
+        let json = res.json();
+        if (json.statusCode !== 1) {
+          throw new ApiError(url, json);
+        }
+        return json;
+      })
+      .catch(this.handleError);
+
   }
 
   handleError(err: ApiError) {

@@ -6,6 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AgmCoreModule } from '@agm/core';
 
 import { GOOGLE_MAP_API_TOKEN } from 'configs';
+import { getOnlineDriverResolver } from 'resolve'
 
 import {
   AdminApi,
@@ -87,7 +88,7 @@ import {
 
 import {
   TripsPanel,
-  TripsComponent
+  TripsComponent,
 } from 'components/panels/trips';
 
 import {
@@ -238,7 +239,8 @@ import { LoginComponent } from './components/login/login.component';
     COPApi,
     OperatorApi,
     ProviderApi,
-    AuthGuard
+    AuthGuard,
+    // getOnlineDriverResolver
   ],
   bootstrap: [AppComponent]
 })

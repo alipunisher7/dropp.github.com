@@ -18,7 +18,7 @@ export class ProviderSearchDriversComponent implements OnInit {
   drivers: IDriverDebt[];
   resultCount = 20;
   page = 0;
-  constructor(private _providerservice: ProviderService, private _notification: NotificationService) { }
+  constructor(private _providerservice: ProviderService, private _notificationservice: NotificationService) { }
 
   searchDrivers() {
     // TODO: count and prefix
@@ -30,7 +30,7 @@ export class ProviderSearchDriversComponent implements OnInit {
       this._providerservice.banDriver(driver.username).subscribe(
         res => {
           let notification = new Notification({ title: 'بن شد', info: 'راننده مورد نظر بن شد', type: NotificationTypes.success });
-          this._notification.notify(notification);
+          this._notificationservice.notify(notification);
         },
         err => {
           alert(err);
@@ -47,7 +47,7 @@ export class ProviderSearchDriversComponent implements OnInit {
       this._providerservice.deactiveDriver(driver.username).subscribe(
         res => {
           let notification = new Notification({ title: 'غیر فعال شد', info: 'راننده مورد نظر غیر فعال شد', type: NotificationTypes.success });
-          this._notification.notify(notification);
+          this._notificationservice.notify(notification);
         },
         err => {
           alert(err);
@@ -57,6 +57,22 @@ export class ProviderSearchDriversComponent implements OnInit {
     else {
       alert('کنسل شد');
     }
+  }
+  pay(driver) {
+    this._providerservice.driverPay(driver.username).subscribe(
+      res => {
+        let notification = new Notification({ title: 'ثبت شد', info: 'حساب راننده مورد نظر تسویه شد', type: NotificationTypes.success });
+        this._notificationservice.notify(notification);
+        // let index = this.mddrivers.indexOf(driver);
+        // if (index > -1) {
+        //   this.mddrivers.splice(index, 1);
+        // }
+        driver.credit = 0;
+      },
+      err => {
+        alert(err);
+      }
+    )
   }
 
   ngOnInit() {

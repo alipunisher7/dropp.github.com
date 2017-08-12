@@ -13,9 +13,7 @@ export class DriversDebtComponent implements OnInit {
   mddrivers: IDriverDebt[];
   gtdrivers: IDriverDebt[];
   value: string = '';
-  getDriversDebt() {
-    this._providerservice.getDriversDebt().subscribe(res => this.drivers = res)
-  }
+  banValue: string = '';
   getDriversMostDebt() {
     this._providerservice.getDriversMostDebt().subscribe(res => this.mddrivers = res)
   }
@@ -28,9 +26,9 @@ export class DriversDebtComponent implements OnInit {
       res => {
         let notification = new Notification({ title: 'ثبت شد', info: 'حساب راننده مورد نظر تسویه شد', type: NotificationTypes.success });
         this._notificationservice.notify(notification);
-        let index = this.drivers.indexOf(driver);
+        let index = this.mddrivers.indexOf(driver);
         if (index > -1) {
-          this.drivers.splice(index, 1);
+          this.mddrivers.splice(index, 1);
         }
       },
       err => {
@@ -38,9 +36,21 @@ export class DriversDebtComponent implements OnInit {
       }
     )
   }
+  onBan() {
+    let val = -this.banValue;
+    this._providerservice.banDriversGtThan(val).subscribe(
+      res => {
+        let notification = new Notification({ title: 'ثبت شد', info: 'راننده های مورد نظر بن شدند', type: NotificationTypes.success });
+        this._notificationservice.notify(notification);
+      },
+      err => {
+        alert(err);
+      }
+    )
+  }
+
 
   ngOnInit() {
-    this.getDriversDebt();
     this.getDriversMostDebt();
   }
 

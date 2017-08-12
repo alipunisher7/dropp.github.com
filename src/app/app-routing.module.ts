@@ -8,6 +8,7 @@ import { SendTaxiComponent } from 'components/send-taxi';
 import { LoginComponent } from 'components/login';
 
 import { DashboardPanel } from 'components/panels/dashboard';
+import {getOnlineDriverResolver} from 'resolve';
 
 import { DriversPanel, DriverCreditComponent, SearchDriversComponent, LowRateDriversComponent, ConfirmDriversComponent, OnlineDriverComponent } from 'components/panels/drivers';
 
@@ -53,7 +54,7 @@ const routes: Routes = [
       },
       {
         path: 'drivers', component: DriversPanel, children: [
-          { path: 'online', component: OnlineDriverComponent },
+          { path: 'online', component: OnlineDriverComponent, resolve: { drivers: getOnlineDriverResolver } },
           { path: 'drivers-credit', component: DriverCreditComponent },
           { path: 'search', component: SearchDriversComponent },
           { path: 'low-rate', component: LowRateDriversComponent },

@@ -2,7 +2,6 @@ import { API_URL } from 'configs';
 const providerApi = `${API_URL}/provider`;
 
 export class ProviderApi {
-  public driversDebtUrl = `${providerApi}/drivers/debt`;
   public driverPayUrl = (username) => `${providerApi}/payment/${username}`;
   public driverMostDebtUrl = `${providerApi}/drivers/mostDebt`;
   public driverDebtgtUrl = (value) => `${providerApi}/drivers/debt/gt/${value}`;
@@ -12,4 +11,5 @@ export class ProviderApi {
   public deactiveDriversUrl = `${providerApi}/deactiveDriver`;
   public getDriversReportUrl = `${providerApi}/report/drivers`;
   public getProviderClaimReportUrl = `${providerApi}/report/claim`;
+  public banDriversGtThanUrl = (credit) => `${providerApi}/drivers/gt/${credit}/ban`;
 }

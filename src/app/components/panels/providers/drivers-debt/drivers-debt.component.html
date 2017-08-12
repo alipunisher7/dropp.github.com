@@ -11,7 +11,7 @@
     <tr *ngFor="let mddriver of mddrivers">
       <td>{{mddriver.username}}</td>
       <td>{{mddriver.credit}}</td>
-      <td><button>تسویه</button></td>
+      <td><button (click)=pay(mddriver)>تسویه</button></td>
     </tr>
     <tr *ngIf="!driver" class="no-data">
       <td colspan=75%>
@@ -21,7 +21,7 @@
   </tbody>
 </table>
 <h2>فیلتر براساس میزان بدهی</h2>
-<input type="number" name="" value="" [(ngModel)]="value">
+<input type="number"  [(ngModel)]="value">
 <button (click)="onSubmit()">نمایش</button>
 <table class="table" >
   <thead>
@@ -44,25 +44,8 @@
     </tr>
   </tbody>
 </table>
-<h2>بدهی کل راننده ها </h2>
-<table class="table">
-  <thead>
-    <tr>
-      <th>نام کاربری راننده</th>
-      <th>بدهی</th>
-      <th>تسویه حساب</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let driver of drivers">
-      <td>{{driver.username}}</td>
-      <td>{{driver.debt}}</td>
-      <td><button (click)="pay(driver)">تسویه</button></td>
-    </tr>
-    <tr *ngIf="!driver" class="no-data">
-      <td colspan=75%>
-        راننده ای وجود ندارد
-      </td>
-    </tr>
-  </tbody>
-</table>
+<h2>بن کردن راننده هایی که بیشتر از یک مقدار بدهی دارند</h2>
+<div >
+    <input type="number" [(ngModel)]="banValue" >
+    <button (click)="onBan()" >بن</button>
+</div>

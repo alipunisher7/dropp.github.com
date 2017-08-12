@@ -39,13 +39,19 @@ export class SearchOrganizationComponent implements OnInit {
       })
   }
   remove(username) {
-    this._operatorservice.removeOrganizations(username).subscribe(
-      res => {
-        let notification = new Notification({ title: 'ثبت شد', info: 'سازمان مورد نظر حذف شد', type: NotificationTypes.success });
-        this._notificationservice.notify(notification);
-      },
-      err => {
-        alert(err);
-      })
+    if (confirm('آیا مطمئن هستید؟')) {
+
+      this._operatorservice.removeOrganizations(username).subscribe(
+        res => {
+          let notification = new Notification({ title: 'ثبت شد', info: 'سازمان مورد نظر حذف شد', type: NotificationTypes.success });
+          this._notificationservice.notify(notification);
+        },
+        err => {
+          alert(err);
+        })
+    }
+    else {
+      alert('کنسل شد');
+    }
   }
 }
