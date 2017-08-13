@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { URLSearchParams, Response } from '@angular/http';
 import { AuthHttpService } from './auth-http.service';
 import { Observable } from 'rxjs/Observable';
-import { ServiceType, ApiError, ISearchParam, Driver, Organization, SubscribeUser, Vouchers, Trip } from 'models'
+import { ServiceType, ApiError, ISearchParam, Driver, Organization, SubscribeUser, Vouchers, Trip, Passenger } from 'models'
 import { OperatorApi } from './providers';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/debounce';
@@ -268,7 +268,7 @@ export class OperatorService {
         if (json.statusCode !== 1) {
           throw new ApiError(url, json);
         }
-        let data = json.data.Passengers;
+        let data = json.data.Passengers.map(passenger => new Passenger(passenger));
         console.log(data);
         return data;
       })

@@ -8,6 +8,7 @@ export class ProviderApi {
   public providerclaimUrl = `${providerApi}/claim`;
   public searchDriversUrl = `${providerApi}/drivers`;
   public banDriversUrl = `${providerApi}/banDriver`;
+  public unBanDriversUrl = `${providerApi}/unBanDriver`;
   public deactiveDriversUrl = `${providerApi}/deactiveDriver`;
   public getDriversReportUrl = `${providerApi}/report/drivers`;
   public getProviderClaimReportUrl = `${providerApi}/report/claim`;

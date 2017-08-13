@@ -38,6 +38,7 @@ export interface ITrip {
   operatorUsername?: string;
   subscriptionCode?: string;
   deliveryInfo?: DeliveryInfo;
+  voucherCode?: string;
 
 }
 export class Trip implements ITrip {
@@ -63,6 +64,7 @@ export class Trip implements ITrip {
   operatorUsername?: string;
   subscriptionCode?: string
   deliveryInfo?: DeliveryInfo;
+  voucherCode?: string;
   isOneWayNames = {
     true: 'بله',
     false: 'خیر'
@@ -93,5 +95,6 @@ export class Trip implements ITrip {
     this.isOneWay = trip.isOneWay;
     this.subscriptionCode = trip.subscriptionCode;
     this.deliveryInfo = trip.deliveryInfo;
+    this.voucherCode = trip.voucherCode;
   }
 }

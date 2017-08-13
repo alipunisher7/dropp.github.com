@@ -3,7 +3,7 @@ import { Response, URLSearchParams  } from '@angular/http';
 import { AuthHttpService } from './auth-http.service';
 import { Observable } from 'rxjs/Observable';
 import { ProviderApi } from './providers';
-import {  ApiError, ISearchParam } from 'models';
+import {  ApiError, ISearchParam, DriverDebt } from 'models';
 
 import 'rxjs/operator/map';
 import 'rxjs/add/operator/catch';
@@ -85,7 +85,7 @@ export class ProviderService {
         if (json.statusCode !== 1) {
           throw new ApiError(url, json);
         }
-        let data = json.data.drivers;
+        let data = json.data.drivers.map(driver => new DriverDebt(driver));
         console.log(data);
         return data;
       })
@@ -138,6 +138,19 @@ export class ProviderService {
       })
       .catch(this.handleError);
 
+  }
+  unBanDriver(username) {
+    let url = this._providerApi.unBanDriversUrl;
+    let body = { username };
+    return this._http.post(url, body)
+      .map((res: Response) => {
+        let json = res.json();
+        if (json.statusCode !== 1) {
+          throw new ApiError(url, json);
+        }
+        return json;
+      })
+      .catch(this.handleError);
   }
 
   handleError(err: ApiError) {

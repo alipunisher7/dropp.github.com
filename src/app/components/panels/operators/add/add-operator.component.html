@@ -75,6 +75,15 @@
     </div>
   </div>
   <div>
+    <label>
+      انتخاب ارائه دهنده
+      <select  formControlName="providerID" name="providerID">
+         <option value=""></option>
+         <option *ngFor="let serviceProvider of serviceProviders" value="{{serviceProvider.id}}">{{serviceProvider.name}}</option>
+      </select>
+    </label>
+  </div>
+  <div>
     <label for="gender">جنسیت</label>
     <input type="radio" name="gender" value="M" checked formControlName="gender" > آقا<br>
     <input type="radio" name="gender" value="F" formControlName="gender"  > خانم

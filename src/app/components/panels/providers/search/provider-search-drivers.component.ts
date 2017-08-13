@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ProviderService, NotificationService} from 'services';
 import { FormControl } from '@angular/forms';
-import { IDriverDebt, Notification, NotificationTypes, ISearchParam } from 'models';
+import { Driver, Notification, NotificationTypes, ISearchParam } from 'models';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/throttleTime';
@@ -15,7 +15,7 @@ import 'rxjs/add/observable/fromEvent';
 export class ProviderSearchDriversComponent implements OnInit {
   search: string = '';
   searchControl = new FormControl();
-  drivers: IDriverDebt[];
+  drivers: Driver[];
   resultCount = 20;
   page = 0;
   constructor(private _providerservice: ProviderService, private _notificationservice: NotificationService) { }
@@ -31,6 +31,24 @@ export class ProviderSearchDriversComponent implements OnInit {
         res => {
           let notification = new Notification({ title: 'بن شد', info: 'راننده مورد نظر بن شد', type: NotificationTypes.success });
           this._notificationservice.notify(notification);
+          driver.accountState = '-1';
+        },
+        err => {
+          alert(err);
+        }
+      )
+    }
+    else {
+      alert('کنسل شد');
+    }
+  }
+  unBanDriver(driver) {
+    if (confirm('آیا مطمئن هستید؟')) {
+      this._providerservice.unBanDriver(driver.username).subscribe(
+        res => {
+          let notification = new Notification({ title: 'رفع بن شد', info: 'راننده مورد نظر رفع بن شد', type: NotificationTypes.success });
+          this._notificationservice.notify(notification);
+          driver.accountState = '3';
         },
         err => {
           alert(err);

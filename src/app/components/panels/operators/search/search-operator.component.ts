@@ -27,52 +27,76 @@ export class SearchOperatorComponent implements OnInit {
     this.selectedOperator = operator;
   }
   banOperator(operator) {
-    this._masterService.banDriver(operator.username).subscribe(
-      res => {
-        let notification = new Notification({ title: 'ثبت شد', info: `اپراتور مورد نظر بن شد`, type: NotificationTypes.success });
-        this._notification.notify(notification);
-        operator.accountState = '-1';
-      },
-      err => {
-        alert(err);
-      }
-    );
+    if (confirm('آیا مطمئن هستید؟')) {
+
+      this._masterService.banDriver(operator.username).subscribe(
+        res => {
+          let notification = new Notification({ title: 'ثبت شد', info: `اپراتور مورد نظر بن شد`, type: NotificationTypes.success });
+          this._notification.notify(notification);
+          operator.accountState = '-1';
+        },
+        err => {
+          alert(err);
+        }
+      );
+    }
+    else {
+      alert('کنسل شد');
+    }
   }
   unBanOperator(operator) {
-    this._masterService.unBanDriver(operator.username).subscribe(
-      res => {
-        let notification = new Notification({ title: 'ثبت شد', info: 'اپراتور مورد نظر رفع بن شد', type: NotificationTypes.success });
-        this._notification.notify(notification);
-        operator.accountState = '3';
-      },
-      err => {
-        alert(err);
-      }
-    );
+    if (confirm('آیا مطمئن هستید؟')) {
+
+      this._masterService.unBanDriver(operator.username).subscribe(
+        res => {
+          let notification = new Notification({ title: 'ثبت شد', info: 'اپراتور مورد نظر رفع بن شد', type: NotificationTypes.success });
+          this._notification.notify(notification);
+          operator.accountState = '3';
+        },
+        err => {
+          alert(err);
+        }
+      );
+    }
+    else {
+      alert('کنسل شد');
+    }
   }
   banMaster(operator) {
-    this._adminservice.banMaster(operator.username).subscribe(
-      res => {
-        let notification = new Notification({ title: 'ثبت شد', info: `اپراتور ارشد مورد نظر بن شد`, type: NotificationTypes.success });
-        this._notification.notify(notification);
-        operator.accountState = '-1';
-      },
-      err => {
-        alert(err);
-      }
-    );
+    if (confirm('آیا مطمئن هستید؟')) {
+
+      this._adminservice.banMaster(operator.username).subscribe(
+        res => {
+          let notification = new Notification({ title: 'ثبت شد', info: `اپراتور ارشد مورد نظر بن شد`, type: NotificationTypes.success });
+          this._notification.notify(notification);
+          operator.accountState = '-1';
+        },
+        err => {
+          alert(err);
+        }
+      );
+    }
+    else {
+      alert('کنسل شد')
+    }
   }
   unBanMaster(operator) {
-    this._adminservice.unBanMaster(operator.username).subscribe(
-      res => {
-        let notification = new Notification({ title: 'ثبت شد', info: 'اپراتور ارشد مورد نظر رفع بن شد', type: NotificationTypes.success });
-        this._notification.notify(notification);
-        operator.accountState = '3';
-      },
-      err => {
-        alert(err);
-      }
-    );
+    if (confirm('آیا مطمئن هستید؟')) {
+
+      this._adminservice.unBanMaster(operator.username).subscribe(
+        res => {
+          let notification = new Notification({ title: 'ثبت شد', info: 'اپراتور ارشد مورد نظر رفع بن شد', type: NotificationTypes.success });
+          this._notification.notify(notification);
+          operator.accountState = '3';
+        },
+        err => {
+          alert(err);
+        }
+      );
+    }
+    else {
+      alert('کنسل شد');
+    }
   }
 
 }

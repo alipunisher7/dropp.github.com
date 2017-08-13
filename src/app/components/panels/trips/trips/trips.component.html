@@ -17,6 +17,7 @@
        <th>نام کاربری اپراتور</th>
        <th>شماره اشتراک</th>
        <th>کد تخفیف</th>
+       <th>اطلاعات بسته ارسالی</th>
     </tr>
   </thead>
   <tbody>
@@ -32,7 +33,8 @@
       <td *ngIf="!trip.destinations[1]" >---</td>
       <td>{{trip.cashPayment}}</td>
       <td>{{trip.creditPayment}}</td>
-      <td>{{trip.rate}}</td>
+      <td *ngIf="trip.rate">{{trip.rate}}</td>
+      <td *ngIf="!trip.rate">---</td>
       <td>{{trip.isOneWayName}}</td>
       <td *ngIf="trip.operatorUsername" >{{trip.operatorUsername}}</td>
       <td *ngIf="!trip.operatorUsername" >---</td>

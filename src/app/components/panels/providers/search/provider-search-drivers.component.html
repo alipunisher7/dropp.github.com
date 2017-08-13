@@ -5,6 +5,7 @@
     <tr>
       <th>نام کاربری</th>
       <th>بدهی</th>
+      <th>وضعیت</th>
       <th>تسویه حساب</th>
       <th>بن کردن</th>
       <th>رفع بن </th>
@@ -15,9 +16,10 @@
     <tr *ngFor="let driver of drivers">
       <td>{{driver.username}}</td>
       <td>{{driver.credit}}</td>
+      <td>{{driver.accountStateName}}</td>
       <td><button (click)=pay(driver) [disabled]="driver.credit==0">تسویه</button></td>
-      <td><button (click)=banDriver(driver)>بن</button></td>
-      <td><button >رفع بن</button></td>
+      <td><button (click)=banDriver(driver) [disabled]="driver.accountState == '-1'" >بن</button></td>
+      <td><button (click)=unBanDriver(driver) [disabled]="driver.accountState != '-1'" >رفع بن</button></td>
       <td><button (click)=deactiveDriver(driver) >غیر فعال کردن</button></td>
     </tr>
   </tbody>

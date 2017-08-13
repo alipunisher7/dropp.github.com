@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
-import { MasterService, NotificationService } from 'services';
-import { Operator, Notification, NotificationTypes } from 'models';
+import { MasterService, NotificationService, OperatorService } from 'services';
+import { Operator, Notification, NotificationTypes, IServiceProviders } from 'models';
 
 @Component({
   selector: 'ts-add-operator',
@@ -10,8 +10,8 @@ import { Operator, Notification, NotificationTypes } from 'models';
 })
 export class AddOperatorComponent implements OnInit {
   myForm: FormGroup;
-
-  constructor(private _masterService: MasterService, private _notification: NotificationService) {
+  serviceProviders: IServiceProviders[];
+  constructor(private _masterService: MasterService, private _notification: NotificationService, private _operatorservice: OperatorService) {
     this.myForm = new FormGroup({
       'firstName': new FormControl('', [Validators.required, Validators.minLength(2)]),
       'lastName': new FormControl('', [Validators.required, Validators.minLength(2)]),
@@ -27,6 +27,7 @@ export class AddOperatorComponent implements OnInit {
         're-password': new FormControl('', Validators.required)
       }, this.rePassMatchValidator),
       'gender': new FormControl('', Validators.required),
+      'providerID': new FormControl('')
     });
   }
 
@@ -36,6 +37,7 @@ export class AddOperatorComponent implements OnInit {
 
   onSubmit() {
     let operator = this.convertOperatorData(this.myForm.value);
+    console.log("innnnnn");
     console.log(operator);
     this._masterService.insertOperator(operator).subscribe(res => {
       let notification = new Notification({ title: 'ثبت شد', info: `اپراتور جدید ثبت شد`, type: NotificationTypes.success });
@@ -48,13 +50,17 @@ export class AddOperatorComponent implements OnInit {
       }
     );
   }
-
-  ngOnInit() {
+  getProviders() {
+    this._operatorservice.getProviders().subscribe(res => this.serviceProviders = res);
   }
 
-  convertOperatorData(data): Operator {
+  ngOnInit() {
+    this.getProviders();
+  }
+
+  convertOperatorData(data) {
     let birthDate = new Date(data.birthDate);
-    let operator: Operator = new Operator({
+    let operator = {
       city: data.city,
       email: data.email,
       birthDate: {
@@ -68,8 +74,9 @@ export class AddOperatorComponent implements OnInit {
       password: data.userpassword.password,
       phoneNumber: data.phoneNumber,
       username: data.username,
-      workNumber: data.workPhoneCode + data.workNumber
-    });
+      workNumber: data.workPhoneCode + data.workNumber,
+      providerID: data.providerID
+    };
 
     return operator;
   }
