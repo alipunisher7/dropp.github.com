@@ -47,31 +47,41 @@ export class SearchDriversComponent implements OnInit {
 
   banDriver(driver) {
     let data = driver.username;
-    confirm('آیا میخواهید بن کنید؟');
-    this._operatorServices.banDriver(data).subscribe(
-      res => {
-        let notification = new Notification({ title: 'ثبت شد', info: `راننده مورد نظر بن شد`, type: NotificationTypes.success });
-        this._notification.notify(notification);
-        driver.stateCode = '-1';
-      },
-      err => {
-        alert(err);
-      }
-    );
+    if (confirm('آیا میخواهید بن کنید؟')) {
+
+      this._operatorServices.banDriver(data).subscribe(
+        res => {
+          let notification = new Notification({ title: 'ثبت شد', info: `راننده مورد نظر بن شد`, type: NotificationTypes.success });
+          this._notification.notify(notification);
+          driver.stateCode = '-1';
+        },
+        err => {
+          alert(err);
+        }
+      );
+    }
+    else {
+      alert('کنسل شده');
+    }
   }
   unBanDriver(driver) {
     let data = driver.username;
-    confirm('آیا میخواهید رفع بن کنید؟');
-    this._operatorServices.unBanDriver(data).subscribe(
-      res => {
-        let notification = new Notification({ title: 'ثبت شد', info: `راننده مورد نظر رفع بن شد`, type: NotificationTypes.success });
-        this._notification.notify(notification);
-        driver.stateCode = '3';
-      },
-      err => {
-        alert(err);
-      }
-    );
+    if (confirm('آیا میخواهید رفع بن کنید؟')) {
+
+      this._operatorServices.unBanDriver(data).subscribe(
+        res => {
+          let notification = new Notification({ title: 'ثبت شد', info: `راننده مورد نظر رفع بن شد`, type: NotificationTypes.success });
+          this._notification.notify(notification);
+          driver.stateCode = '3';
+        },
+        err => {
+          alert(err);
+        }
+      );
+    }
+    else {
+      alert('کنسل شد');
+    }
   }
 
 }

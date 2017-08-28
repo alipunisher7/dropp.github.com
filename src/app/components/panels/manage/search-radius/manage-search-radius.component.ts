@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AdminService, NotificationService } from 'services';
 import { Notification, NotificationTypes, Radius } from 'models';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'ts-manage-search-radius',
@@ -13,7 +14,8 @@ export class ManageSearchRadiusComponent implements OnInit {
   myForm: FormGroup;
   updateForm: FormGroup;
   selectedRadius: Radius;
-  constructor(private _adminService: AdminService, private _notification: NotificationService) {
+  constructor(private _adminService: AdminService, private _notification: NotificationService, private router: Router,
+    private route: ActivatedRoute) {
     this.myForm = new FormGroup({
       'serviceType': new FormControl('', Validators.required),
       'radius': new FormControl('', Validators.required)
@@ -25,11 +27,11 @@ export class ManageSearchRadiusComponent implements OnInit {
     });
   }
 
-  getRadiuses() {
-    this._adminService.getRadiuses().subscribe((radiuses: Radius[]) => {
-      this.radiuses = radiuses;
-    });
-  }
+  // getRadiuses() {
+  //   this._adminService.getRadiuses().subscribe((radiuses: Radius[]) => {
+  //     this.radiuses = radiuses;
+  //   });
+  // }
 
   onSubmit() {
     this._adminService.insertRadius(this.myForm.value).subscribe(
@@ -67,7 +69,8 @@ export class ManageSearchRadiusComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getRadiuses();
+    // this.getRadiuses();
+    this.radiuses = this.route.snapshot.data['searchRadius'];
   }
 
 }

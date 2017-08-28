@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AdminService, NotificationService } from 'services';
 import { FormGroup, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
-import {Services, Notification, NotificationTypes} from 'models';
+import { Services, Notification, NotificationTypes } from 'models';
 
 @Component({
   selector: 'ts-active-services',
@@ -65,6 +65,9 @@ export class ActiveServicesComponent implements OnInit {
     this._adminService.insertService(this.myForm.value).subscribe(res => {
       let notification = new Notification({ title: 'ثبت شد', info: `سرویس جدید ثبت شد`, type: NotificationTypes.success });
       this._notification.notify(notification);
+      this.myForm.reset();
+      this.myForm.controls['city'].setValue("");
+      this.myForm.controls['serviceType'].setValue("");
     },
       err => {
         alert(err);

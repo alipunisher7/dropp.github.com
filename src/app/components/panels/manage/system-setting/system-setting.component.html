@@ -14,30 +14,6 @@
   </div>
   <div>
     <label>
-      آپدیت اندروید
-      <input type="checkbox" name="androidUpdate" value="" (change)="toggle('androidUpdate')" [checked]="settings.androidUpdate" >
-    </label>
-  </div>
-  <div>
-    <label>
-    آپدیت اضطراری اندروید
-      <input type="checkbox" name="androidUpdateCritical" value="" (change)="toggle('androidUpdateCritical')" [checked]="settings.androidUpdateCritical" >
-    </label>
-  </div>
-  <div>
-    <label>
-      آپدیت آی او اس
-      <input type="checkbox" name="IOSUpdate" value="" (change)="toggle('IOSUpdate')" [checked]="settings.IOSUpdate" >
-    </label>
-  </div>
-  <div>
-    <label>
-      آپدیت اضطراری آی او اس
-        <input type="checkbox" name="IOSUpdateCritical" value="" (change)="toggle('IOSUpdateCritical')" [checked]="settings.IOSUpdateCritical" >
-    </label>
-  </div>
-  <div>
-    <label>
       اس ام اس رخداد استثنا
       <input type="checkbox" name="exceptionOccurrenceSms" value="" (change)="toggle('exceptionOccurrenceSms')" [checked]="settings.exceptionOccurrenceSms" >
     </label>
@@ -56,14 +32,14 @@
   </div>
   <div>
     <label>
-      ایمیل گزارش روزانه
-      <input type="checkbox" name="dailyEmailReport" value="" (change)="toggle('dailyEmailReport')" [checked]="settings.dailyEmailReport" >
+      اس ام اس گزارش هفتگی
+      <input type="checkbox" name="weeklySmsReport" value="" (change)="toggle('weeklySmsReport')" [checked]="settings.weeklySmsReport" >
     </label>
   </div>
   <div>
     <label>
-      اس ام اس گزارش هفتگی
-      <input type="checkbox" name="weeklySmsReport" value="" (change)="toggle('weeklySmsReport')" [checked]="settings.weeklySmsReport" >
+      ایمیل گزارش روزانه
+      <input type="checkbox" name="dailyEmailReport" value="" (change)="toggle('dailyEmailReport')" [checked]="settings.dailyEmailReport" >
     </label>
   </div>
   <div>
@@ -84,4 +60,53 @@
         <input type="checkbox" name="allowCompetitors" value="" (change)="toggle('allowCompetitors')" [checked]="settings.allowCompetitors" >
     </label>
   </div>
+<div>
+  <label>
+    آپدیت اضطراری اندروید- مسافر
+    <input type="text" name="PCriticalAndroidUpdate" formControlName="PCriticalAndroidUpdate" [(ngModel)]="settings.PCriticalAndroidUpdate" value="">
+  </label>
+</div>
+<div>
+  <label>
+    آپدیت اندروید - مسافر
+    <input type="text" name="PAndroidUpdate" formControlName="PAndroidUpdate" [(ngModel)]="settings.PAndroidUpdate" value="">
+  </label>
+</div>
+<div>
+  <label>
+    آپدیت اضطراری اندروید- راننده
+    <input type="text" name="DCriticalAndroidUpdate" formControlName="DCriticalAndroidUpdate" [(ngModel)]="settings.DCriticalAndroidUpdate" value="">
+  </label>
+</div>
+<div>
+  <label>
+    آپدیت اندروید - راننده
+    <input type="text" name="DAndroidUpdate" formControlName="DAndroidUpdate" [(ngModel)]="settings.DAndroidUpdate" value="">
+  </label>
+</div>
+<div>
+  <label>
+    آپدیت اضطراری آی او اس- مسافر
+    <input type="text" name="PCriticalIOSUpdate" formControlName="PCriticalIOSUpdate" [(ngModel)]="settings.PCriticalIOSUpdate" value="">
+  </label>
+</div>
+<div>
+  <label>
+    آپدیت آی او اس - مسافر
+    <input type="text" name="PIOSUpdate" formControlName="PIOSUpdate" [(ngModel)]="settings.PIOSUpdate" value="">
+  </label>
+</div>
+<div>
+  <label>
+    آپدیت اضطراری آی او اس - راننده
+    <input type="text" name="DCriticalIOSUpdate" formControlName="DCriticalIOSUpdate" [(ngModel)]="settings.DCriticalIOSUpdate" value="">
+  </label>
+</div>
+<div>
+  <label>
+    آپدیت آی او اس - راننده
+    <input type="text" name="DIOSUpdate" formControlName="DIOSUpdate" [(ngModel)]="settings.DIOSUpdate" value="">
+  </label>
+</div>
+<button type="submit" name="button" [disabled]="!updateForm.valid">ثبت</button>
 </form>

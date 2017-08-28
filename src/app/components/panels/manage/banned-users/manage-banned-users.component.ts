@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { OperatorService, NotificationService } from 'services';
-import { User, Notification, NotificationTypes} from 'models';
+import { User, Notification, NotificationTypes } from 'models';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'ts-manage-banned-users',
@@ -11,15 +12,16 @@ export class ManageBannedUsersComponent implements OnInit {
   drivers: User[];
   passengers: User[];
 
-  constructor(private _operatorService: OperatorService, private _notification: NotificationService) { }
+  constructor(private _operatorService: OperatorService, private _notification: NotificationService, private router: Router,
+    private route: ActivatedRoute) { }
 
-  getBannedDrivers() {
-    this._operatorService.getBannedDrivers().subscribe(res => this.drivers = res);
-  }
+  // getBannedDrivers() {
+  //   this._operatorService.getBannedDrivers().subscribe(res => this.drivers = res);
+  // }
 
-  getBannedPassengers() {
-    this._operatorService.getBannedPassengers().subscribe(res => this.passengers = res);
-  }
+  // getBannedPassengers() {
+  //   this._operatorService.getBannedPassengers().subscribe(res => this.passengers = res);
+  // }
   unBanDriver(driver) {
     this._operatorService.unBanDriver(driver.username).subscribe(
       res => {
@@ -48,8 +50,10 @@ export class ManageBannedUsersComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getBannedDrivers();
-    this.getBannedPassengers();
+    // this.getBannedDrivers();
+    this.drivers = this.route.snapshot.data['bannedDrivers'];
+    // this.getBannedPassengers();
+    this.passengers = this.route.snapshot.data['bannedPassengers'];
   }
 
 }

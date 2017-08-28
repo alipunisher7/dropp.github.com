@@ -17,4 +17,5 @@ export class MasterApi {
   public unBanOperatorUrl = `${masterApi}/unBanOperator`;
 
   public updateVoucherUrl = (id) => `${masterApi}/vouchers/${id}`;
+  public opChangePassUrl = (operatorUsername) => `${masterApi}/operators/${operatorUsername}/password`;
 }

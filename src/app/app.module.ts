@@ -6,8 +6,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AgmCoreModule } from '@agm/core';
 
 import { GOOGLE_MAP_API_TOKEN } from 'configs';
-import { getOnlineDriverResolver } from 'resolve'
-
+import {
+  getOnlineDriverResolver, getSettingResolver, getLowRateDriverResolver, getOnlineTripsResolver,
+  getManufacturesResolver, getSearchRadiusResolver, getVouchersResolver, getDriversCountResolver, getOnlineTripsCountResolver,
+  getTodayTripsCountResolver, getNewPassengersCountResolver, getPassengersCountResolver, getOrganizationsCountResolver, getBannedDriversResolver,
+  getBannedPassengersResolver, getBugsResolver, getUnresolvedTicketsResolver, getDriversMostDebtsResolver,
+  getproviderclaimResolver, getProvidersResolver
+} from 'resolve/resolve';
 import {
   AdminApi,
   COPApi,
@@ -128,6 +133,7 @@ import { ShowProvidersComponent } from './components/panels/providers/show-provi
 import { ProviderSearchDriversComponent } from './components/panels/providers/search/provider-search-drivers.component';
 import { AddProviderComponent } from './components/panels/providers/add/add-provider.component';
 import { LoginComponent } from './components/login/login.component';
+import { OperatorChangePasswordComponent } from './components/panels/manage/operator-change-password/operator-change-password.component';
 
 
 @NgModule({
@@ -210,6 +216,7 @@ import { LoginComponent } from './components/login/login.component';
     ProviderSearchDriversComponent,
     AddProviderComponent,
     LoginComponent,
+    OperatorChangePasswordComponent,
   ],
   imports: [
     BrowserModule,
@@ -222,8 +229,8 @@ import { LoginComponent } from './components/login/login.component';
       apiKey: GOOGLE_MAP_API_TOKEN,
       libraries: ['places']
     })
-
   ],
+
   providers: [
     OperatorService,
     AdminService,
@@ -240,8 +247,28 @@ import { LoginComponent } from './components/login/login.component';
     OperatorApi,
     ProviderApi,
     AuthGuard,
-    // getOnlineDriverResolver
+    getSettingResolver,
+    getOnlineDriverResolver,
+    getLowRateDriverResolver,
+    getOnlineTripsResolver,
+    getManufacturesResolver,
+    getSearchRadiusResolver,
+    getVouchersResolver,
+    getDriversCountResolver,
+    getOnlineTripsCountResolver,
+    getTodayTripsCountResolver,
+    getNewPassengersCountResolver,
+    getPassengersCountResolver,
+    getOrganizationsCountResolver,
+    getBannedDriversResolver,
+    getBannedPassengersResolver,
+    getBugsResolver,
+    getUnresolvedTicketsResolver,
+    getDriversMostDebtsResolver,
+    getproviderclaimResolver,
+    getProvidersResolver
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

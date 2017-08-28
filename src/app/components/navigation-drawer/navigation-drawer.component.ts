@@ -71,6 +71,7 @@ export class NavigationDrawerComponent implements OnInit, AfterViewInit {
           { title: 'خطاها', icon: 'fa fa-times-circle', route: 'bugs' },
           { title: 'تنظیمات سیستم', icon: 'fa fa-cog', route: 'system-setting' },
           { title: 'استان و شهر', icon: 'fa fa-square-o', route: 'state-city' },
+          { title: 'تغییر رمز عبور اپراتور', icon: 'fa fa-key', route: 'change-pass' },
         ],
       },
       {

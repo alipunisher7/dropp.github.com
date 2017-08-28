@@ -22,5 +22,10 @@
       <td><button (click)=unBanDriver(driver) [disabled]="driver.accountState != '-1'" >رفع بن</button></td>
       <td><button (click)=deactiveDriver(driver) >غیر فعال کردن</button></td>
     </tr>
+    <tr *ngIf="!drivers" class="no-data">
+      <td colspan=75%>
+        راننده ای وجود ندارد
+      </td>
+    </tr>
   </tbody>
 </table>

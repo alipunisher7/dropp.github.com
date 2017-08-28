@@ -163,6 +163,20 @@ export class MasterService {
       })
       .catch(this.handleError);
   }
+  opChangePass(username, data) {
+    let url = this._masterApi.opChangePassUrl(username);
+    let body = data;
+
+    return this._http.patch(url, body)
+      .map((res: Response) => {
+        let json = res.json();
+        if (json.statusCode !== 1) {
+          throw new ApiError(url, json);
+        }
+        return json;
+      })
+      .catch(this.handleError);
+  }
 
   handleError(err: ApiError) {
     console.error(err);

@@ -359,6 +359,14 @@ export class AdminService {
     let url = this._adminApi.getDevicesReportUrl;
     return this._http.getReport(url);
   }
+  getAllProviderClaimReport() {
+    let url = this._adminApi.getAllProviderClaimReportUrl;
+    return this._http.getReport(url);
+  }
+  getPeakTripsReport() {
+    let url = this._adminApi.getPeakTripsReportUrl;
+    return this._http.getReport(url);
+  }
 
 
   // getTarrif(): Observable<any> {

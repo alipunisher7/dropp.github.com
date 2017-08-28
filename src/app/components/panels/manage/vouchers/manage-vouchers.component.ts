@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { OperatorService, MasterService, NotificationService } from 'services';
 import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Vouchers, Notification, NotificationTypes} from 'models';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'ts-manage-vouchers',
@@ -17,7 +18,8 @@ export class ManageVouchersComponent implements OnInit {
 
 
 
-  constructor(private _operatorservice: OperatorService, private _masterservice: MasterService, private _notificationservice: NotificationService) {
+  constructor(private _operatorservice: OperatorService, private _masterservice: MasterService, private _notificationservice: NotificationService,
+    private router: Router, private route: ActivatedRoute) {
     this.updateForm = new FormGroup({
       'maxUses': new FormControl('', Validators.required),
       'description': new FormControl('', [Validators.required, Validators.minLength(5)]),
@@ -28,9 +30,9 @@ export class ManageVouchersComponent implements OnInit {
     });
   }
 
-  getVouchers() {
-    this._operatorservice.getVouchers().subscribe(res => this.vouchers = res);
-  }
+  // getVouchers() {
+  //   this._operatorservice.getVouchers().subscribe(res => this.vouchers = res);
+  // }
 
   onMoreClick(voucher) {
     this.selectedVoucher = voucher;
@@ -66,7 +68,8 @@ export class ManageVouchersComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getVouchers();
+    // this.getVouchers();
+    this.vouchers = this.route.snapshot.data['vouchers'];
   }
 
 }

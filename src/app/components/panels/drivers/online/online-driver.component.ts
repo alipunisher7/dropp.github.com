@@ -25,6 +25,6 @@ export class OnlineDriverComponent implements OnInit {
   ngOnInit() {
     // this.getOnlineDrivers()
     this.drivers = this.route.snapshot.data['drivers'];
-
+    console.log(this.drivers);
   }
 }

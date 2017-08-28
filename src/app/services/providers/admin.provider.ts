@@ -44,5 +44,7 @@ export class AdminApi {
   public insertProviderUrl = `${adminApi}/providers`;
   public getTripsCostReportUrl = `${adminApi}/report/trips/cost`;
   public getDevicesReportUrl = `${adminApi}/report/devices`;
+  public getAllProviderClaimReportUrl = `${adminApi}/report/providers`;
+  public getPeakTripsReportUrl = `${adminApi}/report/trips/peak`;
 
 }

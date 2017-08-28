@@ -20,7 +20,7 @@ export class ReportComponent implements OnInit {
       var blob = new Blob([response.blob()], { type: 'vnd.ms-excel' });
       var filename = 'DriverAgeReport.xls';
       saveAs(blob, filename);
-      // this.downloadFile(data)
+
     },
       err => alert(err));
   }
@@ -29,7 +29,7 @@ export class ReportComponent implements OnInit {
       var blob = new Blob([response.blob()], { type: 'vnd.ms-excel' });
       var filename = 'TripReport.xls';
       saveAs(blob, filename);
-      // this.downloadFile(data)
+
     },
       err => alert(err))
   }
@@ -38,7 +38,7 @@ export class ReportComponent implements OnInit {
       var blob = new Blob([response.blob()], { type: 'vnd.ms-excel' });
       var filename = 'PassengerAgeReport.xls';
       saveAs(blob, filename);
-      // this.downloadFile(data)
+
     },
       err => alert(err))
   }
@@ -47,7 +47,7 @@ export class ReportComponent implements OnInit {
       var blob = new Blob([response.blob()], { type: 'vnd.ms-excel' });
       var filename = 'OperatorsAgeReport.xls';
       saveAs(blob, filename);
-      // this.downloadFile(data)
+
     },
       err => alert(err))
   }
@@ -56,7 +56,7 @@ export class ReportComponent implements OnInit {
       var blob = new Blob([response.blob()], { type: 'vnd.ms-excel' });
       var filename = 'TripsCostReport.xls';
       saveAs(blob, filename);
-      // this.downloadFile(data)
+
     },
       err => alert(err))
   }
@@ -65,7 +65,7 @@ export class ReportComponent implements OnInit {
       var blob = new Blob([response.blob()], { type: 'vnd.ms-excel' });
       var filename = 'DevicesReport.xls';
       saveAs(blob, filename);
-      // this.downloadFile(data)
+
     },
       err => alert(err))
   }
@@ -74,7 +74,7 @@ export class ReportComponent implements OnInit {
       var blob = new Blob([response.blob()], { type: 'vnd.ms-excel' });
       var filename = 'DriversReport.xls';
       saveAs(blob, filename);
-      // this.downloadFile(data)
+
     },
       err => alert(err))
   }
@@ -83,7 +83,25 @@ export class ReportComponent implements OnInit {
       var blob = new Blob([response.blob()], { type: 'vnd.ms-excel' });
       var filename = 'ProviderClaimReport.xls';
       saveAs(blob, filename);
-      // this.downloadFile(data)
+
+    },
+      err => alert(err))
+  }
+  getAllProviderClaimReport() {
+    this._adminservice.getAllProviderClaimReport().subscribe(response => {
+      var blob = new Blob([response.blob()], { type: 'vnd.ms-excel' });
+      var filename = 'AllProviderClaimReport.xls';
+      saveAs(blob, filename);
+
+    },
+      err => alert(err))
+  }
+  getPeakTripsReport() {
+    this._adminservice.getPeakTripsReport().subscribe(response => {
+      var blob = new Blob([response.blob()], { type: 'vnd.ms-excel' });
+      var filename = 'PeakTripsReport.xls';
+      saveAs(blob, filename);
+
     },
       err => alert(err))
   }

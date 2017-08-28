@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {ProviderService, NotificationService} from 'services';
-import {IDriverDebt, Notification, NotificationTypes} from 'models';
+import { ProviderService, NotificationService } from 'services';
+import { IDriverDebt, Notification, NotificationTypes } from 'models';
+import { Router, ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'ts-drivers-debt',
   templateUrl: './drivers-debt.component.html',
@@ -8,15 +9,16 @@ import {IDriverDebt, Notification, NotificationTypes} from 'models';
 })
 export class DriversDebtComponent implements OnInit {
 
-  constructor(private _providerservice: ProviderService, private _notificationservice: NotificationService) { }
+  constructor(private _providerservice: ProviderService, private _notificationservice: NotificationService, private router: Router,
+    private route: ActivatedRoute) { }
   drivers: IDriverDebt[];
   mddrivers: IDriverDebt[];
   gtdrivers: IDriverDebt[];
   value: string = '';
   banValue: string = '';
-  getDriversMostDebt() {
-    this._providerservice.getDriversMostDebt().subscribe(res => this.mddrivers = res)
-  }
+  // getDriversMostDebt() {
+  //   this._providerservice.getDriversMostDebt().subscribe(res => this.mddrivers = res)
+  // }
   onSubmit() {
     let val = -this.value;
     this._providerservice.getdriverDebtgt(val).subscribe(res => this.gtdrivers = res)
@@ -51,7 +53,8 @@ export class DriversDebtComponent implements OnInit {
 
 
   ngOnInit() {
-    this.getDriversMostDebt();
+    // this.getDriversMostDebt();
+    this.mddrivers = this.route.snapshot.data['mddrivers'];
   }
 
 }

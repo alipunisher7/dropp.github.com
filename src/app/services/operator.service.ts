@@ -161,7 +161,7 @@ export class OperatorService {
         if (json.statusCode !== 1) {
           throw new ApiError(url, json);
         }
-        let data = json.data.onlines;
+        let data = json.data.onlines.map((driver) => new Driver(driver));
         return data;
       })
       .catch(this.handleError);

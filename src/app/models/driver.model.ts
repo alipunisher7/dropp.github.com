@@ -40,6 +40,13 @@ const serviceTypeNames = {
   "MOTOR_DELIVERY": "پیک",
   "TAXI": "تاکسی",
   "SUV": "SUV",
+  "E": "اکو",
+  "L": "لوکس",
+  "N": "نرمال",
+  "R": "موتور",
+  "D": "پیک",
+  "T": "تاکسی",
+  "S": "SUV",
 }
 
 export class Driver extends User {
@@ -72,6 +79,7 @@ export class Driver extends User {
     this.stateCode = driver.stateCode;
     this.credit = driver.credit;
     this.device = driver.device || new Device();
+    this.rate = driver.rate;
   }
 
 }

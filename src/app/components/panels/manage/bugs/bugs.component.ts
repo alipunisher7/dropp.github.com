@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { AdminService, NotificationService} from 'services'
-import {NotificationTypes, Notification, Bugs} from 'models';
+import { AdminService, NotificationService } from 'services'
+import { Router, ActivatedRoute } from '@angular/router';
+import { NotificationTypes, Notification, Bugs } from 'models';
 
 @Component({
   selector: 'ts-bugs',
@@ -10,10 +11,11 @@ import {NotificationTypes, Notification, Bugs} from 'models';
 
 export class BugsComponent implements OnInit {
   bugs: Bugs[]
-  constructor(private _adminservice: AdminService, private _notificationservice: NotificationService) { }
-  getbugs() {
-    this._adminservice.getBugs().subscribe(res => this.bugs = res);
-  }
+  constructor(private _adminservice: AdminService, private _notificationservice: NotificationService, private router: Router,
+    private route: ActivatedRoute) { }
+  // getbugs() {
+  //   this._adminservice.getBugs().subscribe(res => this.bugs = res);
+  // }
   onChange(bug) {
     this._adminservice.resolveBug(bug.id).subscribe(
       res => {
@@ -27,7 +29,8 @@ export class BugsComponent implements OnInit {
     )
   }
   ngOnInit() {
-    this.getbugs();
+    // this.getbugs();
+    this.bugs = this.route.snapshot.data['bugs'];
   }
 
 }

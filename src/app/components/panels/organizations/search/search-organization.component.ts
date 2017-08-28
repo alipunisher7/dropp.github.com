@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {OperatorService, NotificationService} from 'services';
-import {IOrganization, Notification, NotificationTypes}  from 'models';
+import { OperatorService, NotificationService } from 'services';
+import { IOrganization, Notification, NotificationTypes } from 'models';
 
 @Component({
   selector: 'ts-search-organization',
@@ -38,13 +38,17 @@ export class SearchOrganizationComponent implements OnInit {
         alert(err);
       })
   }
-  remove(username) {
+  remove(organization) {
     if (confirm('آیا مطمئن هستید؟')) {
 
-      this._operatorservice.removeOrganizations(username).subscribe(
+      this._operatorservice.removeOrganizations(organization.username).subscribe(
         res => {
           let notification = new Notification({ title: 'ثبت شد', info: 'سازمان مورد نظر حذف شد', type: NotificationTypes.success });
           this._notificationservice.notify(notification);
+          let index = this.organizations.indexOf(organization);
+          if (index > -1) {
+            this.organizations.splice(index, 1);
+          }
         },
         err => {
           alert(err);

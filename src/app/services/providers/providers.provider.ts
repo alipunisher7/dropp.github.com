@@ -13,4 +13,5 @@ export class ProviderApi {
   public getDriversReportUrl = `${providerApi}/report/drivers`;
   public getProviderClaimReportUrl = `${providerApi}/report/claim`;
   public banDriversGtThanUrl = (credit) => `${providerApi}/drivers/gt/${credit}/ban`;
+
 }
