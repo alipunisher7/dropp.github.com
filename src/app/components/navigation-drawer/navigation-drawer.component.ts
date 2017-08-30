@@ -86,7 +86,7 @@ export class NavigationDrawerComponent implements OnInit, AfterViewInit {
           { title: 'جستجو راننده ها', icon: 'fa fa-search', route: 'search' },
           { title: 'نمایش ارائه دهنده ها', icon: 'fa fa-tablet', route: 'show-providers' },
           { title: 'بدهی راننده ها', icon: 'fa fa-money', route: 'debt' },
-          { title: 'صورت حساب با ارائه دهنده ها', icon: 'fa fa-money', route: 'provider-debt' },
+          { title: 'صورت حساب ارائه دهنده', icon: 'fa fa-money', route: 'provider-debt' },
           { title: 'اضافه کردن ارائه دهنده', icon: 'fa fa-money', route: 'add-provider' },
         ]
       },

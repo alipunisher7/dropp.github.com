@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AdminService, NotificationService } from 'services';
-import { NotificationTypes, Notification, Tariff } from 'models'
+import { NotificationTypes, Notification, Tariff, Error } from 'models'
 
 @Component({
   selector: 'ts-tarrif',
@@ -13,7 +13,7 @@ export class TarrifComponent implements OnInit {
   selectedTariff: Tariff;
   myForm: FormGroup;
   updateForm: FormGroup;
-  constructor(private _adminService: AdminService, private _notification: NotificationService) {
+  constructor(private _adminService: AdminService, private _notificationservice: NotificationService) {
     this.myForm = new FormGroup({
       'city': new FormControl('', Validators.required),
       'serviceType': new FormControl('', Validators.required),
@@ -44,13 +44,15 @@ export class TarrifComponent implements OnInit {
 
 
   onSubmit() {
-    console.log(this.myForm.value)
     this._adminService.insertTarrif(this.myForm.value).subscribe(
       res => {
         let notification = new Notification({ title: 'ثبت شد', info: `تعرفه جدید ثبت شد`, type: NotificationTypes.success });
-        this._notification.notify(notification);
+        this._notificationservice.notify(notification);
       },
-      error => { alert(error); }
+      error => {
+        let notification = new Notification({ title: 'خطا', info: Error.getName(error.code), type: NotificationTypes.error });
+        this._notificationservice.notify(notification);
+      }
     );
   }
   updateTariff(tariff: Tariff) {
@@ -76,11 +78,10 @@ export class TarrifComponent implements OnInit {
       twoWayCost: this.updateForm.value['twoWayCostUpdate'],
       genoShare: this.updateForm.value['genoShareUpdate'],
     }
-    console.log(updatedTariff);
     this._adminService.updateTariff(updatedTariff).subscribe(
       res => {
         let notification = new Notification({ title: 'ثبت شد', info: `تعرفه آپدیت شد`, type: NotificationTypes.success });
-        this._notification.notify(notification);
+        this._notificationservice.notify(notification);
         this.selectedTariff.before2KM = this.updateForm.controls['before2KM'].value;
         this.selectedTariff.after2KM = this.updateForm.controls['after2KM'].value;
         this.selectedTariff.perMin = this.updateForm.controls['perMin'].value;
@@ -90,7 +91,10 @@ export class TarrifComponent implements OnInit {
         this.selectedTariff.genoShare = this.updateForm.controls['genoShare'].value;
         this.selectedTariff = null;
       },
-      error => { alert(error); }
+      error => {
+        let notification = new Notification({ title: 'خطا', info: Error.getName(error.code), type: NotificationTypes.error });
+        this._notificationservice.notify(notification);
+      }
     );
   }
   ngOnInit() {

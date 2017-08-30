@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CopService, NotificationService } from 'services';
-import { Manufacture, Notification, NotificationTypes } from 'models';
+import { Manufacture, Notification, NotificationTypes, Error } from 'models';
 
 @Component({
   selector: 'ts-manage-cars',
@@ -13,7 +13,7 @@ export class ManageCarsComponent implements OnInit {
   myForm: FormGroup;
   manufactures: Manufacture[];
 
-  constructor(private _copService: CopService, private _notification: NotificationService) {
+  constructor(private _copService: CopService, private _notificationservice: NotificationService) {
     this.myForm = new FormGroup({
       'manufactureID': new FormControl('', Validators.required),
       'name': new FormControl('', [Validators.required, Validators.minLength(2)])
@@ -30,10 +30,13 @@ export class ManageCarsComponent implements OnInit {
     this._copService.insertCar(this.myForm.value).subscribe(
       res => {
         let notification = new Notification({ title: 'ثبت شد', info: `خودرو ثبت شد`, type: NotificationTypes.success });
-        this._notification.notify(notification);
+        this._notificationservice.notify(notification);
+        this.myForm.reset();
+        this.myForm.controls['manufactureID'].setValue('');
       },
-      err => {
-        alert(err);
+      error => {
+        let notification = new Notification({ title: 'خطا', info: Error.getName(error.code), type: NotificationTypes.error });
+        this._notificationservice.notify(notification);
       }
     );
   }

@@ -6,7 +6,7 @@ const adminApi = `${API_URL}/admin`;
 @Injectable()
 export class AdminApi {
 
-  public deleteOperatorUrl = (id) => `${adminApi}/operators/${id}`;
+  public removeOperatorUrl = (id) => `${adminApi}/operators/${id}`;
 
   public insertMasterUrl = `${adminApi}/masters`;
 
@@ -46,5 +46,6 @@ export class AdminApi {
   public getDevicesReportUrl = `${adminApi}/report/devices`;
   public getAllProviderClaimReportUrl = `${adminApi}/report/providers`;
   public getPeakTripsReportUrl = `${adminApi}/report/trips/peak`;
+
 
 }

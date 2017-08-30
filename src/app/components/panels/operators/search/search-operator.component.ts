@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {MasterService, NotificationService, AdminService} from 'services';
-import {Operator, Notification, NotificationTypes} from 'models';
+import { MasterService, NotificationService, AdminService } from 'services';
+import { Operator, Notification, NotificationTypes, Error } from 'models';
 @Component({
   selector: 'ts-search-operator',
   templateUrl: './search-operator.component.html',
@@ -8,7 +8,7 @@ import {Operator, Notification, NotificationTypes} from 'models';
 })
 export class SearchOperatorComponent implements OnInit {
 
-  constructor(private _masterService: MasterService, private _notification: NotificationService, private _adminservice: AdminService) { }
+  constructor(private _masterService: MasterService, private _notificationservice: NotificationService, private _adminservice: AdminService) { }
   query: string = '';
   operators: Operator[];
   selectedOperator: Operator;
@@ -32,11 +32,12 @@ export class SearchOperatorComponent implements OnInit {
       this._masterService.banDriver(operator.username).subscribe(
         res => {
           let notification = new Notification({ title: 'ثبت شد', info: `اپراتور مورد نظر بن شد`, type: NotificationTypes.success });
-          this._notification.notify(notification);
+          this._notificationservice.notify(notification);
           operator.accountState = '-1';
         },
-        err => {
-          alert(err);
+        error => {
+          let notification = new Notification({ title: 'خطا', info: Error.getName(error.code), type: NotificationTypes.error });
+          this._notificationservice.notify(notification);
         }
       );
     }
@@ -50,11 +51,12 @@ export class SearchOperatorComponent implements OnInit {
       this._masterService.unBanDriver(operator.username).subscribe(
         res => {
           let notification = new Notification({ title: 'ثبت شد', info: 'اپراتور مورد نظر رفع بن شد', type: NotificationTypes.success });
-          this._notification.notify(notification);
+          this._notificationservice.notify(notification);
           operator.accountState = '3';
         },
-        err => {
-          alert(err);
+        error => {
+          let notification = new Notification({ title: 'خطا', info: Error.getName(error.code), type: NotificationTypes.error });
+          this._notificationservice.notify(notification);
         }
       );
     }
@@ -68,11 +70,12 @@ export class SearchOperatorComponent implements OnInit {
       this._adminservice.banMaster(operator.username).subscribe(
         res => {
           let notification = new Notification({ title: 'ثبت شد', info: `اپراتور ارشد مورد نظر بن شد`, type: NotificationTypes.success });
-          this._notification.notify(notification);
+          this._notificationservice.notify(notification);
           operator.accountState = '-1';
         },
-        err => {
-          alert(err);
+        error => {
+          let notification = new Notification({ title: 'خطا', info: Error.getName(error.code), type: NotificationTypes.error });
+          this._notificationservice.notify(notification);
         }
       );
     }
@@ -86,13 +89,33 @@ export class SearchOperatorComponent implements OnInit {
       this._adminservice.unBanMaster(operator.username).subscribe(
         res => {
           let notification = new Notification({ title: 'ثبت شد', info: 'اپراتور ارشد مورد نظر رفع بن شد', type: NotificationTypes.success });
-          this._notification.notify(notification);
+          this._notificationservice.notify(notification);
           operator.accountState = '3';
         },
-        err => {
-          alert(err);
+        error => {
+          let notification = new Notification({ title: 'خطا', info: Error.getName(error.code), type: NotificationTypes.error });
+          this._notificationservice.notify(notification);
         }
       );
+    }
+    else {
+      alert('کنسل شد');
+    }
+  }
+  delete(operator) {
+    if (confirm("آیا مطمئن هستید؟")) {
+
+      this._adminservice.removeOperator(operator.id).subscribe(
+        res => {
+          let notification = new Notification({title:'حذف شد' , info:'اپراتور مورد نظر حذف شد' , type:NotificationTypes.success});
+          this._notificationservice.notify(notification);
+          operator.accountState = '-2';
+        },
+        error => {
+          let notification = new Notification({ title: 'خطا', info: Error.getName(error.code), type: NotificationTypes.error });
+          this._notificationservice.notify(notification);
+        }
+      )
     }
     else {
       alert('کنسل شد');

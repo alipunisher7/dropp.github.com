@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AdminService, NotificationService } from 'services';
 import { FormGroup, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Services, Notification, NotificationTypes } from 'models';
+import { Services, Notification, NotificationTypes, Error } from 'models';
 
 @Component({
   selector: 'ts-active-services',
@@ -13,7 +13,7 @@ export class ActiveServicesComponent implements OnInit {
   myForm: FormGroup;
   activeServices: Services[];
 
-  constructor(private _adminService: AdminService, private _notification: NotificationService) {
+  constructor(private _adminService: AdminService, private _notificationservice: NotificationService) {
     this.myForm = new FormGroup({
       'city': new FormControl('', Validators.required),
       'serviceType': new FormControl('', Validators.required)
@@ -29,11 +29,12 @@ export class ActiveServicesComponent implements OnInit {
       this._adminService.enableService(service.id).subscribe(
         res => {
           let notification = new Notification({ title: 'فعال شد', info: 'سرویس مورد نظر فعال شد', type: NotificationTypes.success });
-          this._notification.notify(notification);
+          this._notificationservice.notify(notification);
           service.status = true;
         },
-        err => {
-          alert(err);
+        error => {
+          let notification = new Notification({ title: 'خطا', info: Error.getName(error.code), type: NotificationTypes.error });
+          this._notificationservice.notify(notification);
         }
       )
     }
@@ -47,11 +48,12 @@ export class ActiveServicesComponent implements OnInit {
       this._adminService.disableService(service.id).subscribe(
         res => {
           let notification = new Notification({ title: 'غیر فعال شد', info: 'سرویس مورد نظر غیر فعال شد', type: NotificationTypes.success });
-          this._notification.notify(notification);
+          this._notificationservice.notify(notification);
           service.status = false;
         },
-        err => {
-          alert(err);
+        error => {
+          let notification = new Notification({ title: 'خطا', info: Error.getName(error.code), type: NotificationTypes.error });
+          this._notificationservice.notify(notification);
         }
 
       )
@@ -64,13 +66,14 @@ export class ActiveServicesComponent implements OnInit {
   onSubmit() {
     this._adminService.insertService(this.myForm.value).subscribe(res => {
       let notification = new Notification({ title: 'ثبت شد', info: `سرویس جدید ثبت شد`, type: NotificationTypes.success });
-      this._notification.notify(notification);
+      this._notificationservice.notify(notification);
       this.myForm.reset();
       this.myForm.controls['city'].setValue("");
       this.myForm.controls['serviceType'].setValue("");
     },
-      err => {
-        alert(err);
+      error => {
+        let notification = new Notification({ title: 'خطا', info: Error.getName(error.code), type: NotificationTypes.error });
+        this._notificationservice.notify(notification);
       });
   }
 

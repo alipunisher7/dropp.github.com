@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {FormGroup, FormControl, Validators, ReactiveFormsModule} from '@angular/forms';
-import {OperatorService, NotificationService} from 'services';
-import {Notification, NotificationTypes, IStates, ICities} from 'models';
+import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
+import { OperatorService, NotificationService } from 'services';
+import { Notification, NotificationTypes, IStates, ICities, Error } from 'models';
 
 @Component({
   selector: 'ts-subscribe-register',
@@ -12,7 +12,7 @@ export class SubscribeRegisterComponent implements OnInit {
   myForm: FormGroup;
   states: IStates;
   cities: ICities;
-  constructor(private _operatorservice: OperatorService, private _notification: NotificationService) {
+  constructor(private _operatorservice: OperatorService, private _notificationservice: NotificationService) {
     this.myForm = new FormGroup({
       'firstName': new FormControl('', [Validators.required, Validators.minLength(3)]),
       'lastName': new FormControl('', [Validators.required, Validators.minLength(3)]),
@@ -39,13 +39,14 @@ export class SubscribeRegisterComponent implements OnInit {
       res => {
         alert(res.code)
         let notification = new Notification({ title: 'ثبت شد', info: `اشتراک جدید ثبت شد`, type: NotificationTypes.success });
-        this._notification.notify(notification);
+        this._notificationservice.notify(notification);
         this.myForm.reset();
         this.myForm.controls['state'].setValue('');
         this.myForm.controls['city'].setValue('');
       },
-      err => {
-        alert(err);
+      error => {
+        let notification = new Notification({ title: 'خطا', info: Error.getName(error.code), type: NotificationTypes.error });
+        this._notificationservice.notify(notification);
       }
     );
   }

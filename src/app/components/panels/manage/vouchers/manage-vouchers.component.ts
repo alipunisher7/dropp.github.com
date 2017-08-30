@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { OperatorService, MasterService, NotificationService } from 'services';
 import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
-import { Vouchers, Notification, NotificationTypes} from 'models';
+import { Vouchers, Notification, NotificationTypes, Error } from 'models';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -61,8 +61,9 @@ export class ManageVouchersComponent implements OnInit {
         this.editedVoucher.discountValue = this.updateForm.controls['discountValue'].value;
         this.editedVoucher = null;
       },
-      err => {
-        alert(err);
+      error => {
+        let notification = new Notification({ title: 'خطا', info: Error.getName(error.code), type: NotificationTypes.error });
+        this._notificationservice.notify(notification);
       }
     )
   }

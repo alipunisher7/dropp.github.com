@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ITickets, Notification, NotificationTypes } from 'models';
+import { ITickets, Notification, NotificationTypes, Error } from 'models';
 import { OperatorService, NotificationService } from 'services';
 import { Router, ActivatedRoute } from '@angular/router';
 
@@ -10,24 +10,31 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class ViewTicketsComponent implements OnInit {
   tickets: ITickets[];
-  constructor(private _operatorService: OperatorService, private _notification: NotificationService, private router: Router,
+  constructor(private _operatorService: OperatorService, private _notificationservice: NotificationService, private router: Router,
     private route: ActivatedRoute) { }
   // getUnresolvedTickets() {
   //   this._operatorService.getTickets().subscribe(res => this.tickets = res);
   // }
   resolved(ticket) {
-    this._operatorService.resolveTicket(ticket.id).subscribe(
-      res => {
-        let notification = new Notification({ title: 'ثبت شد', info: 'تیکت مورد نظر رسیدگی شد', type: NotificationTypes.success });
-        this._notification.notify(notification);
-        let index = this.tickets.indexOf(ticket);
-        if (index > -1) {
-          this.tickets.splice(index, 1);
-        }
-      },
-      err => {
-        alert(err);
-      });
+    if (confirm('آیا مطمئن هستید؟')) {
+
+      this._operatorService.resolveTicket(ticket.id).subscribe(
+        res => {
+          let notification = new Notification({ title: 'ثبت شد', info: 'تیکت مورد نظر رسیدگی شد', type: NotificationTypes.success });
+          this._notificationservice.notify(notification);
+          let index = this.tickets.indexOf(ticket);
+          if (index > -1) {
+            this.tickets.splice(index, 1);
+          }
+        },
+        error => {
+          let notification = new Notification({ title: 'خطا', info: Error.getName(error.code), type: NotificationTypes.error });
+          this._notificationservice.notify(notification);
+        });
+    }
+    else {
+      alert('کنسل شد')
+    }
   }
   ngOnInit() {
     // this.getUnresolvedTickets()

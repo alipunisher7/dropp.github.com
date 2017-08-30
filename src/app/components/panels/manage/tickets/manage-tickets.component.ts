@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Notification, NotificationTypes, ITickets } from 'models';
+import { Notification, NotificationTypes, ITickets, Error } from 'models';
 import { MasterService, NotificationService } from 'services'
 
 @Component({
@@ -12,7 +12,7 @@ export class ManageTicketsComponent implements OnInit {
 
   myForm: FormGroup;
   tickets: ITickets[];
-  constructor(private _masterService: MasterService, private _notification: NotificationService) {
+  constructor(private _masterService: MasterService, private _notificationservice: NotificationService) {
     this.myForm = new FormGroup({
       'subject': new FormControl('', [Validators.required, Validators.minLength(3)]),
       'role': new FormControl('', Validators.required),
@@ -27,9 +27,16 @@ export class ManageTicketsComponent implements OnInit {
     this._masterService.insertTicketSubject(this.myForm.value).subscribe(
       res => {
         let notification = new Notification({ title: 'ثبت شد', info: `تیکت جدید ثبت شد `, type: NotificationTypes.success });
-        this._notification.notify(notification);
+        this._notificationservice.notify(notification);
+        this.myForm.reset();
+        this.myForm.controls['role'].setValue('');
+        this.myForm.controls['parentID'].setValue('');
       },
-      error => { alert(error); }
+      error => {
+        let notification = new Notification({ title: 'خطا', info: Error.getName(error.code), type: NotificationTypes.error });
+        this._notificationservice.notify(notification);
+
+      }
     );
   }
 

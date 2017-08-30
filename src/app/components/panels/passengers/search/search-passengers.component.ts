@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { OperatorService, NotificationService } from 'services';
-import { Passenger, Notification, NotificationTypes, ISearchParam } from 'models';
+import { Passenger, Notification, NotificationTypes, ISearchParam, Error } from 'models';
 
 @Component({
   selector: 'ts-search-passengers',
@@ -15,7 +15,7 @@ export class SearchPassengersComponent implements OnInit {
   resultCount = 20;
   page = 0;
 
-  constructor(private _operatorServices: OperatorService, private _notification: NotificationService) { }
+  constructor(private _operatorServices: OperatorService, private _notificationservice: NotificationService) { }
 
   searchPassengers() {
     this._operatorServices.searchPassengers({ query: this.query, count: this.resultCount, offset: this.page }).subscribe(res => this.passengers = res);
@@ -38,11 +38,12 @@ export class SearchPassengersComponent implements OnInit {
       this._operatorServices.banPassenger(username).subscribe(
         res => {
           let notification = new Notification({ title: 'ثبت شد', info: `مسافر مورد نظر بن شد`, type: NotificationTypes.success });
-          this._notification.notify(notification);
+          this._notificationservice.notify(notification);
           passenger.stateCode = '-1';
         },
-        err => {
-          alert(err);
+        error => {
+          let notification = new Notification({ title: 'خطا', info: Error.getName(error.code), type: NotificationTypes.error });
+          this._notificationservice.notify(notification);
         }
       );
     }
@@ -57,11 +58,12 @@ export class SearchPassengersComponent implements OnInit {
       this._operatorServices.unBanPassenger(data).subscribe(
         res => {
           let notification = new Notification({ title: 'ثبت شد', info: `مسافر مورد نظر رفع بن شد`, type: NotificationTypes.success });
-          this._notification.notify(notification);
+          this._notificationservice.notify(notification);
           passenger.stateCode = '1';
         },
-        err => {
-          alert(err);
+        error => {
+          let notification = new Notification({ title: 'خطا', info: Error.getName(error.code), type: NotificationTypes.error });
+          this._notificationservice.notify(notification);
         }
       );
     }

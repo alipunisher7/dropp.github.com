@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
 import { MasterService, NotificationService } from 'services';
-import { NotificationTypes, Notification } from 'models'
+import { NotificationTypes, Notification, Error } from 'models'
 
 @Component({
   selector: 'ts-generate-voucher',
@@ -12,7 +12,7 @@ export class GenerateVoucherComponent implements OnInit {
 
   myForm: FormGroup;
 
-  constructor(private _masterService: MasterService, private _notification: NotificationService) {
+  constructor(private _masterService: MasterService, private _notificationservice: NotificationService) {
     this.myForm = new FormGroup({
       'description': new FormControl('', [Validators.required, Validators.minLength(3)]),
       'voucherType': new FormControl('', Validators.required),
@@ -37,10 +37,11 @@ export class GenerateVoucherComponent implements OnInit {
     this._masterService.insertVoucher(this.myForm.value).subscribe(
       res => {
         let notification = new Notification({ title: 'ثبت شد', info: `کد تخفیف ثبت شد`, type: NotificationTypes.success });
-        this._notification.notify(notification);
+        this._notificationservice.notify(notification);
       },
-      err => {
-        alert(err);
+      error => {
+        let notification = new Notification({ title: 'خطا', info: Error.getName(error.code), type: NotificationTypes.error });
+        this._notificationservice.notify(notification);
       }
     );
   }

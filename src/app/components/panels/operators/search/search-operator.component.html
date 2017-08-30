@@ -10,6 +10,7 @@
       <th>وضعیت</th>
       <th>بن کردن</th>
       <th>رفع بن</th>
+      <th>حذف</th>
       <th>اطلاعات بیشتر</th>
     </tr>
   </thead>
@@ -20,14 +21,16 @@
       <td>{{operator.roleName}}</td>
       <td>{{operator.workNumber}}</td>
       <td>{{operator.accountStateName}}</td>
-      <td *ngIf="operator.role == 'V'"><button  class="btn outline error" (click)="banOperator(operator)" [disabled]="operator.accountState == -1">بن</button></td>
-      <td *ngIf="operator.role == 'V'"><button  class="btn outline error" (click)="unBanOperator(operator)" [disabled]="operator.accountState != -1 ">رفع بن</button></td>
-      <td *ngIf="operator.role == 'O'"><button  class="btn outline error" (click)="banOperator(operator)" [disabled]="operator.accountState == -1">بن</button></td>
-      <td *ngIf="operator.role == 'O'"><button  class="btn outline error" (click)="unBanOperator(operator)" [disabled]="operator.accountState != -1 ">رفع بن</button></td>
-      <td *ngIf="operator.role == 'M'"><button  class="btn outline error" (click)="banMaster(operator)" [disabled]="operator.accountState == -1">بن</button></td>
-      <td *ngIf="operator.role == 'M'"><button  class="btn outline error" (click)="unBanMaster(operator)" [disabled]="operator.accountState != -1 ">رفع بن</button></td>
+      <td *ngIf="operator.role == 'V'"><button  class="btn outline error" (click)="banOperator(operator)" [disabled]="operator.accountState == -1|| operator.accountState == -2">بن</button></td>
+      <td *ngIf="operator.role == 'V'"><button  class="btn outline error" (click)="unBanOperator(operator)" [disabled]="operator.accountState != -1|| operator.accountState == -2 ">رفع بن</button></td>
+      <td *ngIf="operator.role == 'O'"><button  class="btn outline error" (click)="banOperator(operator)" [disabled]="operator.accountState == -1|| operator.accountState == -2">بن</button></td>
+      <td *ngIf="operator.role == 'O'"><button  class="btn outline error" (click)="unBanOperator(operator)" [disabled]="operator.accountState != -1|| operator.accountState == -2 ">رفع بن</button></td>
+      <td *ngIf="operator.role == 'M'"><button  class="btn outline error" (click)="banMaster(operator)" [disabled]="operator.accountState == -1 || operator.accountState == -2">بن</button></td>
+      <td *ngIf="operator.role == 'M'"><button  class="btn outline error" (click)="unBanMaster(operator)" [disabled]="operator.accountState != -1 || operator.accountState == -2 ">رفع بن</button></td>
       <td *ngIf="operator.role == 'A'"><button  class="btn outline error" (click)="banOperator(operator)" [disabled]="true">بن</button></td>
       <td *ngIf="operator.role == 'A'"><button  class="btn outline error" (click)="unBanOperator(operator)" [disabled]="true">رفع بن</button></td>
+      <td ><button  class="btn outline error" (click)="delete(operator)" [disabled]="operator.role =='A' || operator.accountState == -2"  >حذف</button></td>
+
       <td><button class="btn accent" (click)="onMoreClick(operator)">اطلاعات بیشتر</button></td>
     </tr>
     <tr *ngIf="!operator" class="no-data">

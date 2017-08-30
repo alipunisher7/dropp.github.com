@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
-import {MasterService, NotificationService} from 'services';
-import {Notification, NotificationTypes } from 'models';
+import { MasterService, NotificationService } from 'services';
+import { Notification, NotificationTypes, Error } from 'models';
 
 @Component({
   selector: 'ts-operator-change-password',
@@ -35,8 +35,9 @@ export class OperatorChangePasswordComponent implements OnInit {
         this._notificationservice.notify(notification);
         this.myForm.reset();
       },
-      err => {
-        alert(err);
+      error => {
+        let notification = new Notification({ title: 'خطا', info: Error.getName(error.code), type: NotificationTypes.error });
+        this._notificationservice.notify(notification);
       }
     )
     console.log(data);

@@ -15,7 +15,7 @@ export class AdminService {
   constructor(private _http: AuthHttpService, private _adminApi: AdminApi) { }
 
   removeOperator(operatorId: string): Observable<any> {
-    let url = this._adminApi.deleteOperatorUrl(operatorId);
+    let url = this._adminApi.removeOperatorUrl(operatorId);
 
     return this._http
       .delete(url)

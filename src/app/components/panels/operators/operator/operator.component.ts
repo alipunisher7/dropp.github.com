@@ -1,7 +1,7 @@
-import { Component, OnInit, Input} from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MasterService, NotificationService } from 'services';
-import { Operator, Notification, NotificationTypes } from 'models';
+import { Operator, Notification, NotificationTypes, Error } from 'models';
 
 @Component({
   selector: 'ts-operator',
@@ -10,7 +10,7 @@ import { Operator, Notification, NotificationTypes } from 'models';
 })
 export class OperatorComponent implements OnInit {
   myForm: FormGroup;
-  constructor(private _masterService: MasterService, private _notification: NotificationService) {
+  constructor(private _masterService: MasterService, private _notificationservice: NotificationService) {
     this.myForm = new FormGroup({
       'firstName': new FormControl('', [Validators.required, Validators.minLength(2)]),
       'lastName': new FormControl('', [Validators.required, Validators.minLength(2)]),
@@ -71,12 +71,13 @@ export class OperatorComponent implements OnInit {
     console.log(operator);
     this._masterService.insertOperator(operator).subscribe(res => {
       let notification = new Notification({ title: 'ثبت شد', info: `اپراتور مورد نظر ویرایش شد`, type: NotificationTypes.success });
-      this._notification.notify(notification);
+      this._notificationservice.notify(notification);
       this.myForm.reset();
       this.myForm.controls['city'].setValue('');
     },
-      err => {
-        alert(err);
+      error => {
+        let notification = new Notification({ title: 'خطا', info: Error.getName(error.code), type: NotificationTypes.error });
+        this._notificationservice.notify(notification);
       }
     );
   }

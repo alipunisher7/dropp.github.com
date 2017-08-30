@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
-import {OperatorService, NotificationService, AdminService} from 'services';
-import {Notification, NotificationTypes, Driver, IServiceProviders} from 'models';
+import { OperatorService, NotificationService, AdminService } from 'services';
+import { Notification, NotificationTypes, Driver, IServiceProviders, Error } from 'models';
 
 @Component({
   selector: 'ts-confirm-drivers',
@@ -66,8 +66,9 @@ export class ConfirmDriversComponent implements OnInit {
         let notification = new Notification({ title: 'ثبت شد', info: `مدرک مورد نظر ثبت شد`, type: NotificationTypes.success });
         this._notificationservice.notify(notification);
       },
-      err => {
-        alert(err);
+      error => {
+        let notification = new Notification({ title: 'خطا', info: Error.getName(error.code), type: NotificationTypes.error });
+        this._notificationservice.notify(notification);
       }
     )
   }
@@ -75,17 +76,23 @@ export class ConfirmDriversComponent implements OnInit {
     this.driverMoreInfo = driver;
   }
   confirm(driver, provider) {
-    confirm('آیا میخواهید تایید کنید');
-    this._operatorservice.confirmDriver(driver.username, provider).subscribe(
-      res => {
-        let notification = new Notification({ title: 'تایید شد', info: 'راننده مورد نظر تایید شد', type: NotificationTypes.success });
-        this._notificationservice.notify(notification);
-        driver.stateCode = 3;
-      },
-      err => {
-        alert(err);
-      }
-    )
+    if (confirm('آیا میخواهید تایید کنید')) {
+
+      this._operatorservice.confirmDriver(driver.username, provider).subscribe(
+        res => {
+          let notification = new Notification({ title: 'تایید شد', info: 'راننده مورد نظر تایید شد', type: NotificationTypes.success });
+          this._notificationservice.notify(notification);
+          driver.stateCode = 3;
+        },
+        error => {
+          let notification = new Notification({ title: 'خطا', info: Error.getName(error.code), type: NotificationTypes.error });
+          this._notificationservice.notify(notification);
+        }
+      )
+    }
+    else {
+      alert('کنسل شد');
+    }
   }
 
 }

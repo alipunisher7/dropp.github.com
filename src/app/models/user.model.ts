@@ -1,6 +1,7 @@
 import { BirthDate } from './birthdate.model';
 
 export interface IUser {
+  id?: string;
   email?: string;
   role?: string;
   username: string;
@@ -31,6 +32,7 @@ export class User implements IUser {
   public city?: string;
   public gender?: Gender;
   public birthDate?: BirthDate;
+  public id?: string;
 
   getGenderName() {
     console.log('this.gender: ', this.gender);
@@ -49,5 +51,6 @@ export class User implements IUser {
     this.city = user.city;
     this.gender = user.gender;
     this.birthDate = user.birthDate;
+    this.id = user.id;
   }
 }

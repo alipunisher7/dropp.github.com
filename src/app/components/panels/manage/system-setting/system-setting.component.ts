@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AdminService, NotificationService } from 'services';
-import { ISettings, Notification, NotificationTypes } from 'models';
+import { ISettings, Notification, NotificationTypes, Error } from 'models';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -51,20 +51,21 @@ export class SystemSettingComponent implements OnInit {
         let notification = new Notification({ title: 'ثبت شد', info: 'تغییرات ثبت شد', type: NotificationTypes.success });
         this._notificationservice.notify(notification);
       },
-      err => {
-        alert(err);
+      error => {
+        let notification = new Notification({ title: 'خطا', info: Error.getName(error.code), type: NotificationTypes.error });
+        this._notificationservice.notify(notification);
       }
     )
   }
   onUpdate() {
-    console.log(this.updateForm.value);
     this._adminservice.updateSystemSetting(this.settings).subscribe(
       res => {
         let notification = new Notification({ title: 'ثبت شد', info: 'تغییرات ثبت شد', type: NotificationTypes.success });
         this._notificationservice.notify(notification);
       },
-      err => {
-        alert(err);
+      error => {
+        let notification = new Notification({ title: 'خطا', info: Error.getName(error.code), type: NotificationTypes.error });
+        this._notificationservice.notify(notification);
       }
     )
   }
@@ -79,7 +80,7 @@ export class SystemSettingComponent implements OnInit {
     this.updateForm.controls['PIOSUpdate'].setValue(this.settings.PIOSUpdate);
     this.updateForm.controls['DCriticalIOSUpdate'].setValue(this.settings.DCriticalIOSUpdate);
     this.updateForm.controls['DIOSUpdate'].setValue(this.settings.DIOSUpdate);
-    console.log(this.settings);
+
   }
 
 }

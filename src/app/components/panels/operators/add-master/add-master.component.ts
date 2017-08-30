@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AdminService, NotificationService } from 'services';
-import { Operator, Notification, NotificationTypes } from 'models';
+import { Operator, Notification, NotificationTypes, Error } from 'models';
 
 @Component({
   selector: 'ts-add-master',
@@ -11,7 +11,7 @@ import { Operator, Notification, NotificationTypes } from 'models';
 export class AddMasterComponent implements OnInit {
   myForm: FormGroup;
 
-  constructor(private _adminService: AdminService, private _notification: NotificationService) {
+  constructor(private _adminService: AdminService, private _notificationservice: NotificationService) {
     this.myForm = new FormGroup({
       'firstName': new FormControl('', [Validators.required, Validators.minLength(2)]),
       'lastName': new FormControl('', [Validators.required, Validators.minLength(2)]),
@@ -39,12 +39,13 @@ export class AddMasterComponent implements OnInit {
     console.log(operator);
     this._adminService.insertMaster(operator).subscribe(res => {
       let notification = new Notification({ title: 'ثبت شد', info: `اپراتور ارشد جدید ثبت شد`, type: NotificationTypes.success });
-      this._notification.notify(notification);
+      this._notificationservice.notify(notification);
       this.myForm.reset();
       this.myForm.controls['city'].setValue('');
     },
-      err => {
-        alert(err);
+      error => {
+        let notification = new Notification({ title: 'خطا', info: Error.getName(error.code), type: NotificationTypes.error });
+        this._notificationservice.notify(notification);
       }
     );
   }

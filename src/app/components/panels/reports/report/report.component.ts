@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { AdminService, ProviderService } from 'services';
+import { AdminService, ProviderService, NotificationService } from 'services';
 import { saveAs } from 'file-saver';
+import { Error, NotificationTypes, Notification } from 'models';
 
 @Component({
   selector: 'ts-report',
@@ -9,7 +10,7 @@ import { saveAs } from 'file-saver';
 })
 export class ReportComponent implements OnInit {
 
-  constructor(private _adminservice: AdminService, private _providerservice: ProviderService) { }
+  constructor(private _adminservice: AdminService, private _providerservice: ProviderService, private _notificationservice: NotificationService) { }
   downloadFile(data: any) {
     //var blob = new Blob([data], { type: 'application/vnd.ms-excel' });
     // var url = window.URL.createObjectURL(blob);
@@ -22,7 +23,11 @@ export class ReportComponent implements OnInit {
       saveAs(blob, filename);
 
     },
-      err => alert(err));
+      error => {
+
+        let notification = new Notification({ title: 'خطا', info: Error.getName(error.code), type: NotificationTypes.error });
+        this._notificationservice.notify(notification);
+      });
   }
   getTripReport() {
     this._adminservice.getTripReport().subscribe(response => {
@@ -31,7 +36,10 @@ export class ReportComponent implements OnInit {
       saveAs(blob, filename);
 
     },
-      err => alert(err))
+      error => {
+        let notification = new Notification({ title: 'خطا', info: Error.getName(error.code), type: NotificationTypes.error });
+        this._notificationservice.notify(notification);
+      });
   }
   getPassengersAgeReport() {
     this._adminservice.getPassengersAgeReport().subscribe(response => {
@@ -40,7 +48,10 @@ export class ReportComponent implements OnInit {
       saveAs(blob, filename);
 
     },
-      err => alert(err))
+      error => {
+        let notification = new Notification({ title: 'خطا', info: Error.getName(error.code), type: NotificationTypes.error });
+        this._notificationservice.notify(notification);
+      });
   }
   getOperatorsAgeReport() {
     this._adminservice.getOperatorsAgeReport().subscribe(response => {
@@ -49,7 +60,10 @@ export class ReportComponent implements OnInit {
       saveAs(blob, filename);
 
     },
-      err => alert(err))
+      error => {
+        let notification = new Notification({ title: 'خطا', info: Error.getName(error.code), type: NotificationTypes.error });
+        this._notificationservice.notify(notification);
+      });
   }
   getTripsCostReport() {
     this._adminservice.getTripsCostReport().subscribe(response => {
@@ -58,7 +72,10 @@ export class ReportComponent implements OnInit {
       saveAs(blob, filename);
 
     },
-      err => alert(err))
+      error => {
+        let notification = new Notification({ title: 'خطا', info: Error.getName(error.code), type: NotificationTypes.error });
+        this._notificationservice.notify(notification);
+      });
   }
   getDevicesReport() {
     this._adminservice.getDevicesReport().subscribe(response => {
@@ -67,7 +84,10 @@ export class ReportComponent implements OnInit {
       saveAs(blob, filename);
 
     },
-      err => alert(err))
+      error => {
+        let notification = new Notification({ title: 'خطا', info: Error.getName(error.code), type: NotificationTypes.error });
+        this._notificationservice.notify(notification);
+      });
   }
   getDriversReport() {
     this._providerservice.getDriversReport().subscribe(response => {
@@ -76,7 +96,10 @@ export class ReportComponent implements OnInit {
       saveAs(blob, filename);
 
     },
-      err => alert(err))
+      error => {
+        let notification = new Notification({ title: 'خطا', info: Error.getName(error.code), type: NotificationTypes.error });
+        this._notificationservice.notify(notification);
+      });
   }
   getProviderClaimReport() {
     this._providerservice.getProviderClaimReport().subscribe(response => {
@@ -85,7 +108,10 @@ export class ReportComponent implements OnInit {
       saveAs(blob, filename);
 
     },
-      err => alert(err))
+      error => {
+        let notification = new Notification({ title: 'خطا', info: Error.getName(error.code), type: NotificationTypes.error });
+        this._notificationservice.notify(notification);
+      });
   }
   getAllProviderClaimReport() {
     this._adminservice.getAllProviderClaimReport().subscribe(response => {
@@ -94,7 +120,10 @@ export class ReportComponent implements OnInit {
       saveAs(blob, filename);
 
     },
-      err => alert(err))
+      error => {
+        let notification = new Notification({ title: 'خطا', info: Error.getName(error.code), type: NotificationTypes.error });
+        this._notificationservice.notify(notification);
+      });
   }
   getPeakTripsReport() {
     this._adminservice.getPeakTripsReport().subscribe(response => {
@@ -103,7 +132,10 @@ export class ReportComponent implements OnInit {
       saveAs(blob, filename);
 
     },
-      err => alert(err))
+      error => {
+        let notification = new Notification({ title: 'خطا', info: Error.getName(error.code), type: NotificationTypes.error });
+        this._notificationservice.notify(notification);
+      });
   }
 
   ngOnInit() {

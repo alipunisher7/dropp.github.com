@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { OperatorService, NotificationService } from 'services';
-import { IOrganization, Notification, NotificationTypes } from 'models';
+import { IOrganization, Notification, NotificationTypes, Error } from 'models';
 
 @Component({
   selector: 'ts-search-organization',
@@ -34,8 +34,9 @@ export class SearchOrganizationComponent implements OnInit {
         this._notificationservice.notify(notification);
         organization.accountState = 'VERIFIED';
       },
-      err => {
-        alert(err);
+      error => {
+        let notification = new Notification({ title: 'خطا', info: Error.getName(error.code), type: NotificationTypes.error });
+        this._notificationservice.notify(notification);
       })
   }
   remove(organization) {
@@ -50,8 +51,9 @@ export class SearchOrganizationComponent implements OnInit {
             this.organizations.splice(index, 1);
           }
         },
-        err => {
-          alert(err);
+        error => {
+          let notification = new Notification({ title: 'خطا', info: Error.getName(error.code), type: NotificationTypes.error });
+          this._notificationservice.notify(notification);
         })
     }
     else {

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AdminService, NotificationService } from 'services'
 import { Router, ActivatedRoute } from '@angular/router';
-import { NotificationTypes, Notification, Bugs } from 'models';
+import { NotificationTypes, Notification, Bugs, Error } from 'models';
 
 @Component({
   selector: 'ts-bugs',
@@ -17,16 +17,23 @@ export class BugsComponent implements OnInit {
   //   this._adminservice.getBugs().subscribe(res => this.bugs = res);
   // }
   onChange(bug) {
-    this._adminservice.resolveBug(bug.id).subscribe(
-      res => {
-        let notification = new Notification({ title: 'ثبت شد', info: 'خطا مورد نظر رسیدگی شد', type: NotificationTypes.success });
-        this._notificationservice.notify(notification);
-        bug.state = 'R';
-      },
-      err => {
-        alert(err);
-      }
-    )
+    if (confirm("آیا مطمئن هستید؟")) {
+
+      this._adminservice.resolveBug(bug.id).subscribe(
+        res => {
+          let notification = new Notification({ title: 'ثبت شد', info: 'خطا مورد نظر رسیدگی شد', type: NotificationTypes.success });
+          this._notificationservice.notify(notification);
+          bug.state = 'R';
+        },
+        error => {
+          let notification = new Notification({ title: 'خطا', info: Error.getName(error.code), type: NotificationTypes.error });
+          this._notificationservice.notify(notification);
+        }
+      )
+    }
+    else {
+      alert('کنسل شد');
+    }
   }
   ngOnInit() {
     // this.getbugs();

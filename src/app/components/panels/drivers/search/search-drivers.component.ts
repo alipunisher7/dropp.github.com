@@ -1,7 +1,7 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { OperatorService, NotificationService} from 'services';
-import { Driver, Notification, NotificationTypes, ISearchParam } from 'models';
+import { OperatorService, NotificationService } from 'services';
+import { Driver, Notification, NotificationTypes, ISearchParam, Error } from 'models';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/throttleTime';
@@ -21,7 +21,7 @@ export class SearchDriversComponent implements OnInit {
   resultCount = 20;
   page = 0;
 
-  constructor(private _operatorServices: OperatorService, private _notification: NotificationService) {
+  constructor(private _operatorServices: OperatorService, private _notificationservice: NotificationService) {
   }
 
   searchDrivers() {
@@ -52,11 +52,12 @@ export class SearchDriversComponent implements OnInit {
       this._operatorServices.banDriver(data).subscribe(
         res => {
           let notification = new Notification({ title: 'ثبت شد', info: `راننده مورد نظر بن شد`, type: NotificationTypes.success });
-          this._notification.notify(notification);
+          this._notificationservice.notify(notification);
           driver.stateCode = '-1';
         },
-        err => {
-          alert(err);
+        error => {
+          let notification = new Notification({ title: 'خطا', info: Error.getName(error.code), type: NotificationTypes.error });
+          this._notificationservice.notify(notification);
         }
       );
     }
@@ -71,11 +72,12 @@ export class SearchDriversComponent implements OnInit {
       this._operatorServices.unBanDriver(data).subscribe(
         res => {
           let notification = new Notification({ title: 'ثبت شد', info: `راننده مورد نظر رفع بن شد`, type: NotificationTypes.success });
-          this._notification.notify(notification);
+          this._notificationservice.notify(notification);
           driver.stateCode = '3';
         },
-        err => {
-          alert(err);
+        error => {
+          let notification = new Notification({ title: 'خطا', info: Error.getName(error.code), type: NotificationTypes.error });
+          this._notificationservice.notify(notification);
         }
       );
     }

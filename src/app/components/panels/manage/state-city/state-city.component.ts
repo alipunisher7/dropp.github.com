@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {AdminService, NotificationService, OperatorService} from 'services';
+import { AdminService, NotificationService, OperatorService } from 'services';
 import { FormGroup, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
-import {NotificationTypes, Notification, States} from 'models';
+import { NotificationTypes, Notification, States, Error } from 'models';
 
 @Component({
   selector: 'ts-state-city',
@@ -27,9 +27,11 @@ export class StateCityComponent implements OnInit {
         let notification = new Notification({ title: 'ثبت شد', info: 'استان جدید ثبت شد', type: NotificationTypes.success });
         this._notificationservice.notify(notification);
         this.states.push(new States({ 'name': this.stateForm.controls['name'].value }))
+        this.stateForm.reset();
       },
-      err => {
-        alert(err);
+      error => {
+        let notification = new Notification({ title: 'خطا', info: Error.getName(error.code), type: NotificationTypes.error });
+        this._notificationservice.notify(notification);
       }
     )
   }
@@ -45,8 +47,9 @@ export class StateCityComponent implements OnInit {
         this.cityForm.reset();
         this.cityForm.controls['id'].setValue('');
       },
-      err => {
-        alert(err);
+      error => {
+        let notification = new Notification({ title: 'خطا', info: Error.getName(error.code), type: NotificationTypes.error });
+        this._notificationservice.notify(notification);
       }
     )
   }

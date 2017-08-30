@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProviderService, NotificationService } from 'services';
-import { IDriverDebt, Notification, NotificationTypes } from 'models';
+import { IDriverDebt, Notification, NotificationTypes, Error } from 'models';
 import { Router, ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'ts-drivers-debt',
@@ -33,8 +33,9 @@ export class DriversDebtComponent implements OnInit {
           this.mddrivers.splice(index, 1);
         }
       },
-      err => {
-        alert(err);
+      error => {
+        let notification = new Notification({ title: 'خطا', info: Error.getName(error.code), type: NotificationTypes.error });
+        this._notificationservice.notify(notification);
       }
     )
   }
@@ -45,8 +46,9 @@ export class DriversDebtComponent implements OnInit {
         let notification = new Notification({ title: 'ثبت شد', info: 'راننده های مورد نظر بن شدند', type: NotificationTypes.success });
         this._notificationservice.notify(notification);
       },
-      err => {
-        alert(err);
+      error => {
+        let notification = new Notification({ title: 'خطا', info: Error.getName(error.code), type: NotificationTypes.error });
+        this._notificationservice.notify(notification);
       }
     )
   }

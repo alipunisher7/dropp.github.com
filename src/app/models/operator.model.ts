@@ -11,6 +11,7 @@ export class Operator extends User {
   public accountState?: string;
   public role?: string;
   private accountStateNames = {
+    '-2': 'حذف شده',
     '-1': 'بن شده',
     '0': 'غیر فعال',
     '3': 'فعال',

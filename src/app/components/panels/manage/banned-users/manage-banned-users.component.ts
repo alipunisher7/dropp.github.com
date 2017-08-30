@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { OperatorService, NotificationService } from 'services';
-import { User, Notification, NotificationTypes } from 'models';
+import { User, Notification, NotificationTypes, Error } from 'models';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -12,7 +12,7 @@ export class ManageBannedUsersComponent implements OnInit {
   drivers: User[];
   passengers: User[];
 
-  constructor(private _operatorService: OperatorService, private _notification: NotificationService, private router: Router,
+  constructor(private _operatorService: OperatorService, private _notificationservice: NotificationService, private router: Router,
     private route: ActivatedRoute) { }
 
   // getBannedDrivers() {
@@ -23,30 +23,48 @@ export class ManageBannedUsersComponent implements OnInit {
   //   this._operatorService.getBannedPassengers().subscribe(res => this.passengers = res);
   // }
   unBanDriver(driver) {
-    this._operatorService.unBanDriver(driver.username).subscribe(
-      res => {
-        let notification = new Notification({ title: 'ثبت شد', info: `راننده مورد نظر رفع بن شد `, type: NotificationTypes.success });
-        this._notification.notify(notification);
-        let index = this.drivers.indexOf(driver);
-        if (index > -1) {
-          this.drivers.splice(index, 1);
+    if (confirm('آیا مطمئن هستید؟')) {
+
+      this._operatorService.unBanDriver(driver.username).subscribe(
+        res => {
+          let notification = new Notification({ title: 'ثبت شد', info: `راننده مورد نظر رفع بن شد `, type: NotificationTypes.success });
+          this._notificationservice.notify(notification);
+          let index = this.drivers.indexOf(driver);
+          if (index > -1) {
+            this.drivers.splice(index, 1);
+          }
+        },
+        error => {
+          let notification = new Notification({ title: 'خطا', info: Error.getName(error.code), type: NotificationTypes.error });
+          this._notificationservice.notify(notification);
         }
-      },
-      error => { alert(error); }
-    );
+      );
+    }
+    else {
+      alert('کنسل شد');
+    }
   }
   unBanPassenger(passenger) {
-    this._operatorService.unBanPassenger(passenger.username).subscribe(
-      res => {
-        let notification = new Notification({ title: 'ثبت شد', info: `مسافر مورد نظر رفع بن شد `, type: NotificationTypes.success });
-        this._notification.notify(notification);
-        let index = this.passengers.indexOf(passenger);
-        if (index > -1) {
-          this.passengers.splice(index, 1);
+    if (confirm('آیا مطمئن هستید؟')) {
+
+      this._operatorService.unBanPassenger(passenger.username).subscribe(
+        res => {
+          let notification = new Notification({ title: 'ثبت شد', info: `مسافر مورد نظر رفع بن شد `, type: NotificationTypes.success });
+          this._notificationservice.notify(notification);
+          let index = this.passengers.indexOf(passenger);
+          if (index > -1) {
+            this.passengers.splice(index, 1);
+          }
+        },
+        error => {
+          let notification = new Notification({ title: 'خطا', info: Error.getName(error.code), type: NotificationTypes.error });
+          this._notificationservice.notify(notification);
         }
-      },
-      error => { alert(error); }
-    );
+      );
+    }
+    else {
+      alert('کنسل شد');
+    }
   }
 
   ngOnInit() {

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {ProviderService, NotificationService} from 'services';
+import { ProviderService, NotificationService } from 'services';
 import { FormControl } from '@angular/forms';
-import { Driver, Notification, NotificationTypes, ISearchParam } from 'models';
+import { Driver, Notification, NotificationTypes, ISearchParam, Error } from 'models';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/throttleTime';
@@ -33,8 +33,9 @@ export class ProviderSearchDriversComponent implements OnInit {
           this._notificationservice.notify(notification);
           driver.accountState = '-1';
         },
-        err => {
-          alert(err);
+        error => {
+          let notification = new Notification({ title: 'خطا', info: Error.getName(error.code), type: NotificationTypes.error });
+          this._notificationservice.notify(notification);
         }
       )
     }
@@ -50,8 +51,9 @@ export class ProviderSearchDriversComponent implements OnInit {
           this._notificationservice.notify(notification);
           driver.accountState = '3';
         },
-        err => {
-          alert(err);
+        error => {
+          let notification = new Notification({ title: 'خطا', info: Error.getName(error.code), type: NotificationTypes.error });
+          this._notificationservice.notify(notification);
         }
       )
     }
@@ -67,8 +69,9 @@ export class ProviderSearchDriversComponent implements OnInit {
           let notification = new Notification({ title: 'غیر فعال شد', info: 'راننده مورد نظر غیر فعال شد', type: NotificationTypes.success });
           this._notificationservice.notify(notification);
         },
-        err => {
-          alert(err);
+        error => {
+          let notification = new Notification({ title: 'خطا', info: Error.getName(error.code), type: NotificationTypes.error });
+          this._notificationservice.notify(notification);
         }
       )
     }
@@ -87,8 +90,9 @@ export class ProviderSearchDriversComponent implements OnInit {
         // }
         driver.credit = 0;
       },
-      err => {
-        alert(err);
+      error => {
+        let notification = new Notification({ title: 'خطا', info: Error.getName(error.code), type: NotificationTypes.error });
+        this._notificationservice.notify(notification);
       }
     )
   }
