@@ -1,0 +1,22 @@
+<h2>تغییر رمز عبور</h2>
+<form [formGroup]='myForm' (ngSubmit)="onSubmit()" >
+  <div formGroupName="userpassword">
+  <div>
+    <label>رمز عبور</label>
+    <input type="password" name="newPass" value="" formControlName="newPass">
+    <div *ngIf="myForm.controls['userpassword'].controls['newPass'].dirty && !myForm.controls['userpassword'].controls['newPass'].valid" >
+      <span>رمز عبور باید حداقل 6 کاراکتر باشد</span>
+    </div>
+  </div><br>
+  <div>
+    <label>تکرار رمز عبور</label>
+    <input type="password" name="rePass" value="" formControlName="rePass">
+    <div *ngIf="myForm.controls['userpassword'].controls['rePass'].dirty && !myForm.controls['userpassword'].valid" >
+      <span>رمز عبور و تکرار آن یکسان نیست</span>
+    </div>
+  </div><br>
+</div>
+<div>
+  <button type="submit" [disabled]="!myForm.valid">ثبت</button>
+</div>
+</form>

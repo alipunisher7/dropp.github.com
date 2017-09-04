@@ -9,7 +9,7 @@
       <th>تسویه حساب</th>
       <th>بن کردن</th>
       <th>رفع بن </th>
-      <th>غیر فعال کردن</th>
+      <th>حذف</th>
     </tr>
   </thead>
   <tbody>
@@ -18,9 +18,9 @@
       <td>{{driver.credit}}</td>
       <td>{{driver.accountStateName}}</td>
       <td><button (click)=pay(driver) [disabled]="driver.credit==0">تسویه</button></td>
-      <td><button (click)=banDriver(driver) [disabled]="driver.accountState == '-1'" >بن</button></td>
-      <td><button (click)=unBanDriver(driver) [disabled]="driver.accountState != '-1'" >رفع بن</button></td>
-      <td><button (click)=deactiveDriver(driver) >غیر فعال کردن</button></td>
+      <td><button (click)=banDriver(driver) [disabled]="driver.accountState == -1" >بن</button></td>
+      <td><button (click)=unBanDriver(driver) [disabled]="driver.accountState != -1" >رفع بن</button></td>
+      <td><button (click)=deleteDriver(driver) [disabled]="driver.accountState == -2">حذف</button></td>
     </tr>
     <tr *ngIf="!drivers" class="no-data">
       <td colspan=75%>

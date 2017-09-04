@@ -20,6 +20,12 @@ const GenderNames = {
   'F': 'زن',
   'M': 'مرد'
 }
+const cityNames = {
+  'TE': 'تهران',
+  'MA': 'مشهد',
+  'IS': 'اصفهان',
+  'GO': 'گرگان'
+}
 
 export class User implements IUser {
   public role?: string;
@@ -35,9 +41,13 @@ export class User implements IUser {
   public id?: string;
 
   getGenderName() {
-    console.log('this.gender: ', this.gender);
+    // console.log('this.gender: ', this.gender);
     let gender = !!this.gender ? GenderNames[this.gender] : '-';
     return gender;
+  }
+  getCityName() {
+    let city = !!this.city ? cityNames[this.city] : '-';
+    return city;
   }
 
   constructor(user: IUser) {

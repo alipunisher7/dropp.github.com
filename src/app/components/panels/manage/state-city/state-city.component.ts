@@ -26,7 +26,8 @@ export class StateCityComponent implements OnInit {
       res => {
         let notification = new Notification({ title: 'ثبت شد', info: 'استان جدید ثبت شد', type: NotificationTypes.success });
         this._notificationservice.notify(notification);
-        this.states.push(new States({ 'name': this.stateForm.controls['name'].value }))
+        this.getStates();
+        // this.states.push(new States({ 'name': this.stateForm.controls['name'].value }))
         this.stateForm.reset();
       },
       error => {

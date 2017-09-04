@@ -12,6 +12,7 @@ export class OperatorComponent implements OnInit {
   myForm: FormGroup;
   constructor(private _masterService: MasterService, private _notificationservice: NotificationService) {
     this.myForm = new FormGroup({
+      'id': new FormControl(''),
       'firstName': new FormControl('', [Validators.required, Validators.minLength(2)]),
       'lastName': new FormControl('', [Validators.required, Validators.minLength(2)]),
       'birthDate': new FormControl('', Validators.required),
@@ -20,8 +21,8 @@ export class OperatorComponent implements OnInit {
       'phoneNumber': new FormControl('', [Validators.required, Validators.minLength(11)]),
       'email': new FormControl('', [Validators.required, Validators.pattern("[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?")]),
       'userpassword': new FormGroup({
-        'password': new FormControl('', [Validators.required, Validators.minLength(6)]),
-        're-password': new FormControl('', Validators.required)
+        'password': new FormControl('', Validators.minLength(6)),
+        're-password': new FormControl('')
       }, this.rePassMatchValidator),
       'gender': new FormControl('', Validators.required),
     });
@@ -30,6 +31,7 @@ export class OperatorComponent implements OnInit {
   editOperator: Operator;
   edit(operator) {
     this.editOperator = operator;
+    this.myForm.controls['id'].setValue(operator.id);
     this.myForm.controls['firstName'].setValue(operator.firstName);
     this.myForm.controls['lastName'].setValue(operator.lastName);
     this.myForm.controls['birthDate'].setValue(operator.birthDate);
@@ -61,7 +63,7 @@ export class OperatorComponent implements OnInit {
       password: data.userpassword.password,
       phoneNumber: data.phoneNumber,
       username: data.username,
-      workNumber: data.workPhoneCode + data.workNumber
+      workNumber: data.workNumber,
     });
 
     return operator;
@@ -69,11 +71,12 @@ export class OperatorComponent implements OnInit {
   onSubmit() {
     let operator = this.convertOperatorData(this.myForm.value);
     console.log(operator);
-    this._masterService.insertOperator(operator).subscribe(res => {
+    this._masterService.updateOperator(this.myForm.controls['id'].value, operator).subscribe(res => {
       let notification = new Notification({ title: 'ثبت شد', info: `اپراتور مورد نظر ویرایش شد`, type: NotificationTypes.success });
       this._notificationservice.notify(notification);
       this.myForm.reset();
       this.myForm.controls['city'].setValue('');
+      this.editOperator = null;
     },
       error => {
         let notification = new Notification({ title: 'خطا', info: Error.getName(error.code), type: NotificationTypes.error });

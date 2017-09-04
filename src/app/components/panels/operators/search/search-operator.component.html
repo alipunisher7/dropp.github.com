@@ -29,7 +29,8 @@
       <td *ngIf="operator.role == 'M'"><button  class="btn outline error" (click)="unBanMaster(operator)" [disabled]="operator.accountState != -1 || operator.accountState == -2 ">رفع بن</button></td>
       <td *ngIf="operator.role == 'A'"><button  class="btn outline error" (click)="banOperator(operator)" [disabled]="true">بن</button></td>
       <td *ngIf="operator.role == 'A'"><button  class="btn outline error" (click)="unBanOperator(operator)" [disabled]="true">رفع بن</button></td>
-      <td ><button  class="btn outline error" (click)="delete(operator)" [disabled]="operator.role =='A' || operator.accountState == -2"  >حذف</button></td>
+      <td *ngIf="operator.role == 'M' ||operator.role == 'A' "><button  class="btn outline error" (click)="masterdelete(operator)" [disabled]="operator.role =='A' || operator.accountState == -2"  >حذف</button></td>
+      <td *ngIf="operator.role == 'O' || operator.role == 'V'"><button  class="btn outline error" (click)="delete(operator)" [disabled]="operator.role =='A' || operator.accountState == -2"  >حذف</button></td>
 
       <td><button class="btn accent" (click)="onMoreClick(operator)">اطلاعات بیشتر</button></td>
     </tr>

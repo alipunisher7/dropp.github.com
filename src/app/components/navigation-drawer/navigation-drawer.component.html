@@ -1,5 +1,5 @@
 <nav>
-  <ts-nav *ngFor="let navItem of navItems, index as i" [navItem]="navItem" [seperator]="i" (onClick)="onNavClick($event)"></ts-nav>
+  <ts-nav *ngFor="let navItem of navItems, index as i" [navItem]="navItem" [seperator]="i"></ts-nav>
 
   <div class="drawer-container">
     <a class="btn outline accent send-service" routerLink="operator/send-taxi" routerLinkActive='active'>ارسال سرویس</a>

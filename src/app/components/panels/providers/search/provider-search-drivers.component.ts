@@ -61,13 +61,14 @@ export class ProviderSearchDriversComponent implements OnInit {
       alert('کنسل شد');
     }
   }
-  deactiveDriver(driver) {
+  deleteDriver(driver) {
     if (confirm('آیا مطمئن هستید؟')) {
 
-      this._providerservice.deactiveDriver(driver.username).subscribe(
+      this._providerservice.deleteDriver(driver.username).subscribe(
         res => {
-          let notification = new Notification({ title: 'غیر فعال شد', info: 'راننده مورد نظر غیر فعال شد', type: NotificationTypes.success });
+          let notification = new Notification({ title: 'حذف شد', info: 'راننده مورد نظر حذف شد', type: NotificationTypes.success });
           this._notificationservice.notify(notification);
+          driver.accountState = '-2';
         },
         error => {
           let notification = new Notification({ title: 'خطا', info: Error.getName(error.code), type: NotificationTypes.error });

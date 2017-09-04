@@ -16,9 +16,10 @@
   </nav>
 
   <ul class="menu">
-    <li role="menuitem"><i class="fa fa-home" aria-hidden="true"></i></li>
+    <li role="menuitem"><i class="fa fa-home" aria-hidden="true" (click)="dashboard()"></i></li>
     <li role="menuitem"><i class="fa fa-bell" aria-hidden="true"></i></li>
-    <li role="menuitem"><i class="fa fa-cog" aria-hidden="true"></i></li>
+    <!-- <li role="menuitem"><a routerLink="operator/account-setting" routerLinkActive='active'><i class="fa fa-cog" aria-hidden="true"></i></a></li> -->
+    <li role="menuitem"><i class="fa fa-cog" aria-hidden="true" (click)="accountSetting()"></i></li>
     <li role="menuitem"><i class="fa fa-sign-out" aria-hidden="true" (click)="signout()"></i></li>
   </ul>
 </header>

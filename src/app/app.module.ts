@@ -11,7 +11,7 @@ import {
   getManufacturesResolver, getSearchRadiusResolver, getVouchersResolver, getDriversCountResolver, getOnlineTripsCountResolver,
   getTodayTripsCountResolver, getNewPassengersCountResolver, getPassengersCountResolver, getOrganizationsCountResolver, getBannedDriversResolver,
   getBannedPassengersResolver, getBugsResolver, getUnresolvedTicketsResolver, getDriversMostDebtsResolver,
-  getproviderclaimResolver, getProvidersResolver
+  getproviderclaimResolver, getProvidersResolver, getNewOrganizationsCountResolver
 } from 'resolve/resolve';
 import {
   AdminApi,
@@ -134,6 +134,9 @@ import { ProviderSearchDriversComponent } from './components/panels/providers/se
 import { AddProviderComponent } from './components/panels/providers/add/add-provider.component';
 import { LoginComponent } from './components/login/login.component';
 import { OperatorChangePasswordComponent } from './components/panels/manage/operator-change-password/operator-change-password.component';
+import { ReloadComponent } from './components/panels/manage/reload/reload.component';
+import { AccountSettingComponent } from './components/account-setting/account-setting.component';
+import { VehicleDistanceComponent } from './components/panels/drivers/vehicle-distance/vehicle-distance.component';
 
 
 @NgModule({
@@ -217,6 +220,9 @@ import { OperatorChangePasswordComponent } from './components/panels/manage/oper
     AddProviderComponent,
     LoginComponent,
     OperatorChangePasswordComponent,
+    ReloadComponent,
+    AccountSettingComponent,
+    VehicleDistanceComponent,
   ],
   imports: [
     BrowserModule,
@@ -266,7 +272,8 @@ import { OperatorChangePasswordComponent } from './components/panels/manage/oper
     getUnresolvedTicketsResolver,
     getDriversMostDebtsResolver,
     getproviderclaimResolver,
-    getProvidersResolver
+    getProvidersResolver,
+    getNewOrganizationsCountResolver
   ],
   bootstrap: [AppComponent]
 })

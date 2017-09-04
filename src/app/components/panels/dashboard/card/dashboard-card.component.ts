@@ -15,4 +15,8 @@ export class DashboardCardComponent implements OnInit {
   ngOnInit() {
   }
 
+  isLoaded(data) {
+    return !Number.isNaN(+data);
+  }
+
 }

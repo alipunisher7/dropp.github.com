@@ -4,7 +4,7 @@ export interface IDriverDebt {
   accountState: string;
 }
 const accountStateNames = {
-  "-2": "پاک شده",
+  "-2": "حذف شده",
   "-1": "بن شده",
   "0": "غیر فعال",
   "1": "درحال ثبت نام",

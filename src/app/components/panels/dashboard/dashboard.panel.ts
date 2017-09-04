@@ -17,6 +17,8 @@ export class DashboardPanel implements OnInit {
   driverCard: Card;
   passengerCard: Card;
   organizationCard: Card;
+  onlineTripsLoaded: boolean;
+
 
   constructor(private _operatorServices: OperatorService, private router: Router,
     private route: ActivatedRoute) {
@@ -24,32 +26,34 @@ export class DashboardPanel implements OnInit {
     this.tripCard = new Card(
       { title: 'سفردر حال انجام' },
       { title: 'سفر های امروز' },
-      '111'
+      'link'
     );
     this.driverCard = new Card(
       { title: 'راننده آنلاین' },
-      { title: 'کل راننده ها', },
-      '222'
+      { title: 'کل راننده ها' },
+      'link'
     );
     this.passengerCard = new Card(
       { title: 'کاربر جدید' },
       { title: 'کل کاربرها' },
-      '333'
+      'link'
     );
     this.organizationCard = new Card(
       { title: 'سازمان جدید' },
       { title: 'سازمان ثبت شده' },
-      '444'
-
+      'link'
     );
 
   }
 
 
+
   getOnlineTripsCount() {
-    let timer = Observable.timer(2000, 1000);
+    // let timer = Observable.timer(2000, 1000);
+
     this._operatorServices.getOnlineTripsCount().subscribe(data => {
       this.tripCard.info1.data = data.numberOfOnlineTrips;
+
     })
   }
 
@@ -85,7 +89,7 @@ export class DashboardPanel implements OnInit {
 
   getNewOrganizationsCount() {
     this._operatorServices.getNewOrganizationsCount().subscribe(data => {
-      this.organizationCard.info1.data = data;
+      this.organizationCard.info1.data = data.numberOfNewOrganizations;
     })
   }
 
@@ -96,12 +100,13 @@ export class DashboardPanel implements OnInit {
   }
 
   ngOnInit() {
-    this.driverCard.info2.data = this.route.snapshot.data['driversCount'].numberAllDrivers;
-    this.passengerCard.info2.data = this.route.snapshot.data['passengersCount'].numberOfAllPassengers;
-    this.passengerCard.info1.data = this.route.snapshot.data['newPassengersCount'].numberOfNewPassengers;
-    this.tripCard.info2.data = this.route.snapshot.data['todayTripsCount'].numberOfTodaysTrips;
-    this.tripCard.info1.data = this.route.snapshot.data['onlineTripsCount'].numberOfOnlineTrips;
-    this.organizationCard.info2.data = this.route.snapshot.data['organizationCount'].numberOfAllOrganizations;
+    // this.driverCard.info2.data = this.route.snapshot.data['driversCount'].numberAllDrivers;
+    // this.passengerCard.info2.data = this.route.snapshot.data['passengersCount'].numberOfAllPassengers;
+    // this.passengerCard.info1.data = this.route.snapshot.data['newPassengersCount'].numberOfNewPassengers;
+    // this.tripCard.info2.data = this.route.snapshot.data['todayTripsCount'].numberOfTodaysTrips;
+    // this.tripCard.info1.data = this.route.snapshot.data['onlineTripsCount'].numberOfOnlineTrips;
+    // this.organizationCard.info2.data = this.route.snapshot.data['organizationCount'].numberOfAllOrganizations;
+    // this.organizationCard.info1.data = this.route.snapshot.data['newOrganizationCount'].numberOfNewOrganizations;
 
     let timer = Observable.timer(1, 60000);
     // timer.subscribe(t => { this.getDriversCount(); });
@@ -111,6 +116,7 @@ export class DashboardPanel implements OnInit {
     timer.subscribe(t => { this.getNewPassengersCount(); });
     timer.subscribe(t => { this.getPassengersCount(); });
     timer.subscribe(t => { this.getOrganizationsCount(); });
+    timer.subscribe(t => { this.getNewOrganizationsCount(); });
 
     // this.getOnlineDriversCount();
   }

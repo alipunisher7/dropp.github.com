@@ -5,7 +5,7 @@ import { User } from 'models';
 
 @Injectable()
 export class AuthHttpService {
-
+  private debugMode = false;
   constructor(private http: Http, private _auth: AuthService) {
   }
 
@@ -24,22 +24,22 @@ export class AuthHttpService {
   search(url, params) {
     let options = this.createRequestOptions();
     options.search = params;
-    console.log('GET ', `${url}?${options.params.toString()}`);
+    if (this.debugMode) console.log('GET ', `${url}?${options.params.toString()}`);
     return this.http.get(url, options);
   }
 
   get(url) {
     let options = this.createRequestOptions();
-    console.log('GET ', url);
+    if (this.debugMode) console.log('GET ', url);
     return this.http.get(url, options);
   }
 
   post(url, data) {
     let options = this.createRequestOptions();
     let body = JSON.stringify(data);
-    console.log('POST ', url);
-    console.log('body: ', body);
-    console.log('--POST--');
+    if (this.debugMode) console.log('POST ', url);
+    if (this.debugMode) console.log('body: ', body);
+    if (this.debugMode) console.log('--POST--');
 
     return this.http.post(url, body, options);
   }
@@ -49,8 +49,8 @@ export class AuthHttpService {
     headers.append('Authorization', this._auth.token)
 
     let options = new RequestOptions({ headers: headers });
-    console.log('POST ', `${url}`);
-    console.log('FormData', formData);
+    if (this.debugMode) console.log('POST ', `${url}`);
+    if (this.debugMode) console.log('FormData', formData);
     return this.http.post(url, formData, options);
   }
 
@@ -66,8 +66,8 @@ export class AuthHttpService {
   put(url, data) {
     let options = this.createRequestOptions();
     let body = JSON.stringify(data);
-    console.log('PATCH ', url);
-    console.log('body ', body);
+    if (this.debugMode) console.log('PATCH ', url);
+    if (this.debugMode) console.log('body ', body);
     return this.http.put(url, body, options);
   }
 

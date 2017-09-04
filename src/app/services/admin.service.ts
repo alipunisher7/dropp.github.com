@@ -1,4 +1,4 @@
-import { Injectable  } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Response, URLSearchParams } from '@angular/http';
 import { AuthHttpService } from './auth-http.service';
 import { Observable } from 'rxjs/Observable';
@@ -367,7 +367,71 @@ export class AdminService {
     let url = this._adminApi.getPeakTripsReportUrl;
     return this._http.getReport(url);
   }
+  reloadStates() {
+    let url = this._adminApi.reloadStatesUrl;
+    return this._http.get(url)
+      .map((res: Response) => {
+        let json = res.json();
+        if (json.statusCode !== 1) {
+          throw new ApiError(url, json);
+        }
 
+        return json;
+      })
+      .catch(this.handleError);
+  }
+  reloadTarrif() {
+    let url = this._adminApi.reloadTarrifUrl;
+    return this._http.get(url)
+      .map((res: Response) => {
+        let json = res.json();
+        if (json.statusCode !== 1) {
+          throw new ApiError(url, json);
+        }
+
+        return json;
+      })
+      .catch(this.handleError);
+  }
+  reloadSetting() {
+    let url = this._adminApi.reloadSettingUrl;
+    return this._http.get(url)
+      .map((res: Response) => {
+        let json = res.json();
+        if (json.statusCode !== 1) {
+          throw new ApiError(url, json);
+        }
+
+        return json;
+      })
+      .catch(this.handleError);
+  }
+  reloadsearchRadius() {
+    let url = this._adminApi.reloadsearchRadiusUrl;
+    return this._http.get(url)
+      .map((res: Response) => {
+        let json = res.json();
+        if (json.statusCode !== 1) {
+          throw new ApiError(url, json);
+        }
+
+        return json;
+      })
+      .catch(this.handleError);
+  }
+  ticketSubjects() {
+    let url = this._adminApi.ticketSubjectsUrl;
+    return this._http.get(url)
+      .map((res: Response) => {
+        let json = res.json();
+        if (json.statusCode !== 1) {
+          throw new ApiError(url, json);
+        }
+
+        return json;
+      })
+      .catch(this.handleError);
+  }
 
   // getTarrif(): Observable<any> {
   //   let url = this._adminApi.getTarrifUrl;

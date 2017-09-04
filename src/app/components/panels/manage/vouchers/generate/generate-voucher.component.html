@@ -1,33 +1,78 @@
 <h2>ایجاد کد تخفیف</h2>
 <form [formGroup]='myForm' (ngSubmit)="onSubmit()" >
   <div>
+    <label>شهر
+      <select  name="cityLimit" formControlName="cityLimit">
+        <option value="">لطفا شهر را انتخاب کنید</option>
+        <option value="TE">تهران</option>
+        <option value="MA">مشهد</option>
+        <option value="IS">اصفهان</option>
+        <option value="TE">گرگان</option>
+      </select>
+    </label>
+  </div>
+  <div>
       <label>توضیحات<input type="text" name="description" value="" formControlName="description"></label>
   </div>
   <div>
-    <label>نوع کد تخفیف
-      <select  name="voucherType" formControlName="voucherType">
+    <label>نوع کد تخفیف*
+      <select  name="discountType" formControlName="discountType">
+        <option value="">نوع تخفیف را انتخاب کنید</option>
         <option value="P">درصد</option>
         <option value="A">مبلغ</option>
       </select>
     </label>
   </div>
   <div>
-    <label>میزان تخفیف<input type="text" name="discountValue" value="" formControlName="discountValue"></label>
+    <label>میزان تخفیف*<input type="text" name="discountValue" value="" formControlName="discountValue"></label>
+  </div>
+  <div>
+    <label>حداکثر تخفیف<input type="text" name="discountLimit" value="" formControlName="discountLimit"></label>
   </div>
   <div>
     <label>کد دستی<input type="checkbox" [checked]="isManual" (change)="isManual =!isManual" (change)="check()" name="generationType" value=""></label>
   </div>
   <div *ngIf="isManual" >
-    <label>کد<input type="text" name="code" value="" formControlName="code"></label>
+    <label>کد*<input type="text" name="voucherCode" value="" formControlName="voucherCode"></label>
   </div>
   <div>
-    <label>تاریخ شروع<input type="date" name="startDate" value="" formControlName="startDate"></label>
+    <label>تاریخ شروع*<input type="date" name="startAt" value="" formControlName="startAt"></label>
   </div>
   <div>
-    <label>تاریخ انقضا<input type="date" name="expireDate" value="" formControlName="expireDate"></label>
+    <label>تاریخ انقضا<input type="date" name="expireAt" value="" formControlName="expireAt"></label>
   </div>
   <div>
-    <label>حداکثر تعداد قابل استفاده<input type="text" name="maxUses" value="" formControlName="maxUses"></label>
+    <label>حداکثر تعداد قابل استفاده<input type="text" name="maxUse" value="" formControlName="maxUse"></label>
+  </div>
+  <div>
+    <label>نوع سفر
+      <select  name="tripType" formControlName="tripType">
+        <option value="">نوع سفر را انتخاب کنید</option>
+        <option value="I">درون شهری</option>
+        <option value="O">برون شهری</option>
+        <option value="U">بدون محدودیت</option>
+      </select>
+    </label>
+  </div>
+  <div>
+    <label>نوع سرویس
+      <select  name="serviceType" formControlName="serviceType">
+        <option value="">نوع سرویس را انتخاب کنید</option>
+        <option value="N">نرمال</option>
+        <option value="E">اکو</option>
+        <option value="T">تاکسی</option>
+        <option value="R">موتور</option>
+        <option value="D">پیک</option>
+        <option value="S">SUV</option>
+        <option value="L">لوکس</option>
+      </select>
+    </label>
+  </div>
+  <div >
+    مبدا*
+  </div>
+  <div>
+    مقصد*
   </div>
   <div>
     <button type="submit" [disabled]="!myForm.valid">ثبت</button>

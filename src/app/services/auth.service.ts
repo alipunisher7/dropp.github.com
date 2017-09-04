@@ -9,6 +9,7 @@ import 'rxjs/operator/do';
 
 @Injectable()
 export class AuthService {
+  private debugMode = false;
   currentUser: User;
   // private jwtHelper = new JwtHelper();
   private _cachedToken: string;
@@ -30,10 +31,10 @@ export class AuthService {
       return;
     }
     try {
-      console.log(token)
+      if (this.debugMode) console.log(token)
       let decoded = new JwtHelper().decodeToken(this._cachedToken);
       this.currentUser = new User({ username: decoded.sub, role: decoded.role });
-      console.log('currentUser', this.currentUser);
+      if (this.debugMode) console.log('currentUser', this.currentUser);
     } catch (e) {
       this.signout();
     }
@@ -41,13 +42,13 @@ export class AuthService {
   }
 
   // // getNewToken(): string {
-  // //   console.warn('Cached token not found');
+  // //   if(this.debugMode) console.warn('Cached token not found');
   // //   let token;
   // //   if (!this.currentUser || !localStorage.getItem('token')) {
   // //     // TODO : Login
   // //     this.login({ username: 'admin', password: 'admin' });
   // //     return;
-  // //     // console.error('[AuthService]: User not existed');
+  // //     // if(this.debugMode) console.error('[AuthService]: User not existed');
   // //     // throw 'Current user not found, NAVIGATION TO LOGIN';
   // //   }
   //
@@ -58,17 +59,17 @@ export class AuthService {
 
   isLoggedIn(): boolean {
     let isLoggedIn = Boolean(this.currentUser) || Boolean(this.token);
-    console.log('currentUser', this.currentUser);
-    console.log('token', this.token);
+    if (this.debugMode) console.log('currentUser', this.currentUser);
+    if (this.debugMode) console.log('token', this.token);
     return isLoggedIn;
   }
 
   login(user: IUser) {
     this.currentUser = new User(user);
-    console.log('Login In: ');
+    if (this.debugMode) console.log('Login In: ');
 
     let body = JSON.stringify(user);
-    console.log(body);
+    if (this.debugMode) console.log(body);
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
 
@@ -93,7 +94,7 @@ export class AuthService {
   }
 
   handleAuthResonse = (res) => {
-    console.log('res: ', res);
+    if (this.debugMode) console.log('res: ', res);
     let token = res.headers.get('Authorization');
     this.setToken(token);
     let json = res.json();
@@ -102,7 +103,7 @@ export class AuthService {
       throw new ApiError('Login', json)
     }
 
-    console.log('getUserInfoFromToken');
+    if (this.debugMode) console.log('getUserInfoFromToken');
     this.getUserInfoFromToken();
     return token;
   }
@@ -114,17 +115,17 @@ export class AuthService {
   //
   // return this._http.post('http://31.184.132.215:8080/geno/TSO/api/rest/admin/login', body, options)
   // .map((res: Response) => {
-  //     console.log(res.headers);
-  //     console.log(res.headers.get('Authorization'));
-  //     console.log('Json');
-  //     console.log(res.json());
+  //     if(this.debugMode) console.log(res.headers);
+  //     if(this.debugMode) console.log(res.headers.get('Authorization'));
+  //     if(this.debugMode) console.log('Json');
+  //     if(this.debugMode) console.log(res.json());
   //     if (res.json().success === true) {
   //       let token = res.json().token;
   //       this.setToken(token);
   //     }
   //     return res.json();
   //   })
-  // .subscribe(console.log);
+  // .subscribe(if(this.debugMode) console.log);
 
   setToken(token) {
     this._cachedToken = token;
@@ -137,7 +138,7 @@ export class AuthService {
   }
 
   handleError(err: ApiError) {
-    console.error(err);
+    if (this.debugMode) console.error(err);
     return Observable.throw(err || 'backend server error');
   }
 }

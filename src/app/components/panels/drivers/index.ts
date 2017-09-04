@@ -7,3 +7,4 @@ export * from './manage';
 export * from './online';
 export * from './search';
 export * from './confirm';
+export * from './vehicle-distance';

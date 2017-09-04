@@ -48,6 +48,9 @@ export class TarrifComponent implements OnInit {
       res => {
         let notification = new Notification({ title: 'ثبت شد', info: `تعرفه جدید ثبت شد`, type: NotificationTypes.success });
         this._notificationservice.notify(notification);
+        this.myForm.reset();
+        this.myForm.controls['city'].setValue('');
+        this.myForm.controls['serviceType'].setValue('');
       },
       error => {
         let notification = new Notification({ title: 'خطا', info: Error.getName(error.code), type: NotificationTypes.error });
@@ -82,13 +85,13 @@ export class TarrifComponent implements OnInit {
       res => {
         let notification = new Notification({ title: 'ثبت شد', info: `تعرفه آپدیت شد`, type: NotificationTypes.success });
         this._notificationservice.notify(notification);
-        this.selectedTariff.before2KM = this.updateForm.controls['before2KM'].value;
-        this.selectedTariff.after2KM = this.updateForm.controls['after2KM'].value;
-        this.selectedTariff.perMin = this.updateForm.controls['perMin'].value;
-        this.selectedTariff.waitingMin = this.updateForm.controls['waitingMin'].value;
-        this.selectedTariff.entrance = this.updateForm.controls['entrance'].value;
-        this.selectedTariff.twoWayCost = this.updateForm.controls['twoWayCost'].value;
-        this.selectedTariff.genoShare = this.updateForm.controls['genoShare'].value;
+        this.selectedTariff.before2KM = this.updateForm.controls['before2KMUpdate'].value;
+        this.selectedTariff.after2KM = this.updateForm.controls['after2KMUpdate'].value;
+        this.selectedTariff.perMin = this.updateForm.controls['perMinUpdate'].value;
+        this.selectedTariff.waitingMin = this.updateForm.controls['waitingMinUpdate'].value;
+        this.selectedTariff.entrance = this.updateForm.controls['entranceUpdate'].value;
+        this.selectedTariff.twoWayCost = this.updateForm.controls['twoWayCostUpdate'].value;
+        this.selectedTariff.genoShare = this.updateForm.controls['genoShareUpdate'].value;
         this.selectedTariff = null;
       },
       error => {

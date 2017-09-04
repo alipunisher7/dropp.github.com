@@ -125,6 +125,15 @@ export class getOrganizationsCountResolver implements Resolve<any> {
   }
 }
 @Injectable()
+export class getNewOrganizationsCountResolver implements Resolve<any> {
+  constructor(private _operatorService: OperatorService) { }
+
+  resolve(route: ActivatedRouteSnapshot): Observable<any> {
+    let newOrganizationCount = this._operatorService.getNewOrganizationsCount();
+    return newOrganizationCount;
+  }
+}
+@Injectable()
 export class getBannedDriversResolver implements Resolve<any> {
   constructor(private _operatorService: OperatorService) { }
 

@@ -102,12 +102,31 @@ export class SearchOperatorComponent implements OnInit {
       alert('کنسل شد');
     }
   }
-  delete(operator) {
+  masterdelete(operator) {
     if (confirm("آیا مطمئن هستید؟")) {
 
       this._adminservice.removeOperator(operator.id).subscribe(
         res => {
-          let notification = new Notification({title:'حذف شد' , info:'اپراتور مورد نظر حذف شد' , type:NotificationTypes.success});
+          let notification = new Notification({ title: 'حذف شد', info: 'اپراتور مورد نظر حذف شد', type: NotificationTypes.success });
+          this._notificationservice.notify(notification);
+          operator.accountState = '-2';
+        },
+        error => {
+          let notification = new Notification({ title: 'خطا', info: Error.getName(error.code), type: NotificationTypes.error });
+          this._notificationservice.notify(notification);
+        }
+      )
+    }
+    else {
+      alert('کنسل شد');
+    }
+  }
+  delete(operator) {
+    if (confirm("آیا مطمئن هستید؟")) {
+
+      this._masterService.removeOperator(operator.id).subscribe(
+        res => {
+          let notification = new Notification({ title: 'حذف شد', info: 'اپراتور مورد نظر حذف شد', type: NotificationTypes.success });
           this._notificationservice.notify(notification);
           operator.accountState = '-2';
         },

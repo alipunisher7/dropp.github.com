@@ -10,3 +10,4 @@ export * from './bugs';
 export * from './system-setting';
 export * from './state-city';
 export * from './operator-change-password';
+export * from './reload';

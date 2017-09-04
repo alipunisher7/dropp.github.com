@@ -48,4 +48,10 @@ export class AdminApi {
   public getPeakTripsReportUrl = `${adminApi}/report/trips/peak`;
 
 
+  public reloadStatesUrl = `${adminApi}/system/states/reload`;
+  public reloadTarrifUrl = `${adminApi}/system/tariff/reload`;
+  public reloadSettingUrl = `${adminApi}/system/setting/reload`;
+  public reloadsearchRadiusUrl = `${adminApi}/system/searchRadius/reload`;
+  public ticketSubjectsUrl = `${adminApi}/system/tickets/subject/reload`;
+
 }

@@ -46,6 +46,7 @@ export class OperatorApi {
   public getAllPassengersUrl = `${operatorApi}/passengers/count`;
   public getNewPassengersUrl = `${operatorApi}/passengers/new/count`;
   public getAllOrganizationsUrl = `${operatorApi}/organizations/count`;
+  public getNewOrganizationsUrl = `${operatorApi}/organizations/new/count`;
   public getDriverInfoUrl = ``;
 
   public requestTripUrl = `${API_URL}/passenger/trip/request`;
@@ -57,4 +58,6 @@ export class OperatorApi {
   public searchTripsUrl = `${operatorApi}/trips`;
   public onlineTripsUrl = `${operatorApi}/trips/online`;
   public getProvidersUrl = `${operatorApi}/providers`;
+
+  public changePasswordUrl = `${operatorApi}/operators/password`;
 }

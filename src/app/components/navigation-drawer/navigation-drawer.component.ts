@@ -1,4 +1,5 @@
 import { Component, OnInit, AfterViewInit, ElementRef } from '@angular/core';
+import { Router, RoutesRecognized } from '@angular/router';
 import { INavItem } from 'models';
 
 @Component({
@@ -10,7 +11,13 @@ export class NavigationDrawerComponent implements OnInit, AfterViewInit {
 
   navItems: INavItem[];
 
-  constructor(private elRef: ElementRef) {
+  constructor(private elRef: ElementRef, private router: Router) {
+    this.router.events.subscribe((e: RoutesRecognized) => {
+      setTimeout(
+        this.openCurrentNav(e.urlAfterRedirects),
+        0
+      );
+    });
     this.navItems = [
       { title: 'داشبورد', icon: 'fa fa-yelp', isOpen: true, route: 'dashboard' },
       {
@@ -21,6 +28,7 @@ export class NavigationDrawerComponent implements OnInit, AfterViewInit {
           { title: 'موجودی حساب راننده ها', icon: 'fa fa-usd', route: 'drivers-credit' },
           { title: 'راننده ها با امتیاز پایین', icon: 'fa fa-minus-square', route: 'low-rate' },
           { title: 'تایید راننده ها', icon: 'fa fa-check', route: 'confirm-driver' },
+          { title: 'مسافت خودرو ها', icon: 'fa fa-check', route: 'vehicle-distance' },
         ],
       },
       {
@@ -65,8 +73,9 @@ export class NavigationDrawerComponent implements OnInit, AfterViewInit {
           { title: 'خودرو', icon: 'fa fa-car', route: 'cars' },
           { title: 'تعرفه', icon: 'fa fa-money', route: 'tarrif' },
           { title: 'شعاع جستجو', icon: 'fa fa-circle-o-notch', route: 'search-radius' },
-          { title: 'تیکت', icon: 'fa fa-envelope', route: 'tickets' },
+          { title: 'موضوع تیکت', icon: 'fa fa-envelope', route: 'tickets' },
           { title: 'کد تخفیف', icon: 'fa fa-percent', route: 'manage-vouchers' },
+          { title: 'بارگذاری مجدد سرویس', icon: 'fa fa-refresh', route: 'reload' },
           { title: ' کاربران منع شده', icon: 'fa fa-ban', route: 'manage-banned-users' },
           { title: 'خطاها', icon: 'fa fa-times-circle', route: 'bugs' },
           { title: 'تنظیمات سیستم', icon: 'fa fa-cog', route: 'system-setting' },
@@ -77,7 +86,8 @@ export class NavigationDrawerComponent implements OnInit, AfterViewInit {
       {
         title: 'پشتیبانی', icon: 'fa fa-user-circle-o', route: 'support',
         subNavs: [
-          { title: 'نمایش تیکت ها', icon: 'fa fa-envelope-o', route: 'view-ticket' }
+          { title: 'نمایش همه تیکت ها', icon: 'fa fa-envelope-o', route: 'view-ticket' },
+          { title: 'جستجو تیکت ها', icon: 'fa fa-envelope-o', route: '' },
         ]
       },
       {
@@ -100,32 +110,21 @@ export class NavigationDrawerComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    setTimeout(() => {
-      this.openCurrentNav();
-    }, 0);
   }
 
   ngOnInit() {
   }
 
-  onNavClick(navItem: INavItem) {
-    this.navItems.forEach(_ => {
-      if (_.hasOwnProperty('isOpen')) { _.isOpen = false }
-    });
-    this.openCurrentNav();
-  }
-
-  openCurrentNav() {
-    let el = this.elRef.nativeElement.querySelector('.active');
-    if (el) {
-      let currentRoute = el.getAttribute('href').slice(1);
-      if (currentRoute === null) return;
-      currentRoute = currentRoute.split('/')[1];
+  openCurrentNav(currentRoute: string) {
+    if (currentRoute) {
+      currentRoute = currentRoute.split('/')[2];
       let activeNav = this.navItems.find(_ => _.route == currentRoute);
       if (activeNav) {
+        this.navItems.forEach(_ => {
+          if (_.hasOwnProperty('isOpen')) { _.isOpen = false }
+        });
         activeNav.isOpen = true;
       }
-
     }
   }
 

@@ -8,15 +8,16 @@ import { SendTaxiComponent } from 'components/send-taxi';
 import { LoginComponent } from 'components/login';
 
 import { DashboardPanel } from 'components/panels/dashboard';
+import { AccountSettingComponent } from 'components/account-setting';
 import {
   getOnlineDriverResolver, getSettingResolver, getLowRateDriverResolver, getOnlineTripsResolver,
   getManufacturesResolver, getSearchRadiusResolver, getVouchersResolver, getDriversCountResolver, getOnlineTripsCountResolver,
   getTodayTripsCountResolver, getNewPassengersCountResolver, getPassengersCountResolver, getOrganizationsCountResolver,
   getBannedDriversResolver, getBannedPassengersResolver, getBugsResolver, getUnresolvedTicketsResolver, getDriversMostDebtsResolver,
-  getproviderclaimResolver, getProvidersResolver
+  getproviderclaimResolver, getProvidersResolver, getNewOrganizationsCountResolver
 } from 'resolve/resolve';
 
-import { DriversPanel, DriverCreditComponent, SearchDriversComponent, LowRateDriversComponent, ConfirmDriversComponent, OnlineDriverComponent } from 'components/panels/drivers';
+import { DriversPanel, DriverCreditComponent, SearchDriversComponent, LowRateDriversComponent, ConfirmDriversComponent, OnlineDriverComponent, VehicleDistanceComponent } from 'components/panels/drivers';
 
 import { PassengersPanel, SearchPassengersComponent, SubscribeRegisterComponent, SearchSubscribesComponent } from 'components/panels/passengers';
 
@@ -36,7 +37,8 @@ import {
   BugsComponent,
   SystemSettingComponent,
   StateCityComponent,
-  OperatorChangePasswordComponent
+  OperatorChangePasswordComponent,
+  ReloadComponent
 } from 'components/panels/manage';
 
 import { OperatorsPanel, AddOperatorComponent, AddMasterComponent, SearchOperatorComponent } from 'components/panels/operators';
@@ -53,12 +55,18 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   {
     path: 'operator', canActivate: [AuthGuard], children: [
+      // {
+      //   path: 'dashboard', component: DashboardPanel, resolve: {
+      //     driversCount: getDriversCountResolver, onlineTripsCount: getOnlineTripsCountResolver,
+      //     todayTripsCount: getTodayTripsCountResolver, newPassengersCount: getNewPassengersCountResolver,
+      //     passengersCount: getPassengersCountResolver, organizationCount: getOrganizationsCountResolver, newOrganizationCount: getNewOrganizationsCountResolver
+      //   }
+      // },
       {
-        path: 'dashboard', component: DashboardPanel, resolve: {
-          driversCount: getDriversCountResolver, onlineTripsCount: getOnlineTripsCountResolver,
-          todayTripsCount: getTodayTripsCountResolver, newPassengersCount: getNewPassengersCountResolver,
-          passengersCount: getPassengersCountResolver, organizationCount: getOrganizationsCountResolver
-        }
+        path: 'dashboard', component: DashboardPanel
+      },
+      {
+        path: 'account-setting', component: AccountSettingComponent
       },
       {
         path: 'services', component: ServicePanel, children: [
@@ -71,7 +79,8 @@ const routes: Routes = [
           { path: 'drivers-credit', component: DriverCreditComponent },
           { path: 'search', component: SearchDriversComponent },
           { path: 'low-rate', component: LowRateDriversComponent, resolve: { lowRateDriver: getLowRateDriverResolver } },
-          { path: 'confirm-driver', component: ConfirmDriversComponent }
+          { path: 'confirm-driver', component: ConfirmDriversComponent },
+          { path: 'vehicle-distance', component: VehicleDistanceComponent },
         ]
       },
       {
@@ -107,12 +116,13 @@ const routes: Routes = [
           { path: 'tickets', component: ManageTicketsComponent },
           { path: 'tarrif', component: TarrifComponent },
           { path: 'search-radius', component: ManageSearchRadiusComponent, resolve: { searchRadius: getSearchRadiusResolver } },
-          { path: 'manage-vouchers', component: ManageVouchersComponent, resolve: { vouchers: getVouchersResolver } },
+          { path: 'manage-vouchers', component: ManageVouchersComponent },
           { path: 'manage-banned-users', component: ManageBannedUsersComponent, resolve: { bannedDrivers: getBannedDriversResolver, bannedPassengers: getBannedPassengersResolver } },
           { path: 'bugs', component: BugsComponent, resolve: { bugs: getBugsResolver } },
           { path: 'system-setting', component: SystemSettingComponent, resolve: { settings: getSettingResolver } },
           { path: 'state-city', component: StateCityComponent },
           { path: 'change-pass', component: OperatorChangePasswordComponent },
+          { path: 'reload', component: ReloadComponent },
         ]
 
       },

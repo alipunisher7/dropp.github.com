@@ -17,6 +17,7 @@ export class Operator extends User {
     '3': 'فعال',
   }
   private roleNames = {
+    'V': 'اپراتور ارائه دهنده',
     'O': 'اپراتور',
     'M': 'اپراتور ارشد',
     'A': 'ادمین',

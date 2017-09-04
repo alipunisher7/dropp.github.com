@@ -14,14 +14,18 @@ export class GenerateVoucherComponent implements OnInit {
 
   constructor(private _masterService: MasterService, private _notificationservice: NotificationService) {
     this.myForm = new FormGroup({
+      'cityLimit': new FormControl(''),
       'description': new FormControl('', [Validators.required, Validators.minLength(3)]),
-      'voucherType': new FormControl('', Validators.required),
       'discountValue': new FormControl('', Validators.required),
-      'code': new FormControl('', Validators.minLength(3)),
-      'startDate': new FormControl('', Validators.required),
-      'expireDate': new FormControl('', Validators.required),
-      'maxUses': new FormControl('', Validators.required),
-      'generationType': new FormControl('A')
+      'discountType': new FormControl('', Validators.required),
+      'discountLimit': new FormControl(''),
+      'startAt': new FormControl('', Validators.required),
+      'expireAt': new FormControl(''),
+      'generationType': new FormControl('A'),
+      'voucherCode': new FormControl('', Validators.minLength(3)),
+      'maxUse': new FormControl('', Validators.required),
+      'tripType': new FormControl('', Validators.required),
+      'serviceType': new FormControl(''),
     });
   }
 
@@ -33,7 +37,7 @@ export class GenerateVoucherComponent implements OnInit {
   }
 
   onSubmit() {
-
+    console.log((new Date(this.myForm.controls['startAt'].value).getTime()));
     this._masterService.insertVoucher(this.myForm.value).subscribe(
       res => {
         let notification = new Notification({ title: 'ثبت شد', info: `کد تخفیف ثبت شد`, type: NotificationTypes.success });

@@ -28,16 +28,22 @@ export class SearchOrganizationComponent implements OnInit {
     this.selectedOrganization = data;
   }
   confirm(organization) {
-    this._operatorservice.confirmOrganizations(organization.username).subscribe(
-      res => {
-        let notification = new Notification({ title: 'ثبت شد', info: 'سازمان مورد نظر تایید شد', type: NotificationTypes.success });
-        this._notificationservice.notify(notification);
-        organization.accountState = 'VERIFIED';
-      },
-      error => {
-        let notification = new Notification({ title: 'خطا', info: Error.getName(error.code), type: NotificationTypes.error });
-        this._notificationservice.notify(notification);
-      })
+    if (confirm('آیا مطمئن هستید؟')) {
+
+      this._operatorservice.confirmOrganizations(organization.username).subscribe(
+        res => {
+          let notification = new Notification({ title: 'ثبت شد', info: 'سازمان مورد نظر تایید شد', type: NotificationTypes.success });
+          this._notificationservice.notify(notification);
+          organization.accountState = 'VERIFIED';
+        },
+        error => {
+          let notification = new Notification({ title: 'خطا', info: Error.getName(error.code), type: NotificationTypes.error });
+          this._notificationservice.notify(notification);
+        })
+    }
+    else {
+      alert('کنسل شد');
+    }
   }
   remove(organization) {
     if (confirm('آیا مطمئن هستید؟')) {

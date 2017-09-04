@@ -1,9 +1,9 @@
-import { Injectable  } from '@angular/core';
-import { Response, URLSearchParams  } from '@angular/http';
+import { Injectable } from '@angular/core';
+import { Response, URLSearchParams } from '@angular/http';
 import { AuthHttpService } from './auth-http.service';
 import { Observable } from 'rxjs/Observable';
 import { ProviderApi } from './providers';
-import {  ApiError, ISearchParam, DriverDebt } from 'models';
+import { ApiError, ISearchParam, DriverDebt } from 'models';
 
 import 'rxjs/operator/map';
 import 'rxjs/add/operator/catch';
@@ -104,7 +104,7 @@ export class ProviderService {
       })
       .catch(this.handleError);
   }
-  deactiveDriver(username) {
+  deleteDriver(username) {
     let url = this._providerApi.deactiveDriversUrl;
     let body = { username };
     return this._http.post(url, body)

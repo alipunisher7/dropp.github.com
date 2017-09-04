@@ -503,10 +503,20 @@ export class OperatorService {
         return count;
       })
   }
-
   getNewOrganizationsCount(): Observable<any> {
-    throw new Error('Not Implemented');
+    let url = this._operatorApi.getNewOrganizationsUrl;
+    return this._http.get(url)
+      .map((res: Response) => {
+        let json = res.json();
+        if (json.statusCode !== 1) {
+          throw new ApiError(url, json);
+        }
+        let count = json.data;
+        console.log(count);
+        return count;
+      })
   }
+
 
   getTodayTripsCount(): Observable<any> {
     let url = this._operatorApi.getTodayTripsUrl;
@@ -619,6 +629,18 @@ export class OperatorService {
         }
         let data = json.data.serviceProvider;
         return data;
+      })
+      .catch(this.handleError);
+  }
+  changePassword(data) {
+    let url = this._operatorApi.changePasswordUrl;
+    return this._http.patch(url, data)
+      .map((res: Response) => {
+        let json = res.json();
+        if (json.statusCode !== 1) {
+          throw new ApiError(url, json);
+        }
+        return json;
       })
       .catch(this.handleError);
   }
