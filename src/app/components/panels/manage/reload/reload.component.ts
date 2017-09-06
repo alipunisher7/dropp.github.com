@@ -51,7 +51,7 @@ export class ReloadComponent implements OnInit {
   onReloadStates() {
     this._adminservice.reloadStates().subscribe(
       res => {
-        let notification = new Notification({ title: 'ثبت شد', info: 'بارگذاری مجدد شعاع جستجو با موفقیت انجام شد', type: NotificationTypes.success });
+        let notification = new Notification({ title: 'ثبت شد', info: 'بارگذاری مجدد استان ها با موفقیت انجام شد', type: NotificationTypes.success });
         this._notificationservice.notify(notification);
       },
       error => {

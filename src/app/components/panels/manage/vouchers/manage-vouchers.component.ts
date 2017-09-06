@@ -21,10 +21,10 @@ export class ManageVouchersComponent implements OnInit {
   constructor(private _operatorservice: OperatorService, private _masterservice: MasterService, private _notificationservice: NotificationService,
     private router: Router, private route: ActivatedRoute) {
     this.updateForm = new FormGroup({
-      'maxUses': new FormControl('', Validators.required),
+      'maxUse': new FormControl('', Validators.required),
       'description': new FormControl('', [Validators.required, Validators.minLength(5)]),
-      'startDate': new FormControl('', Validators.required),
-      'expireDate': new FormControl('', Validators.required),
+      'startAt': new FormControl('', Validators.required),
+      'expireAt': new FormControl('', Validators.required),
       'voucherType': new FormControl('', Validators.required),
       'discountValue': new FormControl('', Validators.required)
     });
@@ -41,11 +41,11 @@ export class ManageVouchersComponent implements OnInit {
 
   editVoucher(voucher) {
     this.editedVoucher = voucher;
-    this.updateForm.controls['maxUses'].setValue(this.editedVoucher.maxUses);
+    this.updateForm.controls['maxUse'].setValue(this.editedVoucher.maxUse);
     this.updateForm.controls['description'].setValue(this.editedVoucher.description);
-    this.updateForm.controls['startDate'].setValue(this.editedVoucher.startDate);
-    this.updateForm.controls['expireDate'].setValue(this.editedVoucher.expireDate);
-    this.updateForm.controls['voucherType'].setValue(this.editedVoucher.voucherType);
+    this.updateForm.controls['startAt'].setValue(this.editedVoucher.startAt);
+    this.updateForm.controls['expireAt'].setValue(this.editedVoucher.expireAt);
+    this.updateForm.controls['discountType'].setValue(this.editedVoucher.discountType);
     this.updateForm.controls['discountValue'].setValue(this.editedVoucher.discountValue);
   }
   onUpdate(id) {
@@ -54,10 +54,10 @@ export class ManageVouchersComponent implements OnInit {
         let notification = new Notification({ title: 'ویرایش شد', info: 'کد تخفیف مورد نظر ویرایش شد', type: NotificationTypes.success });
         this._notificationservice.notify(notification);
         this.editedVoucher.description = this.updateForm.controls['description'].value;
-        this.editedVoucher.maxUses = this.updateForm.controls['maxUses'].value;
-        this.editedVoucher.startDate = this.updateForm.controls['startDate'].value;
-        this.editedVoucher.expireDate = this.updateForm.controls['expireDate'].value;
-        this.editedVoucher.voucherType = this.updateForm.controls['voucherType'].value;
+        this.editedVoucher.maxUse = this.updateForm.controls['maxUse'].value;
+        this.editedVoucher.startAt = this.updateForm.controls['startAt'].value;
+        this.editedVoucher.expireAt = this.updateForm.controls['expireAt'].value;
+        this.editedVoucher.discountType = this.updateForm.controls['discountType'].value;
         this.editedVoucher.discountValue = this.updateForm.controls['discountValue'].value;
         this.editedVoucher = null;
       },

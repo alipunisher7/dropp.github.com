@@ -1,3 +1,18 @@
-<p>
-  vehicle-distance works!
-</p>
+<h2>جستجو خودرو ها</h2>
+<input class="search form-ctrl" type="search" name="searchVehicle" placeholder="جستجو ..." [formControl]="searchControl" [value]="search">
+<label >تاریخ شروع<input type="date" name=""  [(ngModel)]="startDate" ></label>
+<label >تاریخ پایان<input type="date" name=""  [(ngModel)]="endDate" ></label>
+<table class="table">
+  <thead>
+    <tr>
+      <th>پلاک</th>
+      <th>مسافت(کیلومتر)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td></td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>

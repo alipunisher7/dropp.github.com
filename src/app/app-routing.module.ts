@@ -17,7 +17,10 @@ import {
   getproviderclaimResolver, getProvidersResolver, getNewOrganizationsCountResolver
 } from 'resolve/resolve';
 
-import { DriversPanel, DriverCreditComponent, SearchDriversComponent, LowRateDriversComponent, ConfirmDriversComponent, OnlineDriverComponent, VehicleDistanceComponent } from 'components/panels/drivers';
+import {
+  DriversPanel, DriverCreditComponent, SearchDriversComponent, LowRateDriversComponent, ConfirmDriversComponent,
+  OnlineDriverComponent, VehicleDistanceComponent, PaymentReqComponent
+} from 'components/panels/drivers';
 
 import { PassengersPanel, SearchPassengersComponent, SubscribeRegisterComponent, SearchSubscribesComponent } from 'components/panels/passengers';
 
@@ -81,6 +84,7 @@ const routes: Routes = [
           { path: 'low-rate', component: LowRateDriversComponent, resolve: { lowRateDriver: getLowRateDriverResolver } },
           { path: 'confirm-driver', component: ConfirmDriversComponent },
           { path: 'vehicle-distance', component: VehicleDistanceComponent },
+          { path: 'payment-req', component: PaymentReqComponent },
         ]
       },
       {

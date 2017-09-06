@@ -8,3 +8,4 @@ export * from './online';
 export * from './search';
 export * from './confirm';
 export * from './vehicle-distance';
+export * from './payment-req';

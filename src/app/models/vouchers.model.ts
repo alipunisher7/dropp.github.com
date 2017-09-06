@@ -1,57 +1,103 @@
+export class Location {
+  lng: string;
+  lat: string;
+  placeName: string;
+  tolerance: string;
+}
 export interface IVouchers {
-  maxUses: string;
+  maxUse?: string;
   code: string;
   generationType: string;
-  voucherType: string;
+  discountType: string;
   creatorUsername: string;
-  description: string;
-  expireDate: string;
+  description?: string;
+  expireAt?: string;
   id: string;
   used: string;
   creationDate: string;
   discountValue: string;
-  startDate: string;
+  startAt: string;
+  cityLimit?: string;
+  discountLimit?: string;
+  tripType?: string;
+  serviceType?: string;
+  origin?: Location;
+  dest?: Location;
+
 }
 export class Vouchers implements IVouchers {
-  maxUses: string;
+  maxUse?: string;
   code: string;
   generationType: string;
-  voucherType: string;
+  discountType: string;
   creatorUsername: string;
-  description: string;
-  expireDate: string;
+  description?: string;
+  expireAt?: string;
   id: string;
   used: string;
   creationDate: string;
   discountValue: string;
-  startDate: string;
+  startAt: string;
+  cityLimit?: string;
+  discountLimit?: string;
+  tripType?: string;
+  serviceType?: string;
+  origin?: Location;
+  dest?: Location;
+
 
   generationTypeNames = {
     "A": "خودکار",
     "M": "دستی",
   }
-  voucherTypeNames = {
+  discountTypeNames = {
     "P": "درصد",
     "A": "مبلغ"
+  }
+  tripTypeNames = {
+    "I": "درون شهری",
+    "O": "برون شهری",
+    "U": "بدون محدودیت",
+  }
+  serviceTypeNames = {
+    "E": "اکو",
+    "L": "لوکس",
+    "N": "نرمال",
+    "R": "موتور",
+    "D": "پیک",
+    "T": "تاکسی",
+    "S": "SUV",
   }
   get generationTypeName() {
     return this.generationTypeNames[this.generationType];
   }
-  get voucherTypeName() {
-    return this.voucherTypeNames[this.voucherType];
+  get discountTypeName() {
+    return this.discountTypeNames[this.discountType];
+  }
+  get tripTypeName() {
+    return this.tripTypeNames[this.tripType];
+  }
+  get serviceTypeName() {
+    return this.serviceTypeNames[this.serviceType];
   }
   constructor(vouchers: IVouchers) {
-    this.maxUses = vouchers.maxUses;
+    this.maxUse = vouchers.maxUse;
     this.code = vouchers.code;
     this.generationType = vouchers.generationType;
-    this.voucherType = vouchers.voucherType;
+    this.discountType = vouchers.discountType;
     this.creatorUsername = vouchers.creatorUsername;
     this.description = vouchers.description;
-    this.expireDate = vouchers.expireDate
+    this.expireAt = vouchers.expireAt
     this.id = vouchers.id;
     this.used = vouchers.used;
     this.creationDate = vouchers.creationDate;
     this.discountValue = vouchers.discountValue;
-    this.startDate = vouchers.startDate;
+    this.startAt = vouchers.startAt;
+    this.cityLimit = vouchers.cityLimit;
+    this.discountLimit = vouchers.discountLimit;
+    this.tripType = vouchers.tripType;
+    this.serviceType = vouchers.serviceType;
+    this.origin = vouchers.origin;
+    this.dest = vouchers.dest;
   }
 }

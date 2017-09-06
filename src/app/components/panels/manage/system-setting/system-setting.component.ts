@@ -39,6 +39,9 @@ export class SystemSettingComponent implements OnInit {
       'PIOSUpdate': new FormControl('', Validators.required),
       'DCriticalIOSUpdate': new FormControl('', Validators.required),
       'DIOSUpdate': new FormControl('', Validators.required),
+      'usageCreditPerMin': new FormControl('', [Validators.required, Validators.maxLength(4)]),
+      'usageCreditPerHour': new FormControl('', [Validators.required, Validators.maxLength(5)]),
+      'usageCreditPerDay': new FormControl('', [Validators.required, Validators.maxLength(7)]),
 
     })
   }
@@ -58,6 +61,7 @@ export class SystemSettingComponent implements OnInit {
     )
   }
   onUpdate() {
+    console.log(this.settings)
     this._adminservice.updateSystemSetting(this.settings).subscribe(
       res => {
         let notification = new Notification({ title: 'ثبت شد', info: 'تغییرات ثبت شد', type: NotificationTypes.success });
@@ -80,6 +84,9 @@ export class SystemSettingComponent implements OnInit {
     this.updateForm.controls['PIOSUpdate'].setValue(this.settings.PIOSUpdate);
     this.updateForm.controls['DCriticalIOSUpdate'].setValue(this.settings.DCriticalIOSUpdate);
     this.updateForm.controls['DIOSUpdate'].setValue(this.settings.DIOSUpdate);
+    this.updateForm.controls['usageCreditPerMin'].setValue(this.settings.usageCreditPerMin);
+    this.updateForm.controls['usageCreditPerHour'].setValue(this.settings.usageCreditPerHour);
+    this.updateForm.controls['usageCreditPerDay'].setValue(this.settings.usageCreditPerDay);
 
   }
 

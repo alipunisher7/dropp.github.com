@@ -137,6 +137,7 @@ import { OperatorChangePasswordComponent } from './components/panels/manage/oper
 import { ReloadComponent } from './components/panels/manage/reload/reload.component';
 import { AccountSettingComponent } from './components/account-setting/account-setting.component';
 import { VehicleDistanceComponent } from './components/panels/drivers/vehicle-distance/vehicle-distance.component';
+import { PaymentReqComponent } from './components/panels/drivers/payment-req/payment-req.component';
 
 
 @NgModule({
@@ -223,6 +224,7 @@ import { VehicleDistanceComponent } from './components/panels/drivers/vehicle-di
     ReloadComponent,
     AccountSettingComponent,
     VehicleDistanceComponent,
+    PaymentReqComponent,
   ],
   imports: [
     BrowserModule,

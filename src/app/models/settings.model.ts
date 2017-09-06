@@ -17,4 +17,7 @@ export interface ISettings {
   PCriticalIOSUpdate: string;
   DAndroidUpdate: string;
   DIOSUpdate: string;
+  usageCreditPerMin: number;
+  usageCreditPerHour: number;
+  usageCreditPerDay: number;
 }

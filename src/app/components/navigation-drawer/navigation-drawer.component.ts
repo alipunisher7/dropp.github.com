@@ -29,6 +29,7 @@ export class NavigationDrawerComponent implements OnInit, AfterViewInit {
           { title: 'راننده ها با امتیاز پایین', icon: 'fa fa-minus-square', route: 'low-rate' },
           { title: 'تایید راننده ها', icon: 'fa fa-check', route: 'confirm-driver' },
           { title: 'مسافت خودرو ها', icon: 'fa fa-check', route: 'vehicle-distance' },
+          { title: 'درخواست های پرداخت', icon: 'fa fa-check', route: 'payment-req' },
         ],
       },
       {

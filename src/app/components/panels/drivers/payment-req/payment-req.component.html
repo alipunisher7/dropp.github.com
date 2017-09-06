@@ -1,0 +1,29 @@
+<h2>درخواست های پرداخت حساب</h2>
+<input class="search form-ctrl" type="search" name="searchDriversCredit" placeholder="جستجو ..." [formControl]="searchControl" [value]="search">
+<table class="table">
+  <thead>
+    <tr>
+      <th>نام کاربری راننده</th>
+      <th>موجودی حساب</th>
+      <th>شماره تلفن</th>
+      <th>شماره کارت</th>
+      <th>شماره حساب</th>
+      <th>پرداخت</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let driverCredit of driversCredit">
+      <td>{{driverCredit.username}}</td>
+      <td>{{driverCredit.credit}}</td>
+      <td>{{driverCredit.phoneNumber}}</td>
+      <td>{{driverCredit.cardNumber}}</td>
+      <td>{{driverCredit.accountNumber}}</td>
+      <td><button (click)="onPaymet(driverCredit)" >پرداخت</button></td>
+    </tr>
+    <tr *ngIf="!driverCredit" class="no-data">
+      <td colspan=75%>
+        راننده ای وجود ندارد
+      </td>
+    </tr>
+  </tbody>
+</table>
