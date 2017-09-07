@@ -58,13 +58,13 @@
     <label>نوع سرویس
       <select  name="serviceType" formControlName="serviceType">
         <option value="">نوع سرویس را انتخاب کنید</option>
-        <option value="N">نرمال</option>
-        <option value="E">اکو</option>
-        <option value="T">تاکسی</option>
-        <option value="R">موتور</option>
-        <option value="D">پیک</option>
+        <option value="N">Normal</option>
+        <option value="E">Eco</option>
+        <option value="T">Taxi</option>
+        <option value="R">Motor-Transport</option>
+        <option value="D">Motor-Delivery</option>
         <option value="S">SUV</option>
-        <option value="L">لوکس</option>
+        <option value="L">Lux</option>
       </select>
     </label>
   </div>
@@ -75,6 +75,6 @@
     مقصد*
   </div>
   <div>
-    <button type="submit" [disabled]="!myForm.valid">ثبت</button>
+    <button class="btn" type="submit" [disabled]="!myForm.valid">ثبت</button>
   </div>
 </form>

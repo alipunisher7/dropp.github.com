@@ -56,7 +56,7 @@
     </div>
     <div>
       <label for="birthDate">تاریخ تولد</label>
-      <input type="date" name="birthDate" placeholder="تاریخ تولد" formControlName="birthDate"  >
+      <input type="date" name="birthDate"  placeholder="تاریخ تولد" formControlName="birthDate" >
     </div>
     <div>
       <label for="city">شهر</label>
@@ -112,7 +112,8 @@
       <input type="radio" name="gender" value="F" formControlName="gender"  > خانم
     </div>
     <div>
-        <button type="submit" name="submitMop" [disabled]="!myForm.valid" >ثبت</button>
+        <button class="btn" type="submit" name="submitMop" [disabled]="!myForm.valid" >ثبت</button>
+        <button class="btn" type="button" (click)="Cancel()"  >لغو</button>
     </div>
   </form>
 

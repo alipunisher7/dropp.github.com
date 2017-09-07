@@ -15,6 +15,6 @@
 <form [formGroup]= "myForm" (ngSubmit)="onSubmit()" >
   <label>خودروسازی جدید</label>
   <input type="text" name="name" value="" formControlName="name">
-  <button type="submit" name="submitManufacture" [disabled]="!myForm.valid">ثبت</button>
+  <button type="submit" name="submitManufacture" class="btn" [disabled]="!myForm.valid">ثبت</button>
   <span></span>
 </form>

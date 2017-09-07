@@ -33,19 +33,19 @@ const StatusCodeNames = {
   "3": "تایید شده"
 }
 const serviceTypeNames = {
-  "ECO": "اکو",
-  "LUX": "لوکس",
-  "NORMAL": "نرمال",
-  "MOTOR_TRANSPORT": "موتور",
-  "MOTOR_DELIVERY": "پیک",
-  "TAXI": "تاکسی",
+  "ECO": "Eco",
+  "LUX": "Lux",
+  "NORMAL": "Normal",
+  "MOTOR_TRANSPORT": "Motor-Trasnport",
+  "MOTOR_DELIVERY": "Motor-Delivery",
+  "TAXI": "Taxi",
   "SUV": "SUV",
-  "E": "اکو",
-  "L": "لوکس",
-  "N": "نرمال",
-  "R": "موتور",
-  "D": "پیک",
-  "T": "تاکسی",
+  "E": "Eco",
+  "L": "Lux",
+  "N": "Normal",
+  "R": "Motor-Trasnport",
+  "D": "Motor-Delivery",
+  "T": "Taxi",
   "S": "SUV",
 }
 

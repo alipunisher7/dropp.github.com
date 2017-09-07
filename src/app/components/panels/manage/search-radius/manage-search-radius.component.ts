@@ -53,6 +53,9 @@ export class ManageSearchRadiusComponent implements OnInit {
     this.updateForm.controls['radiusUpdate'].setValue(data.radius);
     this.updateForm.controls['serviceTypeUpdate'].setValue(data.serviceType);
   }
+  Cancel(){
+    this.selectedRadius=null;
+  }
 
   onUpdate() {
     let updatedRadius = {

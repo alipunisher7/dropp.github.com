@@ -60,12 +60,12 @@ export class Vouchers implements IVouchers {
     "U": "بدون محدودیت",
   }
   serviceTypeNames = {
-    "E": "اکو",
-    "L": "لوکس",
-    "N": "نرمال",
-    "R": "موتور",
-    "D": "پیک",
-    "T": "تاکسی",
+    "E": "Eco",
+    "L": "Lux",
+    "N": "Normal",
+    "R": "Motor-Transport",
+    "D": "Motor-Delivery",
+    "T": "Taxi",
     "S": "SUV",
   }
   get generationTypeName() {

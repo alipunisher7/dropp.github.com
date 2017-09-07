@@ -22,8 +22,8 @@
         <td>{{organization.email}}</td>
         <td>{{organization.workNumber}}</td>
         <td>{{organization.accountStateName}}</td>
-        <td><button [disabled]="organization.accountState ==='VERIFIED'" (click)="confirm(organization)" >تایید</button></td>
-        <td><button (click)="remove(organization)" >حذف</button></td>
+        <td><button class="btn" [disabled]="organization.accountState ==='VERIFIED'" (click)="confirm(organization)" >تایید</button></td>
+        <td><button class="btn" (click)="remove(organization)" >حذف</button></td>
         <!-- <td><button  >بن</button></td>
         <td><button  >رفع بن</button></td> -->
         <td><button (click)="onMoreClick(organization)" class="btn accent" >اطلاعات بیشتر</button></td>

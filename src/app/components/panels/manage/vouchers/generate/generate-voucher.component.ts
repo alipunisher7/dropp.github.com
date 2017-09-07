@@ -38,6 +38,21 @@ export class GenerateVoucherComponent implements OnInit {
 
   onSubmit() {
     console.log((new Date(this.myForm.controls['startAt'].value).getTime()));
+    let voucher = {
+      cityLimit : this.myForm.controls['cityLimit'].value,
+      description:this.myForm.controls['description'].value,
+      discountValue:this.myForm.controls['discountValue'].value,
+      discountType:this.myForm.controls['discountType'].value,
+      discountLimit:this.myForm.controls['discountLimit'].value,
+      startAt: (new Date(this.myForm.controls['startAt'].value).getTime()),
+      expireAt: (new Date(this.myForm.controls['expireAt'].value).getTime()),
+      generationType:this.myForm.controls['generationType'].value,
+      voucherCode:this.myForm.controls['voucherCode'].value,
+      maxUse:this.myForm.controls['maxUse'].value,
+      tripType:this.myForm.controls['tripType'].value,
+      serviceType:this.myForm.controls['serviceType'].value
+    }
+    console.log(voucher);
     this._masterService.insertVoucher(this.myForm.value).subscribe(
       res => {
         let notification = new Notification({ title: 'ثبت شد', info: `کد تخفیف ثبت شد`, type: NotificationTypes.success });

@@ -2,15 +2,18 @@ import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MasterService, NotificationService } from 'services';
 import { Operator, Notification, NotificationTypes, Error } from 'models';
+import { DatePipe } from '@angular/common';
+
 
 @Component({
   selector: 'ts-operator',
   templateUrl: './operator.component.html',
-  styleUrls: ['./operator.component.scss']
+  styleUrls: ['./operator.component.scss'],
+  providers:[DatePipe]
 })
 export class OperatorComponent implements OnInit {
   myForm: FormGroup;
-  constructor(private _masterService: MasterService, private _notificationservice: NotificationService) {
+  constructor(private _masterService: MasterService, private _notificationservice: NotificationService,private datePipe: DatePipe) {
     this.myForm = new FormGroup({
       'id': new FormControl(''),
       'firstName': new FormControl('', [Validators.required, Validators.minLength(2)]),
@@ -30,19 +33,23 @@ export class OperatorComponent implements OnInit {
   @Input() operator: Operator;
   editOperator: Operator;
   edit(operator) {
+    let birthDate =this.datePipe.transform(operator.birthDate , 'yyyy-MM-dd');
     this.editOperator = operator;
     this.myForm.controls['id'].setValue(operator.id);
     this.myForm.controls['firstName'].setValue(operator.firstName);
     this.myForm.controls['lastName'].setValue(operator.lastName);
-    this.myForm.controls['birthDate'].setValue(operator.birthDate);
+    this.myForm.controls['birthDate'].setValue(birthDate);
     this.myForm.controls['city'].setValue(operator.city);
     this.myForm.controls['workNumber'].setValue(operator.workNumber);
     this.myForm.controls['phoneNumber'].setValue(operator.phoneNumber);
     this.myForm.controls['email'].setValue(operator.email);
     this.myForm.controls['gender'].setValue(operator.gender);
-    this.myForm.controls['password'].setValue(operator.gender);
+  
   }
   ngOnInit() {
+  }
+  Cancel(){
+    this.editOperator=null;
   }
   rePassMatchValidator(group: FormGroup): { [c: string]: boolean } {
     return group.get('password').value === group.get('re-password').value ? null : { confirm: true };

@@ -11,7 +11,7 @@
     <tr *ngFor="let radius of radiuses">
       <td>{{radius.type}}</td>
       <td>{{radius.radius}}</td>
-      <td><button (click)="changeRadius(radius)" >کلیک </button></td>
+      <td><button class="btn" (click)="changeRadius(radius)" >کلیک </button></td>
     </tr>
   </tbody>
 </table>
@@ -24,7 +24,8 @@
   <label><input type="number" name="radiusUpdate" formControlName="radiusUpdate"></label>
 </div>
 <div>
-  <button type="submit" name="updateRadius" [disabled]="!updateForm.valid">ثبت</button>
+  <button class="btn" type="submit" name="updateRadius" [disabled]="!updateForm.valid">ثبت</button>
+  <button class="btn" type="button" (click)="Cancel()" >لغو</button>
 </div>
 </form>
 <h2>اضافه کردن شعاع جستجو جدید</h2>
@@ -33,13 +34,13 @@
       <label>انتخاب سرویس</label>
       <select  name="serviceType" formControlName="serviceType">
           <option value="">سرویس مورد نظر را انتخاب کنید</option>
-          <option value="N">نرمال</option>
-          <option value="E">اکو</option>
-          <option value="T">تاکسی</option>
-          <option value="R">موتور</option>
-          <option value="D">پیک</option>
+          <option value="N">Normal</option>
+          <option value="E">Eco</option>
+          <option value="T">Taxi</option>
+          <option value="R">Motor-Transport</option>
+          <option value="D">Motor-Delivery</option>
           <option value="S">SUV</option>
-          <option value="L">لوکس</option>
+          <option value="L">Lux</option>
       </select>
     </div>
     <div>
@@ -47,6 +48,6 @@
       <input type="text" name="radius"  formControlName="radius">
     </div>
     <div>
-      <button type="submit" name="submitRadius" [disabled]="!myForm.valid">ثبت</button>
+      <button class="btn" type="submit" name="submitRadius" [disabled]="!myForm.valid">ثبت</button>
     </div>
 </form>

@@ -20,14 +20,14 @@
       <td>{{driver.username}}</td>
       <td>{{driver.serviceTypeName}}</td>
       <td>
-        <select #providers>
+        <select [disabled]="driver.stateCode ===3" #providers>
             <option value="">ارائه دهنده را انتخاب کنید</option>
             <option *ngFor="let serviceProvider of serviceProviders" value="{{serviceProvider.id}}">{{serviceProvider.name}}</option>
         </select>
       </td>
-      <td><button (click)="confirm(driver,providers.value)" [disabled]="driver.stateCode ===3">تایید</button></td>
-      <td><button (click)="upload(driver)">آپلود</button></td>
-      <td><button (click)="onMoreClick(driver)">اطلاعات بیشتر</button></td>
+      <td><button class="btn outline error" (click)="confirm(driver,providers.value)" [disabled]="driver.stateCode ===3">تایید</button></td>
+      <td><button class="btn outline error" (click)="upload(driver)">آپلود</button></td>
+      <td><button class="btn accent" (click)="onMoreClick(driver)">اطلاعات بیشتر</button></td>
     </tr>
     <tr *ngIf="!driver" class="no-data">
       <td colspan=75%>

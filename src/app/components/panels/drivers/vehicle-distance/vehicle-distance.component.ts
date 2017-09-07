@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { Vehicle } from 'models'
-import { CopService } from 'services'
+import { Vehicle } from 'models';
+import { CopService } from 'services';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'ts-vehicle-distance',
   templateUrl: './vehicle-distance.component.html',
-  styleUrls: ['./vehicle-distance.component.scss']
+  styleUrls: ['./vehicle-distance.component.scss'], 
+  providers:[DatePipe]
 })
 export class VehicleDistanceComponent implements OnInit {
   today = new Date();
@@ -16,7 +18,7 @@ export class VehicleDistanceComponent implements OnInit {
   resultCount = 20;
   page = 0;
 
-  constructor(private _copservice: CopService) { }
+  constructor(private _copservice: CopService ,private datePipe: DatePipe) { }
 
   // searchVehicle() {
   //   // TODO: count and prefix
@@ -33,7 +35,8 @@ export class VehicleDistanceComponent implements OnInit {
     //   });
     //
     // this.searchVehicle();
-
+    let endDate =this.datePipe.transform(new Date() , 'yyyy-MM-dd');
+    console.log(endDate);
   }
 
 }

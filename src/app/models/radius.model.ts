@@ -4,13 +4,13 @@ export interface IRadius {
 }
 
 const serviceTypeNames = {
-  "T": "تاکسی",
-  "E": "اکو",
-  "N": "نرمال",
-  "L": "لوکس",
+  "T": "Taxi",
+  "E": "Eco",
+  "N": "Normal",
+  "L": "Lux",
   "S": "SUV",
-  "R": "موتور",
-  "D": "پیک"
+  "R": "Motor-Transport",
+  "D": "Motor-Delivery"
 }
 
 export class Radius implements IRadius {

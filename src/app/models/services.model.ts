@@ -9,12 +9,12 @@ export class Services implements IServices {
   type: string;
   id: number;
   private typeNames = {
-    "T": "تاکسی",
-    "E": "اکو",
-    "N": "نرمال",
-    "L": "لوکس",
-    "R": "موتور",
-    "D": "پیک",
+    "T": "Taxi",
+    "E": "Eco",
+    "N": "Normal",
+    "L": "Lux",
+    "R": "Motor-Transport",
+    "D": "Motor-Delivery",
     "S": "SUV"
   }
 

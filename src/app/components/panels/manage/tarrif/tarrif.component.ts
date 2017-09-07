@@ -69,6 +69,9 @@ export class TarrifComponent implements OnInit {
     this.updateForm.controls['twoWayCostUpdate'].setValue(tariff.twoWayCost.toString());
     this.updateForm.controls['genoShareUpdate'].setValue(tariff.genoShare.toString());
   }
+  Cancel(){
+    this.selectedTariff=null;
+  }
 
   onUpdate() {
     let updatedTariff = {

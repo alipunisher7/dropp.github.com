@@ -65,7 +65,7 @@ export class DashboardPanel implements OnInit {
 
   getOnlineDriversCount() {
     this._operatorServices.getOnlineDriversCount().subscribe(data => {
-      this.driverCard.info1.data = data;
+      this.driverCard.info1.data = data.total;
     })
   }
 
@@ -117,6 +117,7 @@ export class DashboardPanel implements OnInit {
     timer.subscribe(t => { this.getPassengersCount(); });
     timer.subscribe(t => { this.getOrganizationsCount(); });
     timer.subscribe(t => { this.getNewOrganizationsCount(); });
+    timer.subscribe(t => { this.getOnlineDriversCount(); });
 
     // this.getOnlineDriversCount();
   }

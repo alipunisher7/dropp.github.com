@@ -30,13 +30,13 @@ export class Tariff implements ITariff {
     "MA": "مشهد",
   }
   private serviceTypeNames = {
-    "N": "نرمال",
-    "T": "تاکسی",
-    "D": "پیک",
-    "R": "موتور",
-    "L": "لوکس",
+    "N": "Normal",
+    "T": "Taxi",
+    "D": "Motor-Delivery",
+    "R": "Motor-Transport",
+    "L": "Lux",
     "S": "SUV",
-    "E": "اکو",
+    "E": "Eco",
   }
   get cityName() {
     return this.cityNames[this.city];

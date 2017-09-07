@@ -21,8 +21,8 @@
     <tr *ngFor="let activeService of activeServices">
       <td>{{activeService.typeName}}</td>
       <td >{{activeService.statusName}}</td>
-      <td><button (click)="enable(activeService)" [disabled]="activeService.status ===true">کلیک</button></td>
-      <td><button (click)="disable(activeService)" [disabled]="activeService.status ===false">کلیک</button></td>
+      <td><button class="btn" (click)="enable(activeService)" [disabled]="activeService.status ===true">کلیک</button></td>
+      <td><button class="btn" (click)="disable(activeService)" [disabled]="activeService.status ===false">کلیک</button></td>
     </tr>
     <tr *ngIf="!activeService" class="no-data">
       <td colspan=75%>
@@ -42,14 +42,14 @@
    </select>
   <select formControlName="serviceType">
      <option value="">نوع سرویس را انتخاب کنید</option>
-     <option value="N">نرمال</option>
-     <option value="E">اکو</option>
-     <option value="T">تاکسی</option>
-     <option value="R">موتور</option>
-     <option value="D">پیک</option>
+     <option value="N">Normal</option>
+     <option value="E">Eco</option>
+     <option value="T">Taxi</option>
+     <option value="R">Motor-Transport</option>
+     <option value="D">Motor-Delivery</option>
      <option value="S">SUV</option>
-     <option value="L">لوکس</option>
+     <option value="L">Lux</option>
    </select>
 
-  <button type="submit" name="submitActiveService" [disabled]="!myForm.valid">ثبت</button>
+  <button type="submit" class="btn" name="submitActiveService" [disabled]="!myForm.valid">ثبت</button>
 </form>

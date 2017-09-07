@@ -88,7 +88,7 @@ export class NavigationDrawerComponent implements OnInit, AfterViewInit {
         title: 'پشتیبانی', icon: 'fa fa-user-circle-o', route: 'support',
         subNavs: [
           { title: 'نمایش همه تیکت ها', icon: 'fa fa-envelope-o', route: 'view-ticket' },
-          { title: 'جستجو تیکت ها', icon: 'fa fa-envelope-o', route: '' },
+          { title: 'جستجو تیکت ها', icon: 'fa fa-envelope-o', route: 'search-tickets' },
         ]
       },
       {
